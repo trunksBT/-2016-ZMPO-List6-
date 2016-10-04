@@ -2,26 +2,23 @@
 //
 
 #include "stdafx.h"
+#include <string>
 #include <iostream>
+#include <vector>
 #include <boost/optional.hpp>
+#include <boost/tokenizer.hpp>
+#include "Interface.h"
 
-void printIfIsInitilized(boost::optional<int>& inOptionalVal)
-{
-    if (inOptionalVal.is_initialized())
-    {
-        std::cout << inOptionalVal.get();
-    }
-    else
-    {
-        std::cout << "Not initialized value";
-    }
-    std::cout << std::endl;
-}
+using namespace boost;
 
 int main()
 {
-    std::cout << "HelloBoost" << std::endl;
-    boost::optional<int> optionalVal;
-    printIfIsInitilized(optionalVal);
+    constexpr char* SEPARATOR = " ";
+    std::string str = "fun1 fun2 2323 ";
+    using tokenizer = boost::tokenizer<boost::char_separator<char> >;
+    boost::char_separator<char> sep(SEPARATOR);
+    tokenizer tokens(str, sep);
+    std::vector<std::string> retVal(tokens.begin(), tokens.end());
+
     return 0;
 }
