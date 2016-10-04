@@ -1,15 +1,20 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class CTable
 {
-private:
-    std::string name_;
 public:
     CTable();
-    CTable(CTable& inTable);
-    CTable(std::string inName);
+    CTable(CTable& inVal);
+    CTable(std::string inVal);
     ~CTable();
+public:
+    void setName(std::string inVal);
+public:
+    static void releaseResources(std::vector<CTable*> &tables);
+private:
+    std::string name_;
 };
 
