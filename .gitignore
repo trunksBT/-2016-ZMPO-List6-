@@ -2,5 +2,8 @@ Debug/
 ipch/
 packages/
 .vs/
+
+*.vcxproj
+*.vcxproj.filters
 *.db
 *.opendb

@@ -2,26 +2,30 @@
 //
 
 #include "stdafx.h"
+#include <string>
+#include <vector>
 #include <iostream>
-#include <boost/optional.hpp>
 
-void printIfIsInitilized(boost::optional<int>& inOptionalVal)
-{
-    if (inOptionalVal.is_initialized())
-    {
-        std::cout << inOptionalVal.get();
-    }
-    else
-    {
-        std::cout << "Not initialized value";
-    }
-    std::cout << std::endl;
-}
+#include <boost/optional.hpp>
+#include <boost/tokenizer.hpp>
+
+#include "Interface.h"
+#include "Utils.h"
+#include "Stub.h"
 
 int main()
 {
-    std::cout << "HelloBoost" << std::endl;
-    boost::optional<int> optionalVal;
-    printIfIsInitilized(optionalVal);
+    std::vector<std::string> tokenizedCommand(stub::createDef);
+    std::string receivedCommand = tokenizedCommand[messageId::command];
+    if (receivedCommand == messageLiterals::createDef)
+    {
+        std::cout << "Stworze tablice";
+    }
+    else
+    {
+        std::cout << "Nie znam takiej komendy";
+    }
+
+    std::cout << std::endl;
     return 0;
 }
