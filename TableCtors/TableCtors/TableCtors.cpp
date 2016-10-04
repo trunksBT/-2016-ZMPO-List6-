@@ -9,23 +9,30 @@
 #include <boost/optional.hpp>
 #include <boost/tokenizer.hpp>
 
-#include "Interface.h"
-#include "Utils.h"
-#include "Stub.h"
+#include "Stub.hpp"
+#include "Utils.hpp"
+#include "CTable.hpp"
+#include "Interface.hpp"
+#include "TableCtors.h"
+
+using namespace defaultVals;
+using namespace communication;
 
 int main()
 {
-    std::vector<std::string> tokenizedCommand(stub::createDef);
-    std::string receivedCommand = tokenizedCommand[messageId::command];
-    if (receivedCommand == messageLiterals::createDef)
     {
-        std::cout << "Stworze tablice";
-    }
-    else
-    {
-        std::cout << "Nie znam takiej komendy";
+        std::vector<CTable*> tables(stub::threeTables);
+        std::vector<std::string> tokenizedCommand(stub::createDef);
+        std::string receivedCommand = tokenizedCommand[idxOf::command];
+        std::string receivedId = tokenizedCommand[idxOf::id];
+
+        communication::perform(receivedCommand, receivedId, tables);
+
+        CTable::releaseResources(tables);
     }
 
     std::cout << std::endl;
     return 0;
 }
+
+
