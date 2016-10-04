@@ -9,9 +9,9 @@
 #include <boost/optional.hpp>
 #include <boost/tokenizer.hpp>
 
-#include "Interface.h"
-#include "Utils.h"
-#include "Stub.h"
+#include "Interface.hpp"
+#include "Utils.hpp"
+#include "Stub.hpp"
 
 int main()
 {
