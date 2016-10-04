@@ -1,5 +1,6 @@
 Debug/
 ipch/
+packages/
 .vs/
 *.db
 *.opendb
