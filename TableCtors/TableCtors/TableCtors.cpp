@@ -15,6 +15,7 @@
 #include "Interface.hpp"
 #include "TableCtors.h"
 #include "Flyweight.h"
+#include "RAIIFlyweightCTable.h"
 
 #define STUB
 
@@ -24,15 +25,11 @@ using namespace communication;
 int main()
 {
     {
-        std::vector<std::string> tokenizedCommand;
 #ifdef STUB
-        tokenizedCommand = stub::createDef;
+        RAIIFlyweightCTable application(stub::createDef);
 #elif
-        tokenizedCommand = communication::receiveCommandFromUser();
+        RAIIFlyweightCTable application(communication::receiveCommandFromUser());
 #endif
-        Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
-        Flyweight::createCTable(tokenizedCommand);
-        Flyweight::releaseResources();
     }
 
     std::cout << std::endl;
