@@ -7,15 +7,24 @@
 using namespace trigger;
 
 std::vector<CTable*> Flyweight::cache;
+std::vector<std::string> Flyweight::command;
 
-CTable* Flyweight::callCtor(std::string& command, std::string& receivedId)
+void Flyweight::createFlyweight(int inSize)
+{
+    cache = std::vector<CTable*>(inSize);
+}
+
+void Flyweight::callCtor(std::string& command, std::string& receivedId)
 {
     int idx = std::stoi(receivedId);
     if(command == messageLiterals::createDef)
     {
         if(idx < cache.size())
         {
-            delete cache[idx];
+            if(cache[idx] != nullptr)
+            {
+                delete cache[idx];
+            }
             cache[idx] = FlyweightCTable::onCreateDef();
         }
         else
@@ -27,14 +36,12 @@ CTable* Flyweight::callCtor(std::string& command, std::string& receivedId)
     {
         std::cout << "Nie znam takiej komendy";
     }
-    return cache[idx];
-    return nullptr;
 }
 
-
-void Flyweight::insertStub(std::vector<CTable*> inVal)
+void Flyweight::createCTable(std::vector<std::string>& inCommand)
 {
-    cache = inVal;
+    command = std::move(inCommand);
+    callCtor(command[idxOf::command], command[idxOf::id]);
 }
 
 void Flyweight::releaseResources()

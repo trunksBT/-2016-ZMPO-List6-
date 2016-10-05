@@ -10,7 +10,7 @@ constexpr char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
 constexpr char* CTOR_DEFAULT_PRE_PRINT = "bezp: ";
 constexpr char* CTOR_ARG1_PRE_PRINT = "parametr: ";
 constexpr char* POST_PRINT = "\n";
-
+constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 10;
 }
 
 namespace idxOf

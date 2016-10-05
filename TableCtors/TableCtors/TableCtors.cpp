@@ -16,14 +16,22 @@
 #include "TableCtors.h"
 #include "Flyweight.h"
 
+#define STUB
+
 using namespace defaultVals;
 using namespace communication;
 
 int main()
 {
     {
-        std::vector<std::string> tokenizedCommand = 
-            communication::receiveCommandFromUser();
+        std::vector<std::string> tokenizedCommand;
+#ifdef STUB
+        tokenizedCommand = stub::createDef;
+#elif
+        tokenizedCommand = communication::receiveCommandFromUser();
+#endif
+        Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
+        Flyweight::createCTable(tokenizedCommand);
         Flyweight::releaseResources();
     }
 

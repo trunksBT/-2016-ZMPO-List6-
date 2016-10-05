@@ -7,12 +7,13 @@
 class Flyweight
 {
 public:
-    static CTable* callCtor(std::string& command, std::string& receivedId);
+    static void createFlyweight(int inSize);
+    static void callCtor(std::string& command, std::string& receivedId);
+    static void createCTable(std::vector<std::string>& command);
 public:
-    static void insertStub(std::vector<CTable*> inVal);
     static void releaseResources();
 private:
     static std::vector<CTable*> cache;
-    static std::vector<std::string> commands;
+    static std::vector<std::string> command;
 };
 
