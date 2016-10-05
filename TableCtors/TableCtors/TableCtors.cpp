@@ -17,23 +17,49 @@
 #include "Flyweight.h"
 #include "RAIIFlyweightCTable.h"
 
-#define STUB
-
 using namespace defaultVals;
 using namespace communication;
+
+#define STUB
+
+class MainRunner
+{
+public:
+   MainRunner()
+   {
+#ifdef STUB
+      //RAIIFlyweightCTable application(stub::createDef);
+      // ***************** DEAFAULT CACHE *****************
+      //RAIIFlyweightCTable application(stub::createDefs);
+      // ***************** OWN CACHE *****************
+      RAIIFlyweightCTable application(stub::createDefs, inCache);
+#else
+      RAIIFlyweightCTable application(communication::receiveCommandFromUser());
+#endif
+   }
+   ~MainRunner()
+   {
+      Flyweight::releaseResources(inCache);
+   }
+private:
+   std::vector<CTable*> inCache =
+   {
+      nullptr,
+      nullptr,
+      new CTable(),
+      new CTable(),
+      nullptr
+   };
+};
 
 int main()
 {
     {
-#ifdef STUB
-        RAIIFlyweightCTable application(stub::createDef);
-#elif
-        RAIIFlyweightCTable application(communication::receiveCommandFromUser());
-#endif
+      MainRunner mainApp;
     }
 
     std::cout << std::endl;
-    return 0;
+    return ZERO;
 }
 
 
