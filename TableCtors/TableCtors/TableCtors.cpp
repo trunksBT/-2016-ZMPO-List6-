@@ -14,6 +14,7 @@
 #include "CTable.hpp"
 #include "Interface.hpp"
 #include "TableCtors.h"
+#include "Flyweight.h"
 
 using namespace defaultVals;
 using namespace communication;
@@ -21,14 +22,9 @@ using namespace communication;
 int main()
 {
     {
-        std::vector<CTable*> tables(stub::threeTables);
-        std::vector<std::string> tokenizedCommand(stub::createDef);
-        std::string receivedCommand = tokenizedCommand[idxOf::command];
-        std::string receivedId = tokenizedCommand[idxOf::id];
-
-        communication::perform(receivedCommand, receivedId, tables);
-
-        CTable::releaseResources(tables);
+        std::vector<std::string> tokenizedCommand = 
+            communication::receiveCommandFromUser();
+        Flyweight::releaseResources();
     }
 
     std::cout << std::endl;
