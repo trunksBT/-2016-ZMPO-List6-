@@ -7,7 +7,7 @@ namespace stub
 {
 
 std::vector<std::string> createDef = { "createDef", "0" };
-std::vector<CTable*> threeTables = { new CTable(), new CTable() };
+
 //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor

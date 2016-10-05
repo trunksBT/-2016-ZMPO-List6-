@@ -33,12 +33,3 @@ void CTable::setName(std::string inVal)
 {
     name_ = std::move(inVal);
 }
-
-void CTable::releaseResources(std::vector<CTable*> &tables)
-{
-     for (auto i = 0; i< tables.size(); i++)
-     {
-         delete tables[i];
-     }
-     tables.clear();
-}

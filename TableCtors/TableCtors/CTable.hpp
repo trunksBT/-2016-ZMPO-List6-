@@ -12,8 +12,6 @@ public:
     ~CTable();
 public:
     void setName(std::string inVal);
-public:
-    static void releaseResources(std::vector<CTable*> &tables);
 private:
     std::string name_;
 };
