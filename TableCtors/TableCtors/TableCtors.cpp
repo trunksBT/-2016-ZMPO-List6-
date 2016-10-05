@@ -15,28 +15,51 @@
 #include "Interface.hpp"
 #include "TableCtors.h"
 #include "Flyweight.h"
-
-#define STUB
+#include "RAIIFlyweightCTable.h"
 
 using namespace defaultVals;
 using namespace communication;
 
+#define STUB
+
+class MainRunner
+{
+public:
+   MainRunner()
+   {
+#ifdef STUB
+      //RAIIFlyweightCTable application(stub::createDef);
+      // ***************** DEAFAULT CACHE *****************
+      //RAIIFlyweightCTable application(stub::createDefs);
+      // ***************** OWN CACHE *****************
+      RAIIFlyweightCTable application(stub::createDefs, inCache);
+#else
+      RAIIFlyweightCTable application(communication::receiveCommandFromUser());
+#endif
+   }
+   ~MainRunner()
+   {
+      Flyweight::releaseResources(inCache);
+   }
+private:
+   std::vector<CTable*> inCache =
+   {
+      nullptr,
+      nullptr,
+      new CTable(),
+      new CTable(),
+      nullptr
+   };
+};
+
 int main()
 {
     {
-        std::vector<std::string> tokenizedCommand;
-#ifdef STUB
-        tokenizedCommand = stub::createDef;
-#elif
-        tokenizedCommand = communication::receiveCommandFromUser();
-#endif
-        Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
-        Flyweight::createCTable(tokenizedCommand);
-        Flyweight::releaseResources();
+      MainRunner mainApp;
     }
 
     std::cout << std::endl;
-    return 0;
+    return ZERO;
 }
 
 

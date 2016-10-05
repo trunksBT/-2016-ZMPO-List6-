@@ -7,6 +7,7 @@ namespace stub
 {
 
 std::vector<std::string> createDef = { "createDef", "0" };
+std::vector<std::string> createDefs = { "createDefs", "4" };
 
 //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //
