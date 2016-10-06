@@ -32,7 +32,7 @@ public:
       // ***************** DEAFAULT CACHE *****************
       //RAIIFlyweightCTable application(stub::createDefs);
       // ***************** OWN CACHE *****************
-      RAIIFlyweightCTable application(stub::createDefs, inCache);
+      RAIIFlyweightCTable application(stub::createDefs20);
 #else
       RAIIFlyweightCTable application(communication::receiveCommandFromUser());
 #endif

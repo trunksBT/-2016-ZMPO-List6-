@@ -22,16 +22,16 @@ void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
 
 void Flyweight::callCtor(std::string& command, std::string& receivedId)
 {
-   int idxOrAmmount = std::stoi(receivedId);
+   int idxOrAmount = std::stoi(receivedId);
    if(command == messageLiterals::createDef)
    {
-      if(idxOrAmmount < cache.size())
+      if(idxOrAmount < cache.size())
       {
-         if(cache[idxOrAmmount] != nullptr)
+         if(cache[idxOrAmount] != nullptr)
          {
-            delete cache[idxOrAmmount];
+            delete cache[idxOrAmount];
          }
-         cache[idxOrAmmount] = FlyweightCTable::onCreateDef();
+         cache[idxOrAmount] = FlyweightCTable::onCreateDef();
       }
       else
       {
@@ -40,31 +40,29 @@ void Flyweight::callCtor(std::string& command, std::string& receivedId)
    }
    else if(command == messageLiterals::createDefs)
    {
-      if(idxOrAmmount < cache.size())
+      if(idxOrAmount > cache.size())
       {
-         int cursorIdx = ZERO;
-         for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmmount;)
-         {
-            if(cursorIdx < cache.size())
-            {
-               if(cache[cursorIdx] == nullptr)
-               {
-                  cache[cursorIdx] = FlyweightCTable::onCreateDef();
-                  ammountOfCreatedObj++;
-               }
-               cursorIdx++;
-            }
-            else
-            {
-               cache.emplace_back(FlyweightCTable::onCreateDef());
-               ammountOfCreatedObj++;
-               cursorIdx++;
-            }
-         }
+         cache.reserve(idxOrAmount);
       }
-      else
+      int cacheSize = cache.size();
+      int cursorIdx = ZERO;
+      for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmount;)
       {
-         std::cout << "Nie ma takiej tablicy" << defaultVals::POST_PRINT;
+         if(cursorIdx < cache.size())
+         {
+            if(cache[cursorIdx] == nullptr)
+            {
+               cache[cursorIdx] = FlyweightCTable::onCreateDef();
+               ammountOfCreatedObj++;
+            }
+            cursorIdx++;
+         }
+         else
+         {
+            cache.emplace_back(FlyweightCTable::onCreateDef());
+            ammountOfCreatedObj++;
+            cursorIdx++;
+         }
       }
    }
    else
