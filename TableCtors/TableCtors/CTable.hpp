@@ -6,13 +6,19 @@
 class CTable
 {
 public:
-    CTable();
-    CTable(CTable& inVal);
-    CTable(std::string inVal);
-    ~CTable();
+   CTable();
+   CTable(CTable& inVal);
+   CTable(std::string inVal);
+   ~CTable();
 public:
-    void setName(std::string inVal);
+   int getSize() const;
+
+public:
+   void setName(std::string inVal);
+
 private:
-    std::string name_;
+   std::string name_;
+   int* inTable_;
+   int size_;
 };
 

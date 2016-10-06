@@ -12,6 +12,7 @@ constexpr char* CTOR_ARG1_PRE_PRINT = "parametr: ";
 constexpr char* POST_PRINT = "\n";
 constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 10;
 constexpr int ZERO = 0;
+constexpr int DEFAULT_IN_TABLE_SIZE = 10;
 }
 
 namespace idxOf
