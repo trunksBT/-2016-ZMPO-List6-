@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 
+#include <gtest/gtest.h>
+
 #include <boost/optional.hpp>
 #include <boost/tokenizer.hpp>
 
@@ -52,14 +54,16 @@ private:
    };
 };
 
-int main()
+int main(int argc, char **argv)
 {
-    {
-      MainRunner mainApp;
-    }
+   ::testing::InitGoogleTest(&argc, argv);
 
-    std::cout << std::endl;
-    return ZERO;
+   //{
+   //   MainRunner mainApp;
+   //}
+
+   std::cout << std::endl;
+   return RUN_ALL_TESTS();
 }
 
 
