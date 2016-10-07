@@ -44,7 +44,7 @@ public:
       RAIIFlyweightCTable::receiveCommand(stub::getName0);
       RAIIFlyweightCTable::receiveCommand(stub::getName10);
 
-
+      RAIIFlyweightCTable::receiveCommand(stub::removeAll);
 #else
       RAIIFlyweightCTable application(communication::receiveCommandFromUser());
 #endif
