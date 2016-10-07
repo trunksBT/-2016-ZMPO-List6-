@@ -7,79 +7,100 @@
 using namespace trigger;
 using namespace defaultVals;
 
-std::vector<CTable*> Flyweight::cache;
-std::vector<std::string> Flyweight::command;
+std::vector<CTable*> Flyweight::cache_;
+std::vector<std::string> Flyweight::command_;
 
 void Flyweight::createFlyweight(int inSize)
 {
-   cache = std::vector<CTable*>(inSize);
+   cache_ = std::vector<CTable*>(inSize);
 }
 
 void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
 {
-   cache = std::move(inCache);
+   cache_ = std::move(inCache);
 }
 
-void Flyweight::callCtor(std::string& command, std::string& receivedId)
+void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
 {
    int idxOrAmount = std::stoi(receivedId);
    if(command == messageLiterals::createDef)
    {
-      if(idxOrAmount < cache.size())
+      if(idxOrAmount < cache_.size())
       {
-         if(cache[idxOrAmount] != nullptr)
+         if(cache_[idxOrAmount] != nullptr)
          {
-            delete cache[idxOrAmount];
+            delete cache_[idxOrAmount];
          }
-         cache[idxOrAmount] = FlyweightCTable::onCreateDef();
+         cache_[idxOrAmount] = FlyweightCTable::onCreateDef();
       }
       else
       {
-         std::cout << "Nie ma takiej tablicy" << defaultVals::POST_PRINT;
+         std::cout << "Nie ma takiej tablicy" << POST_PRINT;
       }
    }
    else if(command == messageLiterals::createDefs)
    {
-      if(idxOrAmount > cache.size())
+      if(idxOrAmount > cache_.size())
       {
-         cache.reserve(idxOrAmount);
+         cache_.reserve(idxOrAmount);
       }
-      int cacheSize = cache.size();
+      int cacheSize = cache_.size();
       int cursorIdx = ZERO;
       for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmount;)
       {
-         if(cursorIdx < cache.size())
+         if(cursorIdx < cache_.size())
          {
-            if(cache[cursorIdx] == nullptr)
+            if(cache_[cursorIdx] == nullptr)
             {
-               cache[cursorIdx] = FlyweightCTable::onCreateDef();
+               cache_[cursorIdx] = FlyweightCTable::onCreateDef();
                ammountOfCreatedObj++;
             }
             cursorIdx++;
          }
          else
          {
-            cache.emplace_back(FlyweightCTable::onCreateDef());
+            cache_.emplace_back(FlyweightCTable::onCreateDef());
             ammountOfCreatedObj++;
             cursorIdx++;
          }
       }
    }
+   else if(command.find(messageLiterals::get) != std::string::npos)
+   {
+       if(command == messageLiterals::getName)
+       {
+           std::cout << INDENT << messageLiterals::getName << SEPARATOR;
+           if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
+           {
+               std::cout << "Index poza zasiegiem pamieci";
+           }
+           else
+           {
+               CTable* retTable = cache_.at(idxOrAmount);
+               if(retTable != nullptr)
+               {
+                   std::cout << retTable->getName();
+               }
+               retTable == nullptr;
+           }
+           std::cout << POST_PRINT;
+       }
+   }
    else
    {
-      std::cout << "Nie znam takiej komendy";
+      std::cout << "Nie znam takiej komendy" << POST_PRINT;
    }
 }
 
-void Flyweight::createCTable(std::vector<std::string>& inCommand)
+void Flyweight::receiveCommand(std::vector<std::string>& inCommand)
 {
-   command = std::move(inCommand);
-   callCtor(command[idxOf::command], command[idxOf::idOrAmmount]);
+   command_ = std::move(inCommand);
+   interpretCommand(command_[idxOf::command], command_[idxOf::idOrAmmount]);
 }
 
 void Flyweight::releaseResources()
 {
-   releaseResources(cache);
+   releaseResources(cache_);
 }
 
 void Flyweight::releaseResources(std::vector<CTable*>& inCache)

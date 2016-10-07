@@ -117,6 +117,11 @@ int CTable::getSize() const
    return size_;
 }
 
+std::string& CTable::getName()
+{
+    return name_;
+}
+
 void CTable::setSize(int inSize)
 {
    deallocateMemory();

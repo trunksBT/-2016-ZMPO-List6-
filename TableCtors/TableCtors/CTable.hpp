@@ -17,6 +17,7 @@ public:
 public:
    int getSize() const;
    int getVal(int idx) const;
+   std::string& getName();
 
 public:
    void setName(std::string inName);
