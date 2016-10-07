@@ -30,11 +30,14 @@ public:
    MainRunner()
    {
 #ifdef STUB
-      //RAIIFlyweightCTable application(stub::createDef);
+      RAIIFlyweightCTable application(stub::createDef);
       // ***************** DEAFAULT CACHE *****************
       //RAIIFlyweightCTable application(stub::createDefs);
       // ***************** OWN CACHE *****************
-      RAIIFlyweightCTable application(stub::createDefs20);
+      //RAIIFlyweightCTable application(stub::createDefs20);
+      RAIIFlyweightCTable::receiveCommand(stub::getName0);
+      //RAIIFlyweightCTable::receiveCommand(stub::getName11);
+
 #else
       RAIIFlyweightCTable application(communication::receiveCommandFromUser());
 #endif
@@ -58,9 +61,9 @@ int main(int argc, char **argv)
 {
    ::testing::InitGoogleTest(&argc, argv);
 
-   //{
-   //   MainRunner mainApp;
-   //}
+   {
+      MainRunner mainApp;
+   }
 
    std::cout << std::endl;
    return RUN_ALL_TESTS();

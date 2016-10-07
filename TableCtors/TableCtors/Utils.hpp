@@ -31,7 +31,8 @@ namespace messageLiterals
 {
 constexpr char* createDef = "createDef"; // calls default ctor for obj with number 
 constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
-//createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+constexpr char* getName = "getName"; // getName of CTable on idx
+                                           //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
 //createCopy <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy

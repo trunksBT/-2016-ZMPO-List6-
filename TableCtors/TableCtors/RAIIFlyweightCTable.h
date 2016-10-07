@@ -7,7 +7,9 @@ class CTable;
 class RAIIFlyweightCTable
 {
 public:
-   RAIIFlyweightCTable(std::vector<std::string>& inCommand);
-   RAIIFlyweightCTable(std::vector<std::string>& inCommand, std::vector<CTable*>& inCache);
+    static void receiveCommand(std::vector<std::string>& inCommand);
+public:
+    RAIIFlyweightCTable(std::vector<std::string>& inCommand);
+    RAIIFlyweightCTable(std::vector<std::string>& inCommand, std::vector<CTable*>& inCache);
     ~RAIIFlyweightCTable();
 };

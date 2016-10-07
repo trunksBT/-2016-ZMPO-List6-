@@ -10,6 +10,8 @@ std::vector<std::string> createDef = { "createDef", "0" };
 std::vector<std::string> createDefs0 = { "createDefs", "0" };
 std::vector<std::string> createDefs4 = { "createDefs", "4" };
 std::vector<std::string> createDefs20 = { "createDefs", "20" };
+std::vector<std::string> getName0 = { "getName", "0" };
+std::vector<std::string> getName11 = { "getName", "11" };
 
 //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //
@@ -22,7 +24,5 @@ std::vector<std::string> createDefs20 = { "createDefs", "20" };
 //getValue <nrTablicy> <nrPozycji>
 //
 //setName <nrTablicy> <nazwaTablicy>
-//
-//getName <nrTablicy>
 }
 

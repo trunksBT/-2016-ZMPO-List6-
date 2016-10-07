@@ -5,6 +5,7 @@
 
 namespace communication
 {
-std::vector<std::string> receiveCommandFromUser();
+std::vector<std::string> performLexer(std::string inCommand);
+std::vector<std::string> receiveAndLexCommandFromUser();
 };
 

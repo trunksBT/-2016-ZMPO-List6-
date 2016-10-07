@@ -8,17 +8,23 @@ using namespace defaultVals;
 RAIIFlyweightCTable::RAIIFlyweightCTable(std::vector<std::string>& inCommand)
 {
    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
-   Flyweight::createCTable(std::move(inCommand));
+   Flyweight::receiveCommand(std::move(inCommand));
 }
 
 RAIIFlyweightCTable::RAIIFlyweightCTable(std::vector<std::string>& inCommand,
    std::vector<CTable*>& inCache)
 {
    Flyweight::createFlyweight(inCache);
-   Flyweight::createCTable(std::move(inCommand));
+   Flyweight::receiveCommand(std::move(inCommand));
 }
 
 RAIIFlyweightCTable::~RAIIFlyweightCTable()
 {
    Flyweight::releaseResources();
 }
+
+void RAIIFlyweightCTable::receiveCommand(std::vector<std::string>& inCommand)
+{
+    Flyweight::receiveCommand(std::move(inCommand));
+}
+
