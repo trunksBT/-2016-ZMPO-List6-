@@ -35,6 +35,7 @@ constexpr char* createDef = "createDef"; // calls default ctor for obj with numb
 constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
 constexpr char* getName = "getName"; // getName of CTable on idx
 constexpr char* getSize = "getSize"; // getSize of CTable on idx
+constexpr char* remove = "remove"; // remove CTable on idx
                                            //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
