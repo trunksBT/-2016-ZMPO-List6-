@@ -16,10 +16,10 @@ constexpr const char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
 constexpr const char* CTOR_DEFAULT_PRE_PRINT = "bezp: ";
 constexpr const char* CTOR_ARG1_PRE_PRINT = "parametr: ";
 constexpr const char* POST_PRINT = "\n";
-constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 10;
+constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 5;
 constexpr int ZERO = 0;
 constexpr int FIVE = 5;
-constexpr int DEFAULT_IN_TABLE_SIZE = 10;
+constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 }
 
 namespace idxOf
@@ -34,6 +34,7 @@ constexpr char* get = "get"; // pre for all get
 constexpr char* createDef = "createDef"; // calls default ctor for obj with number 
 constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
 constexpr char* getName = "getName"; // getName of CTable on idx
+constexpr char* getSize = "getSize"; // getSize of CTable on idx
                                            //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
