@@ -30,13 +30,12 @@ public:
    MainRunner()
    {
 #ifdef STUB
-      RAIIFlyweightCTable application(stub::createDef);
+      //RAIIFlyweightCTable application(stub::createDef);
       // ***************** DEAFAULT CACHE *****************
-      //RAIIFlyweightCTable application(stub::createDefs);
       // ***************** OWN CACHE *****************
-      //RAIIFlyweightCTable application(stub::createDefs20);
+      RAIIFlyweightCTable application(stub::createDefs20);
       RAIIFlyweightCTable::receiveCommand(stub::getName0);
-      //RAIIFlyweightCTable::receiveCommand(stub::getName11);
+      RAIIFlyweightCTable::receiveCommand(stub::getName11);
 
 #else
       RAIIFlyweightCTable application(communication::receiveCommandFromUser());
@@ -44,29 +43,30 @@ public:
    }
    ~MainRunner()
    {
-      Flyweight::releaseResources(inCache);
+      Flyweight::releaseResources();
    }
 private:
-   std::vector<CTable*> inCache =
-   {
-      nullptr,
-      nullptr,
-      new CTable(),
-      new CTable(),
-      nullptr
-   };
+   //std::vector<CTable*> inCache =
+   //{
+   //   nullptr,
+   //   nullptr,
+   //   new CTable(),
+   //   new CTable(),
+   //   nullptr
+   //};
 };
 
 int main(int argc, char **argv)
 {
-   ::testing::InitGoogleTest(&argc, argv);
+   //::testing::InitGoogleTest(&argc, argv);
 
    {
       MainRunner mainApp;
    }
 
    std::cout << std::endl;
-   return RUN_ALL_TESTS();
+   //return RUN_ALL_TESTS();
+   return 0;
 }
 
 
