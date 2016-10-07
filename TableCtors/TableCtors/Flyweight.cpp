@@ -131,6 +131,12 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
            }
        }
    }
+   else if(command == messageLiterals::removeAll)
+   {
+       std::cout << INDENT << messageLiterals::removeAll << POST_PRINT;
+       releaseResources();
+       std::cout << POST_PRINT;
+   }
    else
    {
       std::cout << "Nie znam takiej komendy" << POST_PRINT;
@@ -140,7 +146,19 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
 void Flyweight::receiveCommand(std::vector<std::string>& inCommand)
 {
    command_ = std::move(inCommand);
-   interpretCommand(command_[idxOf::command], command_[idxOf::idOrAmmount]);
+   std::string commandName = command_[idxOf::command];
+
+   std::string idOrAmmountVal;
+   if(command_.size() < 2)
+   {
+       idOrAmmountVal = string999;
+   }
+   else
+   {
+       idOrAmmountVal = command_[idxOf::idOrAmmount];
+   }
+
+   interpretCommand(commandName, idOrAmmountVal);
 }
 
 void Flyweight::releaseResources()

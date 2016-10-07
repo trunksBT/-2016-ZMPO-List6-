@@ -19,6 +19,7 @@ std::vector<std::string> getSize6 = { "getSize", "6" };
 std::vector<std::string> getSize10 = { "getSize", "10" };
 std::vector<std::string> remove0 = { "remove", "0" };
 std::vector<std::string> remove10 = { "remove", "10" };
+std::vector<std::string> removeAll = { "removeAll" };
 
 //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //

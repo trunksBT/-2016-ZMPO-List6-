@@ -20,6 +20,7 @@ constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 5;
 constexpr int ZERO = 0;
 constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
+constexpr const char* string999 = "999";
 }
 
 namespace idxOf
@@ -36,6 +37,7 @@ constexpr char* createDefs = "createDefs"; // calls default ctor for number of o
 constexpr char* getName = "getName"; // getName of CTable on idx
 constexpr char* getSize = "getSize"; // getSize of CTable on idx
 constexpr char* remove = "remove"; // remove CTable on idx
+constexpr char* removeAll = "removeAll"; // remove CTable on idx
                                            //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
