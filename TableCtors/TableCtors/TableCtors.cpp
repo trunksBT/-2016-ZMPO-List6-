@@ -34,10 +34,16 @@ public:
       // ***************** DEAFAULT CACHE *****************
       // ***************** OWN CACHE *****************
       RAIIFlyweightCTable application(stub::createDefs6);
+
+      RAIIFlyweightCTable::receiveCommand(stub::getSize0);
+      RAIIFlyweightCTable::receiveCommand(stub::getSize10);    
+
+      RAIIFlyweightCTable::receiveCommand(stub::remove0);
+      RAIIFlyweightCTable::receiveCommand(stub::remove10);
+
       RAIIFlyweightCTable::receiveCommand(stub::getName0);
       RAIIFlyweightCTable::receiveCommand(stub::getName10);
-      RAIIFlyweightCTable::receiveCommand(stub::getSize0);
-      RAIIFlyweightCTable::receiveCommand(stub::getSize10);
+
 
 #else
       RAIIFlyweightCTable application(communication::receiveCommandFromUser());

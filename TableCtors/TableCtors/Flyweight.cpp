@@ -83,9 +83,13 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
                    {
                        std::cout << retTable->getName();
                    }
+                   else
+                   {
+                       std::cout << "Null ptr";
+                   }
                    retTable == nullptr;
                }
-               
+
            }
            else if(command == messageLiterals::getSize)
            {
@@ -105,6 +109,26 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
                std::cout << "Nie znam takiej komendy" << POST_PRINT;
            }
            std::cout << POST_PRINT;
+       }
+   }
+   else if(command == messageLiterals::remove)
+   {
+       if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
+       {
+           std::cout << "Index poza zasiegiem pamieci" << POST_PRINT;
+       }
+       else
+       {
+           std::cout << INDENT << messageLiterals::remove << SEPARATOR;
+           {
+               CTable* retTable = cache_.at(idxOrAmount);
+               if(retTable != nullptr)
+               {
+                   std::cout << retTable->getName() << POST_PRINT;
+               }
+               delete retTable;
+               cache_.at(idxOrAmount) = nullptr;
+           }
        }
    }
    else
