@@ -67,21 +67,42 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
    }
    else if(command.find(messageLiterals::get) != std::string::npos)
    {
-       if(command == messageLiterals::getName)
+       if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
        {
-           std::cout << INDENT << messageLiterals::getName << SEPARATOR;
-           if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
+           std::cout << "Index poza zasiegiem pamieci" << POST_PRINT;
+       }
+       else
+       {
+           std::cout << INDENT;
+           if(command == messageLiterals::getName)
            {
-               std::cout << "Index poza zasiegiem pamieci";
+               std::cout << messageLiterals::getName << SEPARATOR;
+               {
+                   CTable* retTable = cache_.at(idxOrAmount);
+                   if(retTable != nullptr)
+                   {
+                       std::cout << retTable->getName();
+                   }
+                   retTable == nullptr;
+               }
+               
+           }
+           else if(command == messageLiterals::getSize)
+           {
+               std::cout << messageLiterals::getSize << SEPARATOR;
+               {
+                   CTable* retTable = cache_.at(idxOrAmount);
+                   if(retTable != nullptr)
+                   {
+                       std::cout << retTable->getSize();
+                   }
+                   retTable == nullptr;
+               }
+
            }
            else
            {
-               CTable* retTable = cache_.at(idxOrAmount);
-               if(retTable != nullptr)
-               {
-                   std::cout << retTable->getName();
-               }
-               retTable == nullptr;
+               std::cout << "Nie znam takiej komendy" << POST_PRINT;
            }
            std::cout << POST_PRINT;
        }
