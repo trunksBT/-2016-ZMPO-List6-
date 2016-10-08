@@ -68,10 +68,9 @@ void Flyweight::releaseResources(std::vector<CTable*>& inCache)
     inCache.clear();
 }
 
-Flyweight::Flyweight(std::vector<std::string>& inCommand)
+Flyweight::Flyweight()
 {
     Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
-    Flyweight::interpretCommand(std::move(inCommand));
 }
 
 Flyweight::Flyweight(std::vector<std::string>& inCommand,

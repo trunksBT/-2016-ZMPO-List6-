@@ -17,9 +17,10 @@ RemoveAllHandler::RemoveAllHandler(std::vector<std::string>& inCommand)
 
 void RemoveAllHandler::perform(std::vector<CTable*>& inCache)
 {
-    std::cout << INDENT << messageLiterals::removeAll << POST_PRINT;
-    Flyweight::releaseResources();
+    std::cout << messageLiterals::removeAll << POST_PRINT;
 }
 
 RemoveAllHandler::~RemoveAllHandler()
-{}
+{
+    Flyweight::releaseResources();
+}

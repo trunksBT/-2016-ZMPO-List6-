@@ -8,6 +8,7 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 CreateDefHandler::CreateDefHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
@@ -17,9 +18,11 @@ CreateDefHandler::CreateDefHandler(std::vector<std::string>& inCommand)
 
 void CreateDefHandler::perform(std::vector<CTable*>& inCache)
 {
+    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+
     std::string receivedId(wholeCommand_[idxOf::id]);
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount < inCache.size())
+    if(isProperIdx(idxOrAmount, inCache))
     {
         if(inCache[idxOrAmount] != nullptr)
         {
@@ -29,7 +32,7 @@ void CreateDefHandler::perform(std::vector<CTable*>& inCache)
     }
     else
     {
-        std::cout << undefinedObject << POST_PRINT;
+        std::cout << undefinedObject;
     }
 }
 

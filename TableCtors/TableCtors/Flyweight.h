@@ -20,7 +20,7 @@ class Flyweight
     friend class SetNameHandler;
     friend class GetHandler;
 public:
-    Flyweight(std::vector<std::string>& inCommand);
+    Flyweight();
     Flyweight(std::vector<std::string>& inCommand,
         std::vector<CTable*>& inCache);
     ~Flyweight();

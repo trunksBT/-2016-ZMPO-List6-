@@ -6,7 +6,7 @@
 namespace stub
 {
 
-std::vector<std::string> createDef = { "createDef", "0" };
+std::vector<std::string> createDef6 = { "createDef", "6" };
 std::vector<std::string> createDefs0 = { "createDefs", "0" };
 std::vector<std::string> createDefs1 = { "createDefs", "1" };
 std::vector<std::string> createDefs6 = { "createDefs", "6" };

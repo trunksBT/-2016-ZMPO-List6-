@@ -8,6 +8,7 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 RemoveHandler::RemoveHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
@@ -17,24 +18,23 @@ RemoveHandler::RemoveHandler(std::vector<std::string>& inCommand)
 
 void RemoveHandler::perform(std::vector<CTable*>& inCache)
 {
+    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount > inCache.size() || idxOrAmount > inCache.size() < 0)
+    if(isProperIdx(idxOrAmount, inCache))
     {
-        std::cout << indexOutOfBound << POST_PRINT;
+        CTable* retTable = inCache.at(idxOrAmount);
+        if(retTable != nullptr)
+        {
+            std::cout << retTable->getName();
+        }
+        delete retTable;
+        inCache.at(idxOrAmount) = nullptr;
     }
     else
     {
-        std::cout << INDENT << messageLiterals::remove << SEPARATOR;
-        {
-            CTable* retTable = inCache.at(idxOrAmount);
-            if(retTable != nullptr)
-            {
-                std::cout << retTable->getName() << POST_PRINT;
-            }
-            delete retTable;
-            inCache.at(idxOrAmount) = nullptr;
-        }
+        std::cout << indexOutOfBound;
     }
 }
 

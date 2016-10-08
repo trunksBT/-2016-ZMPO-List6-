@@ -8,6 +8,7 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 SetNameHandler::SetNameHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
@@ -17,25 +18,29 @@ SetNameHandler::SetNameHandler(std::vector<std::string>& inCommand)
 
 void SetNameHandler::perform(std::vector<CTable*>& inCache)
 {
+    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+
     std::string newName(wholeCommand_[idxOf::newName]);
     std::string receivedId(std::move(wholeCommand_[idxOf::amount]));
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount > inCache.size() || idxOrAmount > inCache.size() < 0)
+
+    if(isProperIdx(idxOrAmount, inCache))
     {
-        std::cout << indexOutOfBound << POST_PRINT;
-    }
-    else if(inCache[idxOrAmount] == nullptr)
-    {
-        std::cout << undefinedObject << POST_PRINT;
-    }
-    else
-    {
-        std::cout << INDENT << messageLiterals::setName << POST_PRINT;
+        if(inCache[idxOrAmount] == nullptr)
+        {
+            std::cout << undefinedObject;
+        }
+        else
         {
             inCache[idxOrAmount]->setName(newName);
         }
     }
+    else
+    {
+        std::cout << indexOutOfBound;
+    }
 }
 
 SetNameHandler::~SetNameHandler()
-{}
+{
+}

@@ -17,6 +17,8 @@ CreateDefsHandler::CreateDefsHandler(std::vector<std::string>& inCommand)
 
 void CreateDefsHandler::perform(std::vector<CTable*>& inCache)
 {
+    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount > inCache.size())
@@ -34,14 +36,14 @@ void CreateDefsHandler::perform(std::vector<CTable*>& inCache)
                 inCache[cursorIdx] = CTable::buildNewObj();
                 ammountOfCreatedObj++;
             }
-            cursorIdx++;
         }
         else
         {
             inCache.emplace_back(CTable::buildNewObj());
             ammountOfCreatedObj++;
-            cursorIdx++;
+
         }
+        cursorIdx++;
     }
 }
 
