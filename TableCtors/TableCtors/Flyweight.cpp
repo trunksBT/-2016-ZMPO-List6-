@@ -9,38 +9,12 @@ using namespace logLiterals;
 std::vector<CTable*> Flyweight::cache_;
 std::vector<std::string> Flyweight::command_;
 
-void Flyweight::createFlyweight(int inSize)
+void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
-    cache_ = std::vector<CTable*>(inSize);
-}
-
-Flyweight::Flyweight(std::vector<std::string>& inCommand)
-{
-    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
-    Flyweight::receiveCommand(std::move(inCommand));
-}
-
-Flyweight::Flyweight(std::vector<std::string>& inCommand,
-    std::vector<CTable*>& inCache)
-{
-    Flyweight::createFlyweight(inCache);
-    Flyweight::receiveCommand(std::move(inCommand));
-}
-
-Flyweight::~Flyweight()
-{
-    Flyweight::releaseResources();
-}
-
-void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
-{
-    cache_ = std::move(inCache);
-}
-
-void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
-{
+    std::string command(command_[idxOf::command]);
     if(command == messageLiterals::createDef)
     {
+        std::string receivedId(command_[idxOf::id]);
         int idxOrAmount = std::stoi(receivedId);
         if(idxOrAmount < cache_.size())
         {
@@ -48,7 +22,7 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
             {
                 delete cache_[idxOrAmount];
             }
-            cache_[idxOrAmount] = new CTable();
+            cache_[idxOrAmount] = CTable::buildNewObj();
         }
         else
         {
@@ -57,6 +31,7 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
     }
     else if(command == messageLiterals::createDefs)
     {
+        std::string receivedId(command_[idxOf::amount]);
         int idxOrAmount = std::stoi(receivedId);
         if(idxOrAmount > cache_.size())
         {
@@ -70,14 +45,14 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
             {
                 if(cache_[cursorIdx] == nullptr)
                 {
-                    cache_[cursorIdx] = new CTable();
+                    cache_[cursorIdx] = CTable::buildNewObj();
                     ammountOfCreatedObj++;
                 }
                 cursorIdx++;
             }
             else
             {
-                cache_.emplace_back(new CTable());
+                cache_.emplace_back(CTable::buildNewObj());
                 ammountOfCreatedObj++;
                 cursorIdx++;
             }
@@ -85,6 +60,7 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
     }
     else if(command.find(messageLiterals::get) != std::string::npos)
     {
+        std::string receivedId(command_[idxOf::amount]);
         int idxOrAmount = std::stoi(receivedId);
         if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
         {
@@ -132,6 +108,7 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
     }
     else if(command == messageLiterals::remove)
     {
+        std::string receivedId(command_[idxOf::amount]);
         int idxOrAmount = std::stoi(receivedId);
         if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
         {
@@ -156,6 +133,23 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
         std::cout << INDENT << messageLiterals::removeAll << POST_PRINT;
         releaseResources();
     }
+    else if(command == messageLiterals::setName)
+    {
+        std::string newName(command_[idxOf::newName]);
+        std::string receivedId(std::move(command_[idxOf::amount]));
+        int idxOrAmount = std::stoi(receivedId);
+        if(idxOrAmount > cache_.size() || idxOrAmount > cache_.size() < 0)
+        {
+            std::cout << indexOutOfBound << POST_PRINT;
+        }
+        else
+        {
+            std::cout << INDENT << messageLiterals::setName << POST_PRINT;
+            {
+                cache_[idxOrAmount]->setName(newName);
+            }
+        }
+    }
     else
     {
         std::cout << undefinedCommand << POST_PRINT;
@@ -165,29 +159,19 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
 void Flyweight::receiveCommand(std::vector<std::string>& inCommand)
 {
     command_ = std::move(inCommand);
-    std::string commandName = command_[idxOf::command];
+    interpretCommand(inCommand);
+}
 
-    std::string idOrAmmountVal;
-    if(command_.size() < 2)
-    {
-        idOrAmmountVal = string999;
-    }
-    else
-    {
-        idOrAmmountVal = command_[idxOf::idOrAmmount];
-    }
+#pragma region ********** CTORS_DTORS **********
 
-    interpretCommand(commandName, idOrAmmountVal);
+void Flyweight::createFlyweight(int inSize)
+{
+    cache_ = std::vector<CTable*>(inSize);
 }
 
 void Flyweight::releaseResources()
 {
     releaseResources(cache_);
-}
-
-void Flyweight::receiveCommandFromUpper(std::vector<std::string>& inCommand)
-{
-    Flyweight::receiveCommand(std::move(inCommand));
 }
 
 void Flyweight::releaseResources(std::vector<CTable*>& inCache)
@@ -198,3 +182,28 @@ void Flyweight::releaseResources(std::vector<CTable*>& inCache)
     }
     inCache.clear();
 }
+
+Flyweight::Flyweight(std::vector<std::string>& inCommand)
+{
+    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
+    Flyweight::receiveCommand(std::move(inCommand));
+}
+
+Flyweight::Flyweight(std::vector<std::string>& inCommand,
+    std::vector<CTable*>& inCache)
+{
+    Flyweight::createFlyweight(inCache);
+    Flyweight::receiveCommand(std::move(inCommand));
+}
+
+Flyweight::~Flyweight()
+{
+    Flyweight::releaseResources();
+}
+
+void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
+{
+    cache_ = std::move(inCache);
+}
+
+# pragma endregion

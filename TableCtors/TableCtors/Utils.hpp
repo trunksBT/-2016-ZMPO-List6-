@@ -35,7 +35,9 @@ constexpr const char* nullPointerDetected = "Object";
 namespace idxOf
 {
 constexpr int command = 0;
-constexpr int idOrAmmount = 1;
+constexpr int id = 1;
+constexpr int amount = 1;
+constexpr int newName = 2;
 }
 
 namespace messageLiterals
@@ -47,8 +49,13 @@ constexpr char* getName = "getName"; // getName of CTable on idx
 constexpr char* getSize = "getSize"; // getSize of CTable on idx
 constexpr char* remove = "remove"; // remove CTable on idx
 constexpr char* removeAll = "removeAll"; // remove CTable on idx
+constexpr char* setName = "setName"; // set name of CTable on idx
                                            //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
+//
+//createDef <idx> -wywo³uje konstruktor na okreslonym indeksie
+//
+//createDefs <ilosc> -wywo³uje konstruktor okreslonej ilosci elementow
 //
 //createCopy <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 //
