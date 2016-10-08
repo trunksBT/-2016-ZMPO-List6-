@@ -8,14 +8,10 @@
 
 #include <gtest/gtest.h>
 
-#include <boost/optional.hpp>
-#include <boost/tokenizer.hpp>
-
 #include "Stub.hpp"
 #include "Utils.hpp"
 #include "CTable.hpp"
 #include "Interface.hpp"
-//#include "TableCtors.h"
 #include "Flyweight.h"
 
 using namespace defaultVals;
