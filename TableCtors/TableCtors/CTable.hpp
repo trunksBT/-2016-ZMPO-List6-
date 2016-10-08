@@ -25,7 +25,7 @@ public:
    void setSize(int inSize);
 
 public:
-    CTable* buildNewObj();
+    static CTable* buildNewObj();
 
 private:
    void allocateMemory(int inSize);

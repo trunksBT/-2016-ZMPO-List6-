@@ -24,8 +24,9 @@ int main(int argc, char **argv)
    //::testing::InitGoogleTest(&argc, argv);
 
    {
-        Flyweight application(stub::createDef);
-        Flyweight::receiveCommand(stub::removeAll);
+        Flyweight application(stub::createDefs6);
+        Flyweight::receiveCommand(stub::setName0);
+        Flyweight::receiveCommand(stub::getName0);
    }
 
    std::cout << std::endl;
