@@ -6,15 +6,18 @@
 
 class CreateDefHandler;
 class CreateDefsHandler;
+class CreateCopyHandler;
 class RemoveHandler;
 class RemoveAllHandler;
 class SetNameHandler;
 class GetHandler;
+class CreateCopyHandler;
 
 class Flyweight
 {
     friend class CreateDefHandler;
     friend class CreateDefsHandler;
+    friend class CreateCopyHandler;
     friend class RemoveHandler;
     friend class RemoveAllHandler;
     friend class SetNameHandler;

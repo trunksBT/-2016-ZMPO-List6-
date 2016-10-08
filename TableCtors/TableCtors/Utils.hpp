@@ -49,6 +49,7 @@ constexpr int command = 0;
 constexpr int id = 1;
 constexpr int amount = 1;
 constexpr int newName = 2;
+constexpr int goalId = 2;
 }
 
 namespace messageLiterals
@@ -61,7 +62,9 @@ constexpr char* getSize = "getSize"; // getSize of CTable on idx
 constexpr char* remove = "remove"; // remove CTable on idx
 constexpr char* removeAll = "removeAll"; // remove CTable on idx
 constexpr char* setName = "setName"; // set name of CTable on idx
-                                           //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+                                           
+                                     //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
 //createDef <idx> -wywo³uje konstruktor na okreslonym indeksie

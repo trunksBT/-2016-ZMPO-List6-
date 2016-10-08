@@ -11,6 +11,7 @@ CTable::CTable()
 {
    name_ = DEFAULT_TABLE_NAME;
    setSize(DEFAULT_IN_TABLE_SIZE);
+   initTable(ZERO);
    if(printFlagOn)
    {
       std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -21,16 +22,26 @@ CTable::CTable(int inSize)
 {
    name_ = DEFAULT_TABLE_NAME;
    setSize(inSize);
+   initTable(ZERO);
    if(printFlagOn)
    {
       std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
    }
 }
 
+void CTable::print()
+{
+    for(int i = 0; i < size_; i++)
+    {
+        std::cout << memory_[i] << std::endl;
+    }
+}
+
 CTable::CTable(std::string inVal)
 {
    name_ = std::move(inVal);
    setSize(DEFAULT_IN_TABLE_SIZE);
+   initTable(ZERO);
    if(printFlagOn)
    {
       std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -45,6 +56,14 @@ CTable::CTable(CTable& inVal)
 void CTable::allocateMemory(int inSize)
 {
    memory_ = static_cast<int*>(malloc(inSize * sizeof(int)));
+}
+
+void CTable::initTable(int defaultVal)
+{
+    for(int i = 0; i < size_; i++)
+    {
+        memory_[i] = defaultVal;
+    }
 }
 
 void CTable::deallocateMemory()
