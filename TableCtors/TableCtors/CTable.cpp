@@ -70,6 +70,11 @@ CTable& CTable::operator=(CTable& inObj)
    return *this;
 }
 
+CTable* CTable::buildNewObj()
+{
+    return new CTable();
+}
+
 void CTable::copyMemory(CTable& inVal)
 {
    deallocateMemory();

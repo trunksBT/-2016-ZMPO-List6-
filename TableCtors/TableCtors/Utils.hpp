@@ -23,6 +23,15 @@ constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
 }
 
+namespace logLiterals
+{
+constexpr const char* undefinedCommand = "Nie znam takiej komendy";
+constexpr const char* undefinedObject = "Nie znam takiego obiektu";
+constexpr const char* indexOutOfBound = "Index poza obszarem pamieci";
+constexpr const char* nullPointerDetected = "Object";
+
+}
+
 namespace idxOf
 {
 constexpr int command = 0;

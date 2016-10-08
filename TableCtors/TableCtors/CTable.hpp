@@ -24,6 +24,9 @@ public:
    void setVal(int idx, int newVal);
    void setSize(int inSize);
 
+public:
+    CTable* buildNewObj();
+
 private:
    void allocateMemory(int inSize);
    void deallocateMemory();
