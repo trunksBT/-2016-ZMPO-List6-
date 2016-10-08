@@ -2,9 +2,7 @@
 #include <iostream>
 #include "Flyweight.h"
 #include "Utils.hpp"
-#include "ConcreteFlyweights.h"
 
-using namespace trigger;
 using namespace defaultVals;
 
 std::vector<CTable*> Flyweight::cache_;
@@ -13,6 +11,24 @@ std::vector<std::string> Flyweight::command_;
 void Flyweight::createFlyweight(int inSize)
 {
    cache_ = std::vector<CTable*>(inSize);
+}
+
+Flyweight::Flyweight(std::vector<std::string>& inCommand)
+{
+    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
+    Flyweight::receiveCommand(std::move(inCommand));
+}
+
+Flyweight::Flyweight(std::vector<std::string>& inCommand,
+    std::vector<CTable*>& inCache)
+{
+    Flyweight::createFlyweight(inCache);
+    Flyweight::receiveCommand(std::move(inCommand));
+}
+
+Flyweight::~Flyweight()
+{
+    Flyweight::releaseResources();
 }
 
 void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
@@ -31,7 +47,7 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
          {
             delete cache_[idxOrAmount];
          }
-         cache_[idxOrAmount] = FlyweightCTable::onCreateDef();
+         cache_[idxOrAmount] = new CTable();
       }
       else
       {
@@ -52,14 +68,14 @@ void Flyweight::interpretCommand(std::string& command, std::string& receivedId)
          {
             if(cache_[cursorIdx] == nullptr)
             {
-               cache_[cursorIdx] = FlyweightCTable::onCreateDef();
+               cache_[cursorIdx] = new CTable();
                ammountOfCreatedObj++;
             }
             cursorIdx++;
          }
          else
          {
-            cache_.emplace_back(FlyweightCTable::onCreateDef());
+            cache_.emplace_back( new CTable() );
             ammountOfCreatedObj++;
             cursorIdx++;
          }
@@ -164,6 +180,11 @@ void Flyweight::receiveCommand(std::vector<std::string>& inCommand)
 void Flyweight::releaseResources()
 {
    releaseResources(cache_);
+}
+
+void Flyweight::receiveCommandFromUpper(std::vector<std::string>& inCommand)
+{
+    Flyweight::receiveCommand(std::move(inCommand));
 }
 
 void Flyweight::releaseResources(std::vector<CTable*>& inCache)
