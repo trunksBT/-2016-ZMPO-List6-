@@ -15,10 +15,12 @@ CreateDefsHandler::CreateDefsHandler(std::vector<std::string>& inCommand)
     perform(Flyweight::cache_);
 }
 
-void CreateDefsHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE CreateDefsHandler::perform(std::vector<CTable*>& inCache)
 {
-    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
+    if(flag::printOn)
+    {
+        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    }
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount > inCache.size())
@@ -45,6 +47,7 @@ void CreateDefsHandler::perform(std::vector<CTable*>& inCache)
         }
         cursorIdx++;
     }
+    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
 }
 
 CreateDefsHandler::~CreateDefsHandler()

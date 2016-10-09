@@ -27,6 +27,7 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     if(command == messageLiterals::createDef)
     {
         CreateDefHandler handle(inCommand);
+        returnCode = handle.perform(cache_);
     }
     else if(command == messageLiterals::createDefs)
     {

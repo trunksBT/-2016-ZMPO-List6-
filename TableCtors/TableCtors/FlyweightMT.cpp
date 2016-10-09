@@ -24,9 +24,9 @@ protected:
 TEST_F(FlyweightMT, createDef0_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE rcVal;
 
-    //rcVal = application.interpretCommand(stub::createDef0);
+    rcVal = application.interpretCommand(stub::createDef0);
 
     ASSERT_EQ(expVal, rcVal);
 }

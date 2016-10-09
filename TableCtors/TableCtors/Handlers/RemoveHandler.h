@@ -10,6 +10,5 @@ class RemoveHandler final : public IHandler
 public:
     RemoveHandler(std::vector<std::string>& inCommand);
     virtual ~RemoveHandler();
-protected:
-    void perform(std::vector<CTable*>& inFlyweightCache) override;
+    ERROR_CODE perform(std::vector<CTable*>& inFlyweightCache) override;
 };

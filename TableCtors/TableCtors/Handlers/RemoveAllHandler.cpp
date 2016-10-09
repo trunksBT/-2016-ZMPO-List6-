@@ -15,9 +15,13 @@ RemoveAllHandler::RemoveAllHandler(std::vector<std::string>& inCommand)
     perform(Flyweight::cache_);
 }
 
-void RemoveAllHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE RemoveAllHandler::perform(std::vector<CTable*>& inCache)
 {
-    std::cout << messageLiterals::removeAll << POST_PRINT;
+    if(flag::printOn)
+    {
+        std::cout << messageLiterals::removeAll << POST_PRINT;
+    }
+    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
 }
 
 RemoveAllHandler::~RemoveAllHandler()

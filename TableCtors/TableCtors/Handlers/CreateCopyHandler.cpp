@@ -16,10 +16,12 @@ CreateCopyHandler::CreateCopyHandler(std::vector<std::string>& inCommand)
     perform(Flyweight::cache_);
 }
 
-void CreateCopyHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE CreateCopyHandler::perform(std::vector<CTable*>& inCache)
 {
-    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
+    if(flag::printOn)
+    {
+        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    }
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
     std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
@@ -43,6 +45,7 @@ void CreateCopyHandler::perform(std::vector<CTable*>& inCache)
             inCache.emplace_back(copiedObj);
         }
     }
+    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
 }
 
 CreateCopyHandler::~CreateCopyHandler()

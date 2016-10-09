@@ -6,7 +6,6 @@
 #include <sstream>
 
 using namespace defaultVals;
-using namespace flags;
 using namespace funs;
 
 CTable::CTable()
@@ -15,7 +14,7 @@ CTable::CTable()
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
     initTable(ZERO);
-    if(printFlagOn)
+    if(flag::printOn)
     {
         std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -27,7 +26,7 @@ CTable::CTable(int inSize)
     size_ = inSize;
     allocateMemory(size_);
     initTable(ZERO);
-    if(printFlagOn)
+    if(flag::printOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -39,7 +38,7 @@ CTable::CTable(std::string inVal)
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
     initTable(ZERO);
-    if(printFlagOn)
+    if(flag::printOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -65,7 +64,7 @@ void CTable::copyCtor(CTable& inVal)
     name_.append(POST_COPIED_NAME);
     allocateMemory(size_);
     deepCopy(inVal);
-    if(printFlagOn)
+    if(flag::printOn)
     {
         std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -98,7 +97,7 @@ void CTable::deepCopy(CTable& inVal)
 CTable::~CTable()
 {
     deallocateMemory();
-    if(printFlagOn)
+    if(flag::printOn)
     {
         std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
     }

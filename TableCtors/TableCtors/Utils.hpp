@@ -8,7 +8,8 @@ enum class ERROR_CODE : int
     SEEMS_LEGIT = 0, 
     UNDEFINED_OBJECT = 1,
     INDEX_OUT_OF_BOUND = 2,
-    ERROR_COMMAND_PARSING = 3
+    ERROR_COMMAND_PARSING = 3,
+    NOT_HANDLED_ERROR_REPORTING = 4
 };
 
 namespace defaultVals
@@ -51,9 +52,9 @@ inline bool isProperIdx(int idx, int size)
 
 }
 
-namespace flags
+namespace flag
 {
-constexpr bool printFlagOn = true;
+constexpr bool printOn = false;
 }
 
 namespace logLiterals

@@ -16,10 +16,12 @@ SetNameHandler::SetNameHandler(std::vector<std::string>& inCommand)
     perform(Flyweight::cache_);
 }
 
-void SetNameHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE SetNameHandler::perform(std::vector<CTable*>& inCache)
 {
-    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
+    if(flag::printOn)
+    {
+        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    }
     std::string newName(wholeCommand_[idxOf::newName]);
     std::string receivedId(std::move(wholeCommand_[idxOf::amount]));
     int idxOrAmount = std::stoi(receivedId);
@@ -37,8 +39,12 @@ void SetNameHandler::perform(std::vector<CTable*>& inCache)
     }
     else
     {
-        std::cout << indexOutOfBound;
+        if(flag::printOn)
+        {
+            std::cout << indexOutOfBound;
+        }
     }
+    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
 }
 
 SetNameHandler::~SetNameHandler()
