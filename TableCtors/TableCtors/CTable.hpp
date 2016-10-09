@@ -17,7 +17,7 @@ public:
 public:
    int getSize() const;
    int getVal(int idx) const;
-   std::string& getName();
+   std::string getName() const;
 
 public:
    void setName(std::string inName);
@@ -25,7 +25,7 @@ public:
 
 public:
     static CTable* buildNewObj();
-    void print();
+    std::string print();
 
 private:
    void deepCopy(CTable& inVal);

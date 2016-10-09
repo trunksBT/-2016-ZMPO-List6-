@@ -3,6 +3,7 @@
 #include "Utils.hpp"
 #include <iostream>
 #include <limits>
+#include <sstream>
 
 using namespace defaultVals;
 using namespace flags;
@@ -28,14 +29,6 @@ CTable::CTable(int inSize)
     if(printFlagOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
-    }
-}
-
-void CTable::print()
-{
-    for(int i = 0; i < size_; i++)
-    {
-        std::cout << memory_[i] << std::endl;
     }
 }
 
@@ -143,7 +136,18 @@ int CTable::getSize() const
     return size_;
 }
 
-std::string& CTable::getName()
+std::string CTable::getName() const
 {
-    return name_;
+    return std::string(name_);
 }
+
+std::string CTable::print()
+{
+    std::stringstream retVal;
+    for(int i = 0; i < size_; i++)
+    {
+        std::cout << memory_[i] << std::endl;
+    }
+    return "";
+}
+
