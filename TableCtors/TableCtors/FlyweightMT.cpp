@@ -62,61 +62,79 @@ TEST_F(FlyweightMT, getFinalResultCode_createDef_Expect_INDEX_OUT_OF_BOUNDS)
 TEST_F(FlyweightMT, createDefm1_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-    ERROR_CODE rcVal;
+    
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefm1)
+    });
 
-    rcVal = application.interpretCommand(stub::createDefm1);
-
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 TEST_F(FlyweightMT, createDef0_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal;
 
-    rcVal = application.interpretCommand(stub::createDef0);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDef0)
+    });
 
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 TEST_F(FlyweightMT, createDef6_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-    ERROR_CODE rcVal;
 
-    rcVal = application.interpretCommand(stub::createDef6);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDef6)
+    });
 
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 TEST_F(FlyweightMT, createDefs1_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal;
 
-    rcVal = application.interpretCommand(stub::createDefs1);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1)
+    });
 
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 TEST_F(FlyweightMT, createDefs6_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal;
 
-    rcVal = application.interpretCommand(stub::createDefs6);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs6)
+    });
 
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 TEST_F(FlyweightMT, createDefs10_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal;
 
-    rcVal = application.interpretCommand(stub::createDefs6);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs10)
+    });
 
-    ASSERT_EQ(expVal, rcVal);
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
 }
 
 }
