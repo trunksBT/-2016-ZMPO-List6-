@@ -45,6 +45,7 @@ extern std::vector<std::string> getValue0;
 extern std::vector<std::string> getValue1;
 extern std::vector<std::string> getValue6;
 extern std::vector<std::string> getValue10;
+extern std::vector<std::string> wrongCommand;
 
 }
 

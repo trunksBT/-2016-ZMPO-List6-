@@ -408,5 +408,154 @@ TEST_F(FlyweightMT, createDefs10_setName10_getName0_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightMT, createDefs10_getValuem1_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs10),
+        application.interpretCommand(stub::getValuem1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs10_remove0_getValuem1_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs10),
+        application.interpretCommand(stub::remove0),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs11_getValue10_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::getValue10)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_setValue0_0_23_getValue0_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::setValue0_0_23),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_remove0_setValue0_0_23_getValue0_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::remove0),
+        application.interpretCommand(stub::setValue0_0_23),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_setValue10_0_23_getValue0_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::setValue10_0_23),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_setValue10_10_23_getValue0_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::setValue10_10_23),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+
+TEST_F(FlyweightMT, createDefs1_setValuem1_m1_23_getValue0_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::setValuem1_m1_23),
+        application.interpretCommand(stub::getValue0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_setValue1_m1_23_getValue1_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::setValue1_m1_23),
+        application.interpretCommand(stub::getValue1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightMT, createDefs1_wrongCommand_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::wrongCommand),
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 }
 

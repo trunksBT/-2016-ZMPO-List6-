@@ -57,6 +57,7 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::setValue)
     {
         SetValueHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getName)
     {
@@ -71,6 +72,7 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::getValue)
     {
         GetValueHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::print)
     {
@@ -79,7 +81,11 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     }
     else
     {
-        std::cout << undefinedCommand << POST_PRINT;
+        returnedCode = ERROR_CODE::ERROR_COMMAND_PARSING;
+        if(flag::printOn)
+        {
+            std::cout << toString(returnedCode);
+        }
     }
 
     return returnedCode;
