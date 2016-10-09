@@ -10,5 +10,5 @@ class CreateDefHandler final : public IHandler
 public:
     CreateDefHandler(std::vector<std::string>& inCommand);
     virtual ~CreateDefHandler();
-    ERROR_CODE perform(std::vector<CTable*>& inFlyweightCache) override;
+    ERROR_CODE performOn(std::vector<CTable*>& inFlyweightCache) override;
 };

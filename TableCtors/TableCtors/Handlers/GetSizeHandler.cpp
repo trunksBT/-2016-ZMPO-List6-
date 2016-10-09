@@ -13,10 +13,10 @@ using namespace funs;
 GetSizeHandler::GetSizeHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
+    performOn(Flyweight::cache_);
 }
 
-ERROR_CODE GetSizeHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE GetSizeHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(flag::printOn)
     {

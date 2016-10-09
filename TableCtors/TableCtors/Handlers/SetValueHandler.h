@@ -10,5 +10,5 @@ class SetValueHandler final : public IHandler
 public:
     SetValueHandler(std::vector<std::string>& inCommand);
     virtual ~SetValueHandler();
-    ERROR_CODE perform(std::vector<CTable*>& inFlyweightCache) override;
+    ERROR_CODE performOn(std::vector<CTable*>& inFlyweightCache) override;
 };

@@ -13,10 +13,10 @@ using namespace funs;
 RemoveHandler::RemoveHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
+    performOn(Flyweight::cache_);
 }
 
-ERROR_CODE RemoveHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE RemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(flag::printOn)
     {

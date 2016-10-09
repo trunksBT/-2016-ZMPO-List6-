@@ -26,48 +26,48 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 
     if(command == messageLiterals::createDef)
     {
-        CreateDefHandler handle(inCommand);
-        returnCode = handle.perform(cache_);
+        CreateDefHandler evaluate(inCommand);
+        returnCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createDefs)
     {
-        CreateDefsHandler handle(inCommand);
+        CreateDefsHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::createCopy)
     {
-        CreateCopyHandler handle(inCommand);
+        CreateCopyHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::remove)
     {
-        RemoveHandler handle(inCommand);
+        RemoveHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::removeAll)
     {
-        RemoveAllHandler handle(inCommand);
+        RemoveAllHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::setName)
     {
-        SetNameHandler handle(inCommand);
+        SetNameHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::setValue)
     {
-        SetValueHandler handle(inCommand);
+        SetValueHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getName)
     {
-        GetNameHandler handle(inCommand);
+        GetNameHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getSize)
     {
-        GetSizeHandler handle(inCommand);
+        GetSizeHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getValue)
     {
-        GetValueHandler handle(inCommand);
+        GetValueHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::print)
     {
-        PrintHandler handle(inCommand);
+        PrintHandler evaluate(inCommand);
     }
     else
     {

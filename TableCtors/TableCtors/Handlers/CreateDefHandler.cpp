@@ -15,7 +15,7 @@ CreateDefHandler::CreateDefHandler(std::vector<std::string>& inCommand)
 {
 }
 
-ERROR_CODE CreateDefHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(flag::printOn)
     {

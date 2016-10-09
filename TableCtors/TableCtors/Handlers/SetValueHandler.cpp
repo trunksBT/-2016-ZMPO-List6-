@@ -13,10 +13,10 @@ using namespace funs;
 SetValueHandler::SetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
+    performOn(Flyweight::cache_);
 }
 
-ERROR_CODE SetValueHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE SetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(flag::printOn)
     {

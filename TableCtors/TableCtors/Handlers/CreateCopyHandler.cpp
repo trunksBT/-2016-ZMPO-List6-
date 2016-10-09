@@ -13,10 +13,10 @@ using namespace funs;
 CreateCopyHandler::CreateCopyHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
+    performOn(Flyweight::cache_);
 }
 
-ERROR_CODE CreateCopyHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(flag::printOn)
     {
