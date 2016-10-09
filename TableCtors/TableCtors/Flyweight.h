@@ -15,6 +15,7 @@ class CreateCopyHandler;
 class GetNameHandler;
 class GetSizeHandler;
 class GetValueHandler;
+class SetValueHandler;
 
 class Flyweight
 {
@@ -24,6 +25,7 @@ class Flyweight
     friend class RemoveHandler;
     friend class RemoveAllHandler;
     friend class SetNameHandler;
+    friend class SetValueHandler;
     friend class GetHandler;
     friend class GetNameHandler;
     friend class GetSizeHandler;

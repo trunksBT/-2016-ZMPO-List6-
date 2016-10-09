@@ -26,21 +26,18 @@ int main(int argc, char **argv)
    {
         Flyweight application;
         Flyweight::interpretCommand(stub::createDefs6);
-        Flyweight::interpretCommand(stub::getValuem1);
-        Flyweight::interpretCommand(stub::getValue0);
+        Flyweight::interpretCommand(stub::setValue1_m1_23);
         Flyweight::interpretCommand(stub::getValue1);
-        Flyweight::interpretCommand(stub::getValue6);
-        Flyweight::interpretCommand(stub::getValue10);
 
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::setName0);
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::setName10);
-        //Flyweight::interpretCommand(stub::removeAll);
-        //Flyweight::interpretCommand(stub::createDefs10);
-        //Flyweight::interpretCommand(stub::createCopy06);
+        ////Flyweight::interpretCommand(stub::createDefs1);
+        ////Flyweight::interpretCommand(stub::setName0);
+        ////Flyweight::interpretCommand(stub::createDefs1);
+        ////Flyweight::interpretCommand(stub::createDefs1);
+        ////Flyweight::interpretCommand(stub::createDefs1);
+        ////Flyweight::interpretCommand(stub::setName10);
+        ////Flyweight::interpretCommand(stub::removeAll);
+        ////Flyweight::interpretCommand(stub::createDefs10);
+        ////Flyweight::interpretCommand(stub::createCopy06);
    }
 
    //return RUN_ALL_TESTS();

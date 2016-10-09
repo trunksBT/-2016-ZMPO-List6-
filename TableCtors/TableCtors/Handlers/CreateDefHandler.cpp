@@ -20,7 +20,7 @@ void CreateDefHandler::perform(std::vector<CTable*>& inCache)
 {
     std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
 
-    std::string receivedId(wholeCommand_[idxOf::id]);
+    std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
     int idxOrAmount = std::stoi(receivedId);
     if(isProperIdx(idxOrAmount, inCache))
     {

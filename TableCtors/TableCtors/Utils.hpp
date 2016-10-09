@@ -7,7 +7,7 @@ namespace funs
 {
 inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
 {
-    return idxOrAmount > 0 && idxOrAmount < inCache.size();
+    return idxOrAmount > -1 && idxOrAmount < inCache.size();
 }
 }
 
@@ -47,10 +47,12 @@ constexpr const char* nullPointerDetected = "Object";
 namespace idxOf
 {
 constexpr int command = 0;
-constexpr int id = 1;
+constexpr int idOfCTable = 1;
 constexpr int amount = 1;
 constexpr int newName = 2;
 constexpr int goalId = 2;
+constexpr int newVal = 3;
+
 }
 
 namespace messageLiterals
@@ -63,9 +65,11 @@ constexpr char* getValue = "getValue"; // getValue from table in CTable <nrTabli
 constexpr char* remove = "remove"; // remove CTable on idx
 constexpr char* removeAll = "removeAll"; // remove CTable on idx
 constexpr char* setName = "setName"; // set name of CTable on idx
+constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-                                           
-                                     //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+
+//createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+//
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
 //createDef <idx> -wywo³uje konstruktor na okreslonym indeksie

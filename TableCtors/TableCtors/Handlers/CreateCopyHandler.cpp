@@ -20,7 +20,7 @@ void CreateCopyHandler::perform(std::vector<CTable*>& inCache)
 {
     std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
 
-    std::string receivedSourceId(wholeCommand_[idxOf::id]);
+    std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
     std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
     int destinyId = std::stoi(receivedDestinyId);
