@@ -7,6 +7,7 @@
 
 using namespace defaultVals;
 using namespace flags;
+using namespace funs;
 
 CTable::CTable()
 {
@@ -115,16 +116,17 @@ void CTable::deallocateMemory()
 
 void CTable::setVal(int idx, int newVal)
 {
-    if(idx > -1 && idx < size_)
+    if(isProperIdx(idx, size_))
     {
         memory_[idx] = newVal;
     }
 }
 
+
 int CTable::getVal(int idx) const
 {
     int retVal = std::numeric_limits<int>::min();
-    if(idx > -1 && idx < size_)
+    if(isProperIdx(idx, size_))
     {
         retVal = memory_[idx];
     }
@@ -144,10 +146,16 @@ std::string CTable::getName() const
 std::string CTable::print()
 {
     std::stringstream retVal;
+    retVal << name_ << SEPARATOR << SQUARE_BRACKET_OPEN;
+
     for(int i = 0; i < size_; i++)
     {
-        std::cout << memory_[i] << std::endl;
+        retVal << memory_[i] << COMMA_SPACE;
     }
-    return "";
+
+    std::string stringedStream(retVal.str());
+    stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
+
+    return std::move(stringedStream + std::string(SQUARE_BRACKET_CLOSE));
 }
 

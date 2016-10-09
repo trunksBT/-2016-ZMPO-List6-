@@ -22,7 +22,7 @@ public:
 public:
    void setName(std::string inName);
    void setVal(int idx, int newVal);
-
+   
 public:
     static CTable* buildNewObj();
     std::string print();
