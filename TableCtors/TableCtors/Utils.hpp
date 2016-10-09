@@ -80,6 +80,7 @@ constexpr char* removeAll = "removeAll"; // remove CTable on idx
 constexpr char* setName = "setName"; // set name of CTable on idx
 constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 
 //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
 //

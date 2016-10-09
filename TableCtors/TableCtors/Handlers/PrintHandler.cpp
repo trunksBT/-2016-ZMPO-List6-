@@ -18,35 +18,28 @@ PrintHandler::PrintHandler(std::vector<std::string>& inCommand)
 
 void PrintHandler::perform(std::vector<CTable*>& inCache)
 {
+    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
-    /*int idxOrAmount = std::stoi(receivedId);
+    int idxOrAmount = std::stoi(receivedId);
 
     if(isProperIdx(idxOrAmount, inCache))
     {
-        if(wholeCommand_[idxOf::command] == messageLiterals::getSize)
+        CTable* retTable = inCache.at(idxOrAmount);
+        if(retTable != nullptr)
         {
-            std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
-            CTable* retTable = inCache.at(idxOrAmount);
-            if(retTable != nullptr)
-            {
-                std::cout << retTable->getSize();
-            }
-            else
-            {
-                std::cout << undefinedObject;
-            }
-            retTable == nullptr;
+            std::cout << retTable->toString();
         }
         else
         {
-            std::cout << undefinedCommand;
+            std::cout << undefinedObject;
         }
+        retTable == nullptr;
     }
     else
     {
         std::cout << indexOutOfBound;
-    }*/
+    }
 }
 
 PrintHandler::~PrintHandler()

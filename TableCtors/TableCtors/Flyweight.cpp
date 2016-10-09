@@ -62,6 +62,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         GetValueHandler handle(inCommand);
     }
+    else if(command == messageLiterals::print)
+    {
+        PrintHandler handle(inCommand);
+    }
     else
     {
         std::cout << undefinedCommand << POST_PRINT;
