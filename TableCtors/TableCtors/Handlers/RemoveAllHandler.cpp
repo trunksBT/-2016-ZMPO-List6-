@@ -12,16 +12,16 @@ using namespace logLiterals;
 RemoveAllHandler::RemoveAllHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << messageLiterals::removeAll << POST_PRINT;
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+    return resultCode;
 }
 
 RemoveAllHandler::~RemoveAllHandler()

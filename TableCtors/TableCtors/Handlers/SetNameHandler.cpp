@@ -13,15 +13,16 @@ using namespace funs;
 SetNameHandler::SetNameHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE SetNameHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
+
     std::string newName(wholeCommand_[idxOf::newName]);
     std::string receivedId(std::move(wholeCommand_[idxOf::amount]));
     int idxOrAmount = std::stoi(receivedId);
@@ -30,7 +31,11 @@ ERROR_CODE SetNameHandler::performOn(std::vector<CTable*>& inCache)
     {
         if(inCache[idxOrAmount] == nullptr)
         {
-            std::cout << undefinedObject;
+            resultCode = ERROR_CODE::UNDEFINED_OBJECT;
+            if(flag::printOn)
+            {
+                std::cout << toString(resultCode);
+            }
         }
         else
         {
@@ -39,12 +44,13 @@ ERROR_CODE SetNameHandler::performOn(std::vector<CTable*>& inCache)
     }
     else
     {
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
-            std::cout << indexOutOfBound;
+            std::cout << toString(resultCode);
         }
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+    return resultCode;
 }
 
 SetNameHandler::~SetNameHandler()

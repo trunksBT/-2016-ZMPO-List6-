@@ -12,13 +12,19 @@ extern std::vector<std::string> createDef6;
 extern std::vector<std::string> createDefs1;
 extern std::vector<std::string> createDefs6;
 extern std::vector<std::string> createDefs10;
+extern std::vector<std::string> createDefs11;
 extern std::vector<std::string> createDefs10000;
-extern std::vector<std::string> getName0;
+extern std::vector<std::string> createCopy01;
+extern std::vector<std::string> createCopy06;
 extern std::vector<std::string> print0;
 extern std::vector<std::string> printm1;
 extern std::vector<std::string> print6;
 extern std::vector<std::string> print10;
+extern std::vector<std::string> getName0;
+extern std::vector<std::string> getNamem1;
+extern std::vector<std::string> getName6;
 extern std::vector<std::string> getName10;
+extern std::vector<std::string> getSizem1;
 extern std::vector<std::string> getSize0;
 extern std::vector<std::string> getSize1;
 extern std::vector<std::string> getSize6;
@@ -39,8 +45,6 @@ extern std::vector<std::string> getValue0;
 extern std::vector<std::string> getValue1;
 extern std::vector<std::string> getValue6;
 extern std::vector<std::string> getValue10;
-extern std::vector<std::string> createCopy01;
-extern std::vector<std::string> createCopy06;
 
 }
 
