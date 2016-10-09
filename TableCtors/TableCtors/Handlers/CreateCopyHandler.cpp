@@ -13,15 +13,16 @@ using namespace funs;
 CreateCopyHandler::CreateCopyHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
+
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
     std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
@@ -45,7 +46,7 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
             inCache.emplace_back(copiedObj);
         }
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+    return resultCode;
 }
 
 CreateCopyHandler::~CreateCopyHandler()

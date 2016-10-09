@@ -13,15 +13,16 @@ using namespace funs;
 RemoveHandler::RemoveHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE RemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     if(isProperIdx(idxOrAmount, inCache))
@@ -36,12 +37,13 @@ ERROR_CODE RemoveHandler::performOn(std::vector<CTable*>& inCache)
     }
     else
     {
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
-            std::cout << indexOutOfBound;
+            std::cout << toString(resultCode);
         }
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+    return resultCode;
 }
 
 RemoveHandler::~RemoveHandler()

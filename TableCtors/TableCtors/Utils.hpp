@@ -10,13 +10,12 @@ constexpr bool printOn = false;
 
 enum class ERROR_CODE : int
 {
-    SEEMS_LEGIT = 0, 
-    UNDEFINED_OBJECT = 1,
-    INDEX_OUT_OF_BOUNDS = 2,
-    ERROR_COMMAND_PARSING = 3,
-    NOT_HANDLED_ERROR_REPORTING = 4,
-    ERROR_IN_SEQUENCE = 5,
-    INITIAL_VAL = 6
+    SEEMS_LEGIT = 0, // when all is good(probably)
+    UNDEFINED_OBJECT = 1, // when isProperIdx(idx), situation when vector has allocated memory
+    INDEX_OUT_OF_BOUNDS = 2, // when isProperIdx(idx) == false
+    ERROR_COMMAND_PARSING = 3, // it will be used when parsing has errors or undefined command
+    NOT_HANDLED_ERROR_REPORTING = 4, // when somewhere i have forgotten about error reporting
+    INITIAL_VAL = 5 // when somewhere error code hadn't change
 };
 
 std::string toString(ERROR_CODE inCode);

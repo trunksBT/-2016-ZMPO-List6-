@@ -37,42 +37,55 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::createCopy)
     {
         CreateCopyHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::remove)
     {
         RemoveHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::removeAll)
     {
         RemoveAllHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::setName)
     {
         SetNameHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::setValue)
     {
         SetValueHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getName)
     {
         GetNameHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getSize)
     {
         GetSizeHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getValue)
     {
         GetValueHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::print)
     {
         PrintHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else
     {
-        std::cout << undefinedCommand << POST_PRINT;
+        returnedCode = ERROR_CODE::ERROR_COMMAND_PARSING;
+        if(flag::printOn)
+        {
+            std::cout << toString(returnedCode);
+        }
     }
 
     return returnedCode;

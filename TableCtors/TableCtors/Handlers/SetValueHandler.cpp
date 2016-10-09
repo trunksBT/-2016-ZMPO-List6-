@@ -13,15 +13,16 @@ using namespace funs;
 SetValueHandler::SetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE SetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     std::string receivedIdOfNewVal(wholeCommand_[idxOf::goalId]);
@@ -34,35 +35,38 @@ ERROR_CODE SetValueHandler::performOn(std::vector<CTable*>& inCache)
         CTable* retTable = inCache.at(idxOrAmount);
         if(retTable != nullptr)
         {
-            if(idOfNewVal > -1 && idOfNewVal < retTable->getSize())
+            if(isProperIdx(idOfNewVal, retTable->getSize()))
             {
                 retTable->setVal(idOfNewVal,newVal);
             }
             else
             {
+                resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
                 if(flag::printOn)
                 {
-                    std::cout << undefinedObject;
+                    std::cout << toString(resultCode);
                 }
             }
         }
         else
         {
+            resultCode = ERROR_CODE::UNDEFINED_OBJECT;
             if(flag::printOn)
             {
-                std::cout << undefinedObject;
+                std::cout << toString(resultCode);
             }
         }
         retTable = nullptr;
     }
     else
     {
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
-            std::cout << indexOutOfBound;
+            std::cout << toString(resultCode);
         }
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+    return resultCode;
 }
 
 SetValueHandler::~SetValueHandler()
