@@ -9,24 +9,26 @@ using namespace flags;
 
 CTable::CTable()
 {
-   name_ = DEFAULT_TABLE_NAME;
-   setSize(DEFAULT_IN_TABLE_SIZE);
-   initTable(ZERO);
-   if(printFlagOn)
-   {
-      std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
-   }
+    name_ = DEFAULT_TABLE_NAME;
+    size_ = DEFAULT_IN_TABLE_SIZE;
+    allocateMemory(size_);
+    initTable(ZERO);
+    if(printFlagOn)
+    {
+        std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+    }
 }
 
 CTable::CTable(int inSize)
 {
-   name_ = DEFAULT_TABLE_NAME;
-   setSize(inSize);
-   initTable(ZERO);
-   if(printFlagOn)
-   {
-      std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
-   }
+    name_ = DEFAULT_TABLE_NAME;
+    size_ = inSize;
+    allocateMemory(size_);
+    initTable(ZERO);
+    if(printFlagOn)
+    {
+        std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
+    }
 }
 
 void CTable::print()
@@ -39,23 +41,19 @@ void CTable::print()
 
 CTable::CTable(std::string inVal)
 {
-   name_ = std::move(inVal);
-   setSize(DEFAULT_IN_TABLE_SIZE);
-   initTable(ZERO);
-   if(printFlagOn)
-   {
-      std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
-   }
+    name_ = std::move(inVal);
+    size_ = DEFAULT_IN_TABLE_SIZE;
+    allocateMemory(size_);
+    initTable(ZERO);
+    if(printFlagOn)
+    {
+        std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
+    }
 }
 
 CTable::CTable(CTable& inVal)
 {
-   copyCtor(inVal);
-}
-
-void CTable::allocateMemory(int inSize)
-{
-   memory_ = static_cast<int*>(malloc(inSize * sizeof(int)));
+    copyCtor(inVal);
 }
 
 void CTable::initTable(int defaultVal)
@@ -66,27 +64,23 @@ void CTable::initTable(int defaultVal)
     }
 }
 
-void CTable::deallocateMemory()
-{
-   free(memory_);
-}
-
 void CTable::copyCtor(CTable& inVal)
 {
-   name_ = inVal.name_;
-   size_ = inVal.size_;
-   name_.append(POST_COPIED_NAME);
-   copyMemory(inVal);
-   if(printFlagOn)
-   {
-      std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
-   }
+    name_ = inVal.name_;
+    size_ = inVal.size_;
+    name_.append(POST_COPIED_NAME);
+    allocateMemory(size_);
+    deepCopy(inVal);
+    if(printFlagOn)
+    {
+        std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
+    }
 }
 
 CTable& CTable::operator=(CTable& inObj)
 {
-   copyCtor(inObj);
-   return *this;
+    copyCtor(inObj);
+    return *this;
 }
 
 CTable* CTable::buildNewObj()
@@ -94,61 +88,62 @@ CTable* CTable::buildNewObj()
     return new CTable();
 }
 
-void CTable::copyMemory(CTable& inVal)
+void CTable::allocateMemory(int size)
 {
-   deallocateMemory();
-   allocateMemory(size_);
-   for(int i = 0; i < inVal.size_; i++)
-   {
-      memory_[i] = int(inVal.memory_[i]);
-   }
+    memory_ = new int[size];
+}
+
+void CTable::deepCopy(CTable& inVal)
+{
+    for(int i = 0; i < inVal.size_; i++)
+    {
+        memory_[i] = int(inVal.memory_[i]);
+    }
 }
 
 CTable::~CTable()
 {
-   free(memory_);
-   if(printFlagOn)
-   {
-      std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
-   }
+    deallocateMemory();
+    if(printFlagOn)
+    {
+        std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
+    }
 }
 
 void CTable::setName(std::string inName)
 {
-   name_ = std::move(inName);
+    name_ = std::move(inName);
+}
+
+void CTable::deallocateMemory()
+{
+    delete[] memory_;
 }
 
 void CTable::setVal(int idx, int newVal)
 {
-   if(idx > -1 && idx < size_)
-   {
-      memory_[idx] = newVal;
-   }
+    if(idx > -1 && idx < size_)
+    {
+        memory_[idx] = newVal;
+    }
 }
 
 int CTable::getVal(int idx) const
 {
-   int retVal = std::numeric_limits<int>::min();
-   if(idx > -1 && idx < size_)
-   {
-      retVal = memory_[idx];
-   }
-   return retVal;
+    int retVal = std::numeric_limits<int>::min();
+    if(idx > -1 && idx < size_)
+    {
+        retVal = memory_[idx];
+    }
+    return retVal;
 }
 
 int CTable::getSize() const
 {
-   return size_;
+    return size_;
 }
 
 std::string& CTable::getName()
 {
     return name_;
-}
-
-void CTable::setSize(int inSize)
-{
-   deallocateMemory();
-   size_ = inSize;
-   allocateMemory(size_);
 }
