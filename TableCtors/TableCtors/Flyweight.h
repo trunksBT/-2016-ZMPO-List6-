@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "CTable.hpp"
+#include "Utils.hpp"
 
 class CreateDefHandler;
 class CreateDefsHandler;
@@ -40,7 +41,7 @@ public:
 public:
     static void createFlyweight(int inSize);
     static void createFlyweight(std::vector<CTable*>& inCache);
-    static void interpretCommand(std::vector<std::string>& inCommand);
+    static ERROR_CODE interpretCommand(std::vector<std::string>& inCommand);
 public:
    static void releaseResources();
    static void releaseResources(std::vector<CTable*>& inCache);

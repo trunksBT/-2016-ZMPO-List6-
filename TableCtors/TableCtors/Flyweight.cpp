@@ -19,9 +19,11 @@ using namespace logLiterals;
 
 std::vector<CTable*> Flyweight::cache_;
 
-void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
+ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
+    ERROR_CODE returnCode = ERROR_CODE::SEEMS_LEGIT;
     std::string command(inCommand[idxOf::command]);
+
     if(command == messageLiterals::createDef)
     {
         CreateDefHandler handle(inCommand);
@@ -70,6 +72,8 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         std::cout << undefinedCommand << POST_PRINT;
     }
+
+    return returnCode;
 }
 
 #pragma region ********** CTORS_DTORS **********

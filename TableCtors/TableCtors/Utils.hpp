@@ -3,6 +3,14 @@
 #include <vector>
 #include "CTable.hpp"
 
+enum class ERROR_CODE : int
+{
+    SEEMS_LEGIT = 0, 
+    UNDEFINED_OBJECT = 1,
+    INDEX_OUT_OF_BOUND = 2,
+    ERROR_COMMAND_PARSING = 3
+};
+
 namespace defaultVals
 {
 constexpr const char* PRE_PRINT = "   ";
