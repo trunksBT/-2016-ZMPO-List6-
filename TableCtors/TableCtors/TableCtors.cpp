@@ -21,19 +21,19 @@ using namespace communication;
 
 int main(int argc, char **argv)
 {
-   //::testing::InitGoogleTest(&argc, argv);
+   ::testing::InitGoogleTest(&argc, argv);
 
    {
-        Flyweight application;
-        Flyweight::interpretCommand(stub::createDefs6);
-        Flyweight::interpretCommand(stub::printm1);
-        Flyweight::interpretCommand(stub::print0);
-        Flyweight::interpretCommand(stub::print6);
-        Flyweight::interpretCommand(stub::print10);
+        //Flyweight application;
+        ////Flyweight::interpretCommand(stub::createDefs6);
+        //Flyweight::interpretCommand(stub::printm1);
+        //Flyweight::interpretCommand(stub::print0);
+        //Flyweight::interpretCommand(stub::print6);
+        //Flyweight::interpretCommand(stub::print10);
 
    }
 
-   //return RUN_ALL_TESTS();
+   return RUN_ALL_TESTS();
    return 0;
 }
 

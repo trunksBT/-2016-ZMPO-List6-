@@ -8,10 +8,16 @@ using namespace defaultVals;
 IHandler::IHandler(std::vector<std::string>& inCommand)
 {
     wholeCommand_ = inCommand;
-    std::cout << PRE_PRINT;
+    if(flag::printOn)
+    {
+        std::cout << PRE_PRINT;
+    }
 }
 
 IHandler::~IHandler()
 {
-    std::cout << POST_PRINT;
+    if(flag::printOn)
+    {
+        std::cout << POST_PRINT;
+    }
 }

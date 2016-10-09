@@ -3,6 +3,24 @@
 #include <vector>
 #include "CTable.hpp"
 
+namespace flag
+{
+constexpr bool printOn = false;
+}
+
+enum class ERROR_CODE : int
+{
+    SEEMS_LEGIT = 0, 
+    UNDEFINED_OBJECT = 1,
+    INDEX_OUT_OF_BOUNDS = 2,
+    ERROR_COMMAND_PARSING = 3,
+    NOT_HANDLED_ERROR_REPORTING = 4,
+    ERROR_IN_SEQUENCE = 5,
+    INITIAL_VAL = 6
+};
+
+std::string toString(ERROR_CODE inCode);
+
 namespace defaultVals
 {
 constexpr const char* PRE_PRINT = "   ";
@@ -26,6 +44,7 @@ constexpr int TWO = 2;
 constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
+constexpr const char* erroredCommandIdx = "Errored command idx";
 }
 
 namespace funs
@@ -41,11 +60,6 @@ inline bool isProperIdx(int idx, int size)
     return idx > defaultVals::MINUS_ONE && idx < size;
 }
 
-}
-
-namespace flags
-{
-constexpr bool printFlagOn = true;
 }
 
 namespace logLiterals

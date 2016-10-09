@@ -19,57 +19,63 @@ using namespace logLiterals;
 
 std::vector<CTable*> Flyweight::cache_;
 
-void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
+ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
+    ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
     std::string command(inCommand[idxOf::command]);
+
     if(command == messageLiterals::createDef)
     {
-        CreateDefHandler handle(inCommand);
+        CreateDefHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createDefs)
     {
-        CreateDefsHandler handle(inCommand);
+        CreateDefsHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createCopy)
     {
-        CreateCopyHandler handle(inCommand);
+        CreateCopyHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::remove)
     {
-        RemoveHandler handle(inCommand);
+        RemoveHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::removeAll)
     {
-        RemoveAllHandler handle(inCommand);
+        RemoveAllHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::setName)
     {
-        SetNameHandler handle(inCommand);
+        SetNameHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::setValue)
     {
-        SetValueHandler handle(inCommand);
+        SetValueHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getName)
     {
-        GetNameHandler handle(inCommand);
+        GetNameHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getSize)
     {
-        GetSizeHandler handle(inCommand);
+        GetSizeHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::getValue)
     {
-        GetValueHandler handle(inCommand);
+        GetValueHandler evaluate(inCommand);
     }
     else if(command == messageLiterals::print)
     {
-        PrintHandler handle(inCommand);
+        PrintHandler evaluate(inCommand);
     }
     else
     {
         std::cout << undefinedCommand << POST_PRINT;
     }
+
+    return returnedCode;
 }
 
 #pragma region ********** CTORS_DTORS **********

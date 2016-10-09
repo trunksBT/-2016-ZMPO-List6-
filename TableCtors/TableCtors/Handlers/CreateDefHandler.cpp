@@ -13,12 +13,15 @@ using namespace funs;
 CreateDefHandler::CreateDefHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
 }
 
-void CreateDefHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
 {
-    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
+    if(flag::printOn)
+    {
+        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    }
 
     std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
     int idxOrAmount = std::stoi(receivedId);
@@ -32,8 +35,14 @@ void CreateDefHandler::perform(std::vector<CTable*>& inCache)
     }
     else
     {
-        std::cout << undefinedObject;
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        if(flag::printOn)
+        {
+            std::cout << toString(resultCode);
+        }
     }
+
+    return resultCode;
 }
 
 CreateDefHandler::~CreateDefHandler()

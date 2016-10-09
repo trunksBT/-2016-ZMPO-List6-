@@ -13,13 +13,15 @@ using namespace funs;
 PrintHandler::PrintHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    perform(Flyweight::cache_);
+    performOn(Flyweight::cache_);
 }
 
-void PrintHandler::perform(std::vector<CTable*>& inCache)
+ERROR_CODE PrintHandler::performOn(std::vector<CTable*>& inCache)
 {
-    std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
+    if(flag::printOn)
+    {
+        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+    }
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
 
@@ -32,14 +34,21 @@ void PrintHandler::perform(std::vector<CTable*>& inCache)
         }
         else
         {
-            std::cout << undefinedObject;
+            if(flag::printOn)
+            {
+                std::cout << undefinedObject;
+            }
         }
-        retTable == nullptr;
+        retTable = nullptr;
     }
     else
     {
-        std::cout << indexOutOfBound;
+        if(flag::printOn)
+        {
+            std::cout << indexOutOfBound;
+        }
     }
+    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
 }
 
 PrintHandler::~PrintHandler()
