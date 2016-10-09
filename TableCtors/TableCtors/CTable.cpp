@@ -3,9 +3,11 @@
 #include "Utils.hpp"
 #include <iostream>
 #include <limits>
+#include <sstream>
 
 using namespace defaultVals;
 using namespace flags;
+using namespace funs;
 
 CTable::CTable()
 {
@@ -28,14 +30,6 @@ CTable::CTable(int inSize)
     if(printFlagOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
-    }
-}
-
-void CTable::print()
-{
-    for(int i = 0; i < size_; i++)
-    {
-        std::cout << memory_[i] << std::endl;
     }
 }
 
@@ -122,16 +116,17 @@ void CTable::deallocateMemory()
 
 void CTable::setVal(int idx, int newVal)
 {
-    if(idx > -1 && idx < size_)
+    if(isProperIdx(idx, size_))
     {
         memory_[idx] = newVal;
     }
 }
 
+
 int CTable::getVal(int idx) const
 {
     int retVal = std::numeric_limits<int>::min();
-    if(idx > -1 && idx < size_)
+    if(isProperIdx(idx, size_))
     {
         retVal = memory_[idx];
     }
@@ -143,7 +138,24 @@ int CTable::getSize() const
     return size_;
 }
 
-std::string& CTable::getName()
+std::string CTable::getName() const
 {
-    return name_;
+    return std::string(name_);
 }
+
+std::string CTable::toString()
+{
+    std::stringstream retVal;
+    retVal << name_ << SEPARATOR << SQUARE_BRACKET_OPEN;
+
+    for(int i = 0; i < size_; i++)
+    {
+        retVal << memory_[i] << COMMA_SPACE;
+    }
+
+    std::string stringedStream(retVal.str());
+    stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
+
+    return std::move(stringedStream + std::string(SQUARE_BRACKET_CLOSE));
+}
+

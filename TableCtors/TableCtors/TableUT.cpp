@@ -105,5 +105,62 @@ TEST_F(CTableTests, getVal_defaultCTORed_3_onIdx_m1_Expect_LimitMin)
    ASSERT_EQ(std::numeric_limits<int>::min(), rcVal);
    delete sourceVal;
 }
+
+TEST_F(CTableTests, print_defaultCTORed)
+{
+    CTable* sourceVal = new CTable();
+
+    std::cout << sourceVal->toString();
+
+    ASSERT_TRUE(true);
+    delete sourceVal;
+}
+
+TEST_F(CTableTests, print_Copied)
+{
+    int inSize = FIVE;
+    CTable* sourceVal = new CTable(inSize);
+
+    CTable* inVal = new CTable();
+    *inVal = *sourceVal;
+
+    std::cout << sourceVal->toString() << POST_PRINT;
+    std::cout << inVal->toString() << POST_PRINT;
+
+    ASSERT_TRUE(true);
+    delete sourceVal;
+}
+
+TEST_F(CTableTests, print_Copied_afterSetValue)
+{
+    int inSize = FIVE;
+    CTable* sourceVal = new CTable(inSize);
+
+    CTable* inVal = new CTable();
+    *inVal = *sourceVal;
+    inVal->setVal(ZERO, FIVE);
+
+    std::cout << sourceVal->toString() << POST_PRINT;
+    std::cout << inVal->toString() << POST_PRINT;
+
+    ASSERT_TRUE(true);
+    delete sourceVal;
+}
+
+TEST_F(CTableTests, print_Copied_afterSetName)
+{
+    int inSize = FIVE;
+    CTable* sourceVal = new CTable(inSize);
+
+    CTable* inVal = new CTable();
+    *inVal = *sourceVal;
+    inVal->setName("SIEMA_" + std::string(DEFAULT_TABLE_NAME));
+
+    std::cout << sourceVal->toString() << POST_PRINT;
+    std::cout << inVal->toString() << POST_PRINT;
+
+    ASSERT_TRUE(true);
+    delete sourceVal;
+}
 }
 

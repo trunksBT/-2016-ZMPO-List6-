@@ -8,11 +8,11 @@
 #include "Handlers/RemoveAllHandler.h"
 #include "Handlers/SetNameHandler.h"
 #include "Handlers/SetValueHandler.h"
-#include "Handlers/GetHandler.h"
 #include "Handlers/GetNameHandler.h"
 #include "Handlers/GetSizeHandler.h"
 #include "Handlers/GetValueHandler.h"
 #include "Handlers/CreateCopyHandler.h"
+#include "Handlers/PrintHandler.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
@@ -61,6 +61,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::getValue)
     {
         GetValueHandler handle(inCommand);
+    }
+    else if(command == messageLiterals::print)
+    {
+        PrintHandler handle(inCommand);
     }
     else
     {

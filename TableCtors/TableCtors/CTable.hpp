@@ -17,15 +17,15 @@ public:
 public:
    int getSize() const;
    int getVal(int idx) const;
-   std::string& getName();
+   std::string getName() const;
 
 public:
    void setName(std::string inName);
    void setVal(int idx, int newVal);
-
+   
 public:
     static CTable* buildNewObj();
-    void print();
+    std::string toString();
 
 private:
    void deepCopy(CTable& inVal);
