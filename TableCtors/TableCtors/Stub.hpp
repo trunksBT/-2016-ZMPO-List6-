@@ -6,6 +6,7 @@
 namespace stub
 {
 
+extern std::vector<std::string> createDefm1;
 extern std::vector<std::string> createDef0;
 extern std::vector<std::string> createDef6;
 extern std::vector<std::string> createDefs1;

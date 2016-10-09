@@ -21,13 +21,13 @@ std::vector<CTable*> Flyweight::cache_;
 
 ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
-    ERROR_CODE returnCode = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE returnedCode = ERROR_CODE::SEEMS_LEGIT;
     std::string command(inCommand[idxOf::command]);
 
     if(command == messageLiterals::createDef)
     {
         CreateDefHandler evaluate(inCommand);
-        returnCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createDefs)
     {
@@ -74,7 +74,7 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
         std::cout << undefinedCommand << POST_PRINT;
     }
 
-    return returnCode;
+    return returnedCode;
 }
 
 #pragma region ********** CTORS_DTORS **********

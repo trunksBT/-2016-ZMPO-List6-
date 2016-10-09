@@ -3,6 +3,11 @@
 #include <vector>
 #include "CTable.hpp"
 
+namespace flag
+{
+constexpr bool printOn = true;
+}
+
 enum class ERROR_CODE : int
 {
     SEEMS_LEGIT = 0, 
@@ -11,6 +16,8 @@ enum class ERROR_CODE : int
     ERROR_COMMAND_PARSING = 3,
     NOT_HANDLED_ERROR_REPORTING = 4
 };
+
+std::string toString(ERROR_CODE inCode);
 
 namespace defaultVals
 {
@@ -50,11 +57,6 @@ inline bool isProperIdx(int idx, int size)
     return idx > defaultVals::MINUS_ONE && idx < size;
 }
 
-}
-
-namespace flag
-{
-constexpr bool printOn = false;
 }
 
 namespace logLiterals
