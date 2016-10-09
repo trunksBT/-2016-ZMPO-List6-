@@ -22,7 +22,28 @@ std::vector<CTable*> Flyweight::cache_;
 ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
+
+    bool isProperValuesPassedWithCommand = true;
+    if(isProperValuesPassedWithCommand)
+    {
+        returnedCode = interpretProperCommand(inCommand);
+    }
+    else
+    {
+        returnedCode = ERROR_CODE::ERROR_COMMAND_PARSING;
+        if(flag::printOn)
+        {
+            std::cout << toString(returnedCode);
+        }
+    }
+
+    return returnedCode;
+}
+
+ERROR_CODE Flyweight::interpretProperCommand(std::vector<std::string>& inCommand)
+{
     std::string command(inCommand[idxOf::command]);
+    ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
 
     if(command == messageLiterals::createDef)
     {

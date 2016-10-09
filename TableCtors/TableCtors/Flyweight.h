@@ -42,6 +42,7 @@ public:
     static void createFlyweight(int inSize);
     static void createFlyweight(std::vector<CTable*>& inCache);
     static ERROR_CODE interpretCommand(std::vector<std::string>& inCommand);
+    static ERROR_CODE interpretProperCommand(std::vector<std::string>& inCommand);
 public:
    static void releaseResources();
    static void releaseResources(std::vector<CTable*>& inCache);
