@@ -14,6 +14,7 @@ class GetHandler;
 class CreateCopyHandler;
 class GetNameHandler;
 class GetSizeHandler;
+class GetValueHandler;
 
 class Flyweight
 {
@@ -26,6 +27,7 @@ class Flyweight
     friend class GetHandler;
     friend class GetNameHandler;
     friend class GetSizeHandler;
+    friend class GetValueHandler;
 public:
     Flyweight();
     Flyweight(std::vector<std::string>& inCommand,

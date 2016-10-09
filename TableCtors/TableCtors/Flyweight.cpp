@@ -10,6 +10,7 @@
 #include "Handlers/GetHandler.h"
 #include "Handlers/GetNameHandler.h"
 #include "Handlers/GetSizeHandler.h"
+#include "Handlers/GetValueHandler.h"
 #include "Handlers/CreateCopyHandler.h"
 
 using namespace defaultVals;
@@ -51,6 +52,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::getSize)
     {
         GetSizeHandler handle(inCommand);
+    }
+    else if(command == messageLiterals::getValue)
+    {
+        GetValueHandler handle(inCommand);
     }
     else
     {

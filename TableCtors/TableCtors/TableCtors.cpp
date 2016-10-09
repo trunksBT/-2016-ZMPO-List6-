@@ -25,13 +25,12 @@ int main(int argc, char **argv)
 
    {
         Flyweight application;
-        Flyweight::interpretCommand(stub::createDefs1);
-        Flyweight::interpretCommand(stub::createCopy06);
+        Flyweight::interpretCommand(stub::createDefs6);
+        Flyweight::interpretCommand(stub::getValue0);
+        Flyweight::interpretCommand(stub::getValue1);
+        Flyweight::interpretCommand(stub::getValue6);
+        Flyweight::interpretCommand(stub::getValue10);
 
-        Flyweight::interpretCommand(stub::getName0);
-        Flyweight::interpretCommand(stub::getName10);
-        Flyweight::interpretCommand(stub::getSize0);
-        Flyweight::interpretCommand(stub::getSize10);
         //Flyweight::interpretCommand(stub::createDefs1);
         //Flyweight::interpretCommand(stub::setName0);
         //Flyweight::interpretCommand(stub::createDefs1);
