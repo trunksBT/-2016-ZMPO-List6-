@@ -8,6 +8,7 @@
 #include "Handlers/RemoveAllHandler.h"
 #include "Handlers/SetNameHandler.h"
 #include "Handlers/GetHandler.h"
+#include "Handlers/CreateCopyHandler.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
@@ -25,9 +26,9 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         CreateDefsHandler handle(inCommand);
     }
-    else if(command.find(messageLiterals::get) != std::string::npos)
+    else if(command == messageLiterals::createCopy)
     {
-        GetHandler handle(inCommand);
+        CreateCopyHandler handle(inCommand);
     }
     else if(command == messageLiterals::remove)
     {
@@ -40,6 +41,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::setName)
     {
         SetNameHandler handle(inCommand);
+    }
+    else if(command.find(messageLiterals::get) != std::string::npos)
+    {
+        GetHandler handle(inCommand);
     }
     else
     {

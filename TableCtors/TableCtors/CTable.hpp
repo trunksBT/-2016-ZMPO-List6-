@@ -26,11 +26,13 @@ public:
 
 public:
     static CTable* buildNewObj();
+    void print();
 
 private:
    void allocateMemory(int inSize);
    void deallocateMemory();
    void copyMemory(CTable& inVal);
+   void initTable(int defaultVal);
 
 private:
    std::string name_;

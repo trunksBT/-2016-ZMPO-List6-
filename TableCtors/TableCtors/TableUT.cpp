@@ -24,6 +24,8 @@ TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 
    int rcVal = inVal->getSize();
 
+   inVal->print();
+
    ASSERT_EQ(expVal, rcVal);
    delete inVal;
 }
@@ -45,9 +47,12 @@ TEST_F(CTableTests, copyCTOR_size5_Expect_size5)
    int inSize = FIVE;
    int expVal = FIVE;
    CTable* sourceVal = new CTable(inSize);
+   sourceVal->print();
 
    CTable* inVal = new CTable(*sourceVal);
    int rcVal = inVal->getSize();
+
+   inVal->print();
 
    ASSERT_EQ(expVal, rcVal);
    delete sourceVal;
