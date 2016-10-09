@@ -25,7 +25,7 @@ public:
    
 public:
     static CTable* buildNewObj();
-    std::string print();
+    std::string toString();
 
 private:
    void deepCopy(CTable& inVal);

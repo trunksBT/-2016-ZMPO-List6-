@@ -3,24 +3,14 @@
 #include <vector>
 #include "CTable.hpp"
 
-namespace funs
-{
-inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
-{
-    return idxOrAmount > -1 && idxOrAmount < inCache.size();
-}
-}
-
-namespace flags
-{
-constexpr bool printFlagOn = true;
-}
-
 namespace defaultVals
 {
 constexpr const char* PRE_PRINT = "   ";
 constexpr const char* POST_PRINT = "\n";
 constexpr const char* SEPARATOR = ": ";
+constexpr const char* SQUARE_BRACKET_OPEN = "[ ";
+constexpr const char* SQUARE_BRACKET_CLOSE = " ]";
+constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";
@@ -30,9 +20,32 @@ constexpr const char* CTOR_DEFAULT_MOVE_PRINT = "przenoszenie: ";
 constexpr const char* CTOR_ARG1_PRE_PRINT = "parametr: ";
 constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 5;
 constexpr int ZERO = 0;
+constexpr int MINUS_ONE = -1;
+constexpr int ONE = 1;
+constexpr int TWO = 2;
 constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
+}
+
+namespace funs
+{
+
+inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
+{
+    return idxOrAmount > -1 && idxOrAmount < inCache.size();
+}
+
+inline bool isProperIdx(int idx, int size)
+{
+    return idx > defaultVals::MINUS_ONE && idx < size;
+}
+
+}
+
+namespace flags
+{
+constexpr bool printFlagOn = true;
 }
 
 namespace logLiterals

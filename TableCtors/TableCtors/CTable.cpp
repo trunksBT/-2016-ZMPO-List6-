@@ -143,7 +143,7 @@ std::string CTable::getName() const
     return std::string(name_);
 }
 
-std::string CTable::print()
+std::string CTable::toString()
 {
     std::stringstream retVal;
     retVal << name_ << SEPARATOR << SQUARE_BRACKET_OPEN;
