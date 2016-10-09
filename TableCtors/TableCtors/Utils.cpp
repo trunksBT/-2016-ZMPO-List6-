@@ -14,7 +14,7 @@ std::string toString(ERROR_CODE inCode)
         std::forward_as_tuple(ERROR_CODE::UNDEFINED_OBJECT),
         std::forward_as_tuple("UNDEFINED_OBJECT"));
     codeToString.emplace(std::piecewise_construct,
-        std::forward_as_tuple(ERROR_CODE::INDEX_OUT_OF_BOUND),
+        std::forward_as_tuple(ERROR_CODE::INDEX_OUT_OF_BOUNDS),
         std::forward_as_tuple("INDEX_OUT_OF_BOUND"));
     codeToString.emplace(std::piecewise_construct,
         std::forward_as_tuple(ERROR_CODE::ERROR_COMMAND_PARSING),

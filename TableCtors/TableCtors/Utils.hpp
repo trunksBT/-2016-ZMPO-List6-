@@ -12,7 +12,7 @@ enum class ERROR_CODE : int
 {
     SEEMS_LEGIT = 0, 
     UNDEFINED_OBJECT = 1,
-    INDEX_OUT_OF_BOUND = 2,
+    INDEX_OUT_OF_BOUNDS = 2,
     ERROR_COMMAND_PARSING = 3,
     NOT_HANDLED_ERROR_REPORTING = 4,
     ERROR_IN_SEQUENCE = 5,
@@ -44,6 +44,7 @@ constexpr int TWO = 2;
 constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
+constexpr const char* erroredCommandIdx = "Errored command idx";
 }
 
 namespace funs

@@ -8,10 +8,6 @@
 
 #include "Flyweight.h"
 #include "Stub.hpp"
-#include "UtilsForMT.h"
-
-using namespace defaultVals;
-using namespace assertWrapper;
 
 namespace
 {
@@ -19,49 +15,54 @@ class FlyweightMT : public testing::Test
 {
 protected:
     virtual void SetUp()
-    {
-        rcVal = std::move(std::make_pair( MINUS_ONE, ERROR_CODE::INITIAL_VAL));
-    }
+    {}
 
     virtual void TearDown()
     {}
 protected:
     Flyweight application;
-    std::pair<int, ERROR_CODE> rcVal;
 };
 
-TEST_F(FlyweightMT, getFinalResultCode_createDef_Expect_SEEMS_LEGIT)
+ERROR_CODE getFinalResultCode(std::vector<ERROR_CODE> inCodes)
 {
-    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+    bool isLegit = true;
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
 
-    rcVal = getFinalResultCode
-    ({
-        application.interpretCommand(stub::createDef0),
-        application.interpretCommand(stub::createDef0),
-        application.interpretCommand(stub::createDef0)
-    });
+    for(int i = 0; i< inCodes.size(); i++)
+    {
+        if(inCodes[i] == ERROR_CODE::SEEMS_LEGIT)
+        {
+            isLegit &= true;
+            resultCode = ERROR_CODE::SEEMS_LEGIT;
+        }
+        else
+        {
+            isLegit &= false;
+            resultCode = inCodes[i];
+        }
+    }
 
-    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
-    printWrongCommandInfo(std::move(rcVal));
+    return resultCode;
 }
 
-TEST_F(FlyweightMT, getFinalResultCode_createDef_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(FlyweightMT, getFinalResultCode_Expect_SEEMS_LEGIT)
 {
-    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE rcVal = ERROR_CODE::INITIAL_VAL;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDef0),
-        application.interpretCommand(stub::createDefm1),
+        application.interpretCommand(stub::createDef0),
         application.interpretCommand(stub::createDef0)
     });
 
-    ASSERT_FOR_PAIR_WITH_PRINT(expVal, rcVal);
+    ASSERT_EQ(expVal, rcVal);
 }
 
 TEST_F(FlyweightMT, createDefm1_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
 {
-    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUND;
     ERROR_CODE rcVal;
 
     rcVal = application.interpretCommand(stub::createDefm1);
@@ -81,7 +82,7 @@ TEST_F(FlyweightMT, createDef0_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 
 TEST_F(FlyweightMT, createDef6_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
-    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUND;
     ERROR_CODE rcVal;
 
     rcVal = application.interpretCommand(stub::createDef6);
@@ -118,6 +119,20 @@ TEST_F(FlyweightMT, createDefs10_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 
     ASSERT_EQ(expVal, rcVal);
 }
+//
+//TEST_F(FlyweightMT, createDefs10_y_getName0_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+//    ERROR_CODE rcVal1 = ERROR_CODE::NOT_INITIALIZED;
+//    ERROR_CODE rcVal2 = ERROR_CODE::NOT_INITIALIZED;
+//    ERROR_CODE totalRcVal;
+//
+//    rcVal1 = application.interpretCommand(stub::createDefs6);
+//    //rcVal2 = application.interpretCommand(stub::getName0);
+//
+//    totalRcVal = getFinalResultCode({ rcVal1, rcVal2 });
+//    ASSERT_EQ(expVal, totalRcVal);
+//}
 
 }
 
