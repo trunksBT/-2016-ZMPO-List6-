@@ -8,6 +8,7 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 CreateDefsHandler::CreateDefsHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
@@ -24,28 +25,39 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
 
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount > inCache.size())
+    if(idxOrAmount < ZERO)
     {
-        inCache.reserve(idxOrAmount);
-    }
-    int cacheSize = inCache.size();
-    int cursorIdx = ZERO;
-    for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmount;)
-    {
-        if(cursorIdx < inCache.size())
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        if(flag::printOn)
         {
-            if(inCache[cursorIdx] == nullptr)
+            std::cout << toString(resultCode);
+        }
+    }
+    else
+    {
+        if(idxOrAmount > inCache.size())
+        {
+            inCache.reserve(idxOrAmount);
+        }
+        int cacheSize = inCache.size();
+        int cursorIdx = ZERO;
+        for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmount;)
+        {
+            if(cursorIdx < inCache.size())
             {
-                inCache[cursorIdx] = CTable::buildNewObj();
+                if(inCache[cursorIdx] == nullptr)
+                {
+                    inCache[cursorIdx] = CTable::buildNewObj();
+                    ammountOfCreatedObj++;
+                }
+            }
+            else
+            {
+                inCache.emplace_back(CTable::buildNewObj());
                 ammountOfCreatedObj++;
             }
+            cursorIdx++;
         }
-        else
-        {
-            inCache.emplace_back(CTable::buildNewObj());
-            ammountOfCreatedObj++;
-        }
-        cursorIdx++;
     }
 
     return resultCode;

@@ -12,8 +12,7 @@ using namespace funs;
 
 GetValueHandler::GetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
-{
-}
+{}
 
 ERROR_CODE GetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
@@ -25,13 +24,26 @@ ERROR_CODE GetValueHandler::performOn(std::vector<CTable*>& inCache)
 
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
+    std::string receivedIdOfNewVal(wholeCommand_[idxOf::goalId]);
+    int idOfNewVal = std::stoi(receivedIdOfNewVal);
 
     if(isProperIdx(idxOrAmount, inCache))
     {
         CTable* retTable = inCache.at(idxOrAmount);
         if(retTable != nullptr)
         {
-            std::cout << retTable->getVal(idxOrAmount);
+            if(isProperIdx(idOfNewVal, retTable->getSize()))
+            {
+                retTable->getVal(idOfNewVal);
+            }
+            else
+            {
+                resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+                if(flag::printOn)
+                {
+                    std::cout << toString(resultCode);
+                }
+            }
         }
         else
         {

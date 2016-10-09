@@ -5,6 +5,7 @@
 #include "Utils.hpp"
 
 using namespace defaultVals;
+using namespace funs;
 
 namespace assertWrapper
 {

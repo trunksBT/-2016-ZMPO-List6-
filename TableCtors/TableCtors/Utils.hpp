@@ -18,8 +18,6 @@ enum class ERROR_CODE : int
     INITIAL_VAL = 5 // when somewhere error code hadn't change
 };
 
-std::string toString(ERROR_CODE inCode);
-
 namespace defaultVals
 {
 constexpr const char* PRE_PRINT = "   ";
@@ -48,17 +46,10 @@ constexpr const char* erroredCommandIdx = "Errored command idx";
 
 namespace funs
 {
-
-inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
-{
-    return idxOrAmount > -1 && idxOrAmount < inCache.size();
-}
-
-inline bool isProperIdx(int idx, int size)
-{
-    return idx > defaultVals::MINUS_ONE && idx < size;
-}
-
+bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
+bool isProperIdx(int idx, int size);
+std::string toString(ERROR_CODE inCode);
+bool checkIfProperArguments(std::vector<std::string>& inCommand);
 }
 
 namespace logLiterals
@@ -67,7 +58,6 @@ constexpr const char* undefinedCommand = "Nie znam takiej komendy";
 constexpr const char* undefinedObject = "Nie znam takiego obiektu";
 constexpr const char* indexOutOfBound = "Index poza obszarem pamieci";
 constexpr const char* nullPointerDetected = "Object";
-
 }
 
 namespace idxOf
@@ -78,7 +68,6 @@ constexpr int amount = 1;
 constexpr int newName = 2;
 constexpr int goalId = 2;
 constexpr int newVal = 3;
-
 }
 
 namespace messageLiterals
@@ -94,24 +83,6 @@ constexpr char* setName = "setName"; // set name of CTable on idx
 constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-
-//createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
-//
-//create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
-//
-//createDef <idx> -wywo³uje konstruktor na okreslonym indeksie
-//
-//createDefs <ilosc> -wywo³uje konstruktor okreslonej ilosci elementow
-//
-//createCopy <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-//
-//setValue <nrTablicy> <nrPozycji> <wartoœæ>
-//
-//getValue <nrTablicy> <nrPozycji>
-//
-//setName <nrTablicy> <nazwaTablicy>
-//
-//getName <nrTablicy>
 }
 
 

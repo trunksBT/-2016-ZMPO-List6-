@@ -3,6 +3,21 @@
 #include <map>
 #include <string>
 
+using namespace defaultVals;
+
+namespace funs
+{
+
+bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
+{
+    return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();
+}
+
+bool isProperIdx(int idx, int size)
+{
+    return idx > MINUS_ONE && idx < size;
+}
+
 std::string toString(ERROR_CODE inCode)
 {
     static std::map<ERROR_CODE, std::string> codeToString;
@@ -24,4 +39,18 @@ std::string toString(ERROR_CODE inCode)
         std::forward_as_tuple("NOT_HANDLED_ERROR_REPORTING"));
 
     return codeToString[inCode];
+}
+
+bool checkIfProperArguments(std::vector<std::string>& inCommand)
+{
+    //idxOf::amount;
+    //constexpr int command = 0;
+    //constexpr int idOfCTable = 1;
+    //constexpr int amount = 1;
+    //constexpr int newName = 2;
+    //constexpr int goalId = 2;
+    //constexpr int newVal = 3;
+    return false;
+}
+
 }

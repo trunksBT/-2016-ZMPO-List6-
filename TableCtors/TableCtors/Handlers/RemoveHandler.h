@@ -7,6 +7,8 @@
 
 class RemoveHandler final : public IHandler
 {
+private:
+    const int PROPER_AMOUNT_OF_ARGS = 2;
 public:
     RemoveHandler(std::vector<std::string>& inCommand);
     virtual ~RemoveHandler();

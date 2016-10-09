@@ -16,13 +16,14 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 std::vector<CTable*> Flyweight::cache_;
 
 ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
-    ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
     std::string command(inCommand[idxOf::command]);
+    ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
 
     if(command == messageLiterals::createDef)
     {
