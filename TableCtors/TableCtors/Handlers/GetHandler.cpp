@@ -23,22 +23,7 @@ void GetHandler::perform(std::vector<CTable*>& inCache)
 
     if(isProperIdx(idxOrAmount, inCache))
     {
-        if(wholeCommand_[idxOf::command] == messageLiterals::getName)
-        {
-            std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-
-            CTable* retTable = inCache.at(idxOrAmount);
-            if(retTable != nullptr)
-            {
-                std::cout << retTable->getName();
-            }
-            else
-            {
-                std::cout << undefinedObject;
-            }
-            retTable == nullptr;
-        }
-        else if(wholeCommand_[idxOf::command] == messageLiterals::getSize)
+        if(wholeCommand_[idxOf::command] == messageLiterals::getSize)
         {
             std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
 

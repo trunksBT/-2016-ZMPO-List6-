@@ -21,15 +21,15 @@ using namespace communication;
 
 int main(int argc, char **argv)
 {
-   ::testing::InitGoogleTest(&argc, argv);
+   //::testing::InitGoogleTest(&argc, argv);
 
    {
-        //Flyweight application;
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::createDefs1);
-        //Flyweight::interpretCommand(stub::createCopy01);
-        //Flyweight::interpretCommand(stub::getName10);
+        Flyweight application;
+        Flyweight::interpretCommand(stub::createDefs1);
+        Flyweight::interpretCommand(stub::getName0);
+        Flyweight::interpretCommand(stub::getName10);
+        Flyweight::interpretCommand(stub::getSize0);
+        Flyweight::interpretCommand(stub::getSize10);
         //Flyweight::interpretCommand(stub::createDefs1);
         //Flyweight::interpretCommand(stub::setName0);
         //Flyweight::interpretCommand(stub::createDefs1);
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         //Flyweight::interpretCommand(stub::createCopy06);
    }
 
-   return RUN_ALL_TESTS();
+   //return RUN_ALL_TESTS();
    return 0;
 }
 
