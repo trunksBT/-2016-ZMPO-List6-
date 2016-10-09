@@ -46,17 +46,16 @@ ERROR_CODE getFinalResultCode(std::vector<ERROR_CODE> inCodes)
 TEST_F(FlyweightMT, getFinalResultCode_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
-    ERROR_CODE rcVal1 = ERROR_CODE::NOT_INITIALIZED;
-    ERROR_CODE rcVal2 = ERROR_CODE::NOT_INITIALIZED;
-    ERROR_CODE rcVal3 = ERROR_CODE::NOT_INITIALIZED;
-    ERROR_CODE totalRcVal = ERROR_CODE::NOT_INITIALIZED;
+    ERROR_CODE rcVal = ERROR_CODE::INITIAL_VAL;
 
-    rcVal1 = application.interpretCommand(stub::createDef0);
-    rcVal2 = application.interpretCommand(stub::createDef0);
-    rcVal3 = application.interpretCommand(stub::createDef0);
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDef0),
+        application.interpretCommand(stub::createDef0),
+        application.interpretCommand(stub::createDef0)
+    });
 
-    totalRcVal = getFinalResultCode({ rcVal1, rcVal2, rcVal3 });
-    ASSERT_EQ(expVal, totalRcVal);
+    ASSERT_EQ(expVal, rcVal);
 }
 
 TEST_F(FlyweightMT, createDefm1_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)

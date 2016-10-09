@@ -16,7 +16,7 @@ enum class ERROR_CODE : int
     ERROR_COMMAND_PARSING = 3,
     NOT_HANDLED_ERROR_REPORTING = 4,
     ERROR_IN_SEQUENCE = 5,
-    NOT_INITIALIZED = 6
+    INITIAL_VAL = 6
 };
 
 std::string toString(ERROR_CODE inCode);

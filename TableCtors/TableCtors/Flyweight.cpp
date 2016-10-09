@@ -21,7 +21,7 @@ std::vector<CTable*> Flyweight::cache_;
 
 ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
-    ERROR_CODE returnedCode = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
     std::string command(inCommand[idxOf::command]);
 
     if(command == messageLiterals::createDef)
