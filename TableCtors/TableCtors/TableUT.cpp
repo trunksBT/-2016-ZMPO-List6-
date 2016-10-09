@@ -3,6 +3,7 @@
 #include "CTable.hpp"
 #include "Utils.hpp"
 #include <limits>
+#include <vector>
 
 using namespace defaultVals;
 namespace
@@ -24,8 +25,6 @@ TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 
    int rcVal = inVal->getSize();
 
-   inVal->print();
-
    ASSERT_EQ(expVal, rcVal);
    delete inVal;
 }
@@ -44,15 +43,12 @@ TEST_F(CTableTests, defCTOR_setSize_0_Expect_0)
 
 TEST_F(CTableTests, copyCTOR_size5_Expect_size5)
 {
-   int inSize = FIVE;
-   int expVal = FIVE;
-   CTable* sourceVal = new CTable(inSize);
-   sourceVal->print();
+   int inSize = DEFAULT_IN_TABLE_SIZE;
+   int expVal = DEFAULT_IN_TABLE_SIZE;
+   CTable* sourceVal = new CTable(DEFAULT_IN_TABLE_SIZE);
 
    CTable* inVal = new CTable(*sourceVal);
    int rcVal = inVal->getSize();
-
-   inVal->print();
 
    ASSERT_EQ(expVal, rcVal);
    delete sourceVal;
@@ -73,6 +69,15 @@ TEST_F(CTableTests, copyCTOR_withAssignCopyOperator_size5_Expect_size5)
    ASSERT_EQ(expVal, rcVal);
    delete sourceVal;
    delete inVal;
+}
+
+TEST_F(CTableTests, pushBack_onVector_ofObj_expect_CopyCtor)
+{
+
+    std::vector<CTable> inVector;
+    inVector.push_back(CTable());
+    inVector.clear();
+    ASSERT_TRUE(true);
 }
 
 TEST_F(CTableTests, setVal_defaultCTORed_3_onIdx_0_Expect_3)

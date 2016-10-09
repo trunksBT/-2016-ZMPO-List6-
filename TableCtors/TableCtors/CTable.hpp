@@ -22,17 +22,16 @@ public:
 public:
    void setName(std::string inName);
    void setVal(int idx, int newVal);
-   void setSize(int inSize);
 
 public:
     static CTable* buildNewObj();
     void print();
 
 private:
-   void allocateMemory(int inSize);
-   void deallocateMemory();
-   void copyMemory(CTable& inVal);
+   void deepCopy(CTable& inVal);
    void initTable(int defaultVal);
+   void allocateMemory(int size);
+   void deallocateMemory();
 
 private:
    std::string name_;
