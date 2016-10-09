@@ -7,9 +7,11 @@
 #include "Handlers/RemoveHandler.h"
 #include "Handlers/RemoveAllHandler.h"
 #include "Handlers/SetNameHandler.h"
+#include "Handlers/SetValueHandler.h"
 #include "Handlers/GetHandler.h"
 #include "Handlers/GetNameHandler.h"
 #include "Handlers/GetSizeHandler.h"
+#include "Handlers/GetValueHandler.h"
 #include "Handlers/CreateCopyHandler.h"
 
 using namespace defaultVals;
@@ -44,6 +46,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         SetNameHandler handle(inCommand);
     }
+    else if(command == messageLiterals::setValue)
+    {
+        SetValueHandler handle(inCommand);
+    }
     else if(command == messageLiterals::getName)
     {
         GetNameHandler handle(inCommand);
@@ -51,6 +57,10 @@ void Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::getSize)
     {
         GetSizeHandler handle(inCommand);
+    }
+    else if(command == messageLiterals::getValue)
+    {
+        GetValueHandler handle(inCommand);
     }
     else
     {

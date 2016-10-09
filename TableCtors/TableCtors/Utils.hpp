@@ -7,7 +7,7 @@ namespace funs
 {
 inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
 {
-    return idxOrAmount < inCache.size() || idxOrAmount < 0;
+    return idxOrAmount > -1 && idxOrAmount < inCache.size();
 }
 }
 
@@ -47,25 +47,29 @@ constexpr const char* nullPointerDetected = "Object";
 namespace idxOf
 {
 constexpr int command = 0;
-constexpr int id = 1;
+constexpr int idOfCTable = 1;
 constexpr int amount = 1;
 constexpr int newName = 2;
 constexpr int goalId = 2;
+constexpr int newVal = 3;
+
 }
 
 namespace messageLiterals
 {
-constexpr char* get = "get"; // pre for all get
 constexpr char* createDef = "createDef"; // calls default ctor for obj with number 
 constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
 constexpr char* getName = "getName"; // getName of CTable on idx
 constexpr char* getSize = "getSize"; // getSize of CTable on idx
+constexpr char* getValue = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
 constexpr char* remove = "remove"; // remove CTable on idx
 constexpr char* removeAll = "removeAll"; // remove CTable on idx
 constexpr char* setName = "setName"; // set name of CTable on idx
+constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-                                           
-                                     //createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+
+//createDef <nrTablicy> -wywo³uje domyœlny konstruktor obiektu o podanym numerze.
+//
 //create <nrTablicy> <rozmiar> <nazwaTablicy> -wywo³uje parametryczny kontruktor
 //
 //createDef <idx> -wywo³uje konstruktor na okreslonym indeksie
