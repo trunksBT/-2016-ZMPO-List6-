@@ -35,10 +35,10 @@ ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
     }
     else
     {
+        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUND;
         if(flag::printOn)
         {
-            resultCode = ERROR_CODE::INDEX_OUT_OF_BOUND;
-            std::cout << toString(resultCode);;
+            std::cout << toString(resultCode);
         }
     }
 

@@ -39,7 +39,7 @@ ERROR_CODE PrintHandler::performOn(std::vector<CTable*>& inCache)
                 std::cout << undefinedObject;
             }
         }
-        retTable == nullptr;
+        retTable = nullptr;
     }
     else
     {

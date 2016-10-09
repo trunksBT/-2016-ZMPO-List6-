@@ -39,7 +39,7 @@ ERROR_CODE GetValueHandler::performOn(std::vector<CTable*>& inCache)
                 std::cout << undefinedObject;
             }
         }
-        retTable == nullptr;
+        retTable = nullptr;
     }
     else
     {

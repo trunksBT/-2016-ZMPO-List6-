@@ -12,15 +12,16 @@ using namespace logLiterals;
 CreateDefsHandler::CreateDefsHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
-    performOn(Flyweight::cache_);
 }
 
 ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
 {
+    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount > inCache.size())
@@ -43,11 +44,11 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
         {
             inCache.emplace_back(CTable::buildNewObj());
             ammountOfCreatedObj++;
-
         }
         cursorIdx++;
     }
-    return ERROR_CODE::NOT_HANDLED_ERROR_REPORTING;
+
+    return resultCode;
 }
 
 CreateDefsHandler::~CreateDefsHandler()

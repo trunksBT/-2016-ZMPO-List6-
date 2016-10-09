@@ -5,7 +5,7 @@
 
 namespace flag
 {
-constexpr bool printOn = true;
+constexpr bool printOn = false;
 }
 
 enum class ERROR_CODE : int
@@ -14,7 +14,9 @@ enum class ERROR_CODE : int
     UNDEFINED_OBJECT = 1,
     INDEX_OUT_OF_BOUND = 2,
     ERROR_COMMAND_PARSING = 3,
-    NOT_HANDLED_ERROR_REPORTING = 4
+    NOT_HANDLED_ERROR_REPORTING = 4,
+    ERROR_IN_SEQUENCE = 5,
+    NOT_INITIALIZED = 6
 };
 
 std::string toString(ERROR_CODE inCode);
