@@ -27,7 +27,7 @@ protected:
     {}
 protected:
     Flyweight application;
-    std::pair<int, ERROR_CODE> rcVal;
+    ResultCode rcVal;
 };
 
 TEST_F(FlyweightMT, getFinalResultCode_createDef_Expect_SEEMS_LEGIT)
