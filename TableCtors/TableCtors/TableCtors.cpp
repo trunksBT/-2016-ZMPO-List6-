@@ -26,6 +26,8 @@ int main(int argc, char **argv)
    {
         Flyweight application;
         Flyweight::interpretCommand(stub::createDefs1);
+        Flyweight::interpretCommand(stub::createCopy06);
+
         Flyweight::interpretCommand(stub::getName0);
         Flyweight::interpretCommand(stub::getName10);
         Flyweight::interpretCommand(stub::getSize0);
