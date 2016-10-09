@@ -19,7 +19,7 @@ GetValueHandler::GetValueHandler(std::vector<std::string>& inCommand)
 void GetValueHandler::perform(std::vector<CTable*>& inCache)
 {
     std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-/*
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
 
@@ -28,7 +28,7 @@ void GetValueHandler::perform(std::vector<CTable*>& inCache)
         CTable* retTable = inCache.at(idxOrAmount);
         if(retTable != nullptr)
         {
-            std::cout << retTable->getSize();
+            std::cout << retTable->getVal(idxOrAmount);
         }
         else
         {
@@ -39,7 +39,7 @@ void GetValueHandler::perform(std::vector<CTable*>& inCache)
     else
     {
         std::cout << indexOutOfBound;
-    }*/
+    }
 }
 
 GetValueHandler::~GetValueHandler()

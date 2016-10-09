@@ -7,7 +7,7 @@ namespace funs
 {
 inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
 {
-    return idxOrAmount < inCache.size() || idxOrAmount < 0;
+    return idxOrAmount > 0 && idxOrAmount < inCache.size();
 }
 }
 
