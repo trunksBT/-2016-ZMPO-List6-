@@ -17,33 +17,29 @@
 using namespace defaultVals;
 using namespace communication;
 using namespace assertWrapper;
+using namespace funs;
 
 #define STUB
 
 int main(int argc, char **argv)
 {
-   ::testing::InitGoogleTest(&argc, argv);
 
    {
-        //Flyweight application;
-        //std::vector<ERROR_CODE> stackTrace;
-        //ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
+        Flyweight application;
+        ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
-        //std::cout << "Pass command" << std::endl;
-        //do
-        //{
-        //    auto command = receiveAndLexCommandFromUser();
-        //    commandResult = application.interpretCommand(command);
-        //    stackTrace.emplace_back(commandResult);
-        //} while(stackTrace.back() != ERROR_CODE::CLOSE);
+        std::cout << "Pass command" << std::endl;
+        do
+        {
+            auto command = receiveAndLexCommandFromUser();
+            commandResult = application.interpretCommand(command);
+        } while(commandResult != ERROR_CODE::CLOSE);
 
-        //ResultCode resultCode = getFinalResultCode(stackTrace);
-        //CHECK_IF_FINISHED_PROPER(ERROR_CODE::SEEMS_LEGIT, resultCode);
-        //std::cout << std::endl << "Dzieki za uzycie programu, MS" << POST_PRINT << POST_PRINT;
+        std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
+        system("Pause");
    }
-
+   ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
-   return 0;
 }
 
 

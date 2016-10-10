@@ -37,6 +37,21 @@ std::string toString(ERROR_CODE inCode)
     codeToString.emplace(std::piecewise_construct,
         std::forward_as_tuple(ERROR_CODE::NOT_HANDLED_ERROR_REPORTING),
         std::forward_as_tuple("NOT_HANDLED_ERROR_REPORTING"));
+    codeToString.emplace(std::piecewise_construct,
+        std::forward_as_tuple(ERROR_CODE::INITIAL_VAL),
+        std::forward_as_tuple("INITIAL_VAL"));
+    codeToString.emplace(std::piecewise_construct,
+        std::forward_as_tuple(ERROR_CODE::WRONG_AMOUNT_OF_ARGS),
+        std::forward_as_tuple("WRONG_AMOUNT_OF_ARGS"));
+    codeToString.emplace(std::piecewise_construct,
+        std::forward_as_tuple(ERROR_CODE::ERROR_ARGS_PARSING),
+        std::forward_as_tuple("ERROR_ARGS_PARSING"));
+    codeToString.emplace(std::piecewise_construct,
+        std::forward_as_tuple(ERROR_CODE::WRONG_VALUE),
+        std::forward_as_tuple("WRONG_VALUE"));
+    codeToString.emplace(std::piecewise_construct,
+        std::forward_as_tuple(ERROR_CODE::CLOSE),
+        std::forward_as_tuple("CLOSE"));
 
     return codeToString[inCode];
 }
