@@ -162,5 +162,65 @@ TEST_F(CTableTests, print_Copied_afterSetName)
     ASSERT_TRUE(true);
     delete sourceVal;
 }
+
+TEST_F(CTableTests, changeSize_from_FIVE_onHigher_Expect_TEN)
+{
+    int inSize = FIVE;
+    int newSize = FIVE;
+    int expSize = TEN;
+    int initValue = FIVE;
+    CTable* sourceVal = new CTable(inSize, FIVE);
+
+    std::cout << "Before change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    sourceVal->changeSize(TEN);
+
+    std::cout << "After change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    ASSERT_EQ(expSize, sourceVal->getSize());
+    delete sourceVal;
+}
+
+TEST_F(CTableTests, changeSize_from_FIVE_onLower_Expect_TWO)
+{
+    int inSize = FIVE;
+    int newSize = TWO;
+    int expSize = TWO;
+    int initValue = FIVE;
+    CTable* sourceVal = new CTable(inSize, FIVE);
+
+    std::cout << "Before change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    sourceVal->changeSize(newSize);
+
+    std::cout << "After change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    ASSERT_EQ(expSize, sourceVal->getSize());
+    delete sourceVal;
+}
+
+TEST_F(CTableTests, changeSize_from_FIVE_onTheSame_Expect_FIVE)
+{
+    int inSize = FIVE;
+    int newSize = FIVE;
+    int expSize = FIVE;
+    int initValue = FIVE;
+    CTable* sourceVal = new CTable(inSize, FIVE);
+
+    std::cout << "Before change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    sourceVal->changeSize(newSize);
+
+    std::cout << "After change size" << std::endl;
+    std::cout << sourceVal->toString() << std::endl;
+
+    ASSERT_EQ(expSize, sourceVal->getSize());
+    delete sourceVal;
+}
 }
 

@@ -41,6 +41,7 @@ constexpr int MINUS_ONE = -1;
 constexpr int ONE = 1;
 constexpr int TWO = 2;
 constexpr int FIVE = 5;
+constexpr int TEN = 10;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
