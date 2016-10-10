@@ -24,8 +24,13 @@ std::vector<CTable*> Flyweight::cache_;
 
 ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
-    std::string command(inCommand[idxOf::command]);
+    if(inCommand.size() == ZERO)
+    {
+        return ERROR_CODE::ERROR_COMMAND_PARSING;
+    }
+
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
+    std::string command(inCommand[idxOf::command]);
 
     if(command == messageLiterals::create)
     {
@@ -91,6 +96,10 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         ChangeSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
+    }
+    else if(command == messageLiterals::close)
+    {
+        returnedCode = ERROR_CODE::CLOSE;
     }
     else
     {

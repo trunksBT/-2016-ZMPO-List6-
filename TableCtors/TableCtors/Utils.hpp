@@ -5,7 +5,8 @@
 
 namespace flag
 {
-constexpr bool printOn = false;
+constexpr bool printOn = true;
+constexpr bool isRepl = true;
 }
 
 enum class ERROR_CODE : int
@@ -18,11 +19,13 @@ enum class ERROR_CODE : int
     INITIAL_VAL = 5,
     WRONG_AMOUNT_OF_ARGS = 6,
     ERROR_ARGS_PARSING = 7, // when args amount is proper, but type is wrong
-    WRONG_VALUE = 8 // when new size must be minus
+    WRONG_VALUE = 8, // when new size must be minus
+    CLOSE = 10 // when new size must be minus
 };
 
 namespace defaultVals
 {
+constexpr const char* BASH_DOLAR = "$ ";
 constexpr const char* PRE_PRINT = "   ";
 constexpr const char* POST_PRINT = "\n";
 constexpr const char* SEPARATOR = ": ";
@@ -98,6 +101,7 @@ constexpr char* setName = "setName"; // set name of CTable on idx
 constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr char* close = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 }
 
 

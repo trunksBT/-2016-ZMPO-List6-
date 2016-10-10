@@ -69,9 +69,9 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToSmall_OnEmptyFlyweight_Expec
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_WRONG_VALUE)
 {
-    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
 
     rcVal = getFinalResultCode
     ({

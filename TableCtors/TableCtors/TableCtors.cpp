@@ -10,31 +10,36 @@
 
 #include "Stub.hpp"
 #include "Utils.hpp"
-#include "CTable.hpp"
 #include "Interface.hpp"
 #include "Flyweight.h"
+#include "UtilsForMT.h"
 
 using namespace defaultVals;
 using namespace communication;
+using namespace assertWrapper;
+using namespace funs;
 
 #define STUB
 
 int main(int argc, char **argv)
 {
-   ::testing::InitGoogleTest(&argc, argv);
 
    {
-        //Flyweight application;
-        ////Flyweight::interpretCommand(stub::createDefs6);
-        //Flyweight::interpretCommand(stub::printm1);
-        //Flyweight::interpretCommand(stub::print0);
-        //Flyweight::interpretCommand(stub::print6);
-        //Flyweight::interpretCommand(stub::print10);
+        Flyweight application;
+        ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
+        std::cout << "Pass command" << std::endl;
+        do
+        {
+            auto command = receiveAndLexCommandFromUser();
+            commandResult = application.interpretCommand(command);
+        } while(commandResult != ERROR_CODE::CLOSE);
+
+        std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
+        system("Pause");
    }
-
+   ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
-   return 0;
 }
 
 

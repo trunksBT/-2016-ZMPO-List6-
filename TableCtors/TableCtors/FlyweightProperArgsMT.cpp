@@ -20,7 +20,7 @@ class FlyweightProperArgsMT : public testing::Test
 protected:
     virtual void SetUp()
     {
-        rcVal = std::move(std::make_pair( MINUS_ONE, ERROR_CODE::INITIAL_VAL));
+        rcVal = std::make_pair(MINUS_ONE, ERROR_CODE::INITIAL_VAL);
     }
 
     virtual void TearDown()
@@ -43,6 +43,33 @@ TEST_F(FlyweightProperArgsMT, getFinalResultCode_createDef_Expect_SEEMS_LEGIT)
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, emptyCommand_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::emptyCommand)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, noCommand_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::noCommand)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+
 }
 
 TEST_F(FlyweightProperArgsMT, getFinalResultCode_createDef_Expect_INDEX_OUT_OF_BOUNDS)
@@ -150,13 +177,26 @@ TEST_F(FlyweightProperArgsMT, createDef6_OnEmptyFlyweight_Expect_INDEX_OUT_OF_BO
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDefsm1_OnEmptyFlyweight_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(FlyweightProperArgsMT, createDefsm1_OnEmptyFlyweight_Expect_WRONG_VALUE)
 {
-    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+    ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefsm1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, createDefs0_OnEmptyFlyweight_Expect_WRONG_VALUE)
+{
+    ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs0)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
