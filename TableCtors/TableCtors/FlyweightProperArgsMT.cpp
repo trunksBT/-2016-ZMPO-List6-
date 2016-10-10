@@ -191,6 +191,20 @@ TEST_F(FlyweightProperArgsMT, createDefs1_createCopy01_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, createDefs1_createCopy0_m1_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::createCopy0_m1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_createCopy06_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
