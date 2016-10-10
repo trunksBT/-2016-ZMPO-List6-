@@ -23,6 +23,17 @@ ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
+    bool isProperAmountOfArgs = true;
+    if(isProperAmountOfArgs)
+    {
+        performOnProperAmountOfArgs(inCache, resultCode);
+    }
+
+    return resultCode;
+}
+
+void CreateDefHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+{
     std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
     int idxOrAmount = std::stoi(receivedId);
     if(isProperIdx(idxOrAmount, inCache))
@@ -35,14 +46,12 @@ ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
     }
     else
     {
-        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
-            std::cout << toString(resultCode);
+            std::cout << toString(inResultCode);
         }
     }
-
-    return resultCode;
 }
 
 CreateDefHandler::~CreateDefHandler()
