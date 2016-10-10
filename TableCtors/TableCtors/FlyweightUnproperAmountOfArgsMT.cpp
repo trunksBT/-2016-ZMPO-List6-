@@ -56,5 +56,31 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_S
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(wrongAmountStub::createDefs)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(wrongAmountStub::createDefsToBig)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 }
 
