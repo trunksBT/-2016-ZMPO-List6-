@@ -49,15 +49,8 @@ constexpr const char* erroredCommandIdx = "Errored command idx";
 namespace funs
 {
 
-inline bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
-{
-    return idxOrAmount > -1 && idxOrAmount < inCache.size();
-}
-
-inline bool isProperIdx(int idx, int size)
-{
-    return idx > defaultVals::MINUS_ONE && idx < size;
-}
+bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
+bool isProperIdx(int idx, int size);
 
 }
 

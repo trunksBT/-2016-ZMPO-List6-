@@ -23,8 +23,9 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
 
-    bool isProperValuesPassedWithCommand = true;
-    if(isProperValuesPassedWithCommand)
+    bool ifProperArguments = true;
+    //= checkIfProperArguments(inCommand);
+    if(ifProperArguments)
     {
         returnedCode = interpretProperCommand(inCommand);
     }

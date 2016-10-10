@@ -25,3 +25,18 @@ std::string toString(ERROR_CODE inCode)
 
     return codeToString[inCode];
 }
+
+namespace funs
+{
+
+bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
+{
+    return idxOrAmount > -1 && idxOrAmount < inCache.size();
+}
+
+bool isProperIdx(int idx, int size)
+{
+    return idx > defaultVals::MINUS_ONE && idx < size;
+}
+
+}
