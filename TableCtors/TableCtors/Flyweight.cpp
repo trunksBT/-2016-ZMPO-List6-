@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Flyweight.h"
 #include "Utils.hpp"
+#include "Handlers/CreateHandler.h"
 #include "Handlers/CreateDefHandler.h"
 #include "Handlers/CreateDefsHandler.h"
 #include "Handlers/RemoveHandler.h"
@@ -26,7 +27,12 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     std::string command(inCommand[idxOf::command]);
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
 
-    if(command == messageLiterals::createDef)
+    if(command == messageLiterals::create)
+    {
+        CreateHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
+    }
+    else if(command == messageLiterals::createDef)
     {
         CreateDefHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);

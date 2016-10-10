@@ -11,6 +11,7 @@ public:
     CTable(CTable& inVal);
     CTable(std::string inVal);
     CTable(int inSize, int initValue);
+    CTable(int inSize, std::string inName);
     ~CTable();
     void copyCtor(CTable & inVal);
     CTable& operator=(CTable& inObj);
@@ -27,6 +28,10 @@ public:
 
 public:
     static CTable* buildNewObj();
+    static CTable* buildNewObj(CTable & inVal);
+    static CTable* buildNewObj(int inSize);
+    static CTable* buildNewObj(int inSize, std::string inName);
+    static CTable* buildNewObj(int inSize, int inInitValue);
     std::string toString();
 
 private:

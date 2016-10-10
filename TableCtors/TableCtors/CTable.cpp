@@ -44,10 +44,22 @@ CTable::CTable(int inSize, int initValue)
     }
 }
 
-CTable::CTable(std::string inVal)
+CTable::CTable(std::string inName)
 {
-    name_ = std::move(inVal);
+    name_ = inName;
     size_ = DEFAULT_IN_TABLE_SIZE;
+    allocateMemory(size_);
+    initTable(memory_, size_, ZERO);
+    if(flag::printOn)
+    {
+        std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
+    }
+}
+
+CTable::CTable(int inSize, std::string inName)
+{
+    name_ = inName;
+    size_ = inSize;
     allocateMemory(size_);
     initTable(memory_, size_, ZERO);
     if(flag::printOn)
@@ -110,6 +122,26 @@ void CTable::changeSize(int inNewSize)
 CTable* CTable::buildNewObj()
 {
     return new CTable();
+}
+
+CTable* CTable::buildNewObj(CTable& inVal)
+{
+    return new CTable(inVal);
+}
+
+CTable* CTable::buildNewObj(int inSize)
+{
+    return new CTable(inSize);
+}
+
+CTable* CTable::buildNewObj(int inSize, int inInitValue)
+{
+    return new CTable(inSize, inInitValue);
+}
+
+CTable* CTable::buildNewObj(int inSize, std::string inName)
+{
+    return new CTable(inSize, inName);
 }
 
 void CTable::allocateMemory(int size)

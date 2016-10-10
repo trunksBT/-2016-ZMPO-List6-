@@ -80,12 +80,15 @@ constexpr int newName = 2;
 constexpr int newSize = 2;
 constexpr int goalId = 2;
 constexpr int newVal = 3;
+constexpr int initialName = 4;
 }
 
 namespace messageLiterals
 {
+constexpr char* create = "create"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
 constexpr char* createDef = "createDef"; // calls default ctor for obj with number 
 constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
+constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* getName = "getName"; // getName of CTable on idx
 constexpr char* getSize = "getSize"; // getSize of CTable on idx
 constexpr char* getValue = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
@@ -93,7 +96,6 @@ constexpr char* remove = "remove"; // remove CTable on idx
 constexpr char* removeAll = "removeAll"; // remove CTable on idx
 constexpr char* setName = "setName"; // set name of CTable on idx
 constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
-constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 }

@@ -69,7 +69,7 @@ void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
         }
         else if(destinyId != sourceId)
         {
-            CTable* copiedObj = new CTable(*inCache[sourceId]);
+            CTable* copiedObj = CTable::buildNewObj(*inCache[sourceId]);
             bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
             if(isProperDestinyIdx && inCache[destinyId] == nullptr)
             {
