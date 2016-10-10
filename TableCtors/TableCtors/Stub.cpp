@@ -68,7 +68,7 @@ std::vector<std::string> wrongCommandToSmall = { "wrongCommand" };
 
 std::vector<std::string> createDefToBig = { "createDef", "0", "6" };
 std::vector<std::string> createDefsToBig = { "createDefs", "0", "6" };
-std::vector<std::string> createCopy0ToBig = { "createCopy", "0", "0", "6" };
+std::vector<std::string> createCopy0ToBig = { "createCopy", "0", "1", "6" };
 std::vector<std::string> printToBig = { "print", "0", "6" };
 std::vector<std::string> getNameToBig = { "getName", "0", "6" };
 std::vector<std::string> getSizeToBig = { "getSize", "0", "6" };

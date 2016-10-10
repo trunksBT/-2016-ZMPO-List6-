@@ -48,7 +48,15 @@ void CreateCopyHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCach
 
     if(isProperIdx(sourceId, inCache))
     {
-        if(destinyId != sourceId)
+        if(inCache[sourceId] == nullptr)
+        {
+            inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
+            if(flag::printOn)
+            {
+                std::cout << toString(inResultCode);
+            }
+        }
+        else if(destinyId != sourceId)
         {
             CTable* copiedObj = new CTable(*inCache[sourceId]);
             bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
