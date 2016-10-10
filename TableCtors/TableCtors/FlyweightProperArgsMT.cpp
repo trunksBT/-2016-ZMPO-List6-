@@ -461,6 +461,7 @@ TEST_F(FlyweightProperArgsMT, createDefs11_getValue10_10_Expect_INDEX_OUT_OF_BOU
         application.interpretCommand(stub::getValue10_10)
     });
 
+
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
