@@ -65,4 +65,17 @@ std::vector<std::string> getValuem1 = { "getValue", "-1" };
 std::vector<std::string> setValue0_0 = { "setValue", "0", "0" };
 std::vector<std::string> wrongCommand = { "wrongCommand" };
 
+std::vector<std::string> createDefToBig = { "createDef", "0", "6" };
+std::vector<std::string> createDefsToBig = { "createDefs", "0", "6" };
+std::vector<std::string> createCopy0ToBig = { "createCopy", "0", "0", "6" };
+std::vector<std::string> printToBig = { "print", "0", "6" };
+std::vector<std::string> getNameToBig = { "getName", "0", "6" };
+std::vector<std::string> getSizeToBig = { "getSize", "0", "6" };
+std::vector<std::string> removeToBig = { "remove", "0", "6" };
+std::vector<std::string> removeAllToBig = { "removeAll", "0", "6" };
+std::vector<std::string> setName0ToBig = { "setName", "0", "0", "6" };
+std::vector<std::string> getValuem1ToBig = { "getValue", "-1", "0", "6" };
+std::vector<std::string> setValue0_0ToBig = { "setValue", "0", "0", "0", "6" };
+std::vector<std::string> wrongCommandToBig = { "wrongCommand", "0", "6" };
+
 }

@@ -67,5 +67,17 @@ extern std::vector<std::string> getValuem1;
 extern std::vector<std::string> setValue0_0;
 extern std::vector<std::string> wrongCommand;
 
+extern std::vector<std::string> createDefToBig;
+extern std::vector<std::string> createDefsToBig;
+extern std::vector<std::string> createCopy0ToBig;
+extern std::vector<std::string> printToBig;
+extern std::vector<std::string> getNameToBig;
+extern std::vector<std::string> getSizeToBig;
+extern std::vector<std::string> removeToBig;
+extern std::vector<std::string> removeAllToBig;
+extern std::vector<std::string> setName0ToBig;
+extern std::vector<std::string> getValuem1ToBig;
+extern std::vector<std::string> setValue0_0ToBig;
+extern std::vector<std::string> wrongCommandToBig;
 }
 

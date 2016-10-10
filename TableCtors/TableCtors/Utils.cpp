@@ -41,16 +41,9 @@ std::string toString(ERROR_CODE inCode)
     return codeToString[inCode];
 }
 
-bool checkIfProperArguments(std::vector<std::string>& inCommand)
+bool isProperArguments(std::vector<std::string>& inCommand, int inProperAmountOfArgs)
 {
-    //idxOf::amount;
-    //constexpr int command = 0;
-    //constexpr int idOfCTable = 1;
-    //constexpr int amount = 1;
-    //constexpr int newName = 2;
-    //constexpr int goalId = 2;
-    //constexpr int newVal = 3;
-    return false;
+    return inCommand.size() >= inProperAmountOfArgs;
 }
 
 }
