@@ -7,6 +7,8 @@
 
 class GetSizeHandler final : public IHandler
 {
+private:
+    const int PROPER_AMOUNT_OF_ARGS = 2;
 public:
     GetSizeHandler(std::vector<std::string>& inCommand);
     virtual ~GetSizeHandler();
