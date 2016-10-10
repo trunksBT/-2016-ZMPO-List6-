@@ -16,7 +16,8 @@ enum class ERROR_CODE : int
     ERROR_COMMAND_PARSING = 3, // it will be used when parsing has errors or undefined command
     NOT_HANDLED_ERROR_REPORTING = 4,
     INITIAL_VAL = 5,
-    WRONG_AMOUNT_OF_ARGS = 6
+    WRONG_AMOUNT_OF_ARGS = 6,
+    ERROR_ARGS_PARSING = 7 // when args amount is proper, but type is wrong
 };
 
 namespace defaultVals
