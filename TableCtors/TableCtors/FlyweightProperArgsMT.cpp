@@ -45,6 +45,33 @@ TEST_F(FlyweightProperArgsMT, getFinalResultCode_createDef_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, emptyCommand_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::emptyCommand)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, noCommand_Expect_ERROR_COMMAND_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::noCommand)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+
+}
+
 TEST_F(FlyweightProperArgsMT, getFinalResultCode_createDef_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;

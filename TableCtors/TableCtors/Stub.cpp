@@ -3,6 +3,8 @@
 
 namespace stub
 {
+std::vector<std::string> emptyCommand = {};
+std::vector<std::string> noCommand = { "" };
 std::vector<std::string> create1_5_Name = { "create", "1", "5", "Name" };
 std::vector<std::string> create6_5_Name = { "create", "6", "5", "Name" };
 std::vector<std::string> createm1_5_Name = { "create", "-1", "5", "Name" };

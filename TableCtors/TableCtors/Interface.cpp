@@ -4,6 +4,7 @@
 #include "Utils.hpp"
 
 using tokenizer = boost::tokenizer<boost::char_separator<char>>;
+using namespace defaultVals;
 
 namespace communication
 {
@@ -18,10 +19,12 @@ std::vector<std::string> performLexer(std::string inCommand)
 
 std::vector<std::string> receiveAndLexCommandFromUser()
 {
-    std::cout << "$ ";
-
     std::string inChain;
-    getline(std::cin, inChain);
+    do
+    {
+        std::cout << BASH_DOLAR;
+        getline(std::cin, inChain);
+    } while(inChain.size() == ZERO);
 
     return performLexer(std::move(inChain));
 }
