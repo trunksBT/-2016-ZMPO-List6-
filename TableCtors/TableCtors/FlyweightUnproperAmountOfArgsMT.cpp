@@ -15,7 +15,7 @@ using namespace assertWrapper;
 
 namespace
 {
-class FlyweightUnproperArgsMT : public testing::Test
+class FlyweightUnproperAmountOfArgsMT : public testing::Test
 {
 protected:
     virtual void SetUp()
@@ -30,7 +30,7 @@ protected:
     ResultCode rcVal;
 };
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefm1_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefm1_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -43,7 +43,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDef0_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDef0_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -56,7 +56,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -69,7 +69,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 // /////////////////////////////////
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -82,7 +82,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_createCopy01_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_createCopy01_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -96,7 +96,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_createCopy06_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_createCopy06_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -110,7 +110,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_print0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_print0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -124,7 +124,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_printm1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_printm1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -138,7 +138,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_print6_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_print6_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -152,7 +152,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_print10_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_print10_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -166,7 +166,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_getNamem1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_getNamem1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -180,7 +180,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_getName0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -194,7 +194,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs11_getName10_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs11_getName10_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -208,7 +208,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_getSizem1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_getSizem1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -222,7 +222,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_getSize0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_getSize0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -236,7 +236,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_getSize6_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_getSize6_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -250,7 +250,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_getSize10_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_getSize10_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -264,7 +264,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_removem1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_removem1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -278,7 +278,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_remove0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_remove0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -292,7 +292,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_remove0_getName0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_remove0_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -307,7 +307,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_removeAll_getSize6_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_removeAll_getSize6_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -322,7 +322,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setName0_getName0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setName0_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -337,7 +337,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setName6_getName0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setName6_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -352,7 +352,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_setName10_getName0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_setName10_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -367,7 +367,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_getValuem1_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_getValuem1_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -381,7 +381,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_remove0_getValue0_m1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs10_remove0_getValue0_m1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -396,7 +396,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs11_getValue10_10_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs11_getValue10_10_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -411,7 +411,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -426,7 +426,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_remove0_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_remove0_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -442,7 +442,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue10_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setValue10_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -457,7 +457,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue10_10_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setValue10_10_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -473,7 +473,7 @@ protected:
 //}
 //
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValuem1_m1_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setValuem1_m1_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -488,7 +488,7 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue1_m1_23_getValue1_2_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs1_setValue1_m1_23_getValue1_2_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
