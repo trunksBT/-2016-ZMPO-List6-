@@ -37,28 +37,13 @@ TEST_F(FlyweightUnproperArgsMT, createDefs1_wrongCommand_Expect_ERROR_COMMAND_PA
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(wrongStub::createDefs11),
-        application.interpretCommand(wrongStub::wrongCommand),
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
-//
-//TEST_F(FlyweightUnproperArgsMT, getFinalResultCode_createDef_Expect_ERROR_COMMAND_PARSING)
-//{
-//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
-//
-//    rcVal = getFinalResultCode
-//    ({
-//        application.interpretCommand(wrongStub::createDef0),
-//        application.interpretCommand(wrongStub::createDefm1),
-//        application.interpretCommand(wrongStub::createDef0)
-//    });
-//
-//    ASSERT_FOR_PAIR_WITH_PRINT(expVal, rcVal);
-//}
 
-//
+
 //TEST_F(FlyweightUnproperArgsMT, createDef0_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
