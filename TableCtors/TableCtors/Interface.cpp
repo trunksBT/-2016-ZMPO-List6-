@@ -13,18 +13,17 @@ std::vector<std::string> performLexer(std::string inCommand)
     boost::char_separator<char> sep(defaultVals::SEPARATOR);
     tokenizer tokens(inCommand, sep);
     std::vector<std::string> retVal(tokens.begin(), tokens.end());
-    return std::move(retVal);
+    return retVal;
 }
 
 std::vector<std::string> receiveAndLexCommandFromUser()
 {
-    std::cout << "Pass command" << std::endl;
     std::cout << "$ ";
 
     std::string inChain;
     getline(std::cin, inChain);
 
-    return std::move(performLexer(std::move(inChain)));
+    return performLexer(std::move(inChain));
 }
 
 };

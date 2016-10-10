@@ -92,6 +92,10 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
         ChangeSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
+    else if(command == messageLiterals::close)
+    {
+        returnedCode = ERROR_CODE::CLOSE;
+    }
     else
     {
         returnedCode = ERROR_CODE::ERROR_COMMAND_PARSING;

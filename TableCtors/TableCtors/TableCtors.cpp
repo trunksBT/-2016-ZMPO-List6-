@@ -10,12 +10,13 @@
 
 #include "Stub.hpp"
 #include "Utils.hpp"
-#include "CTable.hpp"
 #include "Interface.hpp"
 #include "Flyweight.h"
+#include "UtilsForMT.h"
 
 using namespace defaultVals;
 using namespace communication;
+using namespace assertWrapper;
 
 #define STUB
 
@@ -23,15 +24,27 @@ int main(int argc, char **argv)
 {
    ::testing::InitGoogleTest(&argc, argv);
 
-   {
-        //Flyweight application;
-        ////Flyweight::interpretCommand(stub::createDefs6);
-        //Flyweight::interpretCommand(stub::printm1);
-        //Flyweight::interpretCommand(stub::print0);
-        //Flyweight::interpretCommand(stub::print6);
-        //Flyweight::interpretCommand(stub::print10);
+   //{
+   //     Flyweight application;
+   //     std::vector<ERROR_CODE> stackTrace;
+   //     ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
-   }
+   //     std::cout << "Pass command" << std::endl;
+   //     do
+   //     {
+   //         auto command = receiveAndLexCommandFromUser();
+   //         commandResult = application.interpretCommand(command);
+   //         stackTrace.emplace_back(commandResult);
+   //     } while(stackTrace.back() != ERROR_CODE::CLOSE);
+
+   //     //ResultCode resultCode = getFinalResultCode
+   //     //({
+   //     //    application.interpretCommand(bullshit)
+   //     //});
+
+   //     //CHECK_IF_FINISHED_PROPER(ERROR_CODE::SEEMS_LEGIT, resultCode);
+   //     //std::cout << std::endl << "Dzieki za uzycie programu, MS" << POST_PRINT << POST_PRINT;
+   //}
 
    return RUN_ALL_TESTS();
    return 0;

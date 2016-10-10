@@ -52,12 +52,11 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
 
 void CreateDefsHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount < ZERO)
+    if(idxOrAmount <= ZERO)
     {
-        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        inResultCode = ERROR_CODE::WRONG_VALUE;
         if(flag::printOn)
         {
             std::cout << toString(inResultCode);

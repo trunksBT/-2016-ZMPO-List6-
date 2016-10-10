@@ -38,6 +38,7 @@ void printWrongCommandInfo(ResultCode rcVal)
     if(std::get<ZERO>(rcVal) != MINUS_ONE && flag::printOn)
     {
         std::cout
+            << std::endl
             << erroredCommandIdx
             << SEPARATOR
             << std::get<ZERO>(rcVal)
@@ -57,6 +58,18 @@ void ASSERT_FOR_PAIR_WITH_PRINT( ERROR_CODE expVal, ResultCode rcVal)
     {
         printWrongCommandInfo(std::move(rcVal));
         ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    }
+}
+
+void CHECK_IF_FINISHED_PROPER(ERROR_CODE expVal, ResultCode rcVal)
+{
+    if(expVal == std::get<ONE>(rcVal))
+    {
+        std::cout << toString(std::get<ONE>(rcVal)) << POST_PRINT;
+    }
+    else
+    {
+        printWrongCommandInfo(std::move(rcVal));
     }
 }
 }

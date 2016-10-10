@@ -13,6 +13,7 @@ extern std::vector<std::string> createDefm1;
 extern std::vector<std::string> createDef0;
 extern std::vector<std::string> createDef6;
 extern std::vector<std::string> createDefsm1;
+extern std::vector<std::string> createDefs0;
 extern std::vector<std::string> createDefs1;
 extern std::vector<std::string> createDefs6;
 extern std::vector<std::string> createDefs10;
