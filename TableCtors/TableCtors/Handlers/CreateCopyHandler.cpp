@@ -48,20 +48,31 @@ void CreateCopyHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCach
 
     if(isProperIdx(sourceId, inCache))
     {
-        CTable* copiedObj = new CTable(*inCache[sourceId]);
-        bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
-        if(isProperDestinyIdx && inCache[destinyId] == nullptr)
+        if(destinyId != sourceId)
         {
-            inCache[destinyId] = copiedObj;
-        }
-        else if(isProperDestinyIdx && inCache[destinyId] != nullptr)
-        {
-            delete inCache[destinyId];
-            inCache[destinyId] = copiedObj;
+            CTable* copiedObj = new CTable(*inCache[sourceId]);
+            bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
+            if(isProperDestinyIdx && inCache[destinyId] == nullptr)
+            {
+                inCache[destinyId] = copiedObj;
+            }
+            else if(isProperDestinyIdx && inCache[destinyId] != nullptr)
+            {
+                delete inCache[destinyId];
+                inCache[destinyId] = copiedObj;
+            }
+            else
+            {
+                inCache.emplace_back(copiedObj);
+            }
         }
         else
         {
-            inCache.emplace_back(copiedObj);
+            inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+            if(flag::printOn)
+            {
+                std::cout << toString(inResultCode);
+            }
         }
     }
 }

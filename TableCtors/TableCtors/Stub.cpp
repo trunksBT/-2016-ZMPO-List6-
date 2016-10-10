@@ -13,6 +13,7 @@ std::vector<std::string> createDefs6 = { "createDefs", "6" };
 std::vector<std::string> createDefs10 = { "createDefs", "10" };
 std::vector<std::string> createDefs11 = { "createDefs", "11" };
 std::vector<std::string> createDefs10000 = { "createDefs", "10000" };
+std::vector<std::string> createCopy00 = { "createCopy", "0", "0" };
 std::vector<std::string> createCopy01 = { "createCopy", "0", "1" };
 std::vector<std::string> createCopy06 = { "createCopy", "0", "6" };
 std::vector<std::string> print0 = { "print", "0" };
@@ -52,18 +53,18 @@ std::vector<std::string> setValue1_m1_23 = { "setValue", "1", "-1", "23" };
 namespace wrongAmountStub
 {
 
-std::vector<std::string> createDef = { "createDef" };
-std::vector<std::string> createDefs = { "createDefs" };
-std::vector<std::string> createCopy0 = { "createCopy", "0" };
-std::vector<std::string> print = { "print" };
-std::vector<std::string> getName = { "getName" };
-std::vector<std::string> getSize = { "getSize" };
-std::vector<std::string> remove = { "remove" };
-std::vector<std::string> removeAll = { "removeAll" };
-std::vector<std::string> setName0 = { "setName", "0" };
-std::vector<std::string> getValuem1 = { "getValue", "-1" };
-std::vector<std::string> setValue0_0 = { "setValue", "0", "0" };
-std::vector<std::string> wrongCommand = { "wrongCommand" };
+std::vector<std::string> createDefToSmall = { "createDef" };
+std::vector<std::string> createDefsToSmall = { "createDefs" };
+std::vector<std::string> createCopy0ToSmall = { "createCopy", "0" };
+std::vector<std::string> printToSmall = { "print" };
+std::vector<std::string> getNameToSmall = { "getName" };
+std::vector<std::string> getSizeToSmall = { "getSize" };
+std::vector<std::string> removeToSmall = { "remove" };
+std::vector<std::string> removeAllToSmall = { "removeAll" };
+std::vector<std::string> setName0ToSmall = { "setName", "0" };
+std::vector<std::string> getValuem1ToSmall = { "getValue", "-1" };
+std::vector<std::string> setValue0_0ToSmall = { "setValue", "0", "0" };
+std::vector<std::string> wrongCommandToSmall = { "wrongCommand" };
 
 std::vector<std::string> createDefToBig = { "createDef", "0", "6" };
 std::vector<std::string> createDefsToBig = { "createDefs", "0", "6" };

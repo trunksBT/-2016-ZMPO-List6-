@@ -15,6 +15,7 @@ extern std::vector<std::string> createDefs6;
 extern std::vector<std::string> createDefs10;
 extern std::vector<std::string> createDefs11;
 extern std::vector<std::string> createDefs10000;
+extern std::vector<std::string> createCopy00;
 extern std::vector<std::string> createCopy01;
 extern std::vector<std::string> createCopy06;
 extern std::vector<std::string> print0;
@@ -54,18 +55,18 @@ extern std::vector<std::string> getValue10_10;
 namespace wrongAmountStub
 {
 
-extern std::vector<std::string> createDef;
-extern std::vector<std::string> createDefs;
-extern std::vector<std::string> createCopy0;
-extern std::vector<std::string> print;
-extern std::vector<std::string> getName;
-extern std::vector<std::string> getSize;
-extern std::vector<std::string> remove;
-extern std::vector<std::string> removeAll;
-extern std::vector<std::string> setName0;
-extern std::vector<std::string> getValuem1;
-extern std::vector<std::string> setValue0_0;
-extern std::vector<std::string> wrongCommand;
+extern std::vector<std::string> createDefToSmall;
+extern std::vector<std::string> createDefsToSmall;
+extern std::vector<std::string> createCopy0ToSmall;
+extern std::vector<std::string> printToSmall;
+extern std::vector<std::string> getNameToSmall;
+extern std::vector<std::string> getSizeToSmall;
+extern std::vector<std::string> removeToSmall;
+extern std::vector<std::string> removeAllToSmall;
+extern std::vector<std::string> setName0ToSmall;
+extern std::vector<std::string> getValuem1ToSmall;
+extern std::vector<std::string> setValue0_0ToSmall;
+extern std::vector<std::string> wrongCommandToSmall;
 
 extern std::vector<std::string> createDefToBig;
 extern std::vector<std::string> createDefsToBig;

@@ -30,20 +30,20 @@ protected:
     ResultCode rcVal;
 };
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDef_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::createDef)
+        application.interpretCommand(wrongAmountStub::createDefToSmall)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_ERROR_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
@@ -56,13 +56,13 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_S
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefs_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::createDefs)
+        application.interpretCommand(wrongAmountStub::createDefsToSmall)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -81,6 +81,32 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
+//
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongAmountStub::createCopy0ToSmall)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+
+//TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongAmountStub::createCopy0ToBig)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
 
 }
 
