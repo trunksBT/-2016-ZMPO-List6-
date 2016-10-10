@@ -20,7 +20,7 @@ protected:
 
 TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 {
-   CTable* inVal = new CTable();
+   CTable* inVal = CTable::buildNewObj();
    int expVal = DEFAULT_IN_TABLE_SIZE;
 
    int rcVal = inVal->getSize();
@@ -32,7 +32,7 @@ TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 TEST_F(CTableTests, defCTOR_setSize_0_Expect_0)
 {
    int inSize = ZERO;
-   CTable* inVal = new CTable(inSize);
+   CTable* inVal = CTable::buildNewObj(inSize);
    int expVal = ZERO;
 
    int rcVal = inVal->getSize();
@@ -45,9 +45,9 @@ TEST_F(CTableTests, copyCTOR_size5_Expect_size5)
 {
    int inSize = DEFAULT_IN_TABLE_SIZE;
    int expVal = DEFAULT_IN_TABLE_SIZE;
-   CTable* sourceVal = new CTable(DEFAULT_IN_TABLE_SIZE);
+   CTable* sourceVal = CTable::buildNewObj(inSize);
 
-   CTable* inVal = new CTable(*sourceVal);
+   CTable* inVal = CTable::buildNewObj(*sourceVal);
    int rcVal = inVal->getSize();
 
    ASSERT_EQ(expVal, rcVal);
@@ -59,9 +59,9 @@ TEST_F(CTableTests, copyCTOR_withAssignCopyOperator_size5_Expect_size5)
 {
    int inSize = FIVE;
    int expVal = FIVE;
-   CTable* sourceVal = new CTable(inSize);
+   CTable* sourceVal = CTable::buildNewObj(inSize);
 
-   CTable* inVal = new CTable();
+   CTable* inVal = CTable::buildNewObj();
    *inVal = *sourceVal;
 
    int rcVal = inVal->getSize();
@@ -84,7 +84,7 @@ TEST_F(CTableTests, setVal_defaultCTORed_3_onIdx_0_Expect_3)
 {
    int newVal = 500;
    int idxForNewVal = 0;
-   CTable* sourceVal = new CTable();
+   CTable* sourceVal = CTable::buildNewObj();
 
    int oldVal = sourceVal->getVal(idxForNewVal);
    sourceVal->setVal(idxForNewVal, newVal);
@@ -98,7 +98,7 @@ TEST_F(CTableTests, setVal_defaultCTORed_3_onIdx_0_Expect_3)
 TEST_F(CTableTests, getVal_defaultCTORed_3_onIdx_m1_Expect_LimitMin)
 {
    int idx = -1;
-   CTable* sourceVal = new CTable();
+   CTable* sourceVal = CTable::buildNewObj();
 
    int rcVal = sourceVal->getVal(idx);
 
@@ -108,7 +108,7 @@ TEST_F(CTableTests, getVal_defaultCTORed_3_onIdx_m1_Expect_LimitMin)
 
 TEST_F(CTableTests, print_defaultCTORed)
 {
-    CTable* sourceVal = new CTable();
+    CTable* sourceVal = CTable::buildNewObj();
 
     std::cout << sourceVal->toString();
 
@@ -119,9 +119,9 @@ TEST_F(CTableTests, print_defaultCTORed)
 TEST_F(CTableTests, print_Copied)
 {
     int inSize = FIVE;
-    CTable* sourceVal = new CTable(inSize);
+    CTable* sourceVal = CTable::buildNewObj(inSize);
 
-    CTable* inVal = new CTable();
+    CTable* inVal = CTable::buildNewObj();
     *inVal = *sourceVal;
 
     std::cout << sourceVal->toString() << POST_PRINT;
@@ -134,9 +134,9 @@ TEST_F(CTableTests, print_Copied)
 TEST_F(CTableTests, print_Copied_afterSetValue)
 {
     int inSize = FIVE;
-    CTable* sourceVal = new CTable(inSize);
+    CTable* sourceVal = CTable::buildNewObj(inSize);
 
-    CTable* inVal = new CTable();
+    CTable* inVal = CTable::buildNewObj();
     *inVal = *sourceVal;
     inVal->setVal(ZERO, FIVE);
 
@@ -150,9 +150,9 @@ TEST_F(CTableTests, print_Copied_afterSetValue)
 TEST_F(CTableTests, print_Copied_afterSetName)
 {
     int inSize = FIVE;
-    CTable* sourceVal = new CTable(inSize);
+    CTable* sourceVal = CTable::buildNewObj(inSize);
 
-    CTable* inVal = new CTable();
+    CTable* inVal = CTable::buildNewObj();
     *inVal = *sourceVal;
     inVal->setName("SIEMA_" + std::string(DEFAULT_TABLE_NAME));
 
@@ -169,7 +169,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onHigher_Expect_TEN)
     int newSize = FIVE;
     int expSize = TEN;
     int initValue = FIVE;
-    CTable* sourceVal = new CTable(inSize, FIVE);
+    CTable* sourceVal = CTable::buildNewObj(inSize, FIVE);
 
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
@@ -189,7 +189,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onLower_Expect_TWO)
     int newSize = TWO;
     int expSize = TWO;
     int initValue = FIVE;
-    CTable* sourceVal = new CTable(inSize, FIVE);
+    CTable* sourceVal = CTable::buildNewObj(inSize, FIVE);
 
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
@@ -209,7 +209,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onTheSame_Expect_FIVE)
     int newSize = FIVE;
     int expSize = FIVE;
     int initValue = FIVE;
-    CTable* sourceVal = new CTable(inSize, FIVE);
+    CTable* sourceVal = CTable::buildNewObj(inSize, FIVE);
 
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
@@ -222,5 +222,20 @@ TEST_F(CTableTests, changeSize_from_FIVE_onTheSame_Expect_FIVE)
     ASSERT_EQ(expSize, sourceVal->getSize());
     delete sourceVal;
 }
+
+TEST_F(CTableTests, buildNewObj_FIVE_newName_Expect_FIVE_newName)
+{
+    int inSize = FIVE;
+    std::string inName = "newName";
+    int expSize = FIVE;
+    std::string expName = "newName";
+
+    CTable* sourceVal = CTable::buildNewObj(inSize, inName);
+
+    ASSERT_EQ(expSize, sourceVal->getSize());
+    ASSERT_EQ(expName, sourceVal->getName());
+    delete sourceVal;
+}
+
 }
 

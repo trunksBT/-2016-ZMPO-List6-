@@ -3,6 +3,10 @@
 
 namespace stub
 {
+std::vector<std::string> create1_5_Name = { "create", "1", "5", "Name" };
+std::vector<std::string> create6_5_Name = { "create", "6", "5", "Name" };
+std::vector<std::string> createm1_5_Name = { "create", "-1", "5", "Name" };
+std::vector<std::string> create1_m5_Name = { "create", "1", "-5", "Name" };
 std::vector<std::string> createDefm1 = { "createDef", "-1" };
 std::vector<std::string> createDef0 = { "createDef", "0" };
 std::vector<std::string> createDef6 = { "createDef", "6" };
@@ -55,6 +59,7 @@ std::vector<std::string> setValue1_m1_23 = { "setValue", "1", "-1", "23" };
 
 namespace wrongAmountStub
 {
+std::vector<std::string> createToSmall = { "create", "1" };
 std::vector<std::string> createDefToSmall = { "createDef" };
 std::vector<std::string> createDefsToSmall = { "createDefs" };
 std::vector<std::string> createCopy0ToSmall = { "createCopy", "0" };
@@ -68,6 +73,7 @@ std::vector<std::string> setValue0_0ToSmall = { "setValue", "0", "0" };
 std::vector<std::string> wrongCommandToSmall = { "wrongCommand" };
 std::vector<std::string> changeSizeToSmall = { "changeSize", "0" };
 
+std::vector<std::string> createToBig = { "create", "1", "5", "Name" , "23" };
 std::vector<std::string> createDefToBig = { "createDef", "0", "6" };
 std::vector<std::string> createDefsToBig = { "createDefs", "0", "6" };
 std::vector<std::string> createCopy0ToBig = { "createCopy", "0", "1", "6" };
@@ -85,6 +91,7 @@ std::vector<std::string> changeSizeToBig = { "changeSize", "0", "6", "7" };
 
 namespace wrongTypeStub
 {
+std::vector<std::string> createZZZ = { "create", "Z", "Z", "Z" };
 std::vector<std::string> createDefZ = { "createDef", "Z" };
 std::vector<std::string> createDefsZ = { "createDefs", "Z" };
 std::vector<std::string> createCopyZZ = { "createCopy", "Z", "Z" };
