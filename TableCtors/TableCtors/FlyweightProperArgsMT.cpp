@@ -610,7 +610,7 @@ TEST_F(FlyweightProperArgsMT, createDefs1_setValuem1_m1_23_getValue0_1_Expect_IN
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDefs1_setValue1_m1_23_getValue1_2_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(FlyweightProperArgsMT, createDefs11_setValue1_m1_23_getValue1_2_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
@@ -619,6 +619,65 @@ TEST_F(FlyweightProperArgsMT, createDefs1_setValue1_m1_23_getValue1_2_Expect_IND
         application.interpretCommand(stub::createDefs11),
         application.interpretCommand(stub::setValue1_m1_23),
         application.interpretCommand(stub::getValue1_2)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, createDefs11_changeSize_0_5_getValue0_1_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::changeSize_0_5),
+        application.interpretCommand(stub::getValue0_1),
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, createDefs11_changeSize_m1_5_getValue0_1_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::changeSize_m1_5),
+        application.interpretCommand(stub::getValue0_1),
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, createDefs11_changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
+{
+    ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs11),
+        application.interpretCommand(stub::changeSize_0_m5),
+        application.interpretCommand(stub::getValue0_1),
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
+{
+    ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::changeSize_0_m5),
+        application.interpretCommand(stub::getValue0_1),
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));

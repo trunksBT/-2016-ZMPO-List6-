@@ -160,4 +160,17 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, setValue0ZZZ_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperAmountOfArgsButWrongMT, changeSizeZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(wrongTypeStub::changeSizeZZ)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 }

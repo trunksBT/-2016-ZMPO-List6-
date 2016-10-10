@@ -13,7 +13,7 @@ CTable::CTable()
     name_ = DEFAULT_TABLE_NAME;
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
-    initTable(ZERO);
+    initTable(memory_, size_, ZERO);
     if(flag::printOn)
     {
         std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -25,7 +25,19 @@ CTable::CTable(int inSize)
     name_ = DEFAULT_TABLE_NAME;
     size_ = inSize;
     allocateMemory(size_);
-    initTable(ZERO);
+    initTable(memory_, size_, ZERO);
+    if(flag::printOn)
+    {
+        std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
+    }
+}
+
+CTable::CTable(int inSize, int initValue)
+{
+    name_ = DEFAULT_TABLE_NAME;
+    size_ = inSize;
+    allocateMemory(size_);
+    initTable(memory_, size_, initValue);
     if(flag::printOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -37,7 +49,7 @@ CTable::CTable(std::string inVal)
     name_ = std::move(inVal);
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
-    initTable(ZERO);
+    initTable(memory_, size_, ZERO);
     if(flag::printOn)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -49,11 +61,11 @@ CTable::CTable(CTable& inVal)
     copyCtor(inVal);
 }
 
-void CTable::initTable(int defaultVal)
+void CTable::initTable(int* table, int size, int defaultVal)
 {
-    for(int i = 0; i < size_; i++)
+    for(int i = 0; i < size; i++)
     {
-        memory_[i] = defaultVal;
+        table[i] = int(defaultVal);
     }
 }
 
@@ -74,6 +86,25 @@ CTable& CTable::operator=(CTable& inObj)
 {
     copyCtor(inObj);
     return *this;
+}
+
+void CTable::changeSize(int inNewSize)
+{
+    if(size_ != inNewSize)
+    {
+        int* newTable = new int[inNewSize];
+        if(size_ < inNewSize)
+        {
+            initTable(newTable, inNewSize, ZERO);
+        }
+        for(int i = 0; i < size_ && i < inNewSize; i++)
+        {
+            newTable[i] = int(memory_[i]);
+        }
+        delete[] memory_;
+        memory_ = newTable;
+        size_ = inNewSize;
+    }
 }
 
 CTable* CTable::buildNewObj()
