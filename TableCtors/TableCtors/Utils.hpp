@@ -44,6 +44,8 @@ constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
+constexpr char intType = 'i';
+constexpr char stringType = 's';
 }
 
 namespace funs
@@ -51,7 +53,9 @@ namespace funs
 bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 bool isProperIdx(int idx, int size);
 std::string toString(ERROR_CODE inCode);
-bool isProperArguments(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+bool isNumber(std::string inChain);
+bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
 }
 
 namespace logLiterals

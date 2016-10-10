@@ -23,9 +23,9 @@ ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << messageLiterals::removeAll << POST_PRINT;
     }
 
-    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
-        performOnProperAmountOfArgs(inCache, resultCode);
+        performOnProperArgs(inCache, resultCode);
     }
     else
     {
@@ -39,7 +39,7 @@ ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void RemoveAllHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void RemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
 }
 RemoveAllHandler::~RemoveAllHandler()

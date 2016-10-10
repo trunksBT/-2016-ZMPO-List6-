@@ -41,9 +41,45 @@ std::string toString(ERROR_CODE inCode)
     return codeToString[inCode];
 }
 
-bool isProperArguments(std::vector<std::string>& inCommand, int inProperAmountOfArgs)
+bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs)
 {
     return inCommand.size() >= inProperAmountOfArgs;
+}
+
+bool isNumber(std::string inChain)
+{
+    bool isNumber = true;
+
+    for(int i = 0; i< inChain.size() && isNumber; i++)
+    {
+        if(i == 0 && inChain[i] == '-')
+        {
+            isNumber &= true;
+        }
+        else if(isdigit(inChain[i]))
+        {
+            isNumber &= true;
+        }
+        else
+        {
+            isNumber &= false;
+        }
+    }
+
+    return isNumber;
+}
+
+bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs)
+{
+    bool isProperType = true;
+    for(int i = 0; i < inCommand.size() && isProperType; i++)
+    {
+        if(inProperTypeOfArgs[i] == intType && !isNumber(inCommand[i]))
+        {
+            isProperType &= false;
+        }
+    }
+    return isProperType;
 }
 
 }

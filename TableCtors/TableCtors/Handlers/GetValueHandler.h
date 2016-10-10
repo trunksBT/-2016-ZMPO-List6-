@@ -14,5 +14,5 @@ public:
     GetValueHandler(std::vector<std::string>& inCommand);
     virtual ~GetValueHandler();
     ERROR_CODE performOn(std::vector<CTable*>& inFlyweightCache) override;
-    void performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode);
+    void performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode);
 };
