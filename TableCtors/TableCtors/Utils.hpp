@@ -11,11 +11,12 @@ constexpr bool printOn = false;
 enum class ERROR_CODE : int
 {
     SEEMS_LEGIT = 0, // when all is good(probably)
-    UNDEFINED_OBJECT = 1, // when isProperIdx(idx), situation when vector has allocated memory
+    UNDEFINED_OBJECT = 1, // when isProperIdx(idx) == true, situation when vector has allocated memory
     INDEX_OUT_OF_BOUNDS = 2, // when isProperIdx(idx) == false
     ERROR_COMMAND_PARSING = 3, // it will be used when parsing has errors or undefined command
-    NOT_HANDLED_ERROR_REPORTING = 4, // when somewhere i have forgotten about error reporting
-    INITIAL_VAL = 5 // when somewhere error code hadn't change
+    NOT_HANDLED_ERROR_REPORTING = 4,
+    INITIAL_VAL = 5,
+    WRONG_AMOUNT_OF_ARGS = 6
 };
 
 namespace defaultVals
@@ -49,7 +50,7 @@ namespace funs
 bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 bool isProperIdx(int idx, int size);
 std::string toString(ERROR_CODE inCode);
-bool checkIfProperArguments(std::vector<std::string>& inCommand);
+bool isProperArguments(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 }
 
 namespace logLiterals

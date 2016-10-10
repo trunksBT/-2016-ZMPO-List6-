@@ -23,6 +23,24 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
+    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    {
+        performOnProperAmountOfArgs(inCache, resultCode);
+    }
+    else
+    {
+        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+        if(flag::printOn)
+        {
+            std::cout << toString(resultCode);
+        }
+    }
+
+    return resultCode;
+}
+
+void CreateCopyHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+{
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
     std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
@@ -30,23 +48,41 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 
     if(isProperIdx(sourceId, inCache))
     {
-        CTable* copiedObj = new CTable(*inCache[sourceId]);
-        bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
-        if(isProperDestinyIdx && inCache[destinyId] == nullptr)
+        if(inCache[sourceId] == nullptr)
         {
-            inCache[destinyId] = copiedObj;
+            inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
+            if(flag::printOn)
+            {
+                std::cout << toString(inResultCode);
+            }
         }
-        else if(isProperDestinyIdx && inCache[destinyId] != nullptr)
+        else if(destinyId != sourceId)
         {
-            delete inCache[destinyId];
-            inCache[destinyId] = copiedObj;
+            CTable* copiedObj = new CTable(*inCache[sourceId]);
+            bool isProperDestinyIdx = isProperIdx(destinyId, inCache);
+            if(isProperDestinyIdx && inCache[destinyId] == nullptr)
+            {
+                inCache[destinyId] = copiedObj;
+            }
+            else if(isProperDestinyIdx && inCache[destinyId] != nullptr)
+            {
+                delete inCache[destinyId];
+                inCache[destinyId] = copiedObj;
+            }
+            else
+            {
+                inCache.emplace_back(copiedObj);
+            }
         }
         else
         {
-            inCache.emplace_back(copiedObj);
+            inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+            if(flag::printOn)
+            {
+                std::cout << toString(inResultCode);
+            }
         }
     }
-    return resultCode;
 }
 
 CreateCopyHandler::~CreateCopyHandler()

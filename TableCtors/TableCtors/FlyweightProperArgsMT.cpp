@@ -150,6 +150,33 @@ TEST_F(FlyweightProperArgsMT, createDefs10_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, createCopy01_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createCopy01)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, createDefs1_createCopy00_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::createCopy00)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_createCopy01_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
@@ -164,6 +191,20 @@ TEST_F(FlyweightProperArgsMT, createDefs1_createCopy01_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, createDefs1_createCopy0_m1_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::createCopy0_m1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_createCopy06_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
@@ -172,6 +213,19 @@ TEST_F(FlyweightProperArgsMT, createDefs1_createCopy06_Expect_SEEMS_LEGIT)
     ({
         application.interpretCommand(stub::createDefs1),
         application.interpretCommand(stub::createCopy06)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, print_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::print0)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));

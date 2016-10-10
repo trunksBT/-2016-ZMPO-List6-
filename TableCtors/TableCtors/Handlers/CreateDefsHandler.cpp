@@ -23,14 +23,33 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
+    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    {
+        performOnProperAmountOfArgs(inCache, resultCode);
+    }
+    else
+    {
+        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+        if(flag::printOn)
+        {
+            std::cout << toString(resultCode);
+        }
+    }
+
+    return resultCode;
+}
+
+void CreateDefsHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+{
+
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount < ZERO)
     {
-        resultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
-            std::cout << toString(resultCode);
+            std::cout << toString(inResultCode);
         }
     }
     else
@@ -59,8 +78,6 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
             cursorIdx++;
         }
     }
-
-    return resultCode;
 }
 
 CreateDefsHandler::~CreateDefsHandler()

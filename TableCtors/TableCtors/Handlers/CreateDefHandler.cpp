@@ -23,10 +23,17 @@ ERROR_CODE CreateDefHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
-    bool isProperAmountOfArgs = true;
-    if(isProperAmountOfArgs)
+    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
         performOnProperAmountOfArgs(inCache, resultCode);
+    }
+    else
+    {
+        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+        if(flag::printOn)
+        {
+            std::cout << toString(resultCode);
+        }
     }
 
     return resultCode;
