@@ -61,6 +61,7 @@ extern std::vector<std::string> getValue10_10;
 
 namespace wrongAmountStub
 {
+extern std::vector<std::string> createToSmall;
 extern std::vector<std::string> createDefToSmall;
 extern std::vector<std::string> createDefsToSmall;
 extern std::vector<std::string> createCopy0ToSmall;
@@ -74,7 +75,7 @@ extern std::vector<std::string> setValue0_0ToSmall;
 extern std::vector<std::string> wrongCommandToSmall;
 extern std::vector<std::string> changeSizeToSmall;
 
-
+extern std::vector<std::string> createToBig;
 extern std::vector<std::string> createDefToBig;
 extern std::vector<std::string> createDefsToBig;
 extern std::vector<std::string> createCopy0ToBig;
@@ -92,6 +93,7 @@ extern std::vector<std::string> changeSizeToBig;
 
 namespace wrongTypeStub
 {
+extern std::vector<std::string> createZZZ;
 extern std::vector<std::string> createDefZ;
 extern std::vector<std::string> createDefsZ;
 extern std::vector<std::string> createCopyZZ;

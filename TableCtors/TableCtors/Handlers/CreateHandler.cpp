@@ -55,23 +55,37 @@ void CreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
     int idxOrAmount = std::stoi(receivedId);
     std::string receivedNewSize(wholeCommand_[idxOf::newSize]);
     int newSize = std::stoi(receivedNewSize);
-    std::string receivedInitialName(wholeCommand_[idxOf::initialName]);
-    int initialName = std::stoi(receivedInitialName);
+    std::string initialName(wholeCommand_[idxOf::initialName]);
 
-    if(idxOrAmount < inCache.size())
-    {
-        if(inCache[idxOrAmount] != nullptr)
-        {
-            delete inCache[idxOrAmount];
-        }
-        inCache[idxOrAmount] = CTable::buildNewObj();
-    }
-    else
+    if(idxOrAmount < 0)
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
         if(flag::printOn)
         {
             std::cout << toString(inResultCode);
+        }
+    }
+    else
+    {
+        if(newSize > 0)
+        {
+            if(idxOrAmount > inCache.size())
+            {
+                inCache.resize(idxOrAmount + ONE);
+            }
+            if(inCache[idxOrAmount] != nullptr)
+            {
+                delete inCache[idxOrAmount];
+            }
+            inCache[idxOrAmount] = CTable::buildNewObj(newSize, initialName);
+        }
+        else
+        {
+            inResultCode = ERROR_CODE::WRONG_VALUE;
+            if(flag::printOn)
+            {
+                std::cout << toString(inResultCode);
+            }
         }
     }
 }

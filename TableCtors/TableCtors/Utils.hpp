@@ -80,7 +80,7 @@ constexpr int newName = 2;
 constexpr int newSize = 2;
 constexpr int goalId = 2;
 constexpr int newVal = 3;
-constexpr int initialName = 4;
+constexpr int initialName = 3;
 }
 
 namespace messageLiterals
