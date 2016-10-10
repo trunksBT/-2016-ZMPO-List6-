@@ -9,6 +9,7 @@ class PrintHandler final : public IHandler
 {
 private:
     const int PROPER_AMOUNT_OF_ARGS = 2;
+    std::string PROPER_TYPES_OF_ARGS = "si";
 public:
     PrintHandler(std::vector<std::string>& inCommand);
     virtual ~PrintHandler();

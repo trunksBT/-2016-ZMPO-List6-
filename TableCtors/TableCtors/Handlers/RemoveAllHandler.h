@@ -9,6 +9,7 @@ class RemoveAllHandler final : public IHandler
 {
 private:
     const int PROPER_AMOUNT_OF_ARGS = 1;
+    std::string PROPER_TYPES_OF_ARGS = "s";
 public:
     RemoveAllHandler(std::vector<std::string>& inCommand);
     virtual ~RemoveAllHandler();
