@@ -63,9 +63,8 @@ extern std::vector<std::string> printToSmall;
 extern std::vector<std::string> getNameToSmall;
 extern std::vector<std::string> getSizeToSmall;
 extern std::vector<std::string> removeToSmall;
-extern std::vector<std::string> removeAllToSmall;
 extern std::vector<std::string> setName0ToSmall;
-extern std::vector<std::string> getValuem1ToSmall;
+extern std::vector<std::string> getValue0ToSmall;
 extern std::vector<std::string> setValue0_0ToSmall;
 extern std::vector<std::string> wrongCommandToSmall;
 
@@ -78,7 +77,7 @@ extern std::vector<std::string> getSizeToBig;
 extern std::vector<std::string> removeToBig;
 extern std::vector<std::string> removeAllToBig;
 extern std::vector<std::string> setName0ToBig;
-extern std::vector<std::string> getValuem1ToBig;
+extern std::vector<std::string> getValue0ToBig;
 extern std::vector<std::string> setValue0_0ToBig;
 extern std::vector<std::string> wrongCommandToBig;
 }

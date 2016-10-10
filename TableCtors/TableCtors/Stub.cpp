@@ -61,9 +61,8 @@ std::vector<std::string> printToSmall = { "print" };
 std::vector<std::string> getNameToSmall = { "getName" };
 std::vector<std::string> getSizeToSmall = { "getSize" };
 std::vector<std::string> removeToSmall = { "remove" };
-std::vector<std::string> removeAllToSmall = { "removeAll" };
 std::vector<std::string> setName0ToSmall = { "setName", "0" };
-std::vector<std::string> getValuem1ToSmall = { "getValue", "-1" };
+std::vector<std::string> getValue0ToSmall = { "getValue", "0" };
 std::vector<std::string> setValue0_0ToSmall = { "setValue", "0", "0" };
 std::vector<std::string> wrongCommandToSmall = { "wrongCommand" };
 
@@ -76,7 +75,7 @@ std::vector<std::string> getSizeToBig = { "getSize", "0", "6" };
 std::vector<std::string> removeToBig = { "remove", "0", "6" };
 std::vector<std::string> removeAllToBig = { "removeAll", "0", "6" };
 std::vector<std::string> setName0ToBig = { "setName", "0", "0", "6" };
-std::vector<std::string> getValuem1ToBig = { "getValue", "-1", "0", "6" };
+std::vector<std::string> getValue0ToBig = { "getValue", "0", "0", "6" };
 std::vector<std::string> setValue0_0ToBig = { "setValue", "0", "0", "0", "6" };
 std::vector<std::string> wrongCommandToBig = { "wrongCommand", "0", "6" };
 
