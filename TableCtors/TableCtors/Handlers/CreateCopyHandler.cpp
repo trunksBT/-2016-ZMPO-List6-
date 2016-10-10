@@ -23,6 +23,24 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
+    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    {
+        performOnProperAmountOfArgs(inCache, resultCode);
+    }
+    else
+    {
+        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
+        if(flag::printOn)
+        {
+            std::cout << toString(resultCode);
+        }
+    }
+
+    return resultCode;
+}
+
+void CreateCopyHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+{
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
     std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
@@ -46,7 +64,6 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
             inCache.emplace_back(copiedObj);
         }
     }
-    return resultCode;
 }
 
 CreateCopyHandler::~CreateCopyHandler()
