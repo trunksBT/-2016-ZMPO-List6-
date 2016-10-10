@@ -98,6 +98,19 @@ TEST_F(FlyweightProperArgsMT, createDef6_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, createDefsm1_OnEmptyFlyweight_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefsm1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;

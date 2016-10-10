@@ -29,7 +29,20 @@ protected:
     Flyweight application;
     ResultCode rcVal;
 };
-
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefm1_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefm1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
 //TEST_F(FlyweightUnproperArgsMT, createDef0_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
@@ -37,19 +50,6 @@ protected:
 //    rcVal = getFinalResultCode
 //    ({
 //        application.interpretCommand(wrongStub::createDef0)
-//    });
-//
-//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
-//    printWrongCommandInfo(std::move(rcVal));
-//}
-
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_wrongCommand_Expect_ERROR_COMMAND_PARSING)
-//{
-//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
-//
-//    rcVal = getFinalResultCode
-//    ({
-//        application.interpretCommand(wrongStub::createDefs11),
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -68,8 +68,19 @@ protected:
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
+// /////////////////////////////////
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10)
+//    });
 //
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
 //
 //TEST_F(FlyweightUnproperArgsMT, createDefs1_createCopy01_Expect_ERROR_COMMAND_PARSING)
 //{
@@ -85,6 +96,19 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_createCopy06_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::createCopy06)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
 //
 //TEST_F(FlyweightUnproperArgsMT, createDefs1_print0_Expect_ERROR_COMMAND_PARSING)
 //{
@@ -99,7 +123,48 @@ protected:
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
-
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_printm1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::printm1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_print6_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::print6)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_print10_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10),
+//        application.interpretCommand(wrongStub::print10)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
 //
 //TEST_F(FlyweightUnproperArgsMT, createDefs10_getNamem1_Expect_ERROR_COMMAND_PARSING)
 //{
@@ -123,6 +188,20 @@ protected:
 //    ({
 //        application.interpretCommand(wrongStub::createDefs1),
 //        application.interpretCommand(wrongStub::getName0)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs11_getName10_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs11),
+//        application.interpretCommand(wrongStub::getName10)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -157,6 +236,33 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_getSize6_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10),
+//        application.interpretCommand(wrongStub::getSize6)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_getSize10_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10),
+//        application.interpretCommand(wrongStub::getSize10)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
 //
 //TEST_F(FlyweightUnproperArgsMT, createDefs1_removem1_Expect_ERROR_COMMAND_PARSING)
 //{
@@ -164,13 +270,14 @@ protected:
 //
 //    rcVal = getFinalResultCode
 //    ({
-//        application.interpretCommand(stub::createDefs1),
-//        application.interpretCommand(stub::removem1)
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::removem1)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
+//
 //TEST_F(FlyweightUnproperArgsMT, createDefs1_remove0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
@@ -230,38 +337,81 @@ protected:
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setName6_getName0_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::setName6),
+//        application.interpretCommand(wrongStub::getName6)
+//    });
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs10_getValuem1_Expect_ERROR_COMMAND_PARSING)
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_setName10_getName0_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
 //    rcVal = getFinalResultCode
 //    ({
 //        application.interpretCommand(wrongStub::createDefs10),
-//        application.interpretCommand(wrongStub::getValuem1)
+//        application.interpretCommand(wrongStub::setName10),
+//        application.interpretCommand(wrongStub::getName10)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_getValuem1_1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs11_getValue10_Expect_ERROR_COMMAND_PARSING)
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10),
+//        application.interpretCommand(wrongStub::getValuem1_1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs10_remove0_getValue0_m1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs10),
+//        application.interpretCommand(wrongStub::remove0),
+//        application.interpretCommand(wrongStub::getValue0_m1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs11_getValue10_10_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
 //    rcVal = getFinalResultCode
 //    ({
 //        application.interpretCommand(wrongStub::createDefs11),
-//        application.interpretCommand(wrongStub::getValue10)
+//        application.interpretCommand(wrongStub::getValue10_10)
 //    });
+//
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue0_0_23_getValue0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -269,7 +419,53 @@ protected:
 //    ({
 //        application.interpretCommand(wrongStub::createDefs1),
 //        application.interpretCommand(wrongStub::setValue0_0_23),
-//        application.interpretCommand(wrongStub::getValue0)
+//        application.interpretCommand(wrongStub::getValue0_1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_remove0_setValue0_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::remove0),
+//        application.interpretCommand(wrongStub::setValue0_0_23),
+//        application.interpretCommand(wrongStub::getValue0_1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue10_0_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::setValue10_0_23),
+//        application.interpretCommand(wrongStub::getValue0_1)
+//    });
+//
+//    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+//    printWrongCommandInfo(std::move(rcVal));
+//}
+//
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue10_10_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
+//{
+//    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
+//
+//    rcVal = getFinalResultCode
+//    ({
+//        application.interpretCommand(wrongStub::createDefs1),
+//        application.interpretCommand(wrongStub::setValue10_10_23),
+//        application.interpretCommand(wrongStub::getValue0_1)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -277,7 +473,7 @@ protected:
 //}
 //
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValuem1_m1_23_getValue0_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValuem1_m1_23_getValue0_1_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -285,14 +481,14 @@ protected:
 //    ({
 //        application.interpretCommand(wrongStub::createDefs11),
 //        application.interpretCommand(wrongStub::setValuem1_m1_23),
-//        application.interpretCommand(wrongStub::getValue0)
+//        application.interpretCommand(wrongStub::getValue0_1)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
 //    printWrongCommandInfo(std::move(rcVal));
 //}
 //
-//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue1_m1_23_getValue1_Expect_ERROR_COMMAND_PARSING)
+//TEST_F(FlyweightUnproperArgsMT, createDefs1_setValue1_m1_23_getValue1_2_Expect_ERROR_COMMAND_PARSING)
 //{
 //    ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 //
@@ -300,7 +496,7 @@ protected:
 //    ({
 //        application.interpretCommand(wrongStub::createDefs11),
 //        application.interpretCommand(wrongStub::setValue1_m1_23),
-//        application.interpretCommand(wrongStub::getValue1)
+//        application.interpretCommand(wrongStub::getValue1_2)
 //    });
 //
 //    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
