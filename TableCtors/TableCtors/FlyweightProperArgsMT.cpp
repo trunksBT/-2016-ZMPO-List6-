@@ -550,6 +550,20 @@ TEST_F(FlyweightProperArgsMT, removeAll_Expect_UNDEFINED_OBJECT)
 }
 
 
+TEST_F(FlyweightProperArgsMT, getName99999999999999999999999_Expect_ERROR_ARGS_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::getName99999999999999999999999)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+
 TEST_F(FlyweightProperArgsMT, createDefs1_setName0_getName0_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;

@@ -61,6 +61,7 @@ extern std::vector<std::string> getValue1_2;
 extern std::vector<std::string> getValue10_4;
 extern std::vector<std::string> getValue6_3;
 extern std::vector<std::string> getValue10_10;
+extern std::vector<std::string> getName99999999999999999999999;
 }
 
 namespace wrongAmountStub

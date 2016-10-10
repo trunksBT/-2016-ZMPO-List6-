@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "CTable.hpp"
+#include <limits>
 
 namespace flag
 {
@@ -49,6 +50,7 @@ constexpr int ONE = 1;
 constexpr int TWO = 2;
 constexpr int FIVE = 5;
 constexpr int TEN = 10;
+constexpr long MAX_INT_VAL = (std::numeric_limits<int>::max)();
 constexpr int DEFAULT_IN_TABLE_SIZE = TWO;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
@@ -65,6 +67,7 @@ bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmou
 bool isNumber(std::string inChain);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
 bool isVectorEmpty(std::vector<CTable*>& inCache);
+int toInt(char inChar);
 }
 
 namespace logLiterals
