@@ -205,6 +205,19 @@ TEST_F(FlyweightProperArgsMT, createDefs1_createCopy06_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, print_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::print0)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_print0_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
