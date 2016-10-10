@@ -319,6 +319,20 @@ TEST_F(FlyweightProperArgsMT, createDefs10_getSize10_Expect_INDEX_OUT_OF_BOUNDS)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, createDefs1_removem1_Expect_INDEX_OUT_OF_BOUNDS)
+{
+    ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs1),
+        application.interpretCommand(stub::removem1)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightProperArgsMT, createDefs1_remove0_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
