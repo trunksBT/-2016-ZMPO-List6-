@@ -17,24 +17,24 @@ protected:
    virtual void TearDown()
    {}
 };
-//
-//TEST_F(CTableTests, clone_Expect_theSameVals_otherAddresses)
-//{
-//    CTable* inVal = CTable::buildNewObj();
-//    CTable* clonedObject = inVal->clone();
-//
-//    std::cout << inVal->toString() << POST_PRINT;
-//    std::cout << clonedObject->toString() << POST_PRINT;
-//
-//    ASSERT_EQ(inVal->getName(), clonedObject->getName());
-//    ASSERT_EQ(inVal->getSize(), clonedObject->getSize());
-//    ASSERT_EQ(inVal->getVal(0), clonedObject->getVal(0));
-//    ASSERT_EQ(inVal->getVal(1), clonedObject->getVal(1));
-//    ASSERT_EQ(inVal->getVal(2), clonedObject->getVal(2));
-//
-//    delete inVal;
-//    delete clonedObject
-//}
+
+TEST_F(CTableTests, clone_Expect_theSameVals_otherAddresses)
+{
+    CTable* inVal = CTable::buildNewObj();
+    CTable* clonedObject = inVal->clone();
+
+    std::cout << inVal->toString() << POST_PRINT;
+    std::cout << clonedObject->toString() << POST_PRINT;
+
+    ASSERT_EQ(inVal->getName(), clonedObject->getName());
+    ASSERT_EQ(inVal->getSize(), clonedObject->getSize());
+    ASSERT_EQ(inVal->getVal(0), clonedObject->getVal(0));
+    ASSERT_EQ(inVal->getVal(1), clonedObject->getVal(1));
+    ASSERT_EQ(inVal->getVal(2), clonedObject->getVal(2));
+
+    delete inVal;
+    delete clonedObject;
+}
 
 TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 {

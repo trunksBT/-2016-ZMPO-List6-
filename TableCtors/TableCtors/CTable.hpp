@@ -15,13 +15,14 @@ public:
     ~CTable();
     void copyCtor(CTable & inVal);
     CTable& operator=(CTable& inObj);
+    CTable* clone();
 public:
     int getSize() const;
-    void changeSize(int inNewSize);
     int getVal(int idx) const;
     std::string getName() const;
     std::string toString() const;
 public:
+    void changeSize(int inNewSize);
     void setName(std::string inName);
     void setVal(int idx, int newVal);
 public:
