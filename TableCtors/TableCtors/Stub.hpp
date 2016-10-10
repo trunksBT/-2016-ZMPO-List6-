@@ -18,11 +18,9 @@ extern std::vector<std::string> createCopy00;
 extern std::vector<std::string> createCopy0_m1;
 extern std::vector<std::string> createCopy01;
 extern std::vector<std::string> createCopy06;
-extern std::vector<std::string> changeSize5_10;
-extern std::vector<std::string> changeSize10_5;
-extern std::vector<std::string> changeSizem1_5;
-extern std::vector<std::string> changeSize1_m5;
-extern std::vector<std::string> changeSize5_5;
+extern std::vector<std::string> changeSize_0_5;
+extern std::vector<std::string> changeSize_m1_5;
+extern std::vector<std::string> changeSize_0_m5;
 extern std::vector<std::string> print0;
 extern std::vector<std::string> printm1;
 extern std::vector<std::string> print6;
@@ -52,6 +50,7 @@ extern std::vector<std::string> getValue0_1;
 extern std::vector<std::string> getValuem1_1;
 extern std::vector<std::string> getValue0_m1;
 extern std::vector<std::string> getValue1_2;
+extern std::vector<std::string> getValue10_4;
 extern std::vector<std::string> getValue6_3;
 extern std::vector<std::string> getValue10_10;
 }
@@ -69,6 +68,8 @@ extern std::vector<std::string> setName0ToSmall;
 extern std::vector<std::string> getValue0ToSmall;
 extern std::vector<std::string> setValue0_0ToSmall;
 extern std::vector<std::string> wrongCommandToSmall;
+extern std::vector<std::string> changeSizeToSmall;
+
 
 extern std::vector<std::string> createDefToBig;
 extern std::vector<std::string> createDefsToBig;
@@ -82,6 +83,7 @@ extern std::vector<std::string> setName0ToBig;
 extern std::vector<std::string> getValue0ToBig;
 extern std::vector<std::string> setValue0_0ToBig;
 extern std::vector<std::string> wrongCommandToBig;
+extern std::vector<std::string> changeSizeToBig;
 }
 
 namespace wrongTypeStub
@@ -96,5 +98,6 @@ extern std::vector<std::string> removeZ;
 extern std::vector<std::string> setNameZ;
 extern std::vector<std::string> getValueZZ;
 extern std::vector<std::string> setValue0ZZZ;
+extern std::vector<std::string> changeSizeZZ;
 }
 

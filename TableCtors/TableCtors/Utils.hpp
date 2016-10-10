@@ -17,7 +17,8 @@ enum class ERROR_CODE : int
     NOT_HANDLED_ERROR_REPORTING = 4,
     INITIAL_VAL = 5,
     WRONG_AMOUNT_OF_ARGS = 6,
-    ERROR_ARGS_PARSING = 7 // when args amount is proper, but type is wrong
+    ERROR_ARGS_PARSING = 7, // when args amount is proper, but type is wrong
+    WRONG_VALUE = 8 // when new size must be minus
 };
 
 namespace defaultVals
@@ -42,7 +43,7 @@ constexpr int ONE = 1;
 constexpr int TWO = 2;
 constexpr int FIVE = 5;
 constexpr int TEN = 10;
-constexpr int DEFAULT_IN_TABLE_SIZE = 3;
+constexpr int DEFAULT_IN_TABLE_SIZE = TWO;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
 constexpr char intType = 'i';
@@ -73,6 +74,7 @@ constexpr int command = 0;
 constexpr int idOfCTable = 1;
 constexpr int amount = 1;
 constexpr int newName = 2;
+constexpr int newSize = 2;
 constexpr int goalId = 2;
 constexpr int newVal = 3;
 }
@@ -90,6 +92,7 @@ constexpr char* setName = "setName"; // set name of CTable on idx
 constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
 constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 }
 
 
