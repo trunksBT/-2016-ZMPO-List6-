@@ -16,6 +16,7 @@
 
 using namespace defaultVals;
 using namespace logLiterals;
+using namespace funs;
 
 std::vector<CTable*> Flyweight::cache_;
 
