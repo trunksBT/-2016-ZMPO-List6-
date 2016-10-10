@@ -5,6 +5,7 @@
 
 namespace stub
 {
+extern std::vector<std::string> help;
 extern std::vector<std::string> emptyCommand;
 extern std::vector<std::string> noCommand;
 extern std::vector<std::string> create1_5_Name;

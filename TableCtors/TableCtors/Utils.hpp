@@ -64,6 +64,7 @@ std::string toString(ERROR_CODE inCode);
 bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 bool isNumber(std::string inChain);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
+bool isVectorEmpty(std::vector<CTable*>& inCache);
 }
 
 namespace logLiterals
@@ -102,6 +103,36 @@ constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nr
 constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
 constexpr char* close = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr char* help = "help"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
+}
+
+namespace commandArgs
+{
+constexpr char* IDX = "<idx>";
+constexpr char* SIZE = "<size>";
+constexpr char* NAME = "<name>";
+constexpr char* VALUE = "<value>";
+
+}
+
+namespace fullCommands
+{
+extern std::string createArgs;
+extern std::string createDefArgs;
+extern std::string createDefsArgs;
+extern std::string createCopyArgs;
+extern std::string getNameArgs;
+extern std::string getSizeArgs;
+extern std::string getValueArgs;
+extern std::string setValueArgs;
+extern std::string setNameArgs;
+extern std::string printArgs;
+extern std::string removeArgs;
+extern std::string removeAllArgs;
+extern std::string changeSizeArgs;
+extern std::string closeArgs;
+extern std::string helpArgs;
+extern std::vector<std::string> allCommands;
 }
 
 

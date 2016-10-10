@@ -536,6 +536,20 @@ TEST_F(FlyweightProperArgsMT, createDefs10_removeAll_getSize6_Expect_INDEX_OUT_O
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, removeAll_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::removeAll)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+
 TEST_F(FlyweightProperArgsMT, createDefs1_setName0_getName0_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
@@ -770,6 +784,19 @@ TEST_F(FlyweightProperArgsMT, changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
     ({
         application.interpretCommand(stub::changeSize_0_m5),
         application.interpretCommand(stub::getValue0_1),
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
+TEST_F(FlyweightProperArgsMT, help_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::help)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));

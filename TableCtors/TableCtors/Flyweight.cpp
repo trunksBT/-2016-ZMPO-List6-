@@ -15,6 +15,7 @@
 #include "Handlers/CreateCopyHandler.h"
 #include "Handlers/PrintHandler.h"
 #include "Handlers/ChangeSizeHandler.h"
+#include "Handlers/HelpHandler.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
@@ -95,6 +96,11 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::changeSize)
     {
         ChangeSizeHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
+    }
+    else if(command == messageLiterals::help)
+    {
+        HelpHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::close)

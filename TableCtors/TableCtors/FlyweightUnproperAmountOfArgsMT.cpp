@@ -214,7 +214,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, removeToBig_OnEmptyFlyweight_Expect_SEEM
 
 TEST_F(FlyweightUnproperAmountOfArgsMT, removeAllToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
 {
-    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({

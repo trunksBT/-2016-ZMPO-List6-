@@ -41,6 +41,14 @@ ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
 
 void RemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
+    if(isVectorEmpty(inCache))
+    {
+        inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
+        if(flag::printOn)
+        {
+            std::cout << toString(inResultCode);
+        }
+    }
 }
 RemoveAllHandler::~RemoveAllHandler()
 {

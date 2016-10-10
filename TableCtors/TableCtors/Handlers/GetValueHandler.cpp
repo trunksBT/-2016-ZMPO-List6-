@@ -96,4 +96,3 @@ void GetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
 
 GetValueHandler::~GetValueHandler()
 {}
-
