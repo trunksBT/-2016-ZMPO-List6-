@@ -16,7 +16,8 @@ enum class ERROR_CODE : int
     ERROR_COMMAND_PARSING = 3, // it will be used when parsing has errors or undefined command
     NOT_HANDLED_ERROR_REPORTING = 4,
     INITIAL_VAL = 5,
-    WRONG_AMOUNT_OF_ARGS = 6
+    WRONG_AMOUNT_OF_ARGS = 6,
+    ERROR_ARGS_PARSING = 7 // when args amount is proper, but type is wrong
 };
 
 namespace defaultVals
@@ -43,6 +44,8 @@ constexpr int FIVE = 5;
 constexpr int DEFAULT_IN_TABLE_SIZE = 3;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
+constexpr char intType = 'i';
+constexpr char stringType = 's';
 }
 
 namespace funs
@@ -50,7 +53,9 @@ namespace funs
 bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 bool isProperIdx(int idx, int size);
 std::string toString(ERROR_CODE inCode);
-bool isProperArguments(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+bool isNumber(std::string inChain);
+bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
 }
 
 namespace logLiterals

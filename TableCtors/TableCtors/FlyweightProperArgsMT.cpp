@@ -59,7 +59,7 @@ TEST_F(FlyweightProperArgsMT, getFinalResultCode_createDef_Expect_INDEX_OUT_OF_B
     ASSERT_FOR_PAIR_WITH_PRINT(expVal, rcVal);
 }
 
-TEST_F(FlyweightProperArgsMT, createDefm1_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(FlyweightProperArgsMT, createDefm1_OnEmptyFlyweight_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
     
@@ -85,7 +85,7 @@ TEST_F(FlyweightProperArgsMT, createDef0_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDef6_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightProperArgsMT, createDef6_OnEmptyFlyweight_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
@@ -163,7 +163,7 @@ TEST_F(FlyweightProperArgsMT, createCopy01_Expect_UNDEFINED_OBJECT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDefs1_createCopy00_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightProperArgsMT, createDefs1_createCopy00_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
@@ -459,7 +459,7 @@ TEST_F(FlyweightProperArgsMT, createDefs1_setName0_getName0_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDefs1_setName6_getName0_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightProperArgsMT, createDefs1_setName6_getName0_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
@@ -474,7 +474,7 @@ TEST_F(FlyweightProperArgsMT, createDefs1_setName6_getName0_Expect_SEEMS_LEGIT)
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperArgsMT, createDefs10_setName10_getName0_Expect_SEEMS_LEGIT)
+TEST_F(FlyweightProperArgsMT, createDefs10_setName10_getName0_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 

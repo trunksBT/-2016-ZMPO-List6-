@@ -23,9 +23,20 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
         std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
     }
 
-    if(isProperArguments(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
-        performOnProperAmountOfArgs(inCache, resultCode);
+        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS))
+        {
+            performOnProperArgs(inCache, resultCode);
+        }
+        else
+        {
+            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
+            if(flag::printOn)
+            {
+                std::cout << toString(resultCode);
+            }
+        }
     }
     else
     {
@@ -39,7 +50,7 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateCopyHandler::performOnProperAmountOfArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);

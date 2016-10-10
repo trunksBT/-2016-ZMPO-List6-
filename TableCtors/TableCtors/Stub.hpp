@@ -5,7 +5,6 @@
 
 namespace stub
 {
-
 extern std::vector<std::string> createDefm1;
 extern std::vector<std::string> createDef0;
 extern std::vector<std::string> createDef6;
@@ -50,12 +49,10 @@ extern std::vector<std::string> getValue0_m1;
 extern std::vector<std::string> getValue1_2;
 extern std::vector<std::string> getValue6_3;
 extern std::vector<std::string> getValue10_10;
-
 }
 
 namespace wrongAmountStub
 {
-
 extern std::vector<std::string> createDefToSmall;
 extern std::vector<std::string> createDefsToSmall;
 extern std::vector<std::string> createCopy0ToSmall;
@@ -80,5 +77,19 @@ extern std::vector<std::string> setName0ToBig;
 extern std::vector<std::string> getValue0ToBig;
 extern std::vector<std::string> setValue0_0ToBig;
 extern std::vector<std::string> wrongCommandToBig;
+}
+
+namespace wrongTypeStub
+{
+extern std::vector<std::string> createDefZ;
+extern std::vector<std::string> createDefsZ;
+extern std::vector<std::string> createCopyZZ;
+extern std::vector<std::string> printZ;
+extern std::vector<std::string> getNameZ;
+extern std::vector<std::string> getSizeZ;
+extern std::vector<std::string> removeZ;
+extern std::vector<std::string> setNameZ;
+extern std::vector<std::string> getValueZZ;
+extern std::vector<std::string> setValue0ZZZ;
 }
 
