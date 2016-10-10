@@ -73,6 +73,13 @@ CTable::CTable(CTable& inVal)
     copyCtor(inVal);
 }
 
+CTable* CTable::clone()
+{
+    CTable* newObject = new CTable(*this);
+    newObject->setName(this->getName());
+    return newObject;
+}
+
 void CTable::initTable(int* table, int size, int defaultVal)
 {
     for(int i = 0; i < size; i++)
@@ -205,7 +212,7 @@ std::string CTable::getName() const
     return std::string(name_);
 }
 
-std::string CTable::toString()
+std::string CTable::toString() const
 {
     std::stringstream retVal;
     retVal << BRACKET_OPEN << name_;

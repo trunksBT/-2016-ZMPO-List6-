@@ -18,6 +18,24 @@ protected:
    {}
 };
 
+TEST_F(CTableTests, clone_Expect_theSameVals_otherAddresses)
+{
+    CTable* inVal = CTable::buildNewObj();
+    CTable* clonedObject = inVal->clone();
+
+    std::cout << inVal->toString() << POST_PRINT;
+    std::cout << clonedObject->toString() << POST_PRINT;
+
+    ASSERT_EQ(inVal->getName(), clonedObject->getName());
+    ASSERT_EQ(inVal->getSize(), clonedObject->getSize());
+    ASSERT_EQ(inVal->getVal(0), clonedObject->getVal(0));
+    ASSERT_EQ(inVal->getVal(1), clonedObject->getVal(1));
+    ASSERT_EQ(inVal->getVal(2), clonedObject->getVal(2));
+
+    delete inVal;
+    delete clonedObject;
+}
+
 TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
 {
    CTable* inVal = CTable::buildNewObj();
@@ -73,7 +91,6 @@ TEST_F(CTableTests, copyCTOR_withAssignCopyOperator_size5_Expect_size5)
 
 TEST_F(CTableTests, pushBack_onVector_ofObj_expect_CopyCtor)
 {
-
     std::vector<CTable> inVector;
     inVector.push_back(CTable());
     inVector.clear();
@@ -128,6 +145,7 @@ TEST_F(CTableTests, print_Copied)
     std::cout << inVal->toString() << POST_PRINT;
 
     ASSERT_TRUE(true);
+    delete inVal;
     delete sourceVal;
 }
 
@@ -144,6 +162,7 @@ TEST_F(CTableTests, print_Copied_afterSetValue)
     std::cout << inVal->toString() << POST_PRINT;
 
     ASSERT_TRUE(true);
+    delete inVal;
     delete sourceVal;
 }
 
@@ -160,6 +179,7 @@ TEST_F(CTableTests, print_Copied_afterSetName)
     std::cout << inVal->toString() << POST_PRINT;
 
     ASSERT_TRUE(true);
+    delete inVal;
     delete sourceVal;
 }
 
