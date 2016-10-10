@@ -205,7 +205,7 @@ std::string CTable::getName() const
     return std::string(name_);
 }
 
-std::string CTable::toString()
+std::string CTable::toString() const
 {
     std::stringstream retVal;
     retVal << BRACKET_OPEN << name_;
