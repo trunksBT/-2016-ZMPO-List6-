@@ -26,8 +26,11 @@ namespace defaultVals
 constexpr const char* PRE_PRINT = "   ";
 constexpr const char* POST_PRINT = "\n";
 constexpr const char* SEPARATOR = ": ";
-constexpr const char* SQUARE_BRACKET_OPEN = "[ ";
-constexpr const char* SQUARE_BRACKET_CLOSE = " ]";
+constexpr const char* BRACKET_OPEN = "( ";
+constexpr const char* BRACKET_CLOSE = " )";
+constexpr const char* LEN = "len";
+constexpr const char* VALUES = "values";
+constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
 constexpr const char* POST_COPIED_NAME = "_copy";

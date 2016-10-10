@@ -176,7 +176,9 @@ std::string CTable::getName() const
 std::string CTable::toString()
 {
     std::stringstream retVal;
-    retVal << name_ << SEPARATOR << SQUARE_BRACKET_OPEN;
+    retVal << BRACKET_OPEN << name_;
+    retVal << SPACE << LEN << SEPARATOR << size_;
+    retVal << SPACE << VALUES << SEPARATOR;
 
     for(int i = 0; i < size_; i++)
     {
@@ -186,6 +188,6 @@ std::string CTable::toString()
     std::string stringedStream(retVal.str());
     stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
 
-    return std::move(stringedStream + std::string(SQUARE_BRACKET_CLOSE));
+    return std::move(stringedStream + std::string(BRACKET_CLOSE));
 }
 
