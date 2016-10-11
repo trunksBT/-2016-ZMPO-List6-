@@ -776,5 +776,18 @@ TEST_F(FlyweightProperArgsMT, changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightProperArgsMT, help_Expect_SEEMS_LEGIT)
+{
+    ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::help)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 }
 

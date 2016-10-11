@@ -51,7 +51,7 @@ std::string toString(ERROR_CODE inCode)
         std::forward_as_tuple("WRONG_VALUE"));
     codeToString.emplace(std::piecewise_construct,
         std::forward_as_tuple(ERROR_CODE::CLOSE),
-        std::forward_as_tuple("CLOSE"));
+        std::forward_as_tuple("WRONG_VALUE"));
 
     return codeToString[inCode];
 }
@@ -98,3 +98,110 @@ bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inPrope
 }
 
 }
+namespace fullCommands
+{
+    std::string createArgs =
+        std::string(messageLiterals::create) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::SIZE) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::NAME);
+
+    std::string createDefArgs =
+        std::string(messageLiterals::createDef) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string createDefsArgs =
+        std::string(messageLiterals::createDefs) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::SIZE);
+
+    std::string createCopyArgs =
+        std::string(messageLiterals::createCopy) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string getNameArgs =
+        std::string(messageLiterals::getName) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string getSizeArgs =
+        std::string(messageLiterals::getSize) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string getValueArgs =
+        std::string(messageLiterals::getValue) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string setValueArgs =
+        std::string(messageLiterals::setValue) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::VALUE);
+
+    std::string setNameArgs =
+        std::string(messageLiterals::setName) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::NAME);
+
+    std::string printArgs =
+        std::string(messageLiterals::print) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string removeArgs =
+        std::string(messageLiterals::remove) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
+
+    std::string removeAllArgs =
+        std::string(messageLiterals::removeAll);
+
+    std::string changeSizeArgs =
+        std::string(messageLiterals::changeSize) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::SIZE);
+
+    std::string closeArgs =
+        std::string(messageLiterals::close);
+
+    std::string helpArgs =
+        std::string(messageLiterals::help);
+
+    std::vector<std::string> allCommands =
+    {
+        createArgs,
+        createDefArgs,
+        createDefsArgs,
+        createCopyArgs,
+        getNameArgs,
+        getSizeArgs,
+        getValueArgs,
+        setValueArgs,
+        setNameArgs,
+        printArgs,
+        removeArgs,
+        removeAllArgs,
+        changeSizeArgs,
+        closeArgs,
+        helpArgs
+    };
+}
+
