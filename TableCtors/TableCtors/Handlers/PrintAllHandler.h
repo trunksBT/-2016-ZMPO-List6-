@@ -8,8 +8,8 @@
 class CPrintAllHandler final : public IHandler
 {
 private:
-    const int PROPER_AMOUNT_OF_ARGS = 1;
-    std::string PROPER_TYPES_OF_ARGS = "s";
+    const int PROPER_AMOUNT_OF_ARGS_ = 1;
+    std::string PROPER_TYPES_OF_ARGS_ = "s";
 public:
     CPrintAllHandler(std::vector<std::string>& inCommand);
     virtual ~CPrintAllHandler();

@@ -19,9 +19,9 @@ ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
 
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
     {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS))
+        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
         {
             performOnProperArgs(inCache, resultCode);
         }

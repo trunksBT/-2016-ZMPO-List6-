@@ -10,7 +10,7 @@ public:
     CTable(int inSize);
     CTable(CTable& inVal);
     CTable(std::string inVal);
-    CTable(int inSize, int initValue);
+    CTable(int inSize, int inInitVal);
     CTable(int inSize, std::string inName);
     ~CTable();
     void copyCtor(CTable & inVal);
@@ -18,13 +18,13 @@ public:
     CTable* clone();
 public:
     int getSize() const;
-    int getVal(int idx) const;
+    int getVal(int inIdx) const;
     std::string getName() const;
     std::string toString() const;
 public:
     void changeSize(int inNewSize);
     void setName(std::string inName);
-    void setVal(int idx, int newVal);
+    void setVal(int idx, int inNewVal);
 public:
     static CTable* buildNewObj();
     static CTable* buildNewObj(CTable & inVal);
@@ -34,8 +34,8 @@ public:
 
 private:
     void deepCopy(CTable& inVal);
-    void initTable(int* table, int size, int defaultVal);
-    void allocateMemory(int size);
+    void initTable(int* inTable, int inSize, int inDefaultVal);
+    void allocateMemory(int inSize);
     void deallocateMemory();
 private:
     std::string name_;
