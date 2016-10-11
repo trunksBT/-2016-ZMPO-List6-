@@ -8,7 +8,7 @@ using namespace defaultVals;
 IHandler::IHandler(std::vector<std::string>& inCommand)
 {
     wholeCommand_ = inCommand;
-    if(flag::printOn && flag::debugTestsOn)
+    if(flag::PRINT_ON && flag::DEBUG_TESTS_ON)
     {
         std::cout << PRE_PRINT << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
@@ -16,7 +16,7 @@ IHandler::IHandler(std::vector<std::string>& inCommand)
 
 IHandler::~IHandler()
 {
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << POST_PRINT;
     }

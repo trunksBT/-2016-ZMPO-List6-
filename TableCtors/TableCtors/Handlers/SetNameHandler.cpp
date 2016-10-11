@@ -28,7 +28,7 @@ ERROR_CODE CSetNameHandler::performOn(std::vector<CTable*>& inCache)
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -37,7 +37,7 @@ ERROR_CODE CSetNameHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -57,7 +57,7 @@ void CSetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
         if(inCache[idxOrAmount] == nullptr)
         {
             inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(inResultCode);
             }
@@ -70,7 +70,7 @@ void CSetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
     else
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }

@@ -14,7 +14,7 @@ CTable::CTable()
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
     initTable(memory_, size_, ZERO);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -26,7 +26,7 @@ CTable::CTable(int inSize)
     size_ = inSize;
     allocateMemory(size_);
     initTable(memory_, size_, ZERO);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -38,7 +38,7 @@ CTable::CTable(int inSize, int initValue)
     size_ = inSize;
     allocateMemory(size_);
     initTable(memory_, size_, initValue);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -50,7 +50,7 @@ CTable::CTable(std::string inName)
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
     initTable(memory_, size_, ZERO);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -62,7 +62,7 @@ CTable::CTable(int inSize, std::string inName)
     size_ = inSize;
     allocateMemory(size_);
     initTable(memory_, size_, ZERO);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -95,7 +95,7 @@ void CTable::copyCtor(CTable& inVal)
     name_.append(POST_COPIED_NAME);
     allocateMemory(size_);
     deepCopy(inVal);
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
     }
@@ -167,7 +167,7 @@ void CTable::deepCopy(CTable& inVal)
 CTable::~CTable()
 {
     deallocateMemory();
-    if(flag::printOn)
+    if(flag::PRINT_ON)
     {
         std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
     }

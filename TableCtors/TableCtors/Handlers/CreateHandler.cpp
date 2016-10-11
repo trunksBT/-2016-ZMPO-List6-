@@ -27,7 +27,7 @@ ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -36,7 +36,7 @@ ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -56,7 +56,7 @@ void CCreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     if(idxOrAmount < 0)
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }
@@ -78,7 +78,7 @@ void CCreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
         else
         {
             inResultCode = ERROR_CODE::WRONG_VALUE;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(inResultCode);
             }

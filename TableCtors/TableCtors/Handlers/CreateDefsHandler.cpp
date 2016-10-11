@@ -28,7 +28,7 @@ ERROR_CODE CCreateDefsHandler::performOn(std::vector<CTable*>& inCache)
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -37,7 +37,7 @@ ERROR_CODE CCreateDefsHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -53,7 +53,7 @@ void CCreateDefsHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
     if(idxOrAmount <= ZERO)
     {
         inResultCode = ERROR_CODE::WRONG_VALUE;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }

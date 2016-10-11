@@ -28,7 +28,7 @@ ERROR_CODE CPrintHandler::performOn(std::vector<CTable*>& inCache)
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -37,7 +37,7 @@ ERROR_CODE CPrintHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -61,7 +61,7 @@ void CPrintHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
         else
         {
             inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(inResultCode);
             }
@@ -71,7 +71,7 @@ void CPrintHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
     else
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }

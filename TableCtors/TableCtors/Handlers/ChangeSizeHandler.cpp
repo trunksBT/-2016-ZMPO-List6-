@@ -27,7 +27,7 @@ ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -36,7 +36,7 @@ ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -59,7 +59,7 @@ void CChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
             if(inCache[sourceId] == nullptr)
             {
                 inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-                if(flag::printOn)
+                if(flag::PRINT_ON)
                 {
                     std::cout << toString(inResultCode);
                 }
@@ -72,7 +72,7 @@ void CChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
         else
         {
             inResultCode = ERROR_CODE::WRONG_VALUE;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(inResultCode);
             }
@@ -81,7 +81,7 @@ void CChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
     else
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }
