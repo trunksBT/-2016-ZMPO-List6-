@@ -7,21 +7,17 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-CreateDefsHandler::CreateDefsHandler(std::vector<std::string>& inCommand)
+CCreateDefsHandler::CCreateDefsHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CCreateDefsHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -50,9 +46,9 @@ ERROR_CODE CreateDefsHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateDefsHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CCreateDefsHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedId(wholeCommand_[idxOf::amount]);
+    std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount <= ZERO)
     {
@@ -90,5 +86,5 @@ void CreateDefsHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
     }
 }
 
-CreateDefsHandler::~CreateDefsHandler()
+CCreateDefsHandler::~CCreateDefsHandler()
 {}

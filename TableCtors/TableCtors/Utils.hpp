@@ -7,7 +7,7 @@
 namespace flag
 {
 constexpr bool printOn = true;
-constexpr bool isRepl = true;
+constexpr bool debugTestsOn = false;
 }
 
 enum class ERROR_CODE : int
@@ -43,19 +43,19 @@ constexpr const char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
 constexpr const char* CTOR_DEFAULT_PRE_PRINT = "bezp: ";
 constexpr const char* CTOR_DEFAULT_MOVE_PRINT = "przenoszenie: ";
 constexpr const char* CTOR_ARG1_PRE_PRINT = "parametr: ";
-constexpr int INITIAL_FLYWEIGHT_CACHE_SIZE = 5;
-constexpr int ZERO = 0;
-constexpr int MINUS_ONE = -1;
-constexpr int ONE = 1;
-constexpr int TWO = 2;
-constexpr int FIVE = 5;
-constexpr int TEN = 10;
-constexpr long MAX_INT_VAL = (std::numeric_limits<int>::max)();
-constexpr int DEFAULT_IN_TABLE_SIZE = TWO;
+constexpr const int INITIAL_FLYWEIGHT_CACHE_SIZE = 5;
+constexpr const int ZERO = 0;
+constexpr const int MINUS_ONE = -1;
+constexpr const int ONE = 1;
+constexpr const int TWO = 2;
+constexpr const int FIVE = 5;
+constexpr const int TEN = 10;
+constexpr const long MAX_INT_VAL = (std::numeric_limits<int>::max)();
+constexpr const int DEFAULT_IN_TABLE_SIZE = TWO;
 constexpr const char* string999 = "999";
 constexpr const char* erroredCommandIdx = "Errored command idx";
-constexpr char intType = 'i';
-constexpr char stringType = 's';
+constexpr const char intType = 'i';
+constexpr const char stringType = 's';
 }
 
 namespace funs
@@ -70,52 +70,44 @@ bool isVectorEmpty(std::vector<CTable*>& inCache);
 int toInt(char inChar);
 }
 
-namespace logLiterals
-{
-constexpr const char* undefinedCommand = "Nie znam takiej komendy";
-constexpr const char* undefinedObject = "Nie znam takiego obiektu";
-constexpr const char* indexOutOfBound = "Index poza obszarem pamieci";
-constexpr const char* nullPointerDetected = "Object";
-}
-
 namespace idxOf
 {
-constexpr int command = 0;
-constexpr int idOfCTable = 1;
-constexpr int amount = 1;
-constexpr int newName = 2;
-constexpr int newSize = 2;
-constexpr int goalId = 2;
-constexpr int newVal = 3;
-constexpr int initialName = 3;
+constexpr int COMMAND = 0;
+constexpr int ID_OF_CTABLE = 1;
+constexpr int AMOUNT = 1;
+constexpr int NEW_NAME = 2;
+constexpr int NEW_SIZE = 2;
+constexpr int GOAL_ID = 2;
+constexpr int NEW_VAL = 3;
+constexpr int INITIAL_NAME = 3;
 }
 
 namespace messageLiterals
 {
-constexpr char* create = "create"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
-constexpr char* createDef = "createDef"; // calls default ctor for obj with number 
-constexpr char* createDefs = "createDefs"; // calls default ctor for number of obj
-constexpr char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr char* getName = "getName"; // getName of CTable on idx
-constexpr char* getSize = "getSize"; // getSize of CTable on idx
-constexpr char* getValue = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
-constexpr char* remove = "remove"; // remove CTable on idx
-constexpr char* removeAll = "removeAll"; // remove CTable on idx
-constexpr char* setName = "setName"; // set name of CTable on idx
-constexpr char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
-constexpr char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr char* printAll = "printAll"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr char* close = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr char* help = "help"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
+constexpr const char* CREATE = "create"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
+constexpr const char* CREATE_DEF = "createDef"; // calls default ctor for obj with number 
+constexpr const char* CREATE_DEFS = "createDefs"; // calls default ctor for number of obj
+constexpr const char* CREATE_COPY = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* GET_NAME = "getName"; // getName of CTable on idx
+constexpr const char* GET_SIZE = "getSize"; // getSize of CTable on idx
+constexpr const char* GET_VALUE = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
+constexpr const char* REMOVE = "remove"; // remove CTable on idx
+constexpr const char* REMOVE_ALL = "removeAll"; // remove CTable on idx
+constexpr const char* SET_NAME = "setName"; // set name of CTable on idx
+constexpr const char* SET_VALUE = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
+constexpr const char* PRINT = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* PRINT_ALL = "printAll"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* CHANGE_SIZE = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* CLOSE = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* HELP = "help"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
 }
 
 namespace commandArgs
 {
-constexpr char* IDX = "<idx>";
-constexpr char* SIZE = "<size>";
-constexpr char* NAME = "<name>";
-constexpr char* VALUE = "<value>";
+constexpr const char* IDX = "<idx>";
+constexpr const char* SIZE = "<size>";
+constexpr const char* NAME = "<name>";
+constexpr const char* VALUE = "<value>";
 
 }
 

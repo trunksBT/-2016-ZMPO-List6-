@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 {
 
    {
-        Flyweight application;
+        CFlyweight application;
         ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
         std::cout << "Pass command" << std::endl;

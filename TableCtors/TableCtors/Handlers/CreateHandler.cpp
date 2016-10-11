@@ -2,25 +2,21 @@
 #include <iostream>
 
 #include "CreateHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-CreateHandler::CreateHandler(std::vector<std::string>& inCommand)
+CCreateHandler::CCreateHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE CreateHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -49,13 +45,13 @@ ERROR_CODE CreateHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CCreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
+    std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
-    std::string receivedNewSize(wholeCommand_[idxOf::newSize]);
+    std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
-    std::string initialName(wholeCommand_[idxOf::initialName]);
+    std::string initialName(wholeCommand_[idxOf::INITIAL_NAME]);
 
     if(idxOrAmount < 0)
     {
@@ -90,5 +86,5 @@ void CreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
     }
 }
 
-CreateHandler::~CreateHandler()
+CCreateHandler::~CCreateHandler()
 {}

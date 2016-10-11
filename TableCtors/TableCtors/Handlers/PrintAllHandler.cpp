@@ -7,20 +7,16 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-PrintAllHandler::PrintAllHandler(std::vector<std::string>& inCommand)
+CPrintAllHandler::CPrintAllHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE PrintAllHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CPrintAllHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -49,7 +45,7 @@ ERROR_CODE PrintAllHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void PrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CPrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     if(inCache.size() == 0)
     {
@@ -67,7 +63,7 @@ void PrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
 
             if(inCache[i] == nullptr)
             {
-                std::cout << undefinedObject;
+                std::cout << toString(ERROR_CODE::UNDEFINED_OBJECT);
             }
             else
             {
@@ -78,5 +74,5 @@ void PrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
         }
     }
 }
-PrintAllHandler::~PrintAllHandler()
+CPrintAllHandler::~CPrintAllHandler()
 {}

@@ -7,20 +7,16 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-GetValueHandler::GetValueHandler(std::vector<std::string>& inCommand)
+CGetValueHandler::CGetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE GetValueHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CGetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -49,11 +45,11 @@ ERROR_CODE GetValueHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void GetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CGetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedId(wholeCommand_[idxOf::amount]);
+    std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
-    std::string receivedIdOfNewVal(wholeCommand_[idxOf::goalId]);
+    std::string receivedIdOfNewVal(wholeCommand_[idxOf::GOAL_ID]);
     int idOfNewVal = std::stoi(receivedIdOfNewVal);
 
     if(isProperIdx(idxOrAmount, inCache))
@@ -94,5 +90,5 @@ void GetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
     }
 }
 
-GetValueHandler::~GetValueHandler()
+CGetValueHandler::~CGetValueHandler()
 {}

@@ -8,7 +8,6 @@ using namespace defaultVals;
 
 namespace funs
 {
-
     bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
     {
         return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();
@@ -148,7 +147,7 @@ namespace funs
 namespace fullCommands
 {
     std::string createArgs =
-        std::string(messageLiterals::create) +
+        std::string(messageLiterals::CREATE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
@@ -157,41 +156,41 @@ namespace fullCommands
         std::string(commandArgs::NAME);
 
     std::string createDefArgs =
-        std::string(messageLiterals::createDef) +
+        std::string(messageLiterals::CREATE_DEF) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string createDefsArgs =
-        std::string(messageLiterals::createDefs) +
+        std::string(messageLiterals::CREATE_DEFS) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::SIZE);
 
     std::string createCopyArgs =
-        std::string(messageLiterals::createCopy) +
+        std::string(messageLiterals::CREATE_COPY) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string getNameArgs =
-        std::string(messageLiterals::getName) +
+        std::string(messageLiterals::GET_NAME) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string getSizeArgs =
-        std::string(messageLiterals::getSize) +
+        std::string(messageLiterals::GET_SIZE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string getValueArgs =
-        std::string(messageLiterals::getValue) +
+        std::string(messageLiterals::GET_VALUE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string setValueArgs =
-        std::string(messageLiterals::setValue) +
+        std::string(messageLiterals::SET_VALUE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
@@ -200,40 +199,40 @@ namespace fullCommands
         std::string(commandArgs::VALUE);
 
     std::string setNameArgs =
-        std::string(messageLiterals::setName) +
+        std::string(messageLiterals::SET_NAME) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::NAME);
 
     std::string printArgs =
-        std::string(messageLiterals::print) +
+        std::string(messageLiterals::PRINT) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string printAllArgs =
-        std::string(messageLiterals::printAll);
+        std::string(messageLiterals::PRINT_ALL);
 
     std::string removeArgs =
-        std::string(messageLiterals::remove) +
+        std::string(messageLiterals::REMOVE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
     std::string removeAllArgs =
-        std::string(messageLiterals::removeAll);
+        std::string(messageLiterals::REMOVE_ALL);
 
     std::string changeSizeArgs =
-        std::string(messageLiterals::changeSize) +
+        std::string(messageLiterals::CHANGE_SIZE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::SIZE);
 
     std::string closeArgs =
-        std::string(messageLiterals::close);
+        std::string(messageLiterals::CLOSE);
 
     std::string helpArgs =
-        std::string(messageLiterals::help);
+        std::string(messageLiterals::HELP);
 
     std::vector<std::string> allCommands =
     {

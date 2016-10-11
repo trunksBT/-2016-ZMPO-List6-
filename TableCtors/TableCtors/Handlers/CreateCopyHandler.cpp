@@ -2,26 +2,22 @@
 #include <iostream>
 
 #include "CreateCopyHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-CreateCopyHandler::CreateCopyHandler(std::vector<std::string>& inCommand)
+CCreateCopyHandler::CCreateCopyHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -50,11 +46,11 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
+    std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int sourceId = std::stoi(receivedSourceId);
-    std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
+    std::string receivedDestinyId(wholeCommand_[idxOf::GOAL_ID]);
     int destinyId = std::stoi(receivedDestinyId);
 
     if(isProperIdx(sourceId, inCache))
@@ -104,5 +100,5 @@ void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
     }
 }
 
-CreateCopyHandler::~CreateCopyHandler()
+CCreateCopyHandler::~CCreateCopyHandler()
 {}

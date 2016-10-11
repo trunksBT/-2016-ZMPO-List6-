@@ -19,12 +19,12 @@
 #include "Handlers/HelpHandler.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+using namespace messageLiterals;
 using namespace funs;
 
-std::vector<CTable*> Flyweight::cache_;
+std::vector<CTable*> CFlyweight::cache_;
 
-ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
+ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
     if(inCommand.size() == ZERO)
     {
@@ -32,84 +32,84 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     }
 
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
-    std::string command(inCommand[idxOf::command]);
+    std::string command(inCommand[idxOf::COMMAND]);
 
-    if(command == messageLiterals::create)
+    if(command == CREATE)
     {
-        CreateHandler evaluate(inCommand);
+        CCreateHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::createDef)
+    else if(command == CREATE_DEF)
     {
-        CreateDefHandler evaluate(inCommand);
+        CCreateDefHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::createDefs)
+    else if(command == CREATE_DEFS)
     {
-        CreateDefsHandler evaluate(inCommand);
+        CCreateDefsHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::createCopy)
+    else if(command == CREATE_COPY)
     {
-        CreateCopyHandler evaluate(inCommand);
+        CCreateCopyHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::remove)
+    else if(command == REMOVE)
     {
-        RemoveHandler evaluate(inCommand);
+        CRemoveHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::removeAll)
+    else if(command == REMOVE_ALL)
     {
-        RemoveAllHandler evaluate(inCommand);
+        CRemoveAllHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::setName)
+    else if(command == SET_NAME)
     {
-        SetNameHandler evaluate(inCommand);
+        CSetNameHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::setValue)
+    else if(command == SET_VALUE)
     {
-        SetValueHandler evaluate(inCommand);
+        CSetValueHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::getName)
+    else if(command == GET_NAME)
     {
-        GetNameHandler evaluate(inCommand);
+        CGetNameHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::getSize)
+    else if(command == GET_SIZE)
     {
-        GetSizeHandler evaluate(inCommand);
+        CGetSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::getValue)
+    else if(command == GET_VALUE)
     {
-        GetValueHandler evaluate(inCommand);
+        CGetValueHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::print)
+    else if(command == PRINT)
     {
-        PrintHandler evaluate(inCommand);
+        CPrintHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::printAll)
+    else if(command == PRINT_ALL)
     {
-        PrintAllHandler evaluate(inCommand);
+        CPrintAllHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::changeSize)
+    else if(command == CHANGE_SIZE)
     {
-        ChangeSizeHandler evaluate(inCommand);
+        CChangeSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::help)
+    else if(command == HELP)
     {
-        HelpHandler evaluate(inCommand);
+        CHelpHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
-    else if(command == messageLiterals::close)
+    else if(command == CLOSE)
     {
         returnedCode = ERROR_CODE::CLOSE;
     }
@@ -127,17 +127,17 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 
 #pragma region ********** CTORS_DTORS **********
 
-void Flyweight::createFlyweight(int inSize)
+void CFlyweight::createCFlyweight(int inSize)
 {
     cache_ = std::vector<CTable*>(inSize);
 }
 
-void Flyweight::releaseResources()
+void CFlyweight::releaseResources()
 {
     releaseResources(cache_);
 }
 
-void Flyweight::releaseResources(std::vector<CTable*>& inCache)
+void CFlyweight::releaseResources(std::vector<CTable*>& inCache)
 {
     for(auto i = ZERO; i < inCache.size(); i++)
     {
@@ -146,24 +146,24 @@ void Flyweight::releaseResources(std::vector<CTable*>& inCache)
     inCache.clear();
 }
 
-Flyweight::Flyweight()
+CFlyweight::CFlyweight()
 {
-    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
+    CFlyweight::createCFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
 }
 
-Flyweight::Flyweight(std::vector<std::string>& inCommand,
+CFlyweight::CFlyweight(std::vector<std::string>& inCommand,
     std::vector<CTable*>& inCache)
 {
-    Flyweight::createFlyweight(inCache);
-    Flyweight::interpretCommand(std::move(inCommand));
+    CFlyweight::createCFlyweight(inCache);
+    CFlyweight::interpretCommand(std::move(inCommand));
 }
 
-Flyweight::~Flyweight()
+CFlyweight::~CFlyweight()
 {
-    Flyweight::releaseResources();
+    CFlyweight::releaseResources();
 }
 
-void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
+void CFlyweight::createCFlyweight(std::vector<CTable*>& inCache)
 {
     cache_ = std::move(inCache);
 }

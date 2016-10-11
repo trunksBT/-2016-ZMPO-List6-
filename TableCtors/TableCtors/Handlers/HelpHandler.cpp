@@ -7,20 +7,16 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-HelpHandler::HelpHandler(std::vector<std::string>& inCommand)
+CHelpHandler::CHelpHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE HelpHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CHelpHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -49,7 +45,7 @@ ERROR_CODE HelpHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void HelpHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CHelpHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     for(int i = 0; i < fullCommands::allCommands.size(); i++)
     {
@@ -57,6 +53,6 @@ void HelpHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE&
     }
 }
 
-HelpHandler::~HelpHandler()
+CHelpHandler::~CHelpHandler()
 {}
 

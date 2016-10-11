@@ -115,4 +115,3 @@ extern std::vector<std::string> getValueZZ;
 extern std::vector<std::string> setValue0ZZZ;
 extern std::vector<std::string> changeSizeZZ;
 }
-

@@ -5,14 +5,14 @@
 
 #include "IHandler.h"
 
-class RemoveHandler final : public IHandler
+class CRemoveHandler final : public IHandler
 {
 private:
     const int PROPER_AMOUNT_OF_ARGS = 2;
     std::string PROPER_TYPES_OF_ARGS = "si";
 public:
-    RemoveHandler(std::vector<std::string>& inCommand);
-    virtual ~RemoveHandler();
-    ERROR_CODE performOn(std::vector<CTable*>& inFlyweightCache) override;
+    CRemoveHandler(std::vector<std::string>& inCommand);
+    virtual ~CRemoveHandler();
+    ERROR_CODE performOn(std::vector<CTable*>& inCCFlyweightCache) override;
     void performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode);
 };

@@ -7,21 +7,17 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
-GetSizeHandler::GetSizeHandler(std::vector<std::string>& inCommand)
+CGetSizeHandler::CGetSizeHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE GetSizeHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CGetSizeHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {
@@ -50,9 +46,9 @@ ERROR_CODE GetSizeHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void GetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CGetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedId(wholeCommand_[idxOf::amount]);
+    std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
     if(isProperIdx(idxOrAmount, inCache))
@@ -82,6 +78,6 @@ void GetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     }
 }
 
-GetSizeHandler::~GetSizeHandler()
+CGetSizeHandler::~CGetSizeHandler()
 {}
 

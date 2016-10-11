@@ -15,7 +15,7 @@ using namespace assertWrapper;
 
 namespace
 {
-class FlyweightProperAmountOfArgsButWrongMT : public testing::Test
+class CCFlyweightProperAmountOfArgsButWrongMT : public testing::Test
 {
 protected:
     virtual void SetUp()
@@ -26,11 +26,11 @@ protected:
     virtual void TearDown()
     {}
 protected:
-    Flyweight application;
+    CFlyweight application;
     ResultCode rcVal;
 };
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, createDefZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, createDefZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -43,7 +43,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, createDefZ_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, createDefsZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, createDefsZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -56,7 +56,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, createDefsZ_OnEmptyFlyweight_Expec
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, createCopyZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, createCopyZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -69,7 +69,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, createCopyZZ_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, printZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, printZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -82,7 +82,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, printZ_OnEmptyFlyweight_Expect_ERR
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, getNameZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, getNameZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -95,7 +95,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, getNameZ_OnEmptyFlyweight_Expect_E
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, getSizeZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, getSizeZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -108,7 +108,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, getSizeZ_OnEmptyFlyweight_Expect_E
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, removeZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, removeZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -121,7 +121,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, removeZ_OnEmptyFlyweight_Expect_ER
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, setNameZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, setNameZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -134,7 +134,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, setNameZ_OnEmptyFlyweight_Expect_E
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, getValueZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, getValueZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -147,7 +147,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, getValueZZ_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, setValue0ZZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, setValue0ZZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -160,7 +160,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, setValue0ZZZ_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, changeSizeZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, changeSizeZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
@@ -174,7 +174,7 @@ TEST_F(FlyweightProperAmountOfArgsButWrongMT, changeSizeZZ_OnEmptyFlyweight_Expe
 }
 
 
-TEST_F(FlyweightProperAmountOfArgsButWrongMT, createZZZ_OnEmptyFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, createZZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
