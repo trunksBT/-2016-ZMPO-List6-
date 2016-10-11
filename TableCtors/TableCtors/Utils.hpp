@@ -64,6 +64,7 @@ std::string toString(ERROR_CODE inCode);
 bool isNumber(std::string inChain);
 bool isProperIdx(int inIdx, int inSize);
 bool isVectorEmpty(std::vector<CTable*>& inCache);
+bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
 bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);

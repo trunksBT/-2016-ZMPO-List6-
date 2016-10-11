@@ -13,9 +13,9 @@ namespace funs
         return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();
     }
 
-    bool isProperIdx(int idx, int size)
+    bool isProperIdx(int inIdx, int inSize)
     {
-        return idx > MINUS_ONE && idx < size;
+        return inIdx > MINUS_ONE && inIdx < inSize;
     }
 
     std::string toString(ERROR_CODE inCode)
