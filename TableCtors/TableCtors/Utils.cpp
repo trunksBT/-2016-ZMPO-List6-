@@ -228,20 +228,25 @@ namespace fullCommands
     std::string printAllArgs =
         std::string(messageLiterals::PRINT_ALL);
 
-    std::string removeArgs =
-        std::string(messageLiterals::REMOVE) +
+    std::string deleteArgs =
+        std::string(messageLiterals::DELETE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
-    std::string removeAllArgs =
+    std::string deleteAllArgs =
         std::string(messageLiterals::REMOVE_ALL);
 
-    std::string changeSizeArgs =
-        std::string(messageLiterals::CHANGE_SIZE) +
+    std::string setSizeArgs =
+        std::string(messageLiterals::SET_SIZE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::SIZE);
+
+    std::string clearArgs =
+        std::string(messageLiterals::CLEAR) +
+        std::string(defaultVals::SPACE) +
+        std::string(commandArgs::IDX);
 
     std::string closeArgs =
         std::string(messageLiterals::CLOSE);
@@ -262,9 +267,9 @@ namespace fullCommands
         setNameArgs,
         printArgs,
         printAllArgs,
-        removeArgs,
-        removeAllArgs,
-        changeSizeArgs,
+        deleteArgs,
+        deleteAllArgs,
+        setSizeArgs,
         closeArgs,
         helpArgs
     };

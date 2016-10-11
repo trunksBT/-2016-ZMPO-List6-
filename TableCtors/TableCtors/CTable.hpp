@@ -22,7 +22,7 @@ public:
     std::string getName() const;
     std::string toString() const;
 public:
-    void changeSize(int inNewSize);
+    void setSize(int inNewSize);
     void setName(std::string inName);
     void setVal(int idx, int inNewVal);
 public:
@@ -31,10 +31,11 @@ public:
     static CTable* buildNewObj(int inSize);
     static CTable* buildNewObj(int inSize, std::string inName);
     static CTable* buildNewObj(int inSize, int inInitValue);
+    void initTable(int* inTable, int inSize, int inDefaultVal);
+    void initTable();
 
 private:
     void deepCopy(CTable& inVal);
-    void initTable(int* inTable, int inSize, int inDefaultVal);
     void allocateMemory(int inSize);
     void deallocateMemory();
 private:

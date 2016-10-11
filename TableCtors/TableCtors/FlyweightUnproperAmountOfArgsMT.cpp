@@ -186,39 +186,39 @@ TEST_F(CFlyweightUnproperAmountOfArgsMT, getSizeToBig_OnEmptyCFlyweight_Expect_U
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightUnproperAmountOfArgsMT, removeToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, deleteToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::removeToSmall)
+        application.interpretCommand(wrongAmountStub::deleteToSmall)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightUnproperAmountOfArgsMT, removeToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, deleteToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::removeToBig)
+        application.interpretCommand(wrongAmountStub::deleteToBig)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightUnproperAmountOfArgsMT, removeAllToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, deleteAllToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::removeAllToBig)
+        application.interpretCommand(wrongAmountStub::deleteAllToBig)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -342,26 +342,26 @@ TEST_F(CFlyweightUnproperAmountOfArgsMT, wrongCommandToBig_OnEmptyCFlyweight_Exp
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightUnproperAmountOfArgsMT, changeSizeToSmall_getValue0_1_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setSizeToSmall_getValue0_1_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::changeSizeToSmall),
+        application.interpretCommand(wrongAmountStub::setSizeToSmall),
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightUnproperAmountOfArgsMT, changeSizeToBig_getValue0_1_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setSizeToBig_getValue0_1_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongAmountStub::changeSizeToBig),
+        application.interpretCommand(wrongAmountStub::setSizeToBig),
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));

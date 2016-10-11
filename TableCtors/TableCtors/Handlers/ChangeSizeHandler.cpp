@@ -41,7 +41,7 @@ ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
             }
             else
             {
-                inCache[sourceId]->changeSize(newSize);
+                inCache[sourceId]->setSize(newSize);
             }
         }
         else

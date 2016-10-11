@@ -262,7 +262,7 @@ TEST_F(CFlyweightProperArgsMT, createCopy01_Expect_UNDEFINED_OBJECT)
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(stub::createCopy01)
+        application.interpretCommand(stub::createCopy10)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -290,7 +290,7 @@ TEST_F(CFlyweightProperArgsMT, createDefs1_createCopy01_Expect_SEEMS_LEGIT)
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::createCopy01)
+        application.interpretCommand(stub::createCopy10)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -304,7 +304,7 @@ TEST_F(CFlyweightProperArgsMT, createDefs1_createCopy0_m1_Expect_SEEMS_LEGIT)
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::createCopy0_m1)
+        application.interpretCommand(stub::createCopym1_0)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -318,7 +318,7 @@ TEST_F(CFlyweightProperArgsMT, createDefs1_createCopy06_Expect_SEEMS_LEGIT)
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::createCopy06)
+        application.interpretCommand(stub::createCopy60)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -506,42 +506,42 @@ TEST_F(CFlyweightProperArgsMT, createDefs10_getSize10_Expect_INDEX_OUT_OF_BOUNDS
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs1_removem1_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(CFlyweightProperArgsMT, createDefs1_deletem1_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::removem1)
+        application.interpretCommand(stub::deletem1)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs1_remove0_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightProperArgsMT, createDefs1_delete0_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::remove0)
+        application.interpretCommand(stub::delete0)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs1_remove0_getName0_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightProperArgsMT, createDefs1_delete0_getName0_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::remove0),
+        application.interpretCommand(stub::delete0),
         application.interpretCommand(stub::getName0)
     });
 
@@ -549,14 +549,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs1_remove0_getName0_Expect_UNDEFINED_OBJ
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs10_removeAll_getSize6_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(CFlyweightProperArgsMT, createDefs10_deleteAll_getSize6_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs10),
-        application.interpretCommand(stub::removeAll),
+        application.interpretCommand(stub::deleteAll),
         application.interpretCommand(stub::getSize6)
     });
 
@@ -564,13 +564,13 @@ TEST_F(CFlyweightProperArgsMT, createDefs10_removeAll_getSize6_Expect_INDEX_OUT_
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, removeAll_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightProperArgsMT, deleteAll_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(stub::removeAll)
+        application.interpretCommand(stub::deleteAll)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -651,14 +651,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs10_getValuem1_1_Expect_INDEX_OUT_OF_BOU
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs10_remove0_getValue0_m1_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightProperArgsMT, createDefs10_delete0_getValue0_m1_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs10),
-        application.interpretCommand(stub::remove0),
+        application.interpretCommand(stub::delete0),
         application.interpretCommand(stub::getValue0_m1)
     });
 
@@ -710,14 +710,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs1_setValue0_0_23_getValue0_1_Expect_SEE
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs1_remove0_setValue0_0_23_getValue0_1_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightProperArgsMT, createDefs1_delete0_setValue0_0_23_getValue0_1_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs1),
-        application.interpretCommand(stub::remove0),
+        application.interpretCommand(stub::delete0),
         application.interpretCommand(stub::setValue0_0_23),
         application.interpretCommand(stub::getValue0_1)
     });
@@ -787,14 +787,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs11_setValue1_m1_23_getValue1_2_Expect_I
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_0_5_getValue0_1_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightProperArgsMT, createDefs11_setSize_0_5_getValue0_1_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs11),
-        application.interpretCommand(stub::changeSize_0_5),
+        application.interpretCommand(stub::setSize_0_5),
         application.interpretCommand(stub::getValue0_1),
     });
 
@@ -802,14 +802,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_0_5_getValue0_1_Expect_SE
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_m1_5_getValue0_1_Expect_INDEX_OUT_OF_BOUNDS)
+TEST_F(CFlyweightProperArgsMT, createDefs11_setSize_m1_5_getValue0_1_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs11),
-        application.interpretCommand(stub::changeSize_m1_5),
+        application.interpretCommand(stub::setSize_m1_5),
         application.interpretCommand(stub::getValue0_1),
     });
 
@@ -817,14 +817,14 @@ TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_m1_5_getValue0_1_Expect_I
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
+TEST_F(CFlyweightProperArgsMT, createDefs11_setSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
 
     rcVal = getFinalResultCode
     ({
         application.interpretCommand(stub::createDefs11),
-        application.interpretCommand(stub::changeSize_0_m5),
+        application.interpretCommand(stub::setSize_0_m5),
         application.interpretCommand(stub::getValue0_1),
     });
 
@@ -832,13 +832,13 @@ TEST_F(CFlyweightProperArgsMT, createDefs11_changeSize_0_m5_getValue0_1_Expect_W
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CFlyweightProperArgsMT, changeSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
+TEST_F(CFlyweightProperArgsMT, setSize_0_m5_getValue0_1_Expect_WRONG_VALUE)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(stub::changeSize_0_m5),
+        application.interpretCommand(stub::setSize_0_m5),
         application.interpretCommand(stub::getValue0_1),
     });
 

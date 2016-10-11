@@ -27,10 +27,10 @@ std::string CCreateCopyHandler::getProperTypesOfArgs()
 
 ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
-    std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
-    int sourceId = std::stoi(receivedSourceId);
-    std::string receivedDestinyId(wholeCommand_[idxOf::GOAL_ID]);
+    std::string receivedDestinyId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int destinyId = std::stoi(receivedDestinyId);
+    std::string receivedSourceId(wholeCommand_[idxOf::GOAL_ID]);
+    int sourceId = std::stoi(receivedSourceId);
 
     if(isProperIdx(sourceId, inCache))
     {

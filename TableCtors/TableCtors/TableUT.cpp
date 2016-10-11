@@ -47,6 +47,18 @@ TEST_F(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
    delete inVal;
 }
 
+TEST_F(CTableTests, defCTOR_getValue_DEFAULT_VALUE_Expect_DEFAULTSIZE)
+{
+    CTable* inVal = CTable::buildNewObj();
+    int expVal = DEFAULT_TABLE_VAL;
+    int goalIdx = 0;
+
+    int rcVal = inVal->getVal(goalIdx);
+
+    ASSERT_EQ(expVal, rcVal);
+    delete inVal;
+}
+
 TEST_F(CTableTests, defCTOR_setSize_0_Expect_0)
 {
    int inSize = ZERO;
@@ -183,7 +195,7 @@ TEST_F(CTableTests, print_Copied_afterSetName)
     delete sourceVal;
 }
 
-TEST_F(CTableTests, changeSize_from_FIVE_onHigher_Expect_TEN)
+TEST_F(CTableTests, setSize_from_FIVE_onHigher_Expect_TEN)
 {
     int inSize = FIVE;
     int newSize = FIVE;
@@ -194,7 +206,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onHigher_Expect_TEN)
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
 
-    sourceVal->changeSize(TEN);
+    sourceVal->setSize(TEN);
 
     std::cout << "After change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
@@ -203,7 +215,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onHigher_Expect_TEN)
     delete sourceVal;
 }
 
-TEST_F(CTableTests, changeSize_from_FIVE_onLower_Expect_TWO)
+TEST_F(CTableTests, setSize_from_FIVE_onLower_Expect_TWO)
 {
     int inSize = FIVE;
     int newSize = TWO;
@@ -214,7 +226,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onLower_Expect_TWO)
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
 
-    sourceVal->changeSize(newSize);
+    sourceVal->setSize(newSize);
 
     std::cout << "After change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
@@ -223,7 +235,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onLower_Expect_TWO)
     delete sourceVal;
 }
 
-TEST_F(CTableTests, changeSize_from_FIVE_onTheSame_Expect_FIVE)
+TEST_F(CTableTests, setSize_from_FIVE_onTheSame_Expect_FIVE)
 {
     int inSize = FIVE;
     int newSize = FIVE;
@@ -234,7 +246,7 @@ TEST_F(CTableTests, changeSize_from_FIVE_onTheSame_Expect_FIVE)
     std::cout << "Before change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;
 
-    sourceVal->changeSize(newSize);
+    sourceVal->setSize(newSize);
 
     std::cout << "After change size" << std::endl;
     std::cout << sourceVal->toString() << std::endl;

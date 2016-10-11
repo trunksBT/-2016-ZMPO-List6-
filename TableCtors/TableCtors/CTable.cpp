@@ -13,7 +13,7 @@ CTable::CTable()
     name_ = DEFAULT_TABLE_NAME;
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
-    initTable(memory_, size_, ZERO);
+    initTable(memory_, size_, DEFAULT_TABLE_VAL);
     if(flag::PRINT_ON)
     {
         std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -25,7 +25,7 @@ CTable::CTable(int inSize)
     name_ = DEFAULT_TABLE_NAME;
     size_ = inSize;
     allocateMemory(size_);
-    initTable(memory_, size_, ZERO);
+    initTable(memory_, size_, DEFAULT_TABLE_VAL);
     if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -49,7 +49,7 @@ CTable::CTable(std::string inName)
     name_ = inName;
     size_ = DEFAULT_IN_TABLE_SIZE;
     allocateMemory(size_);
-    initTable(memory_, size_, ZERO);
+    initTable(memory_, size_, DEFAULT_TABLE_VAL);
     if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -61,7 +61,7 @@ CTable::CTable(int inSize, std::string inName)
     name_ = inName;
     size_ = inSize;
     allocateMemory(size_);
-    initTable(memory_, size_, ZERO);
+    initTable(memory_, size_, DEFAULT_TABLE_VAL);
     if(flag::PRINT_ON)
     {
         std::cout << CTOR_ARG1_PRE_PRINT << name_ << POST_PRINT;
@@ -79,6 +79,12 @@ CTable* CTable::clone()
     newObject->setName(this->getName());
     return newObject;
 }
+
+void CTable::initTable()
+{
+    initTable(memory_, DEFAULT_IN_TABLE_SIZE, DEFAULT_TABLE_VAL);
+}
+
 
 void CTable::initTable(int* table, int size, int defaultVal)
 {
@@ -103,18 +109,19 @@ void CTable::copyCtor(CTable& inVal)
 
 CTable& CTable::operator=(CTable& inObj)
 {
+    delete[] memory_;
     copyCtor(inObj);
     return *this;
 }
 
-void CTable::changeSize(int inNewSize)
+void CTable::setSize(int inNewSize)
 {
     if(size_ != inNewSize)
     {
         int* newTable = new int[inNewSize];
         if(size_ < inNewSize)
         {
-            initTable(newTable, inNewSize, ZERO);
+            initTable(newTable, inNewSize, DEFAULT_TABLE_VAL);
         }
         for(int i = 0; i < size_ && i < inNewSize; i++)
         {
@@ -190,7 +197,6 @@ void CTable::setVal(int idx, int newVal)
         memory_[idx] = newVal;
     }
 }
-
 
 int CTable::getVal(int idx) const
 {
