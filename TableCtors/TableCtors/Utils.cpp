@@ -211,6 +211,9 @@ namespace fullCommands
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX);
 
+    std::string printAllArgs =
+        std::string(messageLiterals::printAll);
+
     std::string removeArgs =
         std::string(messageLiterals::remove) +
         std::string(defaultVals::SPACE) +
@@ -244,6 +247,7 @@ namespace fullCommands
         setValueArgs,
         setNameArgs,
         printArgs,
+        printAllArgs,
         removeArgs,
         removeAllArgs,
         changeSizeArgs,
