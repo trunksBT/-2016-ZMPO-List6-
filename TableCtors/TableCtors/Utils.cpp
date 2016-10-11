@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Utils.hpp"
+#include "CTable.hpp"
 #include <map>
 #include <string>
 
@@ -95,6 +96,16 @@ bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inPrope
         }
     }
     return isProperType;
+}
+
+bool isVectorEmpty(std::vector<CTable*>& inCache)
+{
+    bool isEmpty = true;
+    for(int i = 0; i < inCache.size(); i++)
+    {
+        isEmpty = inCache[i] == nullptr;
+    }
+    return isEmpty;
 }
 
 }

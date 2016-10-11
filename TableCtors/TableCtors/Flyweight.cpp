@@ -11,7 +11,7 @@
 #include "Handlers/SetValueHandler.h"
 #include "Handlers/GetNameHandler.h"
 #include "Handlers/GetSizeHandler.h"
-#include "Handlers/HelpHandler.h"
+#include "Handlers/GetValueHandler.h"
 #include "Handlers/CreateCopyHandler.h"
 #include "Handlers/PrintHandler.h"
 #include "Handlers/ChangeSizeHandler.h"
@@ -85,7 +85,7 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     }
     else if(command == messageLiterals::getValue)
     {
-        HelpHandler evaluate(inCommand);
+        GetValueHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::print)

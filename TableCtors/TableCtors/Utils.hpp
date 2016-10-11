@@ -64,6 +64,7 @@ std::string toString(ERROR_CODE inCode);
 bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 bool isNumber(std::string inChain);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
+bool isVectorEmpty(std::vector<CTable*>& inCache);
 }
 
 namespace logLiterals
