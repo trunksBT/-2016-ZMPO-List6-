@@ -93,21 +93,21 @@ constexpr int INITIAL_NAME = 3;
 namespace messageLiterals
 {
 constexpr const char* CREATE = "create"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
-constexpr const char* createDef = "createDef"; // calls default ctor for obj with number 
-constexpr const char* createDefs = "createDefs"; // calls default ctor for number of obj
-constexpr const char* createCopy = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr const char* getName = "getName"; // getName of CTable on idx
-constexpr const char* getSize = "getSize"; // getSize of CTable on idx
-constexpr const char* getValue = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
-constexpr const char* remove = "remove"; // remove CTable on idx
-constexpr const char* removeAll = "removeAll"; // remove CTable on idx
-constexpr const char* setName = "setName"; // set name of CTable on idx
-constexpr const char* setValue = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
-constexpr const char* print = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr const char* printAll = "printAll"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr const char* changeSize = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr const char* close = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
-constexpr const char* help = "help"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
+constexpr const char* CREATE_DEF = "createDef"; // calls default ctor for obj with number 
+constexpr const char* CREATE_DEFS = "createDefs"; // calls default ctor for number of obj
+constexpr const char* CREATE_COPY = "createCopy"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* GET_NAME = "getName"; // getName of CTable on idx
+constexpr const char* GET_SIZE = "getSize"; // getSize of CTable on idx
+constexpr const char* GET_VALUE = "getValue"; // getValue from table in CTable <nrTablicy> <nrPozycji>
+constexpr const char* REMOVE = "remove"; // remove CTable on idx
+constexpr const char* REMOVE_ALL = "removeAll"; // remove CTable on idx
+constexpr const char* SET_NAME = "setName"; // set name of CTable on idx
+constexpr const char* SET_VALUE = "setValue"; // set value of CTable <nrTablicy> on <nrPozycji> onto <wartoœæ>
+constexpr const char* PRINT = "print"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* PRINT_ALL = "printAll"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* CHANGE_SIZE = "changeSize"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* CLOSE = "close"; // <nrTablicy> <nrTablicyDoKopiowania> -wywo³uje kontruktor kopiuj¹cy
+constexpr const char* HELP = "help"; // <nrTablicy> <rozmiar> <nazwaTablicy> - wywo³uje parametryczny kontruktor
 }
 
 namespace commandArgs
