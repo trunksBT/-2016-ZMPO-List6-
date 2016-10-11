@@ -23,7 +23,6 @@ using namespace funs;
 
 int main(int argc, char **argv)
 {
-
    //{
    //     CFlyweight application;
    //     ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;

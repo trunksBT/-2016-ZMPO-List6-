@@ -15,38 +15,17 @@ CCreateCopyHandler::CCreateCopyHandler(std::vector<std::string>& inCommand)
 {
 }
 
-ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
+const int CCreateCopyHandler::getProperAmountOfArgs()
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
-        {
-            performOnProperArgs(inCache, resultCode);
-        }
-        else
-        {
-            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(resultCode);
-            }
-        }
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-
-    return resultCode;
+    return 3;
 }
 
-void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+std::string CCreateCopyHandler::getProperTypesOfArgs()
+{
+    return "sii";
+}
+
+ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
     std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int sourceId = std::stoi(receivedSourceId);
@@ -57,11 +36,7 @@ void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
     {
         if(inCache[sourceId] == nullptr)
         {
-            inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(inResultCode);
-            }
+            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
         }
         else if(destinyId != sourceId)
         {
@@ -83,22 +58,13 @@ void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERRO
         }
         else
         {
-            inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(inResultCode);
-            }
+            return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
         }
     }
     else
     {
-        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
     }
-}
 
-CCreateCopyHandler::~CCreateCopyHandler()
-{}
+    return ERROR_CODE::SEEMS_LEGIT;
+}

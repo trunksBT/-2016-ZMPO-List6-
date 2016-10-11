@@ -37,77 +37,77 @@ ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     if(command == CREATE)
     {
         CCreateHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == CREATE_DEF)
     {
         CCreateDefHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == CREATE_DEFS)
     {
         CCreateDefsHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == CREATE_COPY)
     {
         CCreateCopyHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == REMOVE)
     {
         CRemoveHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == REMOVE_ALL)
     {
         CRemoveAllHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == SET_NAME)
     {
         CSetNameHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == SET_VALUE)
     {
         CSetValueHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == GET_NAME)
     {
         CGetNameHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == GET_SIZE)
     {
         CGetSizeHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == GET_VALUE)
     {
         CGetValueHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == PRINT)
     {
         CPrintHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == PRINT_ALL)
     {
         CPrintAllHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == CHANGE_SIZE)
     {
         CChangeSizeHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == HELP)
     {
         CHelpHandler evaluate(inCommand);
-        returnedCode = evaluate.performOn(cache_);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == CLOSE)
     {

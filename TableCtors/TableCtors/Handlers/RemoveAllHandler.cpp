@@ -15,38 +15,24 @@ CRemoveAllHandler::CRemoveAllHandler(std::vector<std::string>& inCommand)
 {
 }
 
-ERROR_CODE CRemoveAllHandler::performOn(std::vector<CTable*>& inCache)
+const int CRemoveAllHandler::getProperAmountOfArgs()
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        performOnProperArgs(inCache, resultCode);
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-
-    return resultCode;
+    return 1;
 }
 
-void CRemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+std::string CRemoveAllHandler::getProperTypesOfArgs()
+{
+    return "s";
+}
+
+ERROR_CODE CRemoveAllHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(isVectorEmpty(inCache))
     {
-        inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
     }
-}
-CRemoveAllHandler::~CRemoveAllHandler()
-{
+
     CFlyweight::releaseResources();
+
+    return ERROR_CODE::SEEMS_LEGIT;
 }

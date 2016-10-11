@@ -14,38 +14,17 @@ CGetValueHandler::CGetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE CGetValueHandler::performOn(std::vector<CTable*>& inCache)
+const int CGetValueHandler::getProperAmountOfArgs()
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
-        {
-            performOnProperArgs(inCache, resultCode);
-        }
-        else
-        {
-            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(resultCode);
-            }
-        }
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-
-    return resultCode;
+    return 3;
 }
 
-void CGetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+std::string CGetValueHandler::getProperTypesOfArgs()
+{
+    return "sii";
+}
+
+ERROR_CODE CGetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
@@ -63,32 +42,19 @@ void CGetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_
             }
             else
             {
-                inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-                if(flag::PRINT_ON)
-                {
-                    std::cout << toString(inResultCode);
-                }
+                return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
             }
         }
         else
         {
-            inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(inResultCode);
-            }
+            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
         }
         retTable = nullptr;
     }
     else
     {
-        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
     }
-}
 
-CGetValueHandler::~CGetValueHandler()
-{}
+    return ERROR_CODE::SEEMS_LEGIT;
+}

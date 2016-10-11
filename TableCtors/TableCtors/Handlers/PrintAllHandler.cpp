@@ -14,46 +14,21 @@ CPrintAllHandler::CPrintAllHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE CPrintAllHandler::performOn(std::vector<CTable*>& inCache)
+const int CPrintAllHandler::getProperAmountOfArgs()
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
-        {
-            performOnProperArgs(inCache, resultCode);
-        }
-        else
-        {
-            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(resultCode);
-            }
-        }
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-
-    return resultCode;
+    return 1;
 }
 
-void CPrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+std::string CPrintAllHandler::getProperTypesOfArgs()
+{
+    return "s";
+}
+
+ERROR_CODE CPrintAllHandler::performOn(std::vector<CTable*>& inCache)
 {
     if(inCache.size() == 0)
     {
-        inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
     }
     else
     {
@@ -73,6 +48,6 @@ void CPrintAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_
             std::cout << POST_PRINT;
         }
     }
+
+    return ERROR_CODE::SEEMS_LEGIT;
 }
-CPrintAllHandler::~CPrintAllHandler()
-{}

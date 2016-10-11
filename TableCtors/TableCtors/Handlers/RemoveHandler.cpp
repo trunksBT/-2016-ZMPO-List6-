@@ -15,38 +15,17 @@ CRemoveHandler::CRemoveHandler(std::vector<std::string>& inCommand)
 {
 }
 
-ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
+const int CRemoveHandler::getProperAmountOfArgs()
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
-        {
-            performOnProperArgs(inCache, resultCode);
-        }
-        else
-        {
-            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(resultCode);
-            }
-        }
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-    
-    return resultCode;
+    return 2;
 }
 
-void CRemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+std::string CRemoveHandler::getProperTypesOfArgs()
+{
+    return "si";
+}
+
+ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
@@ -62,13 +41,8 @@ void CRemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     }
     else
     {
-        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
     }
+    
+    return ERROR_CODE::SEEMS_LEGIT;
 }
-
-CRemoveHandler::~CRemoveHandler()
-{}
