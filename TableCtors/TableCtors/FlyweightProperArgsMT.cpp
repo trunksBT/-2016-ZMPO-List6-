@@ -394,6 +394,20 @@ TEST_F(CFlyweightProperArgsMT, createDefs10_print10_Expect_INDEX_OUT_OF_BOUNDS)
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(CFlyweightProperArgsMT, createDefs10_m1_Expect_ERROR_ARGS_PARSING)
+{
+    ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(stub::createDefs10),
+        application.interpretCommand(stub::getNamem)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(CFlyweightProperArgsMT, createDefs10_getNamem1_Expect_INDEX_OUT_OF_BOUNDS)
 {
     ERROR_CODE expVal = ERROR_CODE::INDEX_OUT_OF_BOUNDS;

@@ -96,6 +96,10 @@ namespace funs
         {
             return false;
         }
+        else if(inChain.size() == ONE && inChain[ZERO] == '-')
+        {
+            return false;
+        }
 
         for(int i = 0; i < inChain.size() && isNumber; i++)
         {

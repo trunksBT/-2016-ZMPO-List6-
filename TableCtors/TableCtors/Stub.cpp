@@ -34,6 +34,7 @@ std::vector<std::string> print6 = { "print", "6" };
 std::vector<std::string> print10 = { "print", "10" };
 std::vector<std::string> printAll = { "printAll" };
 std::vector<std::string> getNamem1 = { "getName", "-1" };
+std::vector<std::string> getNamem = { "getName", "-" };
 std::vector<std::string> getName0 = { "getName", "0" };
 std::vector<std::string> getName6 = { "getName", "6" };
 std::vector<std::string> getName10 = { "getName", "10" };

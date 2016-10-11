@@ -37,6 +37,7 @@ extern std::vector<std::string> print10;
 extern std::vector<std::string> printAll;
 extern std::vector<std::string> getName0;
 extern std::vector<std::string> getNamem1;
+extern std::vector<std::string> getNamem;
 extern std::vector<std::string> getName6;
 extern std::vector<std::string> getName10;
 extern std::vector<std::string> getSizem1;
