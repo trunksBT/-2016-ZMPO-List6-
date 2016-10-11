@@ -94,6 +94,14 @@ void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
             }
         }
     }
+    else
+    {
+        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
+        if(flag::printOn)
+        {
+            std::cout << toString(inResultCode);
+        }
+    }
 }
 
 CreateCopyHandler::~CreateCopyHandler()

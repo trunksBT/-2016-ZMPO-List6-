@@ -14,6 +14,7 @@
 #include "Handlers/GetValueHandler.h"
 #include "Handlers/CreateCopyHandler.h"
 #include "Handlers/PrintHandler.h"
+#include "Handlers/PrintAllHandler.h"
 #include "Handlers/ChangeSizeHandler.h"
 #include "Handlers/HelpHandler.h"
 
@@ -91,6 +92,11 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
     else if(command == messageLiterals::print)
     {
         PrintHandler evaluate(inCommand);
+        returnedCode = evaluate.performOn(cache_);
+    }
+    else if(command == messageLiterals::printAll)
+    {
+        PrintAllHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::changeSize)
