@@ -2,19 +2,19 @@
 #include <iostream>
 
 #include "ChangeSizeHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-ChangeSizeHandler::ChangeSizeHandler(std::vector<std::string>& inCommand)
+CChangeSizeHandler::CChangeSizeHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE ChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -49,7 +49,7 @@ ERROR_CODE ChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void ChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
@@ -92,5 +92,5 @@ void ChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
     }
 }
 
-ChangeSizeHandler::~ChangeSizeHandler()
+CChangeSizeHandler::~CChangeSizeHandler()
 {}

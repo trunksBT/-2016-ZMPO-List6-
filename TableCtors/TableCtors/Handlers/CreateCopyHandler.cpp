@@ -2,20 +2,20 @@
 #include <iostream>
 
 #include "CreateCopyHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-CreateCopyHandler::CreateCopyHandler(std::vector<std::string>& inCommand)
+CCreateCopyHandler::CCreateCopyHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE CreateCopyHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
     int sourceId = std::stoi(receivedSourceId);
@@ -104,5 +104,5 @@ void CreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
     }
 }
 
-CreateCopyHandler::~CreateCopyHandler()
+CCreateCopyHandler::~CCreateCopyHandler()
 {}

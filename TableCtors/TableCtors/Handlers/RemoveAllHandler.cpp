@@ -10,12 +10,12 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-RemoveAllHandler::RemoveAllHandler(std::vector<std::string>& inCommand)
+CRemoveAllHandler::CRemoveAllHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CRemoveAllHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -39,7 +39,7 @@ ERROR_CODE RemoveAllHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void RemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CRemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     if(isVectorEmpty(inCache))
     {
@@ -50,7 +50,7 @@ void RemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_
         }
     }
 }
-RemoveAllHandler::~RemoveAllHandler()
+CRemoveAllHandler::~CRemoveAllHandler()
 {
-    Flyweight::releaseResources();
+    CFlyweight::releaseResources();
 }

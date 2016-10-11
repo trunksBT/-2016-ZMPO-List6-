@@ -5,14 +5,14 @@
 
 #include "IHandler.h"
 
-class ChangeSizeHandler final : public IHandler
+class CChangeSizeHandler final : public IHandler
 {
 private:
     const int PROPER_AMOUNT_OF_ARGS = 3;
     std::string PROPER_TYPES_OF_ARGS = "sii";
 public:
-    ChangeSizeHandler(std::vector<std::string>& inCommand);
-    virtual ~ChangeSizeHandler();
-    ERROR_CODE performOn(std::vector<CTable*>& inFlyweightCache) override;
+    CChangeSizeHandler(std::vector<std::string>& inCommand);
+    virtual ~CChangeSizeHandler();
+    ERROR_CODE performOn(std::vector<CTable*>& inCCFlyweightCache) override;
     void performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode);
 };

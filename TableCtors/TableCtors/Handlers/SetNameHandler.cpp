@@ -2,20 +2,20 @@
 #include <iostream>
 
 #include "SetNameHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-SetNameHandler::SetNameHandler(std::vector<std::string>& inCommand)
+CSetNameHandler::CSetNameHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE SetNameHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CSetNameHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE SetNameHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void SetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CSetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string newName(wholeCommand_[idxOf::newName]);
     std::string receivedId(std::move(wholeCommand_[idxOf::amount]));
@@ -81,6 +81,6 @@ void SetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     }
 }
 
-SetNameHandler::~SetNameHandler()
+CSetNameHandler::~CSetNameHandler()
 {
 }

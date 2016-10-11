@@ -10,12 +10,12 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-RemoveHandler::RemoveHandler(std::vector<std::string>& inCommand)
+CRemoveHandler::CRemoveHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE RemoveHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE RemoveHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void RemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CRemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
@@ -74,5 +74,5 @@ void RemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
     }
 }
 
-RemoveHandler::~RemoveHandler()
+CRemoveHandler::~CRemoveHandler()
 {}

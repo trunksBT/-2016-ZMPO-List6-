@@ -2,19 +2,19 @@
 #include <iostream>
 
 #include "CreateHandler.h"
-#include "..\Utils.hpp"
-#include "..\CTable.hpp"
-#include "..\Flyweight.h"
+#include "../Utils.hpp"
+#include "../CTable.hpp"
+#include "../Flyweight.h"
 
 using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-CreateHandler::CreateHandler(std::vector<std::string>& inCommand)
+CCreateHandler::CCreateHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-ERROR_CODE CreateHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -49,7 +49,7 @@ ERROR_CODE CreateHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void CreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CCreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
     int idxOrAmount = std::stoi(receivedId);
@@ -90,5 +90,5 @@ void CreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_COD
     }
 }
 
-CreateHandler::~CreateHandler()
+CCreateHandler::~CCreateHandler()
 {}

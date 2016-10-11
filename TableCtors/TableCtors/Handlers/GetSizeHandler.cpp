@@ -10,12 +10,12 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-GetSizeHandler::GetSizeHandler(std::vector<std::string>& inCommand)
+CGetSizeHandler::CGetSizeHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE GetSizeHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CGetSizeHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE GetSizeHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void GetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CGetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
@@ -82,6 +82,6 @@ void GetSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     }
 }
 
-GetSizeHandler::~GetSizeHandler()
+CGetSizeHandler::~CGetSizeHandler()
 {}
 

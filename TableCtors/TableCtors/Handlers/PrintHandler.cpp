@@ -10,12 +10,12 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-PrintHandler::PrintHandler(std::vector<std::string>& inCommand)
+CPrintHandler::CPrintHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE PrintHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CPrintHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE PrintHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void PrintHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CPrintHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
@@ -81,5 +81,5 @@ void PrintHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE
         }
     }
 }
-PrintHandler::~PrintHandler()
+CPrintHandler::~CPrintHandler()
 {}

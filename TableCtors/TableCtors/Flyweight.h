@@ -5,16 +5,16 @@
 #include "CTable.hpp"
 #include "Utils.hpp"
 
-class Flyweight
+class CFlyweight
 {
 public:
-    Flyweight();
-    Flyweight(std::vector<std::string>& inCommand,
+    CFlyweight();
+    CFlyweight(std::vector<std::string>& inCommand,
         std::vector<CTable*>& inCache);
-    ~Flyweight();
+    ~CFlyweight();
 public:
-    static void createFlyweight(int inSize);
-    static void createFlyweight(std::vector<CTable*>& inCache);
+    static void createCFlyweight(int inSize);
+    static void createCFlyweight(std::vector<CTable*>& inCache);
     static ERROR_CODE interpretCommand(std::vector<std::string>& inCommand);
 public:
    static void releaseResources();

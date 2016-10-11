@@ -15,7 +15,7 @@ using namespace assertWrapper;
 
 namespace
 {
-class FlyweightUnproperAmountOfArgsMT : public testing::Test
+class CFlyweightUnproperAmountOfArgsMT : public testing::Test
 {
 protected:
     virtual void SetUp()
@@ -26,11 +26,11 @@ protected:
     virtual void TearDown()
     {}
 protected:
-    Flyweight application;
+    CFlyweight application;
     ResultCode rcVal;
 };
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createDefToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -43,7 +43,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToSmall_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_ERROR_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyCFlyweight_Expect_ERROR_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
@@ -56,7 +56,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefToBig_OnEmptyFlyweight_Expect_E
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createDefsToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -69,7 +69,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToSmall_OnEmptyFlyweight_Expec
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_WRONG_VALUE)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyCFlyweight_Expect_WRONG_VALUE)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_VALUE;
 
@@ -82,7 +82,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createDefsToBig_OnEmptyFlyweight_Expect_
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createCopy0ToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -95,7 +95,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToSmall_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createCopy0ToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -108,7 +108,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createCopy0ToBig_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, printToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, printToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -121,7 +121,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, printToSmall_OnEmptyFlyweight_Expect_WRO
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, printToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, printToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -134,7 +134,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, printToBig_OnEmptyFlyweight_Expect_UNDEF
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getNameToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getNameToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -147,7 +147,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getNameToSmall_OnEmptyFlyweight_Expect_W
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getNameToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getNameToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -160,7 +160,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getNameToBig_OnEmptyFlyweight_Expect_UND
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getSizeToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getSizeToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -173,7 +173,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getSizeToSmall_OnEmptyFlyweight_Expect_W
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getSizeToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getSizeToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -186,7 +186,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getSizeToBig_OnEmptyFlyweight_Expect_UND
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, removeToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, removeToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -199,7 +199,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, removeToSmall_OnEmptyFlyweight_Expect_WR
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, removeToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, removeToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 
@@ -212,7 +212,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, removeToBig_OnEmptyFlyweight_Expect_SEEM
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, removeAllToBig_OnEmptyFlyweight_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, removeAllToBig_OnEmptyCFlyweight_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -225,7 +225,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, removeAllToBig_OnEmptyFlyweight_Expect_S
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, setName0ToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setName0ToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -238,7 +238,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, setName0ToSmall_OnEmptyFlyweight_Expect_
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, setName0ToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setName0ToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -251,7 +251,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, setName0ToBig_OnEmptyFlyweight_Expect_UN
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getValue0ToToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getValue0ToToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -264,7 +264,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getValue0ToToSmall_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getValue0ToToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getValue0ToToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -277,7 +277,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getValue0ToToBig_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, getValueToBig_1_23_3_4_5_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, getValueToBig_1_23_3_4_5_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -290,7 +290,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getValueToBig_1_23_3_4_5_OnEmptyFlyweigh
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, setValue0_0ToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setValue0_0ToSmall_OnEmptyCFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -303,7 +303,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, setValue0_0ToSmall_OnEmptyFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, setValue0_0ToBig_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, setValue0_0ToBig_OnEmptyCFlyweight_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -316,7 +316,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, setValue0_0ToBig_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, wrongCommandToSmall_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, wrongCommandToSmall_OnEmptyCFlyweight_Expect_ERROR_COMMAND_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 
@@ -329,7 +329,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, wrongCommandToSmall_OnEmptyFlyweight_Exp
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, wrongCommandToBig_OnEmptyFlyweight_Expect_ERROR_COMMAND_PARSING)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, wrongCommandToBig_OnEmptyCFlyweight_Expect_ERROR_COMMAND_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_COMMAND_PARSING;
 
@@ -342,7 +342,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, wrongCommandToBig_OnEmptyFlyweight_Expec
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, changeSizeToSmall_getValue0_1_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, changeSizeToSmall_getValue0_1_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -355,7 +355,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, changeSizeToSmall_getValue0_1_Expect_WRO
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, changeSizeToBig_getValue0_1_Expect_UNDEFINED_OBJECT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, changeSizeToBig_getValue0_1_Expect_UNDEFINED_OBJECT)
 {
     ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
 
@@ -368,7 +368,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, changeSizeToBig_getValue0_1_Expect_UNDEF
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createToSmall_getValue_1_2_Expect_WRONG_AMOUNT_OF_ARGS)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createToSmall_getValue_1_2_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
 
@@ -382,7 +382,7 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, createToSmall_getValue_1_2_Expect_WRONG_
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(FlyweightUnproperAmountOfArgsMT, createToBig_getValue_1_2_Expect_SEEMS_LEGIT)
+TEST_F(CFlyweightUnproperAmountOfArgsMT, createToBig_getValue_1_2_Expect_SEEMS_LEGIT)
 {
     ERROR_CODE expVal = ERROR_CODE::SEEMS_LEGIT;
 

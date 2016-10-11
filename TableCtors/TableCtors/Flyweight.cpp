@@ -22,9 +22,9 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-std::vector<CTable*> Flyweight::cache_;
+std::vector<CTable*> CFlyweight::cache_;
 
-ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
+ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
     if(inCommand.size() == ZERO)
     {
@@ -36,77 +36,77 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 
     if(command == messageLiterals::create)
     {
-        CreateHandler evaluate(inCommand);
+        CCreateHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createDef)
     {
-        CreateDefHandler evaluate(inCommand);
+        CCreateDefHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createDefs)
     {
-        CreateDefsHandler evaluate(inCommand);
+        CCreateDefsHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::createCopy)
     {
-        CreateCopyHandler evaluate(inCommand);
+        CCreateCopyHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::remove)
     {
-        RemoveHandler evaluate(inCommand);
+        CRemoveHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::removeAll)
     {
-        RemoveAllHandler evaluate(inCommand);
+        CRemoveAllHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::setName)
     {
-        SetNameHandler evaluate(inCommand);
+        CSetNameHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::setValue)
     {
-        SetValueHandler evaluate(inCommand);
+        CSetValueHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getName)
     {
-        GetNameHandler evaluate(inCommand);
+        CGetNameHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getSize)
     {
-        GetSizeHandler evaluate(inCommand);
+        CGetSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::getValue)
     {
-        GetValueHandler evaluate(inCommand);
+        CGetValueHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::print)
     {
-        PrintHandler evaluate(inCommand);
+        CPrintHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::printAll)
     {
-        PrintAllHandler evaluate(inCommand);
+        CPrintAllHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::changeSize)
     {
-        ChangeSizeHandler evaluate(inCommand);
+        CChangeSizeHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::help)
     {
-        HelpHandler evaluate(inCommand);
+        CHelpHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);
     }
     else if(command == messageLiterals::close)
@@ -127,17 +127,17 @@ ERROR_CODE Flyweight::interpretCommand(std::vector<std::string>& inCommand)
 
 #pragma region ********** CTORS_DTORS **********
 
-void Flyweight::createFlyweight(int inSize)
+void CFlyweight::createCFlyweight(int inSize)
 {
     cache_ = std::vector<CTable*>(inSize);
 }
 
-void Flyweight::releaseResources()
+void CFlyweight::releaseResources()
 {
     releaseResources(cache_);
 }
 
-void Flyweight::releaseResources(std::vector<CTable*>& inCache)
+void CFlyweight::releaseResources(std::vector<CTable*>& inCache)
 {
     for(auto i = ZERO; i < inCache.size(); i++)
     {
@@ -146,24 +146,24 @@ void Flyweight::releaseResources(std::vector<CTable*>& inCache)
     inCache.clear();
 }
 
-Flyweight::Flyweight()
+CFlyweight::CFlyweight()
 {
-    Flyweight::createFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
+    CFlyweight::createCFlyweight(INITIAL_FLYWEIGHT_CACHE_SIZE);
 }
 
-Flyweight::Flyweight(std::vector<std::string>& inCommand,
+CFlyweight::CFlyweight(std::vector<std::string>& inCommand,
     std::vector<CTable*>& inCache)
 {
-    Flyweight::createFlyweight(inCache);
-    Flyweight::interpretCommand(std::move(inCommand));
+    CFlyweight::createCFlyweight(inCache);
+    CFlyweight::interpretCommand(std::move(inCommand));
 }
 
-Flyweight::~Flyweight()
+CFlyweight::~CFlyweight()
 {
-    Flyweight::releaseResources();
+    CFlyweight::releaseResources();
 }
 
-void Flyweight::createFlyweight(std::vector<CTable*>& inCache)
+void CFlyweight::createCFlyweight(std::vector<CTable*>& inCache)
 {
     cache_ = std::move(inCache);
 }

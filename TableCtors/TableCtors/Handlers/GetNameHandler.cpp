@@ -10,12 +10,12 @@ using namespace defaultVals;
 using namespace logLiterals;
 using namespace funs;
 
-GetNameHandler::GetNameHandler(std::vector<std::string>& inCommand)
+CGetNameHandler::CGetNameHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-ERROR_CODE GetNameHandler::performOn(std::vector<CTable*>& inCache)
+ERROR_CODE CGetNameHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
@@ -50,7 +50,7 @@ ERROR_CODE GetNameHandler::performOn(std::vector<CTable*>& inCache)
     return resultCode;
 }
 
-void GetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+void CGetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
     std::string receivedId(wholeCommand_[idxOf::amount]);
     int idxOrAmount = std::stoi(receivedId);
@@ -82,6 +82,6 @@ void GetNameHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     }
 }
 
-GetNameHandler::~GetNameHandler()
+CGetNameHandler::~CGetNameHandler()
 {}
 
