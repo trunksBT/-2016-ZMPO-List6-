@@ -19,14 +19,14 @@ ERROR_CODE CRemoveAllHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
 
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
     {
         performOnProperArgs(inCache, resultCode);
     }
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -40,7 +40,7 @@ void CRemoveAllHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR
     if(isVectorEmpty(inCache))
     {
         inResultCode = ERROR_CODE::UNDEFINED_OBJECT;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }

@@ -35,11 +35,11 @@ ResultCode getFinalResultCode(std::vector<ERROR_CODE> inCodes)
 
 void printWrongCommandInfo(ResultCode rcVal)
 {
-    if(std::get<ZERO>(rcVal) != MINUS_ONE && flag::printOn)
+    if(std::get<ZERO>(rcVal) != MINUS_ONE && flag::PRINT_ON)
     {
         std::cout
             << std::endl
-            << erroredCommandIdx
+            << ERRORED_COMMAND_IDX
             << SEPARATOR
             << std::get<ZERO>(rcVal)
             << COMMA_SPACE

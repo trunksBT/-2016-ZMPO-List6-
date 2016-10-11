@@ -19,16 +19,16 @@ ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
 
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
+    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
     {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS))
+        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
         {
             performOnProperArgs(inCache, resultCode);
         }
         else
         {
             resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::printOn)
+            if(flag::PRINT_ON)
             {
                 std::cout << toString(resultCode);
             }
@@ -37,7 +37,7 @@ ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
     else
     {
         resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(resultCode);
         }
@@ -63,7 +63,7 @@ void CRemoveHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CO
     else
     {
         inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(inResultCode);
         }

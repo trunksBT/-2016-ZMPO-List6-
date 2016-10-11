@@ -10,7 +10,7 @@ class IHandler
 public:
     IHandler(std::vector<std::string>& inCommand);
     virtual ~IHandler();
-    virtual ERROR_CODE performOn(std::vector<CTable*>& inCCFlyweightCache) = 0;
+    virtual ERROR_CODE performOn(std::vector<CTable*>& inCache) = 0;
 protected:
     std::vector<std::string> wholeCommand_;
 };

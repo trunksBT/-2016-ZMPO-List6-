@@ -13,9 +13,9 @@ namespace funs
         return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();
     }
 
-    bool isProperIdx(int idx, int size)
+    bool isProperIdx(int inIdx, int inSize)
     {
-        return idx > MINUS_ONE && idx < size;
+        return inIdx > MINUS_ONE && inIdx < inSize;
     }
 
     std::string toString(ERROR_CODE inCode)
@@ -120,7 +120,7 @@ namespace funs
         bool isProperType = true;
         for(int i = 0; i < inCommand.size() && isProperType && i< inProperTypeOfArgs.size(); i++)
         {
-            if(inProperTypeOfArgs[i] == intType && !isNumber(inCommand[i]))
+            if(inProperTypeOfArgs[i] == INT_TYPE && !isNumber(inCommand[i]))
             {
                 isProperType &= false;
             }

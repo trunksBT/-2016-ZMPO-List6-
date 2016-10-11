@@ -116,7 +116,7 @@ ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     else
     {
         returnedCode = ERROR_CODE::ERROR_COMMAND_PARSING;
-        if(flag::printOn)
+        if(flag::PRINT_ON)
         {
             std::cout << toString(returnedCode);
         }
