@@ -68,6 +68,7 @@ bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
 bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
+ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
 }
 
 namespace idxOf
