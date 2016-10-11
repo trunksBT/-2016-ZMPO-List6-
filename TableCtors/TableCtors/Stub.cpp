@@ -59,6 +59,7 @@ std::vector<std::string> setValue10_0_23 = { "setValue", "10", "0", "23" };
 std::vector<std::string> setValue10_10_23 = { "setValue", "10", "10", "23" };
 std::vector<std::string> setValuem1_m1_23 = { "setValue", "-1", "-1", "23" };
 std::vector<std::string> setValue1_m1_23 = { "setValue", "1", "-1", "23" };
+std::vector<std::string> getName99999999999999999999999 = { "getName", "99999999999999999999999" };
 }
 
 namespace wrongAmountStub
