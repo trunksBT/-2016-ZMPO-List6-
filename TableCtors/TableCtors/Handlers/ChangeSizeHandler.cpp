@@ -19,7 +19,7 @@ ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+        std::cout << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
@@ -51,9 +51,9 @@ ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
 
 void CChangeSizeHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
+    std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int sourceId = std::stoi(receivedSourceId);
-    std::string receivedNewSize(wholeCommand_[idxOf::newSize]);
+    std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
 
     if(isProperIdx(sourceId, inCache))

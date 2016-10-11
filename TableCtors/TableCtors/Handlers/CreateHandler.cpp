@@ -19,7 +19,7 @@ ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+        std::cout << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
@@ -51,11 +51,11 @@ ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
 
 void CCreateHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedId(wholeCommand_[idxOf::idOfCTable]);
+    std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
-    std::string receivedNewSize(wholeCommand_[idxOf::newSize]);
+    std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
-    std::string initialName(wholeCommand_[idxOf::initialName]);
+    std::string initialName(wholeCommand_[idxOf::INITIAL_NAME]);
 
     if(idxOrAmount < 0)
     {

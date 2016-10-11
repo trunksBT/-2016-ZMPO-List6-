@@ -32,9 +32,9 @@ ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     }
 
     ERROR_CODE returnedCode = ERROR_CODE::INITIAL_VAL;
-    std::string command(inCommand[idxOf::command]);
+    std::string command(inCommand[idxOf::COMMAND]);
 
-    if(command == messageLiterals::create)
+    if(command == messageLiterals::CREATE)
     {
         CCreateHandler evaluate(inCommand);
         returnedCode = evaluate.performOn(cache_);

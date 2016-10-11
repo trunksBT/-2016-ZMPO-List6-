@@ -148,7 +148,7 @@ namespace funs
 namespace fullCommands
 {
     std::string createArgs =
-        std::string(messageLiterals::create) +
+        std::string(messageLiterals::CREATE) +
         std::string(defaultVals::SPACE) +
         std::string(commandArgs::IDX) +
         std::string(defaultVals::SPACE) +

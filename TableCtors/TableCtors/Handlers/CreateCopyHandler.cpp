@@ -20,7 +20,7 @@ ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
     if(flag::printOn)
     {
-        std::cout << wholeCommand_[idxOf::command] << POST_PRINT;
+        std::cout << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
@@ -52,9 +52,9 @@ ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 
 void CCreateCopyHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
 {
-    std::string receivedSourceId(wholeCommand_[idxOf::idOfCTable]);
+    std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int sourceId = std::stoi(receivedSourceId);
-    std::string receivedDestinyId(wholeCommand_[idxOf::goalId]);
+    std::string receivedDestinyId(wholeCommand_[idxOf::GOAL_ID]);
     int destinyId = std::stoi(receivedDestinyId);
 
     if(isProperIdx(sourceId, inCache))
