@@ -63,7 +63,7 @@ void GetValueHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_C
         {
             if(isProperIdx(idOfNewVal, retTable->getSize()))
             {
-                retTable->getVal(idOfNewVal);
+                std::cout << retTable->getVal(idOfNewVal);
             }
             else
             {

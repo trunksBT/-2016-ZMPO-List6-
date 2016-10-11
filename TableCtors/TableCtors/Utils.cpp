@@ -119,7 +119,7 @@ namespace funs
     bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs)
     {
         bool isProperType = true;
-        for(int i = 0; i < inCommand.size() && isProperType; i++)
+        for(int i = 0; i < inCommand.size() && isProperType && i< inProperTypeOfArgs.size(); i++)
         {
             if(inProperTypeOfArgs[i] == intType && !isNumber(inCommand[i]))
             {

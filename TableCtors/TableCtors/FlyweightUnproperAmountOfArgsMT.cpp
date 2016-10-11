@@ -277,6 +277,19 @@ TEST_F(FlyweightUnproperAmountOfArgsMT, getValue0ToToBig_OnEmptyFlyweight_Expect
     printWrongCommandInfo(std::move(rcVal));
 }
 
+TEST_F(FlyweightUnproperAmountOfArgsMT, getValueToBig_1_23_3_4_5_OnEmptyFlyweight_Expect_UNDEFINED_OBJECT)
+{
+    ERROR_CODE expVal = ERROR_CODE::UNDEFINED_OBJECT;
+
+    rcVal = getFinalResultCode
+    ({
+        application.interpretCommand(wrongAmountStub::getValueToBig_1_23_3_4_5)
+    });
+
+    ASSERT_EQ(expVal, std::get<ONE>(rcVal));
+    printWrongCommandInfo(std::move(rcVal));
+}
+
 TEST_F(FlyweightUnproperAmountOfArgsMT, setValue0_0ToSmall_OnEmptyFlyweight_Expect_WRONG_AMOUNT_OF_ARGS)
 {
     ERROR_CODE expVal = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
