@@ -24,6 +24,7 @@ extern std::vector<std::string> createDefs11;
 extern std::vector<std::string> createDefs10000;
 extern std::vector<std::string> createCopy00;
 extern std::vector<std::string> createCopy0_m1;
+extern std::vector<std::string> createCopym1_m1;
 extern std::vector<std::string> createCopy01;
 extern std::vector<std::string> createCopy06;
 extern std::vector<std::string> changeSize_0_5;

@@ -22,6 +22,7 @@ std::vector<std::string> createDefs11 = { "createDefs", "11" };
 std::vector<std::string> createDefs10000 = { "createDefs", "10000" };
 std::vector<std::string> createCopy00 = { "createCopy", "0", "0" };
 std::vector<std::string> createCopy0_m1 = { "createCopy", "0", "-1" };
+std::vector<std::string> createCopym1_m1 = { "createCopy", "-1", "-1" };
 std::vector<std::string> createCopy01 = { "createCopy", "0", "1" };
 std::vector<std::string> createCopy06 = { "createCopy", "0", "6" };
 std::vector<std::string> changeSize_0_5 = { "changeSize", "0", "5" };
