@@ -2,6 +2,7 @@
 #include "Utils.hpp"
 #include "CTable.hpp"
 #include <map>
+#include <iostream>
 #include <string>
 
 using namespace defaultVals;
@@ -113,6 +114,16 @@ namespace funs
         }
 
         return isNumber;
+    }
+
+    ERROR_CODE returnResultCode(ERROR_CODE inResultCode)
+    {
+        ERROR_CODE resultCode = inResultCode;
+        if(flag::PRINT_ON)
+        {
+            std::cout << toString(resultCode);
+        }
+        return resultCode;
     }
 
     bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs)

@@ -14,5 +14,6 @@ public:
     CCreateDefHandler(std::vector<std::string>& inCommand);
     virtual ~CCreateDefHandler();
     ERROR_CODE performOn(std::vector<CTable*>& inCache) override;
-    void performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode);
+    ERROR_CODE checkAndPerform(std::vector<CTable *> & inCache);
+    ERROR_CODE CCreateDefHandler::performOnProperArgs(std::vector<CTable*>& inCache);
 };

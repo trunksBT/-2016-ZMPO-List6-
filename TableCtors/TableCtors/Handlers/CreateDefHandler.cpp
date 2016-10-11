@@ -7,7 +7,6 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-
 using namespace funs;
 
 CCreateDefHandler::CCreateDefHandler(std::vector<std::string>& inCommand)
@@ -17,55 +16,42 @@ CCreateDefHandler::CCreateDefHandler(std::vector<std::string>& inCommand)
 
 ERROR_CODE CCreateDefHandler::performOn(std::vector<CTable*>& inCache)
 {
-    ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-
-    if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
-    {
-        if(isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
-        {
-            performOnProperArgs(inCache, resultCode);
-        }
-        else
-        {
-            resultCode = ERROR_CODE::ERROR_ARGS_PARSING;
-            if(flag::PRINT_ON)
-            {
-                std::cout << toString(resultCode);
-            }
-        }
-    }
-    else
-    {
-        resultCode = ERROR_CODE::WRONG_AMOUNT_OF_ARGS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(resultCode);
-        }
-    }
-
-    return resultCode;
+    return checkAndPerform(inCache);
 }
 
-void CCreateDefHandler::performOnProperArgs(std::vector<CTable*>& inCache, ERROR_CODE& inResultCode)
+ERROR_CODE CCreateDefHandler::checkAndPerform(std::vector<CTable*>& inCache)
 {
-    std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
-    int idxOrAmount = std::stoi(receivedId);
-    if(isProperIdx(idxOrAmount, inCache))
+    if(!isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS_))
     {
-        if(inCache[idxOrAmount] != nullptr)
-        {
-            delete inCache[idxOrAmount];
-        }
-        inCache[idxOrAmount] = CTable::buildNewObj();
+        return returnResultCode(ERROR_CODE::WRONG_AMOUNT_OF_ARGS);
+    }
+    else if(!isProperTypeOfArgs(wholeCommand_, PROPER_TYPES_OF_ARGS_))
+    {
+        return returnResultCode(ERROR_CODE::ERROR_ARGS_PARSING);
     }
     else
     {
-        inResultCode = ERROR_CODE::INDEX_OUT_OF_BOUNDS;
-        if(flag::PRINT_ON)
-        {
-            std::cout << toString(inResultCode);
-        }
+        return performOnProperArgs(inCache);
     }
+}
+
+ERROR_CODE CCreateDefHandler::performOnProperArgs(std::vector<CTable*>& inCache)
+{
+    std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
+
+    int idxOrAmount = std::stoi(receivedId);
+    if(!isProperIdx(idxOrAmount, inCache))
+    {
+        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);;
+    }
+
+    if(inCache[idxOrAmount] != nullptr)
+    {
+        delete inCache[idxOrAmount];
+    }
+    inCache[idxOrAmount] = CTable::buildNewObj();
+
+    return ERROR_CODE::SEEMS_LEGIT;
 }
 
 CCreateDefHandler::~CCreateDefHandler()
