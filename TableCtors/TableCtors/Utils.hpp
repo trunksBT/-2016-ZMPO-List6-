@@ -52,10 +52,9 @@ constexpr const int FIVE = 5;
 constexpr const int TEN = 10;
 constexpr const long MAX_INT_VAL = (std::numeric_limits<int>::max)();
 constexpr const int DEFAULT_IN_TABLE_SIZE = TWO;
-constexpr const char* string999 = "999";
-constexpr const char* erroredCommandIdx = "Errored command idx";
-constexpr const char intType = 'i';
-constexpr const char stringType = 's';
+constexpr const char* ERRORED_COMMAND_IDX = "Errored command idx";
+constexpr const char INT_TYPE = 'i';
+constexpr const char STRING_TYPE = 's';
 }
 
 namespace funs

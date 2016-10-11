@@ -39,7 +39,7 @@ void printWrongCommandInfo(ResultCode rcVal)
     {
         std::cout
             << std::endl
-            << erroredCommandIdx
+            << ERRORED_COMMAND_IDX
             << SEPARATOR
             << std::get<ZERO>(rcVal)
             << COMMA_SPACE

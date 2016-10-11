@@ -120,7 +120,7 @@ namespace funs
         bool isProperType = true;
         for(int i = 0; i < inCommand.size() && isProperType && i< inProperTypeOfArgs.size(); i++)
         {
-            if(inProperTypeOfArgs[i] == intType && !isNumber(inCommand[i]))
+            if(inProperTypeOfArgs[i] == INT_TYPE && !isNumber(inCommand[i]))
             {
                 isProperType &= false;
             }
