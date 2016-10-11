@@ -7,7 +7,7 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
 CCreateCopyHandler::CCreateCopyHandler(std::vector<std::string>& inCommand)
@@ -18,10 +18,6 @@ CCreateCopyHandler::CCreateCopyHandler(std::vector<std::string>& inCommand)
 ERROR_CODE CCreateCopyHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {

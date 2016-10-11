@@ -8,7 +8,6 @@ using namespace defaultVals;
 
 namespace funs
 {
-
     bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
     {
         return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();

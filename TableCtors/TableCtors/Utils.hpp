@@ -7,7 +7,7 @@
 namespace flag
 {
 constexpr bool printOn = true;
-constexpr bool isRepl = true;
+constexpr bool debugTestsOn = false;
 }
 
 enum class ERROR_CODE : int
@@ -68,14 +68,6 @@ bool isNumber(std::string inChain);
 bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
 bool isVectorEmpty(std::vector<CTable*>& inCache);
 int toInt(char inChar);
-}
-
-namespace logLiterals
-{
-constexpr const char* undefinedCommand = "Nie znam takiej komendy";
-constexpr const char* undefinedObject = "Nie znam takiego obiektu";
-constexpr const char* indexOutOfBound = "Index poza obszarem pamieci";
-constexpr const char* nullPointerDetected = "Object";
 }
 
 namespace idxOf

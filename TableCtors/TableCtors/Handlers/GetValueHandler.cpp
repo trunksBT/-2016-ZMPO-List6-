@@ -7,7 +7,7 @@
 #include "../Flyweight.h"
 
 using namespace defaultVals;
-using namespace logLiterals;
+
 using namespace funs;
 
 CGetValueHandler::CGetValueHandler(std::vector<std::string>& inCommand)
@@ -17,10 +17,6 @@ CGetValueHandler::CGetValueHandler(std::vector<std::string>& inCommand)
 ERROR_CODE CGetValueHandler::performOn(std::vector<CTable*>& inCache)
 {
     ERROR_CODE resultCode = ERROR_CODE::SEEMS_LEGIT;
-    if(flag::printOn)
-    {
-        std::cout << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
-    }
 
     if(isProperAmmountOfArgs(wholeCommand_, PROPER_AMOUNT_OF_ARGS))
     {

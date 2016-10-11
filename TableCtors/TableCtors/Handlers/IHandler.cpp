@@ -8,9 +8,9 @@ using namespace defaultVals;
 IHandler::IHandler(std::vector<std::string>& inCommand)
 {
     wholeCommand_ = inCommand;
-    if(flag::printOn)
+    if(flag::printOn && flag::debugTestsOn)
     {
-        std::cout << PRE_PRINT;
+        std::cout << PRE_PRINT << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
 }
 
