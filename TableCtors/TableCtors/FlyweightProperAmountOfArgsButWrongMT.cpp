@@ -108,13 +108,13 @@ TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, getSizeZ_OnEmptyCCFlyweight_Expe
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, removeZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, deleteZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongTypeStub::removeZ)
+        application.interpretCommand(wrongTypeStub::deleteZ)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));
@@ -160,13 +160,13 @@ TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, setValue0ZZZ_OnEmptyCCFlyweight_
     printWrongCommandInfo(std::move(rcVal));
 }
 
-TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, changeSizeZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
+TEST_F(CCFlyweightProperAmountOfArgsButWrongMT, setSizeZZ_OnEmptyCCFlyweight_Expect_ERROR_ARGS_PARSING)
 {
     ERROR_CODE expVal = ERROR_CODE::ERROR_ARGS_PARSING;
 
     rcVal = getFinalResultCode
     ({
-        application.interpretCommand(wrongTypeStub::changeSizeZZ)
+        application.interpretCommand(wrongTypeStub::setSizeZZ)
     });
 
     ASSERT_EQ(expVal, std::get<ONE>(rcVal));

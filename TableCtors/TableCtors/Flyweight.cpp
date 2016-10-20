@@ -17,6 +17,7 @@
 #include "Handlers/PrintAllHandler.h"
 #include "Handlers/ChangeSizeHandler.h"
 #include "Handlers/HelpHandler.h"
+#include "Handlers/ClearHandler.h"
 
 using namespace defaultVals;
 using namespace messageLiterals;
@@ -54,9 +55,14 @@ ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
         CCreateCopyHandler evaluate(inCommand);
         returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
-    else if(command == REMOVE)
+    else if(command == DELETE)
     {
         CRemoveHandler evaluate(inCommand);
+        returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    }
+    else if(command == CLEAR)
+    {
+        CClearHandler evaluate(inCommand);
         returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
     else if(command == REMOVE_ALL)
@@ -99,7 +105,7 @@ ERROR_CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
         CPrintAllHandler evaluate(inCommand);
         returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     }
-    else if(command == CHANGE_SIZE)
+    else if(command == SET_SIZE)
     {
         CChangeSizeHandler evaluate(inCommand);
         returnedCode = evaluate.checkCorrectnessAndPerform(cache_);

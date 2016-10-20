@@ -37,6 +37,7 @@ constexpr const char* VALUES = "values";
 constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
+
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";
 constexpr const char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
@@ -50,8 +51,9 @@ constexpr const int ONE = 1;
 constexpr const int TWO = 2;
 constexpr const int FIVE = 5;
 constexpr const int TEN = 10;
+constexpr const int DEFAULT_TABLE_VAL = -1;
+constexpr const int DEFAULT_IN_TABLE_SIZE = FIVE;
 constexpr const long MAX_INT_VAL = (std::numeric_limits<int>::max)();
-constexpr const int DEFAULT_IN_TABLE_SIZE = TWO;
 constexpr const char* ERRORED_COMMAND_IDX = "Errored command idx";
 constexpr const char INT_TYPE = 'i';
 constexpr const char STRING_TYPE = 's';
@@ -85,6 +87,7 @@ constexpr const int INITIAL_NAME = 3;
 
 namespace messageLiterals
 {
+constexpr const char* CLEAR = "clear";
 constexpr const char* CREATE = "create";
 constexpr const char* CREATE_DEF = "createDef";
 constexpr const char* CREATE_DEFS = "createDefs";
@@ -92,13 +95,13 @@ constexpr const char* CREATE_COPY = "createCopy";
 constexpr const char* GET_NAME = "getName";
 constexpr const char* GET_SIZE = "getSize";
 constexpr const char* GET_VALUE = "getValue";
-constexpr const char* REMOVE = "remove";
-constexpr const char* REMOVE_ALL = "removeAll";
+constexpr const char* DELETE = "delete";
+constexpr const char* REMOVE_ALL = "deleteAll";
 constexpr const char* SET_NAME = "setName";
 constexpr const char* SET_VALUE = "setValue";
 constexpr const char* PRINT = "print";
 constexpr const char* PRINT_ALL = "printAll";
-constexpr const char* CHANGE_SIZE = "changeSize";
+constexpr const char* SET_SIZE = "setSize";
 constexpr const char* CLOSE = "close";
 constexpr const char* HELP = "help";
 }
@@ -124,9 +127,9 @@ extern std::string setValueArgs;
 extern std::string setNameArgs;
 extern std::string printArgs;
 extern std::string printAllArgs;
-extern std::string removeArgs;
-extern std::string removeAllArgs;
-extern std::string changeSizeArgs;
+extern std::string deleteArgs;
+extern std::string deleteAllArgs;
+extern std::string setSizeArgs;
 extern std::string closeArgs;
 extern std::string helpArgs;
 extern std::vector<std::string> allCommands;
