@@ -1,9 +1,3 @@
-Debug/
-ipch/
-packages/
-.vs/
+build/
+googletest/
 
-*.vcxproj
-*.vcxproj.filters
-*.db
-*.opendb
