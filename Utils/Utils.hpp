@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <ElementsAndTables/CTable.hpp>
 #include <limits>
 
 namespace flag
@@ -58,32 +57,32 @@ constexpr const char* ERRORED_COMMAND_IDX = "Errored command idx";
 constexpr const char INT_TYPE = 'i';
 constexpr const char STRING_TYPE = 's';
 }
-
-namespace funs
-{
-int toInt(char inChar);
-std::string toString(ERROR_CODE inCode);
-bool isNumber(std::string inChain);
-bool isProperIdx(int inIdx, int inSize);
-bool isVectorEmpty(std::vector<CTable*>& inCache);
-bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
-bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
-bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
-bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
-ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
-}
-
-namespace idxOf
-{
-constexpr const int COMMAND = 0;
-constexpr const int ID_OF_CTABLE = 1;
-constexpr const int AMOUNT = 1;
-constexpr const int NEW_NAME = 2;
-constexpr const int NEW_SIZE = 2;
-constexpr const int GOAL_ID = 2;
-constexpr const int NEW_VAL = 3;
-constexpr const int INITIAL_NAME = 3;
-}
+//
+//namespace funs
+//{
+//int toInt(char inChar);
+//std::string toString(ERROR_CODE inCode);
+//bool isNumber(std::string inChain);
+//bool isProperIdx(int inIdx, int inSize);
+//bool isVectorEmpty(std::vector<CTable*>& inCache);
+//bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
+//bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
+//bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+//bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
+//ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
+//}
+//
+//namespace idxOf
+//{
+//constexpr const int COMMAND = 0;
+//constexpr const int ID_OF_CTABLE = 1;
+//constexpr const int AMOUNT = 1;
+//constexpr const int NEW_NAME = 2;
+//constexpr const int NEW_SIZE = 2;
+//constexpr const int GOAL_ID = 2;
+//constexpr const int NEW_VAL = 3;
+//constexpr const int INITIAL_NAME = 3;
+//}
 
 namespace messageLiterals
 {

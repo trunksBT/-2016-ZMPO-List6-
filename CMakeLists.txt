@@ -54,21 +54,21 @@ set(HANDLERS
 )
 
 set(ELEMENTS_AND_TABLES
-    ElementsAndTables/CTable.cpp
     ElementsAndTables/CTable.hpp
+    ElementsAndTables/RAII.hpp
 )
 
 set(UTILS
-    Utils/Interface.cpp
-    Utils/Interface.hpp
-    Utils/Logger.cpp
-    Utils/Logger.hpp
-    Utils/Stub.cpp
-    Utils/Stub.hpp
+    #Utils/Interface.cpp
+    #Utils/Interface.hpp
+    #Utils/Logger.cpp
+    #Utils/Logger.hpp
+    #Utils/Stub.cpp
+    #Utils/Stub.hpp
     Utils/Utils.cpp
     Utils/Utils.hpp
-    Utils/UtilsForMT.cpp
-    Utils/UtilsForMT.h
+    #Utils/UtilsForMT.cpp
+    #Utils/UtilsForMT.h
 )
 
 set(MT_UT
@@ -91,11 +91,11 @@ source_group("Handlers" FILES ${HANDLERS})
 source_group("ElementsAndTables" FILES ${ELEMENTS_AND_TABLES})
 
 add_executable(${PROJECT_NAME} MetaTablesRunner.cpp
-    ${HANDLERS}
+    #${HANDLERS}
     ${ELEMENTS_AND_TABLES}
     ${UTILS}
-    ${MT_UT}
-    ${FLYWEIGHT}
+    #${MT_UT}
+    #${FLYWEIGHT}
 )
 
 add_dependencies(${PROJECT_NAME} gtest_main)

@@ -7,20 +7,19 @@
 #include <iostream>
 
 #include <gtest/gtest.h>
+#include <ElementsAndTables/CTable.hpp>
 
-#include <Utils/Stub.hpp>
-#include <Utils/Utils.hpp>
-#include <Utils/UtilsForMT.h>
-#include <Utils/Interface.hpp>
-#include <Flyweight/Flyweight.h>
-#include <Utils/UtilsForMT.h>
+//#include <Utils/Stub.hpp>
+//#include <Utils/Utils.hpp>
+//#include <Utils/UtilsForMT.h>
+//#include <Utils/Interface.hpp>
+//#include <Flyweight/Flyweight.h>
+//#include <Utils/UtilsForMT.h>
 
-using namespace defaultVals;
-using namespace communication;
-using namespace assertWrapper;
-using namespace funs;
-
-#define STUB
+//using namespace defaultVals;
+//using namespace communication;
+//using namespace assertWrapper;
+//using namespace funs;
 
 int main(int argc, char **argv)
 {
@@ -38,6 +37,7 @@ int main(int argc, char **argv)
    //     std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
    //     system("Pause");
    //}
+    CTable<int> tempVal;
    ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
 }
