@@ -40,6 +40,7 @@ constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";
 constexpr const char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
+constexpr const char* OPER_COPY_PRE_PRINT = "oper kopiuj: ";
 constexpr const char* CTOR_DEFAULT_PRE_PRINT = "bezp: ";
 constexpr const char* CTOR_DEFAULT_MOVE_PRINT = "przenoszenie: ";
 constexpr const char* CTOR_ARG1_PRE_PRINT = "parametr: ";

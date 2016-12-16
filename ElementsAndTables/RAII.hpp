@@ -1,108 +1,78 @@
-#include <cassert>
 #include <iostream>
+#include <algorithm>
 #include <utility>
 
 template <typename T>
 class RAII
 {
 public:
-	RAII(T* t) : t_ {t}
-	{
-	}
- 
-	RAII(const RAII&) = delete;
-	RAII& operator=(const RAII&) = delete;
-	RAII(RAII&& ptr)
-	{
-		std::swap(t_, ptr.t_);
-	}
- 
+    RAII(size_t inSize)
+        : size_(inSize)
+        , memory_(new T[inSize])
+    {
+        init();
+        std::cout << "RAII CTOR" << std::endl;
+    }
+
+    RAII(const RAII&& inObj)
+    {
+        std::swap(memory_, inObj.memory_);
+        std::swap(size_, inObj.size_);
+    }
+
+    RAII& operator=(RAII&& inObj)
+    {
+        std::cout << "RAII MOVE=" << std::endl;
+        std::swap(memory_, inObj.memory_);
+        return *this;
+    }
+
+    RAII(const RAII& inObj)
+        : size_(inObj.size_)
+        , memory_(new T[inObj.size_])
+    {
+        std::cout << "RAII COPY_CTOR" << std::endl;
+        std::copy(inObj.memory_, inObj.memory_ + inObj.size_, memory_);
+    }
+
+    RAII& operator=(const RAII& inObj)
+    {
+        RAII temp = inObj;
+        swap(*this, temp);
+        return *this;
+    }
+
 	~RAII()
 	{
-		delete[] t_;
+        std::cout << "RAII DTOR" << std::endl;
+		delete[] memory_;
 	}
 
-    RAII& operator=(RAII&& ptr)
-	{
-		std::swap(t_, ptr.t_);
-		return *this;
-	}
- 
-	explicit operator bool() const noexcept
-	{
-		return t_;
-	}
- 
-	T* operator->() const noexcept
-	{
-		return t_;
-	}
- 
-	T& operator *() const
-	{
-		assert(t_ && "nullptr");
-		return *t_;
-	}
+    T& operator[](int idx) const noexcept
+    {
+        return memory_[idx];
+    }
+
+    std::size_t size() const noexcept
+    {
+        return size_;
+    }
+
+    void init()
+    {
+        for (int i = 0; i < size_; i++)
+        {
+            memory_[i] = T();
+        }
+    }
+
+    void swap(RAII& first, RAII& second)
+    {
+        using std::swap;
+        swap(first.memory_, second.memory_);
+    }
 
 private:
-	T* t_ = nullptr;
+    T* memory_;
+    std::size_t size_;
 };
-
-template <class T>
-auto make_ptr(std::size_t size)
-{
-    return RAII<T> {new T[size]};
-}
-  
-// template <class T>
-// class Table
-// {
-// public:
-// 	Table()
-// 		: memory_ {make_ptr<T>(10)}
-// 	{
-// 		throw 5;
-// 		// memory_ is correctly freed
-// 	}
- 
-// 	Table(std::size_t i)
-// 		: memory_ {make_ptr<T>(i)}
-// 	{
-// 	}
- 
-// 	~Table()
-// 	{
-// 		std::cout << "All ok, Table dying" << std::endl;
-// 	}
- 
-// private:
-// 	RAII<T> memory_;
-// };
- 
-// int main()
-// {
-// 	auto ptr = make_ptr<int>(5);
-// 	std::cout << *ptr << ", !empty? " << static_cast<bool>(ptr) << '\n';
- 
-// 	auto x = std::move(ptr);
-// 	std::cout << "!empty? " << static_cast<bool>(ptr) << '\n';
-// 	std::cout << *x << ", !empty? " << static_cast<bool>(x) << '\n';
-	
-// 	try
-// 	{
-// 		Table<int> t {};
-// 	}
-// 	catch (...)
-// 	{
-// 		std::cout << "oops, fuckup" << std::endl;
-// 	}
- 
-// 	try
-// 	{
-// 		Table<int> t {15};
-// 	}
-// 	catch (...)
-// 	{
-// 		std::cout << "oops, fuckup #2" << std::endl;
-// 	}
-// }

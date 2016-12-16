@@ -72,10 +72,10 @@ set(UTILS
 )
 
 set(MT_UT
-    MT_UT/FlyweightProperAmountOfArgsButWrongMT.cpp
-    MT_UT/FlyweightProperArgsMT.cpp
-    MT_UT/FlyweightUnproperAmountOfArgsMT.cpp
-    MT_UT/List1.cpp
+    #MT_UT/FlyweightProperAmountOfArgsButWrongMT.cpp
+    #MT_UT/FlyweightProperArgsMT.cpp
+    #MT_UT/FlyweightUnproperAmountOfArgsMT.cpp
+    #MT_UT/List1.cpp
     MT_UT/TableUT.cpp
 )
 
@@ -94,7 +94,7 @@ add_executable(${PROJECT_NAME} MetaTablesRunner.cpp
     #${HANDLERS}
     ${ELEMENTS_AND_TABLES}
     ${UTILS}
-    #${MT_UT}
+    ${MT_UT}
     #${FLYWEIGHT}
 )
 

@@ -8,6 +8,7 @@
 
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
+//#include <ElementsAndTables/RAII.hpp>
 
 //#include <Utils/Stub.hpp>
 //#include <Utils/Utils.hpp>
@@ -23,23 +24,25 @@
 
 int main(int argc, char **argv)
 {
-   //{
-   //     CFlyweight application;
-   //     ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
+    //{
+    //     CFlyweight application;
+    //     ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
-   //     std::cout << "Pass command" << std::endl;
-   //     do
-   //     {
-   //         auto command = receiveAndLexCommandFromUser();
-   //         commandResult = application.interpretCommand(command);
-   //     } while(commandResult != ERROR_CODE::CLOSE);
+    //     std::cout << "Pass command" << std::endl;
+    //     do
+    //     {
+    //         auto command = receiveAndLexCommandFromUser();
+    //         commandResult = application.interpretCommand(command);
+    //     } while(commandResult != ERROR_CODE::CLOSE);
 
-   //     std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
-   //     system("Pause");
-   //}
+    //     std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
+    //     system("Pause");
+    //}
+    {
     CTable<int> tempVal;
-   ::testing::InitGoogleTest(&argc, argv);
+    tempVal.setSize(23);
+    }
+    ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
 }
-
 
