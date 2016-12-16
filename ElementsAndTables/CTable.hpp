@@ -6,6 +6,7 @@
 #include <ElementsAndTables/RAII.hpp>
 
 using namespace defaultVals;
+using namespace funs;
 
 template<typename T>
 class CTable
@@ -57,18 +58,18 @@ public:
         }
     }
 
-    void setVal(int idx, int newVal)
+    void setVal(int idx, T newVal)
     {
-        if (isProperIdx(idx, size_))
+        if (isProperIdx(idx, getSize()))
         {
             memory_[idx] = newVal;
         }
     }
 
-    int getVal(int idx) const
+    T getVal(int idx) const
     {
-        int retVal = std::numeric_limits<int>::min();
-        if (isProperIdx(idx, size_))
+        T retVal;
+        if (isProperIdx(idx, getSize()))
         {
             retVal = memory_[idx];
         }
@@ -106,6 +107,11 @@ public:
     static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE)
     {
         return new CTable<T>(size);
+    }
+
+    static CTable<T>* buildNewObj(CTable* inVal)
+    {
+        return new CTable<T>(*inVal);
     }
 
 private:

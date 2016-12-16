@@ -56,6 +56,8 @@ set(HANDLERS
 set(ELEMENTS_AND_TABLES
     ElementsAndTables/CTable.hpp
     ElementsAndTables/RAII.hpp
+	ElementsAndTables/Person.hpp
+	ElementsAndTables/Person.cpp
 )
 
 set(UTILS

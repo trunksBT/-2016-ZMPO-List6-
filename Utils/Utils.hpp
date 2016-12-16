@@ -36,6 +36,7 @@ constexpr const char* VALUES = "values";
 constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
+constexpr const char* DEFAULT_SURNAME = "KORYCINSKI";
 
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";
@@ -59,19 +60,19 @@ constexpr const char INT_TYPE = 'i';
 constexpr const char STRING_TYPE = 's';
 }
 //
-//namespace funs
-//{
+namespace funs
+{
 //int toInt(char inChar);
 //std::string toString(ERROR_CODE inCode);
 //bool isNumber(std::string inChain);
-//bool isProperIdx(int inIdx, int inSize);
+bool isProperIdx(int inIdx, int inSize);
 //bool isVectorEmpty(std::vector<CTable*>& inCache);
 //bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 //bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
 //bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
 //bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
 //ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
-//}
+}
 //
 //namespace idxOf
 //{

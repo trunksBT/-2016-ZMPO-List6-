@@ -7,17 +7,17 @@
 
 using namespace defaultVals;
 //
-//namespace funs
-//{
+namespace funs
+{
 //    bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache)
 //    {
 //        return idxOrAmount > MINUS_ONE && idxOrAmount < inCache.size();
 //    }
 //
-//    bool isProperIdx(int inIdx, int inSize)
-//    {
-//        return inIdx > MINUS_ONE && inIdx < inSize;
-//    }
+    bool isProperIdx(int inIdx, int inSize)
+    {
+        return inIdx > MINUS_ONE && inIdx < inSize;
+    }
 //
 //    std::string toString(ERROR_CODE inCode)
 //    {
@@ -158,7 +158,7 @@ using namespace defaultVals;
 //        return inChar - 48;
 //    }
 //
-//}
+}
 namespace fullCommands
 {
     std::string createArgs =

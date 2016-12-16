@@ -1,6 +1,7 @@
 // Copyrights TrunkBT_KorytkoBT
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
+#include <ElementsAndTables/Person.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <vector>
@@ -24,60 +25,45 @@ typedef Types<int, double> Implementations;
 
 TYPED_TEST_CASE_P(CTableTests);
 
-TYPED_TEST_P(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE)
+TYPED_TEST_P(CTableTests, defCTOR_getSize)
 {
-   CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj();
-   TypeParam expVal = TypeParam(5);
+    CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj();
 
-   std::size_t rcVal = inVal->getSize();
-
-   ASSERT_EQ(expVal, rcVal);
-   delete inVal;
+    ASSERT_EQ(FIVE, inVal->getSize());
+    delete inVal;
 }
 
-TYPED_TEST_P(CTableTests, defCTOR_getSize_DEFAULTSIZE_Expect_False)
+TYPED_TEST_P(CTableTests, copyCTOR_getSize)
 {
-    CTable<TypeParam>* inVal = CTable<TypeParam >::buildNewObj();
-    TypeParam expVal = 10;
+    CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj(TEN);
+    CTable<TypeParam>* copyOfInInVal = CTable<TypeParam>::buildNewObj(inVal);
 
-    std::size_t rcVal = inVal->getSize();
+    ASSERT_EQ(TEN, inVal->getSize());
+    delete inVal;
+}
 
-    ASSERT_EQ(expVal, rcVal);
+TYPED_TEST_P(CTableTests, defCTOR_setValue_getValue_10)
+{
+    CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj();
+    TypeParam newValue = TypeParam(TEN);
+    int idx = ZERO;
+
+    inVal->setVal(idx, newValue);
+    TypeParam rcVal = inVal->getVal(idx);
+
+    ASSERT_EQ(newValue, rcVal);
     delete inVal;
 }
 
 REGISTER_TYPED_TEST_CASE_P(CTableTests,
-    defCTOR_getSize_DEFAULTSIZE_Expect_DEFAULTSIZE,
-    defCTOR_getSize_DEFAULTSIZE_Expect_False);
+    defCTOR_getSize,
+    copyCTOR_getSize,
+    defCTOR_setValue_getValue_10
+    );
 
-typedef ::testing::Types<int, double, unsigned int> MyTypes;
+typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, CTableTests, MyTypes);
 
-//TEST_F(CTableTests, defCTOR_setSize_0_Expect_0)
-//{
-//   int inSize = ZERO;
-//   CTable* inVal = CTable::buildNewObj(inSize);
-//   int expVal = ZERO;
-//
-//   int rcVal = inVal->getSize();
-//
-//   ASSERT_EQ(expVal, rcVal);
-//   delete inVal;
-//}
-//
-//TEST_F(CTableTests, copyCTOR_size5_Expect_size5)
-//{
-//   int inSize = DEFAULT_IN_TABLE_SIZE;
-//   int expVal = DEFAULT_IN_TABLE_SIZE;
-//   CTable* sourceVal = CTable::buildNewObj(inSize);
-//
-//   CTable* inVal = CTable::buildNewObj(*sourceVal);
-//   int rcVal = inVal->getSize();
-//
-//   ASSERT_EQ(expVal, rcVal);
-//   delete sourceVal;
-//   delete inVal;
-//}
 //
 //TEST_F(CTableTests, copyCTOR_withAssignCopyOperator_size5_Expect_size5)
 //{
