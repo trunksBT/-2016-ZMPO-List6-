@@ -6,7 +6,7 @@ template <typename T>
 class ARRAII
 {
 public:
-    ARRAII(size_t inSize)
+    explicit ARRAII(size_t inSize)
         : size_(inSize)
         , memory_(new T[inSize])
     {

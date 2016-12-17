@@ -6,7 +6,7 @@ template <typename T>
 class RAII
 {
 public:
-    RAII(T* inVal):
+    explicit RAII(T* inVal):
         memory_(inVal)
     {
         std::cout << "RAII CTOR" << std::endl;
@@ -44,16 +44,16 @@ public:
         return *memory_ == *inObj.memory_;
     }
 
+    T& operator*() const noexcept
+    {
+        return *memory_;
+    }
+
 	~RAII()
 	{
         std::cout << "RAII DTOR" << std::endl;
 		delete memory_;
 	}
-
-    std::size_t size() const noexcept
-    {
-        return size_;
-    }
 
     static void swap(RAII& leftObj, RAII& rightObj)
     {

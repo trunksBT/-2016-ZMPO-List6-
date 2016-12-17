@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
 #include <ElementsAndTables/Person.hpp>
-#include <ElementsAndTables/RAII.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <vector>
@@ -42,6 +41,18 @@ TEST(CTableTests, defCTOR_getSize)
     tempRAII = tempRAII2;
 
     ASSERT_EQ(tempRAII.size(), tempRAII2.size());
+}
+
+TEST(CTableTests, WrapInWrap)
+{
+    CTable<CTable<int>> tempRAII1 = CTable<CTable<int>>(1);
+    CTable<CTable<int>> tempRAII2 = CTable<CTable<int>>(1);
+
+    std::cout << tempRAII1.getVal(0).getVal(0) << std::endl;
+
+    //std::cout << "DUPAAAAAAAAAAAAAA: " << static_cast<std::string>(tempRAII1) << std::endl;
+
+    ASSERT_EQ(tempRAII1, tempRAII2);
 }
 
 TYPED_TEST_P(CTableTests, defCTOR_getSize)

@@ -80,6 +80,7 @@ set(MT_UT
     #MT_UT/FlyweightUnproperAmountOfArgsMT.cpp
     #MT_UT/List1.cpp
     MT_UT/TableUT.cpp
+    MT_UT/PersonUT.cpp
 )
 
 set(FLYWEIGHT

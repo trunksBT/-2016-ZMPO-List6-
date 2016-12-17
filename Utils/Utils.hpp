@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <vector>
 #include <limits>
 
@@ -32,6 +33,8 @@ constexpr const char* SEPARATOR = ": ";
 constexpr const char* BRACKET_OPEN = "( ";
 constexpr const char* BRACKET_CLOSE = " )";
 constexpr const char* LEN = "len";
+constexpr const char* AGE = "age";
+constexpr const char* SURNAME = "surname";
 constexpr const char* VALUES = "values";
 constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";

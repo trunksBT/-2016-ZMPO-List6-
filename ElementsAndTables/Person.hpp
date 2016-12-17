@@ -1,7 +1,9 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <sstream>
 #include <utility>
+#include <ElementsAndTables/RAII.hpp>
 #include <Utils/Utils.hpp>
 
 using namespace defaultVals;
@@ -22,22 +24,9 @@ public:
         std::cout << "CPerson CTOR" << std::endl;
     }
 
-    CPerson(const CPerson&& inObj)
-    {
-        age_ = std::move(inObj.age_);
-        surname_ = std::move(inObj.surname_);
-    }
-
-    CPerson& operator=(CPerson&& inObj)
-    {
-        age_ = std::move(inObj.age_);
-        surname_ = std::move(inObj.surname_);
-        return *this;
-    }
-
     CPerson(const CPerson& inObj)
         : age_(inObj.age_)
-        , surname_(new std::string(*inObj.surname_))
+        , surname_(inObj.surname_)
     {
         std::cout << "CPerson COPY_CTOR" << std::endl;
     }
@@ -51,7 +40,7 @@ public:
 
     bool operator==(const CPerson& inObj) const noexcept
     {
-        return age_ == inObj.age_ && *surname_ == *inObj.surname_;
+        return age_ == inObj.age_ && surname_ == inObj.surname_;
     }
 
     ~CPerson()
@@ -69,19 +58,26 @@ public:
         return age_;
     }
 
+    operator std::string() const noexcept
+    {
+        std::stringstream retVal;
+        retVal << BRACKET_OPEN << SURNAME << SEPARATOR << getName();
+        retVal << COMMA_SPACE << AGE << SEPARATOR << age_ << BRACKET_CLOSE;
+        return std::move(retVal.str());
+    }
+
     std::string getName() const noexcept
     {
-        return std::string(*surname_);
+        return *surname_;
     }
 
     void swap(CPerson& first, CPerson& second) noexcept
     {
-        using std::swap;
-        swap(first.age_, second.age_);
-        swap(first.surname_, second.surname_);
+        std::swap(first.age_, second.age_);
+        RAII<std::string>::swap(first.surname_, second.surname_);
     }
 
 private:
-    std::string* surname_;
+    RAII<std::string> surname_;
     unsigned int age_;
 };

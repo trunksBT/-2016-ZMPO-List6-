@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
@@ -98,17 +99,17 @@ public:
         swap(first.name_, second.name_);
     }
 
-    std::string toString() const noexcept
+    explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
         retVal << BRACKET_OPEN << name_;
-        retVal << SPACE << LEN << SEPARATOR << size_;
+        retVal << SPACE << LEN << SEPARATOR << getSize();
         retVal << SPACE << VALUES << SEPARATOR;
 
-        for (int i = 0; i < size_; i++)
-        {
-            retVal << memory_[i] << COMMA_SPACE;
-        }
+//        for (int i = 0; i < getSize(); i++)
+//        {
+            retVal << static_cast<std::string>(memory_) << COMMA_SPACE;
+//        }
 
         std::string stringedStream(retVal.str());
         stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
