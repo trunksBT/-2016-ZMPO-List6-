@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
 #include <ElementsAndTables/Person.hpp>
+#include <ElementsAndTables/RAII.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <vector>
@@ -25,11 +26,19 @@ typedef Types<int, double> Implementations;
 
 TYPED_TEST_CASE_P(CTableTests);
 
+TEST(CTableTests, RAII_Int)
+{
+    RAII<int> tempRAII = RAII<int>(new int(FIVE));
+    RAII<int> tempRAII2 = RAII<int>(new int(TEN));
+    tempRAII = tempRAII2;
+
+    ASSERT_EQ(tempRAII, tempRAII2);
+}
 
 TEST(CTableTests, defCTOR_getSize)
 {
-    RAII<int> tempRAII = RAII<int>(FIVE);
-    RAII<int> tempRAII2 = RAII<int>(TEN);
+    ARRAII<int> tempRAII = ARRAII<int>(FIVE);
+    ARRAII<int> tempRAII2 = ARRAII<int>(TEN);
     tempRAII = tempRAII2;
 
     ASSERT_EQ(tempRAII.size(), tempRAII2.size());

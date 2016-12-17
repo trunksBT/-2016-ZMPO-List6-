@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <Utils/Utils.hpp>
-#include <ElementsAndTables/RAII.hpp>
+#include <ElementsAndTables/ARRAII.hpp>
 
 using namespace defaultVals;
 using namespace funs;
@@ -13,7 +13,7 @@ class CTable
 {
 public:
     CTable(size_t size = DEFAULT_IN_TABLE_SIZE)
-        : memory_(RAII<T>(size))
+        : memory_(ARRAII<T>(size))
     {
         if (flag::PRINT_ON)
         {
@@ -46,7 +46,7 @@ public:
     {
         if (memory_.size() != inNewSize)
         {
-            memory_ = RAII<T>(inNewSize);
+            memory_ = ARRAII<T>(inNewSize);
         }
     }
 
@@ -94,7 +94,7 @@ public:
     void swap(CTable& first, CTable& second)
     {
         using std::swap;
-        RAII<T>::swap(first.memory_, second.memory_);
+        ARRAII<T>::swap(first.memory_, second.memory_);
         swap(first.name_, second.name_);
     }
 
@@ -128,7 +128,7 @@ public:
 
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
-    RAII<T> memory_;
+    ARRAII<T> memory_;
 };
 
 template<class T>
