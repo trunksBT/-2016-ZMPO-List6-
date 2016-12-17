@@ -108,16 +108,14 @@ public:
     explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
-        retVal << BRACKET_OPEN << name_;
-        retVal << SPACE << LEN << SEPARATOR << getSize();
-        retVal << SPACE << VALUES << SEPARATOR;
+        retVal << POST_PRINT << memory_;
 
-        retVal << memory_ << COMMA_SPACE;
+        return std::move(retVal.str());
+    }
 
-        std::string stringedStream(retVal.str());
-        stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
-
-        return std::move(stringedStream + std::string(BRACKET_CLOSE));
+    T& operator[](int idx) const noexcept
+    {
+        return memory_[idx];
     }
 
     static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept

@@ -6,7 +6,7 @@
 
 namespace flag
 {
-constexpr bool PRINT_ON = true;
+constexpr bool PRINT_ON = false;
 constexpr bool DEBUG_TESTS_ON = false;
 }
 

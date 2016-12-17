@@ -48,9 +48,12 @@ TEST(CTableTests, paramCTOR_Int_castToString)
 
 TEST(CTableTests, WrapInWrap)
 {
-    CTable<CTable<CPerson>> tempRAII3 = CTable<CTable<CPerson>>(1);
+    CTable<CTable<int>> tempRAII3 = CTable<CTable<int>>(8);
 
-    std::cout << "DUPAAAAAAAAAAAAAA: " << tempRAII3 << std::endl;
+    std::cout << tempRAII3 << std::endl;
+    tempRAII3[1][2] = 9;
+    std::cout << tempRAII3[1] << std::endl;
+
 
     ASSERT_TRUE(true);
 }
