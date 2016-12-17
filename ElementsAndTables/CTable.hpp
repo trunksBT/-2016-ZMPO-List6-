@@ -99,6 +99,12 @@ public:
         swap(first.name_, second.name_);
     }
 
+    friend std::ostream& operator<< (std::ostream& stream, const CTable& inVal)
+    {
+        stream<<static_cast<std::string>(inVal);
+        return stream;
+    }
+
     explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
@@ -106,10 +112,7 @@ public:
         retVal << SPACE << LEN << SEPARATOR << getSize();
         retVal << SPACE << VALUES << SEPARATOR;
 
-//        for (int i = 0; i < getSize(); i++)
-//        {
-            retVal << static_cast<std::string>(memory_) << COMMA_SPACE;
-//        }
+        retVal << memory_ << COMMA_SPACE;
 
         std::string stringedStream(retVal.str());
         stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);

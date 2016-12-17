@@ -34,25 +34,25 @@ TEST(CTableTests, RAII_Int)
     ASSERT_EQ(tempRAII, tempRAII2);
 }
 
-TEST(CTableTests, defCTOR_getSize)
+TEST(CTableTests, paramCTOR_Int_castToString)
 {
-    ARRAII<int> tempRAII = ARRAII<int>(FIVE);
-    ARRAII<int> tempRAII2 = ARRAII<int>(TEN);
-    tempRAII = tempRAII2;
+    std::cout << "SIEMA" << std::endl;
+    ARRAII<int> tempRAII = ARRAII<int>(TWO);
+    ARRAII<CPerson> tempRAII2 = ARRAII<CPerson>(TWO);
 
-    ASSERT_EQ(tempRAII.size(), tempRAII2.size());
+    std::cout << static_cast<std::string>(tempRAII) << std::endl;
+    std::cout << static_cast<std::string>(tempRAII2) << std::endl;
+
+    ASSERT_TRUE(true);
 }
 
 TEST(CTableTests, WrapInWrap)
 {
-    CTable<CTable<int>> tempRAII1 = CTable<CTable<int>>(1);
-    CTable<CTable<int>> tempRAII2 = CTable<CTable<int>>(1);
+    CTable<CTable<CPerson>> tempRAII3 = CTable<CTable<CPerson>>(1);
 
-    std::cout << tempRAII1.getVal(0).getVal(0) << std::endl;
+    std::cout << "DUPAAAAAAAAAAAAAA: " << tempRAII3 << std::endl;
 
-    //std::cout << "DUPAAAAAAAAAAAAAA: " << static_cast<std::string>(tempRAII1) << std::endl;
-
-    ASSERT_EQ(tempRAII1, tempRAII2);
+    ASSERT_TRUE(true);
 }
 
 TYPED_TEST_P(CTableTests, defCTOR_getSize)

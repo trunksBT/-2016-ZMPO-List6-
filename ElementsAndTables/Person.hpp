@@ -58,11 +58,17 @@ public:
         return age_;
     }
 
+    friend std::ostream& operator<< (std::ostream& stream, const CPerson& inVal)
+    {
+        stream<<static_cast<std::string>(inVal);
+        return stream;
+    }
+
     operator std::string() const noexcept
     {
         std::stringstream retVal;
         retVal << BRACKET_OPEN << SURNAME << SEPARATOR << getName();
-        retVal << COMMA_SPACE << AGE << SEPARATOR << age_ << BRACKET_CLOSE;
+        retVal << COMMA_SPACE << AGE << SEPARATOR << age_ << BRACKET_CLOSE << POST_PRINT;
         return std::move(retVal.str());
     }
 

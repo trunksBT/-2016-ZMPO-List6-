@@ -42,7 +42,7 @@ TEST(CPersonTests, CPerson_ParamCTOR_stringCast)
 {
     CPerson person1 = CPerson("Kowalska", 10);
 
-    std::cout << std::boolalpha << std::is_trivial<int>::value << std::endl;
+    std::cout << std::boolalpha << std::is_integral<int>::value << std::endl;
     std::cout << std::boolalpha << std::is_trivial<CPerson>::value << std::endl;
 //    std::string tempVal = person1;
 //    std::cout << tempVal << std::endl;

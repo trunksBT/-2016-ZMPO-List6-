@@ -1,6 +1,13 @@
 #include <iostream>
 #include <algorithm>
 #include <utility>
+#include <string>
+#include <sstream>
+#include <Utils/Utils.hpp>
+#include <type_traits>
+#include <boost/lexical_cast.hpp>
+
+using namespace defaultVals;
 
 template <typename T>
 class ARRAII
@@ -81,6 +88,30 @@ public:
         {
             memory_[i] = T();
         }
+    }
+
+    friend std::ostream& operator<< (std::ostream& stream, const ARRAII& inVal)
+    {
+        stream<<static_cast<std::string>(inVal);
+        return stream;
+    }
+
+    operator std::string() const noexcept
+    {
+        std::stringstream retVal;
+        retVal << BRACKET_OPEN << LEN << size_;
+        retVal << COMMA_SPACE << SQUARE_BRACKET_OPEN;
+
+        for (int i = 0; i < size(); i++)
+        {
+            retVal << memory_[i] << COMMA_SPACE;
+        }
+
+        retVal << COMMA_SPACE << SQUARE_BRACKET_CLOSE << POST_PRINT;
+        std::string stringedStream(retVal.str());
+        stringedStream = stringedStream.substr(ZERO, stringedStream.size() - TWO);
+
+        return std::move(stringedStream + std::string(BRACKET_CLOSE));
     }
 
     static void swap(ARRAII& leftObj, ARRAII& rightObj)
