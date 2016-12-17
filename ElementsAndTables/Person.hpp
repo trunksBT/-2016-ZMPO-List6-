@@ -49,7 +49,7 @@ public:
         return *this;
     }
 
-    bool operator==(const CPerson& inObj) const
+    bool operator==(const CPerson& inObj) const noexcept
     {
         return age_ == inObj.age_ && *surname_ == *inObj.surname_;
     }
@@ -64,7 +64,7 @@ public:
         return age_;
     }
 
-    explicit operator int()
+    explicit operator int() const noexcept
     {
         return age_;
     }
@@ -74,7 +74,7 @@ public:
         return std::string(*surname_);
     }
 
-    void swap(CPerson& first, CPerson& second)
+    void swap(CPerson& first, CPerson& second) noexcept
     {
         using std::swap;
         swap(first.age_, second.age_);

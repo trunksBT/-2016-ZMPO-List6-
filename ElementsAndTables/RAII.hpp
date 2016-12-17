@@ -14,8 +14,9 @@ public:
         std::cout << "RAII CTOR" << std::endl;
     }
 
-    RAII(const RAII&& inObj)
+    RAII(RAII&& inObj)
     {
+        std::cout << "RAII MOVE CTOR" << std::endl;
         std::swap(memory_, inObj.memory_);
         std::swap(size_, inObj.size_);
     }
@@ -24,6 +25,7 @@ public:
     {
         std::cout << "RAII MOVE=" << std::endl;
         std::swap(memory_, inObj.memory_);
+        std::swap(size_, inObj.size_);
         return *this;
     }
 
@@ -37,9 +39,24 @@ public:
 
     RAII& operator=(const RAII& inObj)
     {
+        std::cout << "RAII COPY=" << std::endl;
         RAII temp = inObj;
-        swap(*this, temp);
+        std::swap(memory_, temp.memory_);
+        std::swap(size_, temp.size_);
         return *this;
+    }
+
+    bool operator==(const RAII& inObj) const noexcept
+    {
+        if (size_ != inObj.size_)
+            return false;
+
+        bool equalTables = true;
+        for (int i = 0; i < size_; i++)
+        {
+            equalTables = memory_[i] == inObj.memory_[i];
+        }
+        return equalTables;
     }
 
 	~RAII()
@@ -66,10 +83,10 @@ public:
         }
     }
 
-    void swap(RAII& first, RAII& second)
+    static void swap(RAII& leftObj, RAII& rightObj)
     {
-        using std::swap;
-        swap(first.memory_, second.memory_);
+        std::swap(leftObj.memory_, rightObj.memory_);
+        std::swap(leftObj.size_, rightObj.size_);
     }
 
 private:

@@ -31,15 +31,15 @@ public:
         }
     }
 
-    CTable<T>& operator=(const CTable& inObj)
+    CTable<T>& operator=(const CTable& inObj) 
     {
         CTable<T> temp = inObj;
         swap(*this, temp);
-        return *this;
         if (flag::PRINT_ON)
         {
             std::cout << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
         }
+        return *this;
     }
 
     void setSize(int inNewSize) noexcept
@@ -58,7 +58,7 @@ public:
         }
     }
 
-    void setVal(int idx, T newVal)
+    void setVal(int idx, T newVal) noexcept
     {
         if (isProperIdx(idx, getSize()))
         {
@@ -66,7 +66,7 @@ public:
         }
     }
 
-    T getVal(int idx) const
+    T getVal(int idx) const noexcept
     {
         T retVal;
         if (isProperIdx(idx, getSize()))
@@ -81,12 +81,24 @@ public:
         return memory_.size();
     }
 
-    std::string getName() const
+    std::string getName() const noexcept
     {
         return std::string(name_);
     }
 
-    std::string toString() const
+    bool operator==(const CTable& inObj) const noexcept
+    {
+        return memory_ == inObj.memory_ && name_ == inObj.name_;
+    }
+
+    void swap(CTable& first, CTable& second)
+    {
+        using std::swap;
+        RAII<T>::swap(first.memory_, second.memory_);
+        swap(first.name_, second.name_);
+    }
+
+    std::string toString() const noexcept
     {
         std::stringstream retVal;
         retVal << BRACKET_OPEN << name_;
@@ -104,12 +116,12 @@ public:
         return std::move(stringedStream + std::string(BRACKET_CLOSE));
     }
 
-    static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE)
+    static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept
     {
         return new CTable<T>(size);
     }
 
-    static CTable<T>* buildNewObj(CTable* inVal)
+    static CTable<T>* buildNewObj(CTable* inVal) noexcept
     {
         return new CTable<T>(*inVal);
     }

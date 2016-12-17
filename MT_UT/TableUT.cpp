@@ -25,6 +25,16 @@ typedef Types<int, double> Implementations;
 
 TYPED_TEST_CASE_P(CTableTests);
 
+
+TEST(CTableTests, defCTOR_getSize)
+{
+    RAII<int> tempRAII = RAII<int>(FIVE);
+    RAII<int> tempRAII2 = RAII<int>(TEN);
+    tempRAII = tempRAII2;
+
+    ASSERT_EQ(tempRAII.size(), tempRAII2.size());
+}
+
 TYPED_TEST_P(CTableTests, defCTOR_getSize)
 {
     CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj();
@@ -39,6 +49,16 @@ TYPED_TEST_P(CTableTests, copyCTOR_getSize)
     CTable<TypeParam>* copyOfInInVal = CTable<TypeParam>::buildNewObj(inVal);
 
     ASSERT_EQ(TEN, inVal->getSize());
+    delete inVal;
+}
+
+TYPED_TEST_P(CTableTests, copyAssignement_getSize)
+{
+    CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj(TEN);
+    CTable<TypeParam> copyOfInInVal;
+    copyOfInInVal = *inVal;
+
+    ASSERT_EQ(*inVal, copyOfInInVal);
     delete inVal;
 }
 
@@ -58,10 +78,13 @@ TYPED_TEST_P(CTableTests, defCTOR_setValue_getValue_10)
 REGISTER_TYPED_TEST_CASE_P(CTableTests,
     defCTOR_getSize,
     copyCTOR_getSize,
+    copyAssignement_getSize,
     defCTOR_setValue_getValue_10
     );
 
-typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;
+typedef ::testing::Types<int, double, unsigned int
+    , CPerson
+> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, CTableTests, MyTypes);
 
 //
