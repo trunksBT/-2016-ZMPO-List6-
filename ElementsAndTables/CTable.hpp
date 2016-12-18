@@ -16,7 +16,7 @@ class CTable
 public:
     CTable(size_t size)
     {
-        memory_ = ARRAII<T>(size);
+        //memory_ = ARRAII<T>(size);
         if (flag::PRINT_ON)
         {
             std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -80,7 +80,8 @@ public:
 
     std::size_t getSize() const noexcept
     {
-        return memory_.get().size();
+        //return memory_.get()->size();
+        return size_;
     }
 
     std::string getName() const noexcept
@@ -109,7 +110,7 @@ public:
     explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
-        retVal << POST_PRINT << memory_;
+        retVal << POST_PRINT << memory_.get();
 
         return std::move(retVal.str());
     }
@@ -131,7 +132,9 @@ public:
 
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
-    boost::optional<ARRAII<T>> memory_;
+    //boost::optional<ARRAII<T>> memory_;
+    boost::optional<T*> memory_;
+    std::size_t size_;
 };
 
 template<class T>

@@ -16,7 +16,7 @@ public:
     ARRAII(size_t inSize)
         : size_(inSize)
     {
-        memory_ = new T[inSize];
+        //memory_ = new T[inSize];
         //init();
         if (flag::PRINT_ON)
         {
