@@ -58,7 +58,7 @@ public:
         return age_;
     }
 
-    friend std::ostream& operator<< (std::ostream& stream, const CPerson& inVal)
+    friend std::ostream& operator<<(std::ostream& stream, const CPerson& inVal)
     {
         stream<<static_cast<std::string>(inVal);
         return stream;

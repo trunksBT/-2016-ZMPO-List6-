@@ -62,7 +62,7 @@ public:
         }
     }
 
-    void deepCopy(const ARRAII<T> & inObj)
+    void deepCopy(const ARRAII<T> & inObj) noexcept
     {
         for (int i = 0; i < size_; i++)
         {
@@ -137,13 +137,13 @@ public:
         return std::move(retTable + std::string(SQUARE_BRACKET_CLOSE));
     }
 
-    static void swap(ARRAII& leftObj, ARRAII& rightObj)
+    static void swap(ARRAII& leftObj, ARRAII& rightObj) noexcept
     {
         std::swap(leftObj.memory_, rightObj.memory_);
         std::swap(leftObj.size_, rightObj.size_);
     }
 
-    void allocateMemoryAndCallCtors()
+    void allocateMemoryAndCallCtors() noexcept
     {
         memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
 
@@ -153,7 +153,7 @@ public:
         }
     }
 
-    void deallocateMemoryAndCallDtors()
+    void deallocateMemoryAndCallDtors() noexcept
     {
         for (int i = 0; i < size_; i++)
         {

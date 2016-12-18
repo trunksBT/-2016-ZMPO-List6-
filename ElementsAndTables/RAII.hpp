@@ -55,11 +55,11 @@ public:
 		delete memory_;
 	}
 
-    static void swap(RAII& leftObj, RAII& rightObj)
+    static void swap(RAII& leftObj, RAII& rightObj) noexcept
     {
         std::swap(leftObj.memory_, rightObj.memory_);
     }
 
 private:
-    T* memory_;
+    T* memory_ = nullptr;
 };
