@@ -1,12 +1,12 @@
 #pragma once
 
+#include <string>
 #include <vector>
-#include <ElementsAndTables/CTable.hpp>
 #include <limits>
 
 namespace flag
 {
-constexpr bool PRINT_ON = true;
+constexpr bool PRINT_ON = false;
 constexpr bool DEBUG_TESTS_ON = false;
 }
 
@@ -32,15 +32,21 @@ constexpr const char* POST_PRINT = "\n";
 constexpr const char* SEPARATOR = ": ";
 constexpr const char* BRACKET_OPEN = "( ";
 constexpr const char* BRACKET_CLOSE = " )";
+constexpr const char* SQUARE_BRACKET_OPEN = "[ ";
+constexpr const char* SQUARE_BRACKET_CLOSE = " ]";
 constexpr const char* LEN = "len";
+constexpr const char* AGE = "age";
+constexpr const char* SURNAME = "surname";
 constexpr const char* VALUES = "values";
 constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
+constexpr const char* DEFAULT_SURNAME = "KORYCINSKI";
 
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";
 constexpr const char* CTOR_COPY_PRE_PRINT = "kopiuj: ";
+constexpr const char* OPER_COPY_PRE_PRINT = "oper kopiuj: ";
 constexpr const char* CTOR_DEFAULT_PRE_PRINT = "bezp: ";
 constexpr const char* CTOR_DEFAULT_MOVE_PRINT = "przenoszenie: ";
 constexpr const char* CTOR_ARG1_PRE_PRINT = "parametr: ";
@@ -58,32 +64,32 @@ constexpr const char* ERRORED_COMMAND_IDX = "Errored command idx";
 constexpr const char INT_TYPE = 'i';
 constexpr const char STRING_TYPE = 's';
 }
-
+//
 namespace funs
 {
-int toInt(char inChar);
-std::string toString(ERROR_CODE inCode);
-bool isNumber(std::string inChain);
+//int toInt(char inChar);
+//std::string toString(ERROR_CODE inCode);
+//bool isNumber(std::string inChain);
 bool isProperIdx(int inIdx, int inSize);
-bool isVectorEmpty(std::vector<CTable*>& inCache);
-bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
-bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
-bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
-bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
-ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
+//bool isVectorEmpty(std::vector<CTable*>& inCache);
+//bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
+//bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
+//bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
+//bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
+//ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
 }
-
-namespace idxOf
-{
-constexpr const int COMMAND = 0;
-constexpr const int ID_OF_CTABLE = 1;
-constexpr const int AMOUNT = 1;
-constexpr const int NEW_NAME = 2;
-constexpr const int NEW_SIZE = 2;
-constexpr const int GOAL_ID = 2;
-constexpr const int NEW_VAL = 3;
-constexpr const int INITIAL_NAME = 3;
-}
+//
+//namespace idxOf
+//{
+//constexpr const int COMMAND = 0;
+//constexpr const int ID_OF_CTABLE = 1;
+//constexpr const int AMOUNT = 1;
+//constexpr const int NEW_NAME = 2;
+//constexpr const int NEW_SIZE = 2;
+//constexpr const int GOAL_ID = 2;
+//constexpr const int NEW_VAL = 3;
+//constexpr const int INITIAL_NAME = 3;
+//}
 
 namespace messageLiterals
 {

@@ -1,45 +1,141 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 #include <vector>
+#include <Utils/Utils.hpp>
+#include <ElementsAndTables/ARRAII.hpp>
+#include <boost/optional.hpp>
 
+using namespace defaultVals;
+using namespace funs;
+
+template<typename T>
 class CTable
 {
 public:
-    CTable();
-    CTable(int inSize);
-    CTable(CTable& inVal);
-    CTable(std::string inVal);
-    CTable(int inSize, int inInitVal);
-    CTable(int inSize, std::string inName);
-    ~CTable();
-    void copyCtor(CTable & inVal);
-    CTable& operator=(CTable& inObj);
-    CTable* clone();
-public:
-    int getSize() const;
-    int getVal(int inIdx) const;
-    std::string getName() const;
-    std::string toString() const;
-public:
-    void setSize(int inNewSize);
-    void setName(std::string inName);
-    void setVal(int idx, int inNewVal);
-public:
-    static CTable* buildNewObj();
-    static CTable* buildNewObj(CTable & inVal);
-    static CTable* buildNewObj(int inSize);
-    static CTable* buildNewObj(int inSize, std::string inName);
-    static CTable* buildNewObj(int inSize, int inInitValue);
-    void initTable(int* inTable, int inSize, int inDefaultVal);
-    void initTable();
+    CTable(size_t size)
+        : memory_(ARRAII<T>(size))
+    {
+        //memory_ = ARRAII<T>(size);
+        if (flag::PRINT_ON)
+        {
+            std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+        }
+    }
+
+    CTable(const CTable& inVal)
+        : name_(inVal.name_)
+        , memory_(inVal.memory_)
+    {
+        if (flag::PRINT_ON)
+        {
+            std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
+        }
+    }
+
+    CTable<T>& operator=(const CTable& inObj) 
+    {
+        CTable<T> temp = inObj;
+        swap(*this, temp);
+        if (flag::PRINT_ON)
+        {
+            std::cout << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
+        }
+        return *this;
+    }
+
+    void setSize(int inNewSize) noexcept
+    {
+        //if (memory_.size() != inNewSize)
+        //{
+        //    memory_ = ARRAII<T>(inNewSize);
+        //}
+    }
+
+    ~CTable()
+    {
+        if (flag::PRINT_ON)
+        {
+            std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
+        }
+    }
+
+    void setVal(int idx, T newVal) noexcept
+    {
+        if (isProperIdx(idx, getSize()))
+        {
+            memory_[idx] = newVal;
+        }
+    }
+
+    T getVal(int idx) const noexcept
+    {
+        T retVal;
+        if (isProperIdx(idx, getSize()))
+        {
+            retVal = memory_[idx];
+        }
+        return retVal;
+    }
+
+    std::size_t getSize() const noexcept
+    {
+        return memory_.size();
+        //return size_;
+    }
+
+    std::string getName() const noexcept
+    {
+        return std::string(name_);
+    }
+
+    bool operator==(const CTable& inObj) const noexcept
+    {
+        return memory_ == inObj.memory_ && name_ == inObj.name_;
+    }
+
+    void swap(CTable& first, CTable& second)
+    {
+        using std::swap;
+        ARRAII<T>::swap(first.memory_, second.memory_);
+        swap(first.name_, second.name_);
+    }
+
+    friend std::ostream& operator<< (std::ostream& stream, const CTable& inVal)
+    {
+        stream<<static_cast<std::string>(inVal);
+        return stream;
+    }
+
+    explicit operator std::string() const noexcept
+    {
+        std::stringstream retVal;
+        retVal << POST_PRINT << memory_;
+
+        return std::move(retVal.str());
+    }
+
+    T& operator[](int idx) const noexcept
+    {
+        return memory_[idx];
+    }
+
+    static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept
+    {
+        return new CTable<T>(size);
+    }
+
+    static CTable<T>* buildNewObj(CTable* inVal) noexcept
+    {
+        return new CTable<T>(*inVal);
+    }
 
 private:
-    void deepCopy(CTable& inVal);
-    void allocateMemory(int inSize);
-    void deallocateMemory();
-private:
-    std::string name_;
-    int* memory_;
-    int size_;
+    std::string name_ = DEFAULT_TABLE_NAME;
+    ARRAII<T> memory_;
+    std::size_t size_;
 };
+
+template<class T>
+using Vec_PtrCTable = std::vector<T*, CTable<T>*>;
