@@ -21,40 +21,26 @@ protected:
    {}
 };
 
-
 TEST(CPersonTests, CPerson_DefCTOR)
 {
-    CPerson person1 = CPerson("Kowalska", 10);
-    CPerson person2 = CPerson("Kowalska", 10);
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
+    CPerson person2 = CPerson(DEFAULT_SURNAME, TEN);
 
     ASSERT_EQ(person1, person2);
 }
 
-TEST(CPersonTests, CPerson_DefCTOR_onHeap)
-{
-    CPerson* person1 = new CPerson("Kowalska", 10);
-    CPerson* person2 = new CPerson("Kowalska", 10);
-
-    ASSERT_EQ(*person1, *person2);
-}
-
 TEST(CPersonTests, CPerson_ParamCTOR_stringCast)
 {
-    CPerson person1 = CPerson("Kowalska", 10);
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
 
-    std::cout << std::boolalpha << std::is_integral<int>::value << std::endl;
-    std::cout << std::boolalpha << std::is_trivial<CPerson>::value << std::endl;
-//    std::string tempVal = person1;
-//    std::cout << tempVal << std::endl;
-//    std::cout << std::to_string(10) << std::endl;
-//    std::cout << std::string(10.0) << std::endl;
+    std::cout << person1 << std::endl; 
 
     ASSERT_TRUE(true);
 }
 
 TEST(CPersonTests, CPerson_CopyCTOR)
 {
-    CPerson person1 = CPerson("Kowalska", 10);
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
     CPerson person2 = CPerson(person1);
 
     ASSERT_EQ(person1, person2);
@@ -62,8 +48,8 @@ TEST(CPersonTests, CPerson_CopyCTOR)
 
 TEST(CPersonTests, CPerson_CopyAssignement)
 {
-    CPerson person1 = CPerson("Kowalska", 10);
-    CPerson person2 = CPerson("Nowak", 20);
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
+    CPerson person2 = CPerson("Siema", 10);
     person1 = person2;
 
     ASSERT_EQ(person1.getName(), person2.getName());

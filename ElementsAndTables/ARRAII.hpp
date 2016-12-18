@@ -17,12 +17,8 @@ public:
     ARRAII(size_t inSize)
         : size_(inSize)
     {
-        memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
+        allocateMemoryAndCallCtors();
 
-        for (int i = 0; i < size_; i++)
-        {
-            new(memory_ + i) T(size_);
-        }
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII CTOR" << std::endl;
@@ -53,15 +49,25 @@ public:
     ARRAII(const ARRAII& inObj)
         : size_(inObj.size_)
     {
+        memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
+
         for (int i = 0; i < size_; i++)
         {
-            memory_ = new T(inObj.memory_[i]);
+            new(memory_ + i) T(inObj.memory_[i]);
         }
+
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII COPY_CTOR" << std::endl;
         }
-        std::copy(inObj.memory_, inObj.memory_ + inObj.size_, memory_);
+    }
+
+    void deepCopy(const ARRAII<T> & inObj)
+    {
+        for (int i = 0; i < size_; i++)
+        {
+            memory_[i] = T(inObj.memory_[i]);
+        }
     }
 
     ARRAII& operator=(const ARRAII& inObj)
@@ -91,11 +97,7 @@ public:
 
 	~ARRAII()
 	{
-        for (int i = 0; i < size_; i++)
-        {
-            (memory_ + i)->~T();
-        }
-        free(memory_);
+        deallocateMemoryAndCallDtors();
 
         if (flag::PRINT_ON)
         {
@@ -139,6 +141,25 @@ public:
     {
         std::swap(leftObj.memory_, rightObj.memory_);
         std::swap(leftObj.size_, rightObj.size_);
+    }
+
+    void allocateMemoryAndCallCtors()
+    {
+        memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
+
+        for (int i = 0; i < size_; i++)
+        {
+            new(memory_ + i) T(size_);
+        }
+    }
+
+    void deallocateMemoryAndCallDtors()
+    {
+        for (int i = 0; i < size_; i++)
+        {
+            (memory_ + i)->~T();
+        }
+        free(memory_);
     }
 
 private:

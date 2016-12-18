@@ -81,6 +81,7 @@ set(MT_UT
     #MT_UT/List1.cpp
     MT_UT/TableUT.cpp
     MT_UT/PersonUT.cpp
+    MT_UT/RAII_ARRAII_UT.cpp
 )
 
 set(FLYWEIGHT

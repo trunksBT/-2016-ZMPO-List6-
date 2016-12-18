@@ -5,7 +5,6 @@
 #include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
-#include <boost/optional.hpp>
 
 using namespace defaultVals;
 using namespace funs;
@@ -17,7 +16,6 @@ public:
     CTable(size_t size)
         : memory_(ARRAII<T>(size))
     {
-        //memory_ = ARRAII<T>(size);
         if (flag::PRINT_ON)
         {
             std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -47,10 +45,10 @@ public:
 
     void setSize(int inNewSize) noexcept
     {
-        //if (memory_.size() != inNewSize)
-        //{
-        //    memory_ = ARRAII<T>(inNewSize);
-        //}
+        if (memory_.size() != inNewSize)
+        {
+            memory_ = ARRAII<T>(inNewSize);
+        }
     }
 
     ~CTable()
@@ -71,18 +69,16 @@ public:
 
     T getVal(int idx) const noexcept
     {
-        T retVal;
         if (isProperIdx(idx, getSize()))
         {
-            retVal = memory_[idx];
+            return memory_[idx];
         }
-        return retVal;
+        // throw here OutOfBoundsException
     }
 
     std::size_t getSize() const noexcept
     {
         return memory_.size();
-        //return size_;
     }
 
     std::string getName() const noexcept
@@ -121,7 +117,7 @@ public:
         return memory_[idx];
     }
 
-    static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept
+    static CTable<T>* buildNewObj(size_t size) noexcept
     {
         return new CTable<T>(size);
     }
@@ -134,7 +130,6 @@ public:
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
     ARRAII<T> memory_;
-    std::size_t size_;
 };
 
 template<class T>

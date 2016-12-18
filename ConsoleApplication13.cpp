@@ -6,14 +6,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <boost/optional.hpp>
 
 class TempClass
 {
 public:
     int value;
-    int value2;
-    //int value;
 
     TempClass(int val)
         : value(val)
@@ -86,47 +83,15 @@ public:
 
     ~A()
     {
-
-        //free(x);
-        //x = nullptr;
         std::cout << "After DTOR A" << std::endl;
     }
 };
 
 int main()
 {
-
-    //std::cout << b.x << std::endl;
-    //b.x = new A<int>(10);
-    //std::cout << b.x << std::endl;
-    //return 0;
     {
-        {
-            {
-                A<A<TempClass>> temp = A<A<TempClass>>(3);
-                std::cout << temp[0][0].value << std::endl;
-            }
-            //std::cout << temp[0][1].value << std::endl;
-        }
-        {
-            //TempClass* tempArray = new TempClass[10];
-            //std::cout << tempArray << std::endl;
-            //std::cout << tempArray + 1 << std::endl;
-            //std::cout << tempArray+2 << std::endl;
-            //delete[] tempArray;
-
-            //double* tempArray2 = new double[10];
-            //std::cout << tempArray2 << std::endl;
-            //std::cout << tempArray2 + 1 << std::endl;
-            //std::cout << tempArray2 + 2 << std::endl;
-            //delete[] tempArray2;
-        }
-        //temp = ARRAII<int>(TempClass);
-
-        //A<int> b(10);
-        //int temp = b.x[0];
-        //b.x[0] = 10;
-        //std::cout << b.x[0] << std::endl;
+        A<A<TempClass>> temp = A<A<TempClass>>(3);
+        std::cout << temp[0][0].value << std::endl;
         return 0;
     }
 }
