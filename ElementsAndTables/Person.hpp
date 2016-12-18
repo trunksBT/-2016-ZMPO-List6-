@@ -11,30 +11,63 @@ class CPerson
 {
 public:
     explicit CPerson(int inAge) noexcept
-        : surname_(std::string(DEFAULT_SURNAME))
+        : surname_(RAII<std::string>(DEFAULT_SURNAME))
         , age_(inAge)
     {
-        std::cout << "CPerson CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson CTOR" << std::endl;
+        }
     }
 
-    CPerson(std::string inSurname = DEFAULT_SURNAME, unsigned int inAge = FIVE) noexcept
-        : surname_(std::string(inSurname))
+    CPerson(std::string inSurname ,unsigned int inAge) noexcept
+        : surname_(RAII<std::string>(inSurname))
         , age_(inAge)
     {
-        std::cout << "CPerson CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson CTOR" << std::endl;
+        }
     }
 
-    explicit CPerson(const CPerson& inObj) noexcept
+    CPerson(const CPerson& inObj) noexcept
         : age_(inObj.age_)
         , surname_(inObj.surname_)
     {
-        std::cout << "CPerson COPY_CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson COPY_CTOR" << std::endl;
+        }
+    }
+
+    CPerson(CPerson&& inObj) noexcept
+        : surname_(std::move(inObj.surname_))
+        , age_(std::move(inObj.age_))
+    {
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson MoveCTOR" << std::endl;
+        }
+    }
+
+    CPerson& operator=(CPerson&& inObj) noexcept
+    {
+        swap(*this, inObj);
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson Move=" << std::endl;
+        }
+        return *this;
     }
 
     CPerson& operator=(const CPerson& inObj) noexcept
     {
-        CPerson temp = inObj;
+        CPerson temp{ CPerson(inObj) };
         swap(*this, temp);
+        if (flag::PRINT_ON)
+        {
+            std::cout << "CPerson COPY=" << std::endl;
+        }
         return *this;
     }
 
@@ -64,7 +97,7 @@ public:
         return stream;
     }
 
-    operator std::string() const noexcept
+   explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
         retVal << BRACKET_OPEN << SURNAME << SEPARATOR << getName();

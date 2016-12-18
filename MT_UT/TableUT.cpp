@@ -67,11 +67,22 @@ TYPED_TEST_P(CTableTests, setValue_getValue_10)
     delete inVal;
 }
 
+TYPED_TEST_P(CTableTests, setSize_5)
+{
+    CTable<CTable<TypeParam>>* inVal = CTable<CTable<TypeParam>>::buildNewObj(TEN);
+
+    inVal->setSize(FIVE);
+
+    ASSERT_EQ(FIVE, inVal->getSize());
+    delete inVal;
+}
+
 REGISTER_TYPED_TEST_CASE_P(CTableTests,
     copyCTOR_getSize,
     tableOfTables_operatorOstream,
     copyAssignement_getSize,
-    setValue_getValue_10
+    setValue_getValue_10,
+    setSize_5
     );
 
 typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;

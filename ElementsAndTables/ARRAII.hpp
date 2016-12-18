@@ -31,8 +31,7 @@ public:
         {
             std::cout << "ARRAII MOVE CTOR" << std::endl;
         }
-        std::swap(memory_, inObj.memory_);
-        std::swap(size_, inObj.size_);
+        swap(*this, inObj);
     }
 
     ARRAII& operator=(ARRAII&& inObj) noexcept
@@ -41,12 +40,11 @@ public:
         {
             std::cout << "ARRAII MOVE=" << std::endl;
         }
-        std::swap(memory_, inObj.memory_);
-        std::swap(size_, inObj.size_);
+        swap(*this, inObj);
         return *this;
     }
 
-    explicit ARRAII(const ARRAII& inObj) noexcept
+    ARRAII(const ARRAII& inObj) noexcept
         : size_(inObj.size_)
     {
         memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
@@ -59,14 +57,6 @@ public:
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII COPY_CTOR" << std::endl;
-        }
-    }
-
-    void deepCopy(const ARRAII<T> & inObj) noexcept
-    {
-        for (int i = 0; i < size_; i++)
-        {
-            memory_[i] = T(inObj.memory_[i]);
         }
     }
 
@@ -163,6 +153,6 @@ public:
     }
 
 private:
-    T* memory_;
-    std::size_t size_;
+    T* memory_ = nullptr;
+    std::size_t size_ = std::size_t();
 };

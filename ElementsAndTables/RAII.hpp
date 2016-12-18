@@ -1,6 +1,9 @@
 #include <iostream>
 #include <algorithm>
 #include <utility>
+#include <Utils/Utils.hpp>
+
+using namespace defaultVals;
 
 template <typename T>
 class RAII
@@ -9,32 +12,47 @@ public:
     explicit RAII(T inVal):
         memory_(new T(inVal))
     {
-        std::cout << "RAII CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII CTOR" << std::endl;
+        }
     }
 
     RAII(RAII&& inObj)
     {
-        std::cout << "RAII MOVE CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII MOVE CTOR" << std::endl;
+        }
         std::swap(memory_, inObj.memory_);
     }
 
     RAII& operator=(RAII&& inObj)
     {
-        std::cout << "RAII MOVE=" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII MOVE=" << std::endl;
+        }
         std::swap(memory_, inObj.memory_);
         return *this;
     }
 
-    explicit RAII(const RAII& inObj):
+    RAII(const RAII& inObj):
         memory_(new T(*inObj.memory_))
     {
-        std::cout << "RAII COPY_CTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII COPY_CTOR" << std::endl;
+        }
     }
 
     RAII& operator=(const RAII& inObj)
     {
-        std::cout << "RAII COPY=" << std::endl;
-        RAII temp = RAII<T>(inObj);
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII COPY=" << std::endl;
+        }
+        RAII temp = inObj;
         std::swap(memory_, temp.memory_);
         return *this;
     }
@@ -44,7 +62,7 @@ public:
         return *memory_ == *inObj.memory_;
     }
 
-    operator bool() const noexcept
+    explicit operator bool() const noexcept
     {
         return memory_ != nullptr;
     }
@@ -56,7 +74,10 @@ public:
 
 	~RAII()
 	{
-        std::cout << "RAII DTOR" << std::endl;
+        if (flag::PRINT_ON)
+        {
+            std::cout << "RAII DTOR" << std::endl;
+        }
 		delete memory_;
 	}
 

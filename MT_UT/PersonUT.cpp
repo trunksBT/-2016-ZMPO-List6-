@@ -41,27 +41,34 @@ TEST(CPersonTests, CPerson_ParamCTOR_stringCast)
 TEST(CPersonTests, CPerson_CopyCTOR)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
-    //CPerson person2 = CPerson(person1);
+    CPerson person2 = person1;
 
-    std::cout << person1.getName() << COMMA_SPACE 
-        //<< person2.getName() << std::endl 
-        << std::endl;
-    std::cout << person1.getAge() << COMMA_SPACE 
-        //<< person2.getAge()
-        << std::endl;
-
-    //ASSERT_EQ(person1, person2);
-    ASSERT_TRUE(true);
+    ASSERT_EQ(person1, person2);
 }
 
 TEST(CPersonTests, CPerson_CopyAssignement)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
-    CPerson person2 = CPerson("Siema", 10);
+    CPerson person2 = CPerson(OTHER_SURNAME, FIVE);
     person1 = person2;
 
-    ASSERT_EQ(person1.getName(), person2.getName());
+    ASSERT_EQ(person1, person2);
 }
 
+TEST(CPersonTests, CPerson_MoveCTOR)
+{
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
+    CPerson person2 = CPerson(CPerson(DEFAULT_SURNAME, TEN));
+
+    ASSERT_EQ(person1, person2);
+}
+
+TEST(CPersonTests, CPerson_MoveAssignement)
+{
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
+    person1 = CPerson(DEFAULT_SURNAME, TEN);
+
+    ASSERT_EQ(CPerson(DEFAULT_SURNAME, TEN), person1);
+}
 }
 
