@@ -10,28 +10,28 @@ using namespace defaultVals;
 class CPerson
 {
 public:
-    CPerson(int inAge)
-        : surname_(new std::string(DEFAULT_SURNAME))
+    CPerson(int inAge) noexcept
+        : surname_(std::string(DEFAULT_SURNAME))
         , age_(inAge)
     {
         std::cout << "CPerson CTOR" << std::endl;
     }
 
-    CPerson(std::string inSurname = DEFAULT_SURNAME, unsigned int inAge = FIVE)
-        : surname_(new std::string(inSurname))
+    CPerson(std::string inSurname = DEFAULT_SURNAME, unsigned int inAge = FIVE) noexcept
+        : surname_(std::string(inSurname))
         , age_(inAge)
     {
         std::cout << "CPerson CTOR" << std::endl;
     }
 
-    CPerson(const CPerson& inObj)
+    CPerson(const CPerson& inObj) noexcept
         : age_(inObj.age_)
         , surname_(inObj.surname_)
     {
         std::cout << "CPerson COPY_CTOR" << std::endl;
     }
 
-    CPerson& operator=(const CPerson& inObj)
+    CPerson& operator=(const CPerson& inObj) noexcept
     {
         CPerson temp = inObj;
         swap(*this, temp);
@@ -43,7 +43,7 @@ public:
         return age_ == inObj.age_ && surname_ == inObj.surname_;
     }
 
-    ~CPerson()
+    ~CPerson() noexcept
     {
         std::cout << "CPerson DTOR" << std::endl;
     }

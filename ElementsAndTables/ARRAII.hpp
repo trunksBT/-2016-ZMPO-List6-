@@ -14,7 +14,7 @@ template <typename T>
 class ARRAII
 {
 public:
-    ARRAII(size_t inSize)
+    explicit ARRAII(size_t inSize) noexcept
         : size_(inSize)
     {
         allocateMemoryAndCallCtors();
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    ARRAII(ARRAII&& inObj)
+    ARRAII(ARRAII&& inObj) noexcept
     {
         if (flag::PRINT_ON)
         {
@@ -35,7 +35,7 @@ public:
         std::swap(size_, inObj.size_);
     }
 
-    ARRAII& operator=(ARRAII&& inObj)
+    ARRAII& operator=(ARRAII&& inObj) noexcept
     {
         if (flag::PRINT_ON)
         {
@@ -46,7 +46,7 @@ public:
         return *this;
     }
 
-    ARRAII(const ARRAII& inObj)
+    explicit ARRAII(const ARRAII& inObj) noexcept
         : size_(inObj.size_)
     {
         memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
@@ -70,7 +70,7 @@ public:
         }
     }
 
-    ARRAII& operator=(const ARRAII& inObj)
+    ARRAII& operator=(const ARRAII& inObj) noexcept
     {
         if (flag::PRINT_ON)
         {

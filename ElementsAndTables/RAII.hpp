@@ -6,8 +6,8 @@ template <typename T>
 class RAII
 {
 public:
-    explicit RAII(T* inVal):
-        memory_(inVal)
+    explicit RAII(T inVal):
+        memory_(new T(inVal))
     {
         std::cout << "RAII CTOR" << std::endl;
     }
@@ -25,7 +25,7 @@ public:
         return *this;
     }
 
-    RAII(const RAII& inObj):
+    explicit RAII(const RAII& inObj):
         memory_(new T(*inObj.memory_))
     {
         std::cout << "RAII COPY_CTOR" << std::endl;
@@ -34,7 +34,7 @@ public:
     RAII& operator=(const RAII& inObj)
     {
         std::cout << "RAII COPY=" << std::endl;
-        RAII temp = inObj;
+        RAII temp = RAII<T>(inObj);
         std::swap(memory_, temp.memory_);
         return *this;
     }
