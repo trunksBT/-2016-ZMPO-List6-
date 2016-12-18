@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <Utils/Utils.hpp>
 #include <type_traits>
-#include <boost/optional.hpp>
 
 using namespace defaultVals;
 
@@ -17,16 +16,13 @@ class ARRAII
 public:
     ARRAII(size_t inSize)
         : size_(inSize)
-        //, memory_(new T[inSize])
     {
-        //x = static_cast<T*>(malloc(size * sizeof(T)));
+        memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
 
-        //for (int i = 0; i < size_; i++)
-        //{
-        //    memory_[i] 
-        //}
-        //memory_ = new T[inSize];
-        //init();
+        for (int i = 0; i < size_; i++)
+        {
+            new(memory_ + i) T(size_);
+        }
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII CTOR" << std::endl;
@@ -56,9 +52,11 @@ public:
 
     ARRAII(const ARRAII& inObj)
         : size_(inObj.size_)
-
     {
-        //memory_ = new T[inObj.size_];
+        for (int i = 0; i < size_; i++)
+        {
+            memory_ = new T(inObj.memory_[i]);
+        }
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII COPY_CTOR" << std::endl;
@@ -93,13 +91,16 @@ public:
 
 	~ARRAII()
 	{
-        //free(x);
+        for (int i = 0; i < size_; i++)
+        {
+            (memory_ + i)->~T();
+        }
+        free(memory_);
 
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII DTOR" << std::endl;
         }
-		delete[] memory_;
 	}
 
     T& operator[](int idx) const noexcept

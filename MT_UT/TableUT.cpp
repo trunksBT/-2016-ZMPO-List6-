@@ -50,6 +50,8 @@ TEST(CTableTests, paramCTOR_Int_castToString)
 TEST(CTableTests, WrapInWrap)
 {
     CTable<CTable<int>> tempRAII3 = CTable<CTable<int>>(8);
+    std::cout << tempRAII3[0].getSize() << "\n";
+    std::cout << tempRAII3.getSize() << "\n";
 
     //std::cout << tempRAII3 << std::endl;
     //tempRAII3[1][2] = 9;
