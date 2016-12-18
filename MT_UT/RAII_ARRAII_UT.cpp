@@ -24,6 +24,14 @@ using testing::Types;
 
 TYPED_TEST_CASE_P(RAII_ARRAII_Tests);
 
+TYPED_TEST_P(RAII_ARRAII_Tests, CopyCtor)
+{
+    RAII<TypeParam> tempRAII = RAII<TypeParam>(new TypeParam(FIVE));
+    RAII<TypeParam> tempRAII2 = RAII<TypeParam>(tempRAII);
+
+    ASSERT_EQ(tempRAII, tempRAII2);
+}
+
 TYPED_TEST_P(RAII_ARRAII_Tests, CopyAssignement)
 {
     RAII<TypeParam> tempRAII = RAII<TypeParam>(new TypeParam(FIVE));
@@ -33,12 +41,20 @@ TYPED_TEST_P(RAII_ARRAII_Tests, CopyAssignement)
     ASSERT_EQ(tempRAII, tempRAII2);
 }
 
-TYPED_TEST_P(RAII_ARRAII_Tests, CopyCtor)
+TYPED_TEST_P(RAII_ARRAII_Tests, MoveCtor)
 {
     RAII<TypeParam> tempRAII = RAII<TypeParam>(new TypeParam(FIVE));
     RAII<TypeParam> tempRAII2 = RAII<TypeParam>(RAII<TypeParam>(new TypeParam(FIVE)));
 
     ASSERT_EQ(tempRAII, tempRAII2);
+}
+
+TYPED_TEST_P(RAII_ARRAII_Tests, MoveAssignement)
+{
+        RAII<TypeParam> tempRAII = RAII<TypeParam>(new TypeParam(TEN));
+        tempRAII = RAII<TypeParam>(RAII<TypeParam>(new TypeParam(FIVE)));
+
+        ASSERT_EQ(RAII<TypeParam>(RAII<TypeParam>(new TypeParam(FIVE))), tempRAII);
 }
 
 //TYPED_TEST_CASE_P(RAII_ARRAII_Tests, paramCTOR_Int_castToString)
@@ -55,8 +71,10 @@ TYPED_TEST_P(RAII_ARRAII_Tests, CopyCtor)
 //
 
 REGISTER_TYPED_TEST_CASE_P(RAII_ARRAII_Tests,
+    CopyCtor,
     CopyAssignement,
-    CopyCtor);
+    MoveCtor,
+    MoveAssignement);
 
 typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, RAII_ARRAII_Tests, MyTypes);

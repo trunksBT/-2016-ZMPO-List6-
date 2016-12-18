@@ -44,6 +44,11 @@ public:
         return *memory_ == *inObj.memory_;
     }
 
+    operator bool() const noexcept
+    {
+        return memory_ != nullptr;
+    }
+
     T& operator*() const noexcept
     {
         return *memory_;
