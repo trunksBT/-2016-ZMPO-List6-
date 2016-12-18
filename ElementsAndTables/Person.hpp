@@ -10,7 +10,7 @@ using namespace defaultVals;
 class CPerson
 {
 public:
-    CPerson(int inAge) noexcept
+    explicit CPerson(int inAge) noexcept
         : surname_(std::string(DEFAULT_SURNAME))
         , age_(inAge)
     {
@@ -24,7 +24,7 @@ public:
         std::cout << "CPerson CTOR" << std::endl;
     }
 
-    CPerson(const CPerson& inObj) noexcept
+    explicit CPerson(const CPerson& inObj) noexcept
         : age_(inObj.age_)
         , surname_(inObj.surname_)
     {
