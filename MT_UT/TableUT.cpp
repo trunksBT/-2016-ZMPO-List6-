@@ -53,11 +53,6 @@ TEST(CTableTests, WrapInWrap)
     std::cout << tempRAII3[0].getSize() << "\n";
     std::cout << tempRAII3.getSize() << "\n";
 
-    //std::cout << tempRAII3 << std::endl;
-    //tempRAII3[1][2] = 9;
-    //std::cout << tempRAII3[1] << std::endl;
-
-
     ASSERT_TRUE(true);
 }
 
