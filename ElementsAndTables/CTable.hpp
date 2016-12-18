@@ -15,8 +15,9 @@ class CTable
 {
 public:
     CTable(size_t size)
+        //: memory_(ARRAII<T>(size))
     {
-        //memory_ = ARRAII<T>(size);
+        memory_ = ARRAII<T>(size);
         if (flag::PRINT_ON)
         {
             std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -46,10 +47,10 @@ public:
 
     void setSize(int inNewSize) noexcept
     {
-        if (memory_.get().size() != inNewSize)
-        {
-            memory_ = ARRAII<T>(inNewSize);
-        }
+        //if (memory_.get().size() != inNewSize)
+        //{
+        //    memory_ = ARRAII<T>(inNewSize);
+        //}
     }
 
     ~CTable()
@@ -80,8 +81,8 @@ public:
 
     std::size_t getSize() const noexcept
     {
-        //return memory_.get()->size();
-        return size_;
+        return memory_.get().size();
+        //return size_;
     }
 
     std::string getName() const noexcept
@@ -132,8 +133,8 @@ public:
 
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
-    //boost::optional<ARRAII<T>> memory_;
-    boost::optional<T*> memory_;
+    boost::optional<ARRAII<T>> memory_;
+    //boost::optional<T*> memory_;
     std::size_t size_;
 };
 
