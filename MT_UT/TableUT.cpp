@@ -91,4 +91,3 @@ typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, CTableTests, MyTypes);
 
 }
-

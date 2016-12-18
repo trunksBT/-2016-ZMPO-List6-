@@ -17,40 +17,40 @@ endif()
 include_directories(.)
 
 set(HANDLERS
-    Handlers/ChangeSizeHandler.cpp
-    Handlers/ChangeSizeHandler.h
-    Handlers/ClearHandler.cpp
-    Handlers/ClearHandler.h
-    Handlers/CreateCopyHandler.cpp
-    Handlers/CreateCopyHandler.h
-    Handlers/CreateDefHandler.cpp
-    Handlers/CreateDefHandler.h
-    Handlers/CreateDefsHandler.cpp
-    Handlers/CreateDefsHandler.h
-    Handlers/CreateHandler.cpp
-    Handlers/CreateHandler.h
-    Handlers/GetNameHandler.cpp
-    Handlers/GetNameHandler.h
-    Handlers/GetSizeHandler.cpp
-    Handlers/GetSizeHandler.h
-    Handlers/GetValueHandler.cpp
-    Handlers/GetValueHandler.h
-    Handlers/HelpHandler.cpp
-    Handlers/HelpHandler.h
-    Handlers/IHandler.cpp
-    Handlers/IHandler.h
-    Handlers/PrintAllHandler.cpp
-    Handlers/PrintAllHandler.h
-    Handlers/PrintHandler.cpp
-    Handlers/PrintHandler.h
-    Handlers/RemoveAllHandler.cpp
-    Handlers/RemoveAllHandler.h
-    Handlers/RemoveHandler.cpp
-    Handlers/RemoveHandler.h
-    Handlers/SetNameHandler.cpp
-    Handlers/SetNameHandler.h
-    Handlers/SetValueHandler.cpp
-    Handlers/SetValueHandler.h
+    #Handlers/IHandler.cpp
+    #Handlers/IHandler.h
+    #Handlers/GoHandler.cpp
+    #Handlers/GoHandler.h
+    #Handlers/PrintAllHandler.cpp
+    #Handlers/PrintAllHandler.h
+    #Handlers/RemoveAllHandler.cpp
+    #Handlers/RemoveAllHandler.h
+    #Handlers/PrintHandler.cpp
+    #Handlers/PrintHandler.h
+    #Handlers/RemoveHandler.cpp
+    #Handlers/RemoveHandler.h
+    #Handlers/ClearHandler.cpp
+    #Handlers/ClearHandler.h
+    #Handlers/CreateCopyHandler.cpp
+    #Handlers/CreateCopyHandler.h
+    #Handlers/CreateHandler.cpp
+    #Handlers/CreateHandler.h
+    #Handlers/CreateDefHandler.cpp
+    #Handlers/CreateDefHandler.h
+    #Handlers/ChangeSizeHandler.cpp
+    #Handlers/ChangeSizeHandler.h
+    #Handlers/SetNameHandler.cpp
+    #Handlers/SetNameHandler.h
+    #Handlers/SetValueHandler.cpp
+    #Handlers/SetValueHandler.h
+    #Handlers/GetNameHandler.cpp
+    #Handlers/GetNameHandler.h
+    #Handlers/GetSizeHandler.cpp
+    #Handlers/GetSizeHandler.h
+    #Handlers/GetValueHandler.cpp
+    #Handlers/GetValueHandler.h
+    #Handlers/HelpHandler.cpp
+    #Handlers/HelpHandler.h
 )
 
 set(ELEMENTS_AND_TABLES
@@ -62,8 +62,8 @@ set(ELEMENTS_AND_TABLES
 )
 
 set(UTILS
-    #Utils/Interface.cpp
-    #Utils/Interface.hpp
+    Utils/Interface.cpp
+    Utils/Interface.hpp
     Utils/Logger.cpp
     Utils/Logger.hpp
     #Utils/Stub.cpp
@@ -96,7 +96,7 @@ source_group("Handlers" FILES ${HANDLERS})
 source_group("ElementsAndTables" FILES ${ELEMENTS_AND_TABLES})
 
 add_executable(${PROJECT_NAME} MetaTablesRunner.cpp
-    #${HANDLERS}
+    ${HANDLERS}
     ${ELEMENTS_AND_TABLES}
     ${UTILS}
     ${MT_UT}
