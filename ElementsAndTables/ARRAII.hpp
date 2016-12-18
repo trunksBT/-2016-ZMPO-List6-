@@ -6,9 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <Utils/Utils.hpp>
-#include <type_traits>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
+using namespace flags;
 
 template <typename T>
 class ARRAII
@@ -19,26 +20,26 @@ public:
     {
         allocateMemoryAndCallCtors();
 
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII CTOR" << std::endl;
+            logger << "ARRAII CTOR" << POST_PRINT;
         }
     }
 
     ARRAII(ARRAII&& inObj) noexcept
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII MOVE CTOR" << std::endl;
+            logger << "ARRAII MOVE CTOR" << POST_PRINT;
         }
         swap(*this, inObj);
     }
 
     ARRAII& operator=(ARRAII&& inObj) noexcept
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII MOVE=" << std::endl;
+            logger << "ARRAII MOVE=" << POST_PRINT;
         }
         swap(*this, inObj);
         return *this;
@@ -54,17 +55,17 @@ public:
             new(memory_ + i) T(inObj.memory_[i]);
         }
 
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII COPY_CTOR" << std::endl;
+            logger << "ARRAII COPY_CTOR" << POST_PRINT;
         }
     }
 
     ARRAII& operator=(const ARRAII& inObj) noexcept
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII COPY=" << std::endl;
+            logger << "ARRAII COPY=" << POST_PRINT;
         }
         ARRAII temp = inObj;
         std::swap(memory_, temp.memory_);
@@ -89,9 +90,9 @@ public:
 	{
         deallocateMemoryAndCallDtors();
 
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII DTOR" << std::endl;
+            logger << "ARRAII DTOR" << POST_PRINT;
         }
 	}
 

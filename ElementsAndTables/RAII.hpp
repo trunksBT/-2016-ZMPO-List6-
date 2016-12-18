@@ -12,26 +12,26 @@ public:
     explicit RAII(T inVal):
         memory_(new T(inVal))
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII CTOR" << std::endl;
+            logger << "RAII CTOR" << POST_PRINT;
         }
     }
 
     RAII(RAII&& inObj)
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII MOVE CTOR" << std::endl;
+            logger << "RAII MOVE CTOR" << POST_PRINT;
         }
         std::swap(memory_, inObj.memory_);
     }
 
     RAII& operator=(RAII&& inObj)
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII MOVE=" << std::endl;
+            logger << "RAII MOVE=" << POST_PRINT;
         }
         std::swap(memory_, inObj.memory_);
         return *this;
@@ -40,17 +40,17 @@ public:
     RAII(const RAII& inObj):
         memory_(new T(*inObj.memory_))
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII COPY_CTOR" << std::endl;
+            logger << "RAII COPY_CTOR" << POST_PRINT;
         }
     }
 
     RAII& operator=(const RAII& inObj)
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII COPY=" << std::endl;
+            logger << "RAII COPY=" << POST_PRINT;
         }
         RAII temp = inObj;
         std::swap(memory_, temp.memory_);
@@ -74,9 +74,9 @@ public:
 
 	~RAII()
 	{
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "RAII DTOR" << std::endl;
+            logger << "RAII DTOR" << POST_PRINT;
         }
 		delete memory_;
 	}

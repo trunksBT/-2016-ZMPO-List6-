@@ -1,7 +1,7 @@
 // Copyrights TrunkBT_KorytkoBT
 #include <gtest/gtest.h>
 #include <ElementsAndTables/Person.hpp>
-#include <sstream>
+#include <Utils/Logger.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <type_traits>
@@ -25,7 +25,7 @@ TEST(CPersonTests, CPerson_operString)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
 
-    std::cout << static_cast<std::string>(person1) << std::endl;
+    std::cout << static_cast<std::string>(person1) << POST_PRINT;
 
     ASSERT_TRUE(true);
 }
@@ -42,7 +42,7 @@ TEST(CPersonTests, CPerson_ParamCTOR_stringCast)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
 
-    std::cout << person1 << std::endl; 
+    std::cout << person1 << POST_PRINT; 
 
     ASSERT_TRUE(true);
 }

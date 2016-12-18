@@ -123,9 +123,9 @@ namespace funs
 //    ERROR_CODE returnResultCode(ERROR_CODE inResultCode)
 //    {
 //        ERROR_CODE resultCode = inResultCode;
-//        if(flag::PRINT_ON)
+//        if(PRINT_ERRORS)
 //        {
-//            std::cout << toString(resultCode);
+//            logger << toString(resultCode);
 //        }
 //        return resultCode;
 //    }

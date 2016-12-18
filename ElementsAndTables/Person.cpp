@@ -4,26 +4,28 @@
 #include <sstream>
 #include <utility>
 #include <Utils/Utils.hpp>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
+using namespace flags;
 
  CPerson::CPerson(int inAge) noexcept
     : surname_(RAII<std::string>(DEFAULT_SURNAME))
     , age_(inAge)
 {
-    if (flag::PRINT_ON)
-    {
-        std::cout << "CPerson CTOR" << std::endl;
-    }
+     if (PRINT_ERRORS)
+     {
+        logger << "CPerson CTOR" << POST_PRINT;
+     }
 }
 
 CPerson::CPerson(std::string inSurname, unsigned int inAge) noexcept
     : surname_(RAII<std::string>(inSurname))
     , age_(inAge)
 {
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson CTOR" << std::endl;
+        logger << "CPerson CTOR" << POST_PRINT;
     }
 }
 
@@ -31,9 +33,9 @@ CPerson::CPerson(const CPerson& inObj) noexcept
     : age_(inObj.age_)
     , surname_(inObj.surname_)
 {
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson COPY_CTOR" << std::endl;
+        logger << "CPerson COPY_CTOR" << POST_PRINT;
     }
 }
 
@@ -41,18 +43,18 @@ CPerson::CPerson(CPerson&& inObj) noexcept
     : surname_(std::move(inObj.surname_))
     , age_(std::move(inObj.age_))
 {
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson MoveCTOR" << std::endl;
+        logger << "CPerson MoveCTOR" << POST_PRINT;
     }
 }
 
 CPerson& CPerson::operator=(CPerson&& inObj) noexcept
 {
     swap(*this, inObj);
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson Move=" << std::endl;
+        logger << "CPerson Move=" << POST_PRINT;
     }
     return *this;
 }
@@ -61,9 +63,9 @@ CPerson& CPerson::operator=(const CPerson& inObj) noexcept
 {
     CPerson temp{ CPerson(inObj) };
     swap(*this, temp);
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson COPY=" << std::endl;
+        logger << "CPerson COPY=" << POST_PRINT;
     }
     return *this;
 }
@@ -75,9 +77,9 @@ bool CPerson::operator==(const CPerson& inObj) const noexcept
 
 CPerson::~CPerson() noexcept
 {
-    if (flag::PRINT_ON)
+    if (PRINT_ERRORS)
     {
-        std::cout << "CPerson DTOR" << std::endl;
+        logger << "CPerson DTOR" << POST_PRINT;
     }
 }
 

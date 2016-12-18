@@ -5,9 +5,11 @@
 #include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
 using namespace funs;
+using namespace flags;
 
 template<typename T>
 class CTable
@@ -16,9 +18,9 @@ public:
     CTable(size_t size)
         : memory_(ARRAII<T>(size))
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+            logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
@@ -26,9 +28,9 @@ public:
         : name_(inVal.name_)
         , memory_(inVal.memory_)
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
+            logger << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
@@ -36,9 +38,9 @@ public:
     {
         CTable<T> temp = inObj;
         swap(*this, temp);
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
+            logger << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
         }
         return *this;
     }
@@ -53,9 +55,9 @@ public:
 
     ~CTable()
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
+            logger << DTOR_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 

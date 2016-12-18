@@ -64,8 +64,8 @@ set(ELEMENTS_AND_TABLES
 set(UTILS
     #Utils/Interface.cpp
     #Utils/Interface.hpp
-    #Utils/Logger.cpp
-    #Utils/Logger.hpp
+    Utils/Logger.cpp
+    Utils/Logger.hpp
     #Utils/Stub.cpp
     #Utils/Stub.hpp
     Utils/Utils.cpp

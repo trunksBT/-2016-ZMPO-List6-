@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
 #include <ElementsAndTables/Person.hpp>
+#include <Utils/Logger.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <vector>

@@ -3,10 +3,12 @@
 #include <ElementsAndTables/CTable.hpp>
 #include <ElementsAndTables/Person.hpp>
 #include <Utils/Utils.hpp>
+#include <Utils/Logger.hpp>
 #include <limits>
 #include <vector>
 
 using namespace defaultVals;
+
 namespace
 {
 template<typename T>
@@ -27,7 +29,7 @@ TYPED_TEST_CASE_P(CTableTests);
 TYPED_TEST_P(CTableTests, tableOfTables_operatorOstream)
 {
     CTable<CTable<TypeParam>> tempRAII3 = CTable<CTable<TypeParam>>(8);
-    std::cout << tempRAII3 << std::endl;
+    std::cout << tempRAII3 << POST_PRINT;
 
     ASSERT_EQ(tempRAII3[0].getSize(), tempRAII3.getSize());
 }
