@@ -25,7 +25,7 @@ TEST(CPersonTests, CPerson_operString)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
 
-    std::cout << static_cast<std::string>(person1) << POST_PRINT;
+    logger << static_cast<std::string>(person1) << POST_PRINT;
 
     ASSERT_TRUE(true);
 }
@@ -42,7 +42,7 @@ TEST(CPersonTests, CPerson_ParamCTOR_stringCast)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
 
-    std::cout << person1 << POST_PRINT; 
+    logger << static_cast<std::string>(person1) << POST_PRINT;
 
     ASSERT_TRUE(true);
 }

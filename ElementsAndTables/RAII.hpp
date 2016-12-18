@@ -1,4 +1,5 @@
-#include <iostream>
+#pragma once
+
 #include <algorithm>
 #include <utility>
 #include <Utils/Utils.hpp>

@@ -2,7 +2,6 @@
 
 #include <string>
 #include <sstream>
-#include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
 #include <Utils/Logger.hpp>

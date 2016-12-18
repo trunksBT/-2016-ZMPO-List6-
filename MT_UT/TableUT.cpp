@@ -29,7 +29,7 @@ TYPED_TEST_CASE_P(CTableTests);
 TYPED_TEST_P(CTableTests, tableOfTables_operatorOstream)
 {
     CTable<CTable<TypeParam>> tempRAII3 = CTable<CTable<TypeParam>>(8);
-    std::cout << tempRAII3 << POST_PRINT;
+    logger << static_cast<std::string>(tempRAII3) << POST_PRINT;
 
     ASSERT_EQ(tempRAII3[0].getSize(), tempRAII3.getSize());
 }

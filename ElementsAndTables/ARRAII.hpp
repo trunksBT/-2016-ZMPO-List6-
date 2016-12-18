@@ -1,4 +1,5 @@
-#include <iostream>
+#pragma once
+
 #include <algorithm>
 #include <utility>
 #include <string>
@@ -112,7 +113,7 @@ public:
         return stream;
     }
 
-    operator std::string() const noexcept
+    explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
         retVal << SQUARE_BRACKET_OPEN;
