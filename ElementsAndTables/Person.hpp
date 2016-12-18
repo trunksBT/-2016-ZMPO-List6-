@@ -1,121 +1,32 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <sstream>
-#include <utility>
-#include <ElementsAndTables/RAII.hpp>
-#include <Utils/Utils.hpp>
+#pragma once
 
-using namespace defaultVals;
+#include <iostream>
+#include <string>
+#include <ElementsAndTables/RAII.hpp>
+
 class CPerson
 {
 public:
-    explicit CPerson(int inAge) noexcept
-        : surname_(RAII<std::string>(DEFAULT_SURNAME))
-        , age_(inAge)
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson CTOR" << std::endl;
-        }
-    }
+    explicit CPerson(int inAge) noexcept;
+    CPerson(std::string inSurname, unsigned int inAge) noexcept;
+    CPerson(const CPerson& inObj) noexcept;
+    CPerson(CPerson&& inObj) noexcept;
+    CPerson& operator=(CPerson&& inObj) noexcept;
+    CPerson& operator=(const CPerson& inObj) noexcept;
+    ~CPerson() noexcept;
 
-    CPerson(std::string inSurname ,unsigned int inAge) noexcept
-        : surname_(RAII<std::string>(inSurname))
-        , age_(inAge)
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson CTOR" << std::endl;
-        }
-    }
+    void swap(CPerson& first, CPerson& second) noexcept;
 
-    CPerson(const CPerson& inObj) noexcept
-        : age_(inObj.age_)
-        , surname_(inObj.surname_)
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson COPY_CTOR" << std::endl;
-        }
-    }
+    bool operator==(const CPerson& inObj) const noexcept;
+    explicit operator std::string() const noexcept;
 
-    CPerson(CPerson&& inObj) noexcept
-        : surname_(std::move(inObj.surname_))
-        , age_(std::move(inObj.age_))
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson MoveCTOR" << std::endl;
-        }
-    }
-
-    CPerson& operator=(CPerson&& inObj) noexcept
-    {
-        swap(*this, inObj);
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson Move=" << std::endl;
-        }
-        return *this;
-    }
-
-    CPerson& operator=(const CPerson& inObj) noexcept
-    {
-        CPerson temp{ CPerson(inObj) };
-        swap(*this, temp);
-        if (flag::PRINT_ON)
-        {
-            std::cout << "CPerson COPY=" << std::endl;
-        }
-        return *this;
-    }
-
-    bool operator==(const CPerson& inObj) const noexcept
-    {
-        return age_ == inObj.age_ && surname_ == inObj.surname_;
-    }
-
-    ~CPerson() noexcept
-    {
-        std::cout << "CPerson DTOR" << std::endl;
-    }
-
-    unsigned int getAge() const noexcept
-    {
-        return age_;
-    }
-
-    explicit operator int() const noexcept
-    {
-        return age_;
-    }
+    std::string getName() const noexcept;
 
     friend std::ostream& operator<<(std::ostream& stream, const CPerson& inVal)
     {
-        stream<<static_cast<std::string>(inVal);
+        stream << static_cast<std::string>(inVal);
         return stream;
     }
-
-   explicit operator std::string() const noexcept
-    {
-        std::stringstream retVal;
-        retVal << BRACKET_OPEN << SURNAME << SEPARATOR << getName();
-        retVal << COMMA_SPACE << AGE << SEPARATOR << age_ << BRACKET_CLOSE << POST_PRINT;
-        return std::move(retVal.str());
-    }
-
-    std::string getName() const noexcept
-    {
-        return *surname_;
-    }
-
-    void swap(CPerson& first, CPerson& second) noexcept
-    {
-        std::swap(first.age_, second.age_);
-        RAII<std::string>::swap(first.surname_, second.surname_);
-    }
-
 private:
     RAII<std::string> surname_;
     unsigned int age_;

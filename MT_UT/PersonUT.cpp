@@ -21,6 +21,15 @@ protected:
    {}
 };
 
+TEST(CPersonTests, CPerson_operString)
+{
+    CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
+
+    std::cout << static_cast<std::string>(person1) << std::endl;
+
+    ASSERT_TRUE(true);
+}
+
 TEST(CPersonTests, CPerson_DefCTOR)
 {
     CPerson person1 = CPerson(DEFAULT_SURNAME, TEN);
