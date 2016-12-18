@@ -28,14 +28,14 @@ int main(int argc, char **argv)
     //     CFlyweight application;
     //     ERROR_CODE commandResult = ERROR_CODE::INITIAL_VAL;
 
-    //     std::cout << "Pass command" << std::endl;
+    //     logger << "Pass command" << POST_PRINT;
     //     do
     //     {
     //         auto command = receiveAndLexCommandFromUser();
     //         commandResult = application.interpretCommand(command);
     //     } while(commandResult != ERROR_CODE::CLOSE);
 
-    //     std::cout << std::endl << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
+    //     logger << POST_PRINT << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
     //     system("Pause");
     //}
     ::testing::InitGoogleTest(&argc, argv);

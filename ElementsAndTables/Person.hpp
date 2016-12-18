@@ -1,88 +1,31 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <sstream>
-#include <utility>
-#include <ElementsAndTables/RAII.hpp>
-#include <Utils/Utils.hpp>
+#pragma once
 
-using namespace defaultVals;
+#include <string>
+#include <ElementsAndTables/RAII.hpp>
+
 class CPerson
 {
 public:
-    CPerson(int inAge)
-        : surname_(new std::string(DEFAULT_SURNAME))
-        , age_(inAge)
-    {
-        std::cout << "CPerson CTOR" << std::endl;
-    }
+    explicit CPerson(int inAge) noexcept;
+    CPerson(std::string inSurname, unsigned int inAge) noexcept;
+    CPerson(const CPerson& inObj) noexcept;
+    CPerson(CPerson&& inObj) noexcept;
+    CPerson& operator=(CPerson&& inObj) noexcept;
+    CPerson& operator=(const CPerson& inObj) noexcept;
+    ~CPerson() noexcept;
 
-    CPerson(std::string inSurname = DEFAULT_SURNAME, unsigned int inAge = FIVE)
-        : surname_(new std::string(inSurname))
-        , age_(inAge)
-    {
-        std::cout << "CPerson CTOR" << std::endl;
-    }
+    void swap(CPerson& first, CPerson& second) noexcept;
 
-    CPerson(const CPerson& inObj)
-        : age_(inObj.age_)
-        , surname_(inObj.surname_)
-    {
-        std::cout << "CPerson COPY_CTOR" << std::endl;
-    }
+    bool operator==(const CPerson& inObj) const noexcept;
+    explicit operator std::string() const noexcept;
 
-    CPerson& operator=(const CPerson& inObj)
-    {
-        CPerson temp = inObj;
-        swap(*this, temp);
-        return *this;
-    }
+    std::string getName() const noexcept;
 
-    bool operator==(const CPerson& inObj) const noexcept
+    friend std::ostream& operator<<(std::ostream& stream, const CPerson& inVal)
     {
-        return age_ == inObj.age_ && surname_ == inObj.surname_;
-    }
-
-    ~CPerson()
-    {
-        std::cout << "CPerson DTOR" << std::endl;
-    }
-
-    unsigned int getAge() const noexcept
-    {
-        return age_;
-    }
-
-    explicit operator int() const noexcept
-    {
-        return age_;
-    }
-
-    friend std::ostream& operator<< (std::ostream& stream, const CPerson& inVal)
-    {
-        stream<<static_cast<std::string>(inVal);
+        stream << static_cast<std::string>(inVal);
         return stream;
     }
-
-    operator std::string() const noexcept
-    {
-        std::stringstream retVal;
-        retVal << BRACKET_OPEN << SURNAME << SEPARATOR << getName();
-        retVal << COMMA_SPACE << AGE << SEPARATOR << age_ << BRACKET_CLOSE << POST_PRINT;
-        return std::move(retVal.str());
-    }
-
-    std::string getName() const noexcept
-    {
-        return *surname_;
-    }
-
-    void swap(CPerson& first, CPerson& second) noexcept
-    {
-        std::swap(first.age_, second.age_);
-        RAII<std::string>::swap(first.surname_, second.surname_);
-    }
-
 private:
     RAII<std::string> surname_;
     unsigned int age_;

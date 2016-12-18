@@ -1,4 +1,5 @@
-#include <iostream>
+#pragma once
+
 #include <algorithm>
 #include <utility>
 #include <string>
@@ -6,69 +7,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <Utils/Utils.hpp>
-#include <type_traits>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
+using namespace flags;
 
 template <typename T>
 class ARRAII
 {
 public:
-    ARRAII(size_t inSize)
+    explicit ARRAII(size_t inSize) noexcept
         : size_(inSize)
+    {
+        allocateMemoryAndCallCtors();
+
+        if (PRINT_ERRORS)
+        {
+            logger << "ARRAII CTOR" << POST_PRINT;
+        }
+    }
+
+    ARRAII(ARRAII&& inObj) noexcept
+    {
+        if (PRINT_ERRORS)
+        {
+            logger << "ARRAII MOVE CTOR" << POST_PRINT;
+        }
+        swap(*this, inObj);
+    }
+
+    ARRAII& operator=(ARRAII&& inObj) noexcept
+    {
+        if (PRINT_ERRORS)
+        {
+            logger << "ARRAII MOVE=" << POST_PRINT;
+        }
+        swap(*this, inObj);
+        return *this;
+    }
+
+    ARRAII(const ARRAII& inObj) noexcept
+        : size_(inObj.size_)
     {
         memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
 
         for (int i = 0; i < size_; i++)
         {
-            new(memory_ + i) T(size_);
+            new(memory_ + i) T(inObj.memory_[i]);
         }
-        if (flag::PRINT_ON)
+
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII CTOR" << std::endl;
+            logger << "ARRAII COPY_CTOR" << POST_PRINT;
         }
     }
 
-    ARRAII(ARRAII&& inObj)
+    ARRAII& operator=(const ARRAII& inObj) noexcept
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII MOVE CTOR" << std::endl;
-        }
-        std::swap(memory_, inObj.memory_);
-        std::swap(size_, inObj.size_);
-    }
-
-    ARRAII& operator=(ARRAII&& inObj)
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "ARRAII MOVE=" << std::endl;
-        }
-        std::swap(memory_, inObj.memory_);
-        std::swap(size_, inObj.size_);
-        return *this;
-    }
-
-    ARRAII(const ARRAII& inObj)
-        : size_(inObj.size_)
-    {
-        for (int i = 0; i < size_; i++)
-        {
-            memory_ = new T(inObj.memory_[i]);
-        }
-        if (flag::PRINT_ON)
-        {
-            std::cout << "ARRAII COPY_CTOR" << std::endl;
-        }
-        std::copy(inObj.memory_, inObj.memory_ + inObj.size_, memory_);
-    }
-
-    ARRAII& operator=(const ARRAII& inObj)
-    {
-        if (flag::PRINT_ON)
-        {
-            std::cout << "ARRAII COPY=" << std::endl;
+            logger << "ARRAII COPY=" << POST_PRINT;
         }
         ARRAII temp = inObj;
         std::swap(memory_, temp.memory_);
@@ -91,15 +89,11 @@ public:
 
 	~ARRAII()
 	{
-        for (int i = 0; i < size_; i++)
-        {
-            (memory_ + i)->~T();
-        }
-        free(memory_);
+        deallocateMemoryAndCallDtors();
 
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << "ARRAII DTOR" << std::endl;
+            logger << "ARRAII DTOR" << POST_PRINT;
         }
 	}
 
@@ -119,7 +113,7 @@ public:
         return stream;
     }
 
-    operator std::string() const noexcept
+    explicit operator std::string() const noexcept
     {
         std::stringstream retVal;
         retVal << SQUARE_BRACKET_OPEN;
@@ -135,13 +129,32 @@ public:
         return std::move(retTable + std::string(SQUARE_BRACKET_CLOSE));
     }
 
-    static void swap(ARRAII& leftObj, ARRAII& rightObj)
+    static void swap(ARRAII& leftObj, ARRAII& rightObj) noexcept
     {
         std::swap(leftObj.memory_, rightObj.memory_);
         std::swap(leftObj.size_, rightObj.size_);
     }
 
+    void allocateMemoryAndCallCtors() noexcept
+    {
+        memory_ = static_cast<T*>(malloc(size_ * sizeof(T)));
+
+        for (int i = 0; i < size_; i++)
+        {
+            new(memory_ + i) T(size_);
+        }
+    }
+
+    void deallocateMemoryAndCallDtors() noexcept
+    {
+        for (int i = 0; i < size_; i++)
+        {
+            (memory_ + i)->~T();
+        }
+        free(memory_);
+    }
+
 private:
-    T* memory_;
-    std::size_t size_;
+    T* memory_ = nullptr;
+    std::size_t size_ = std::size_t();
 };

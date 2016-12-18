@@ -12,9 +12,9 @@ constexpr bool PRINT_ERRORS = true;
 
 class Logger
 {
-private:
 public:
     Logger();
     ~Logger();
     Logger& operator<<(std::string inLog);
 };
+extern Logger logger;

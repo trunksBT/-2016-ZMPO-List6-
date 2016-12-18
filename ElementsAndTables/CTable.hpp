@@ -2,13 +2,13 @@
 
 #include <string>
 #include <sstream>
-#include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
-#include <boost/optional.hpp>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
 using namespace funs;
+using namespace flags;
 
 template<typename T>
 class CTable
@@ -17,10 +17,9 @@ public:
     CTable(size_t size)
         : memory_(ARRAII<T>(size))
     {
-        //memory_ = ARRAII<T>(size);
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+            logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
@@ -28,9 +27,9 @@ public:
         : name_(inVal.name_)
         , memory_(inVal.memory_)
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
+            logger << CTOR_COPY_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
@@ -38,26 +37,26 @@ public:
     {
         CTable<T> temp = inObj;
         swap(*this, temp);
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
+            logger << OPER_COPY_PRE_PRINT << name_ << POST_PRINT;
         }
         return *this;
     }
 
     void setSize(int inNewSize) noexcept
     {
-        //if (memory_.size() != inNewSize)
-        //{
-        //    memory_ = ARRAII<T>(inNewSize);
-        //}
+        if (memory_.size() != inNewSize)
+        {
+            memory_ = ARRAII<T>(inNewSize);
+        }
     }
 
     ~CTable()
     {
-        if (flag::PRINT_ON)
+        if (PRINT_ERRORS)
         {
-            std::cout << DTOR_PRE_PRINT << name_ << POST_PRINT;
+            logger << DTOR_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
@@ -71,18 +70,16 @@ public:
 
     T getVal(int idx) const noexcept
     {
-        T retVal;
         if (isProperIdx(idx, getSize()))
         {
-            retVal = memory_[idx];
+            return memory_[idx];
         }
-        return retVal;
+        // throw here OutOfBoundsException
     }
 
     std::size_t getSize() const noexcept
     {
         return memory_.size();
-        //return size_;
     }
 
     std::string getName() const noexcept
@@ -121,7 +118,7 @@ public:
         return memory_[idx];
     }
 
-    static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept
+    static CTable<T>* buildNewObj(size_t size) noexcept
     {
         return new CTable<T>(size);
     }
@@ -134,7 +131,6 @@ public:
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
     ARRAII<T> memory_;
-    std::size_t size_;
 };
 
 template<class T>

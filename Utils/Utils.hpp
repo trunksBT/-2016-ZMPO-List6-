@@ -42,6 +42,7 @@ constexpr const char* SPACE = " ";
 constexpr const char* COMMA_SPACE = ", ";
 constexpr const char* DEFAULT_TABLE_NAME = "KORYTKO_TABLE";
 constexpr const char* DEFAULT_SURNAME = "KORYCINSKI";
+constexpr const char* OTHER_SURNAME = "KOWALSKI";
 
 constexpr const char* POST_COPIED_NAME = "_copy";
 constexpr const char* DTOR_PRE_PRINT = "usuwam: ";

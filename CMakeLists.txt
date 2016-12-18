@@ -64,8 +64,8 @@ set(ELEMENTS_AND_TABLES
 set(UTILS
     #Utils/Interface.cpp
     #Utils/Interface.hpp
-    #Utils/Logger.cpp
-    #Utils/Logger.hpp
+    Utils/Logger.cpp
+    Utils/Logger.hpp
     #Utils/Stub.cpp
     #Utils/Stub.hpp
     Utils/Utils.cpp
@@ -81,6 +81,7 @@ set(MT_UT
     #MT_UT/List1.cpp
     MT_UT/TableUT.cpp
     MT_UT/PersonUT.cpp
+    MT_UT/RAII_ARRAII_UT.cpp
 )
 
 set(FLYWEIGHT
