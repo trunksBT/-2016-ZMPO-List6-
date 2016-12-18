@@ -5,6 +5,7 @@
 #include <sstream>
 #include <Utils/Utils.hpp>
 #include <type_traits>
+#include <boost/optional.hpp>
 
 using namespace defaultVals;
 
@@ -12,11 +13,11 @@ template <typename T>
 class ARRAII
 {
 public:
-    explicit ARRAII(size_t inSize)
+    ARRAII(size_t inSize)
         : size_(inSize)
-        , memory_(new T[inSize])
     {
-        init();
+        memory_ = new T[inSize];
+        //init();
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII CTOR" << std::endl;
@@ -29,7 +30,7 @@ public:
         {
             std::cout << "ARRAII MOVE CTOR" << std::endl;
         }
-        std::swap(memory_, inObj.memory_);
+        std::swap(memory_.get(), inObj.memory_.get());
         std::swap(size_, inObj.size_);
     }
 
@@ -39,20 +40,21 @@ public:
         {
             std::cout << "ARRAII MOVE=" << std::endl;
         }
-        std::swap(memory_, inObj.memory_);
+        std::swap(memory_.get(), inObj.memory_.get());
         std::swap(size_, inObj.size_);
         return *this;
     }
 
     ARRAII(const ARRAII& inObj)
         : size_(inObj.size_)
-        , memory_(new T[inObj.size_])
+
     {
+        memory_ = new T[inObj.size_];
         if (flag::PRINT_ON)
         {
             std::cout << "ARRAII COPY_CTOR" << std::endl;
         }
-        std::copy(inObj.memory_, inObj.memory_ + inObj.size_, memory_);
+        std::copy(inObj.memory_.get(), inObj.memory_.get() + inObj.size_, memory_.get());
     }
 
     ARRAII& operator=(const ARRAII& inObj)
@@ -62,7 +64,7 @@ public:
             std::cout << "ARRAII COPY=" << std::endl;
         }
         ARRAII temp = inObj;
-        std::swap(memory_, temp.memory_);
+        std::swap(memory_.get(), temp.memory_.get());
         std::swap(size_, temp.size_);
         return *this;
     }
@@ -75,7 +77,7 @@ public:
         bool equalTables = true;
         for (int i = 0; i < size_; i++)
         {
-            equalTables = memory_[i] == inObj.memory_[i];
+            equalTables = memory_.get()[i] == inObj.memory_.get()[i];
         }
         return equalTables;
     }
@@ -86,25 +88,17 @@ public:
         {
             std::cout << "ARRAII DTOR" << std::endl;
         }
-		delete[] memory_;
+		delete[] memory_.get();
 	}
 
     T& operator[](int idx) const noexcept
     {
-        return memory_[idx];
+        return memory_.get()[idx];
     }
 
     std::size_t size() const noexcept
     {
         return size_;
-    }
-
-    void init()
-    {
-        for (int i = 0; i < size_; i++)
-        {
-            memory_[i] = T();
-        }
     }
 
     friend std::ostream& operator<< (std::ostream& stream, const ARRAII& inVal)
@@ -120,7 +114,7 @@ public:
 
         for (int i = 0; i < size(); i++)
         {
-            retVal << memory_[i] << COMMA_SPACE;
+            retVal << memory_.get()[i] << COMMA_SPACE;
         }
 
         std::string stringedStream(retVal.str());
@@ -131,11 +125,11 @@ public:
 
     static void swap(ARRAII& leftObj, ARRAII& rightObj)
     {
-        std::swap(leftObj.memory_, rightObj.memory_);
+        std::swap(leftObj.memory_.get(), rightObj.memory_.get());
         std::swap(leftObj.size_, rightObj.size_);
     }
 
 private:
-    T* memory_;
+    boost::optional<T*> memory_;
     std::size_t size_;
 };

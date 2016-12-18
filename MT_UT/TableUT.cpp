@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <ElementsAndTables/CTable.hpp>
 #include <ElementsAndTables/Person.hpp>
+#include <boost/optional.hpp>
 #include <Utils/Utils.hpp>
 #include <limits>
 #include <vector>
@@ -77,6 +78,7 @@ TYPED_TEST_P(CTableTests, copyCTOR_getSize)
 
 TYPED_TEST_P(CTableTests, copyAssignement_getSize)
 {
+
     CTable<TypeParam>* inVal = CTable<TypeParam>::buildNewObj(TEN);
     CTable<TypeParam> copyOfInInVal;
     copyOfInInVal = *inVal;

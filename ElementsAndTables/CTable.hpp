@@ -5,6 +5,7 @@
 #include <vector>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
+#include <boost/optional.hpp>
 
 using namespace defaultVals;
 using namespace funs;
@@ -13,9 +14,9 @@ template<typename T>
 class CTable
 {
 public:
-    CTable(size_t size = DEFAULT_IN_TABLE_SIZE)
-        : memory_(ARRAII<T>(size))
+    CTable(size_t size)
     {
+        memory_ = ARRAII<T>(size);
         if (flag::PRINT_ON)
         {
             std::cout << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
@@ -45,7 +46,7 @@ public:
 
     void setSize(int inNewSize) noexcept
     {
-        if (memory_.size() != inNewSize)
+        if (memory_.get().size() != inNewSize)
         {
             memory_ = ARRAII<T>(inNewSize);
         }
@@ -63,7 +64,7 @@ public:
     {
         if (isProperIdx(idx, getSize()))
         {
-            memory_[idx] = newVal;
+            memory_.get()[idx] = newVal;
         }
     }
 
@@ -72,14 +73,14 @@ public:
         T retVal;
         if (isProperIdx(idx, getSize()))
         {
-            retVal = memory_[idx];
+            retVal = memory_.get()[idx];
         }
         return retVal;
     }
 
     std::size_t getSize() const noexcept
     {
-        return memory_.size();
+        return memory_.get().size();
     }
 
     std::string getName() const noexcept
@@ -89,13 +90,13 @@ public:
 
     bool operator==(const CTable& inObj) const noexcept
     {
-        return memory_ == inObj.memory_ && name_ == inObj.name_;
+        return memory_.get() == inObj.memory_.get() && name_ == inObj.name_;
     }
 
     void swap(CTable& first, CTable& second)
     {
         using std::swap;
-        ARRAII<T>::swap(first.memory_, second.memory_);
+        ARRAII<T>::swap(first.memory_.get(), second.memory_.get());
         swap(first.name_, second.name_);
     }
 
@@ -115,7 +116,7 @@ public:
 
     T& operator[](int idx) const noexcept
     {
-        return memory_[idx];
+        return memory_.get()[idx];
     }
 
     static CTable<T>* buildNewObj(size_t size = DEFAULT_IN_TABLE_SIZE) noexcept
@@ -130,7 +131,7 @@ public:
 
 private:
     std::string name_ = DEFAULT_TABLE_NAME;
-    ARRAII<T> memory_;
+    boost::optional<ARRAII<T>> memory_;
 };
 
 template<class T>
