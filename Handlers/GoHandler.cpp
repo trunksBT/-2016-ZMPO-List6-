@@ -1,64 +1,53 @@
 // Copyrights TrunkBT_KorytkoBT
 #include <iostream>
 
-#include "CreateDefsHandler.h"
+#include "GoHandler.hpp"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
 using namespace funs;
 
-CCreateDefsHandler::CCreateDefsHandler(std::vector<std::string>& inCommand)
+CGoHandler::CGoHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {
 }
 
-const int CCreateDefsHandler::getProperAmountOfArgs()
+const int CGoHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CCreateDefsHandler::getProperTypesOfArgs()
+std::string CGoHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CCreateDefsHandler::performOn(std::vector<CTable*>& inCache)
+CODE CGoHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
     if(idxOrAmount <= ZERO)
     {
-        return returnResultCode(ERROR_CODE::WRONG_VALUE);
+        return returnResultCode(CODE::WRONG_VALUE);
     }
-    else
+    std::get<0>(pairedShapeCach) = new CTable<CTable<int>>(idxOrAmount);
+    for (int i = 0; i < idxOrAmount; i++)
     {
-        if(idxOrAmount > inCache.size())
-        {
-            inCache.reserve(idxOrAmount);
-        }
-        int cacheSize = inCache.size();
-        int cursorIdx = ZERO;
-        for(int ammountOfCreatedObj = ZERO; ammountOfCreatedObj < idxOrAmount;)
-        {
-            if(cursorIdx < inCache.size())
-            {
-                if(inCache[cursorIdx] == nullptr)
-                {
-                    inCache[cursorIdx] = CTable::buildNewObj();
-                    ammountOfCreatedObj++;
-                }
-            }
-            else
-            {
-                inCache.emplace_back(CTable::buildNewObj());
-                ammountOfCreatedObj++;
-            }
-            cursorIdx++;
-        }
+        std::get<1>(pairedShapeCach)[i] = true;
     }
+    //std::get<1>(inCache)
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    //else
+    //{
+    //    if(idxOrAmount > inCache.size())
+    //    {
+    //        inCache.reserve(idxOrAmount);
+    //    }
+    //    int cacheSize = inCache.size();
+    //    int cursorIdx = ZERO;
+    //}
+
+    return CODE::SEEMS_LEGIT;
 }

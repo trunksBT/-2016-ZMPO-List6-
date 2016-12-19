@@ -134,6 +134,6 @@ private:
     std::string name_ = DEFAULT_TABLE_NAME;
     ARRAII<T> memory_;
 };
-
+using TableOfTables = CTable<CTable<int>>;
 using InitializedCTable = 
-    std::tuple< CTable<CTable<int>>*, std::map<int, bool>& >;
+    std::tuple< TableOfTables*, std::map<int, bool>& >;

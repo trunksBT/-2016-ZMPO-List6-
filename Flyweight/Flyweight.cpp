@@ -1,11 +1,11 @@
 #include "Flyweight.hpp"
 
 #include <Utils/Logger.hpp>
-#include <Handlers/IHandler.h>
+//#include <Handlers/IHandler.hpp>
+#include <Handlers/GoHandler.hpp>
 
 //#include <Utils/UtilsForMT.hpp>
 //
-//#include <Handlers/GoHandler.hpp>
 //#include <Handlers/CreateRectDoubleHandler.hpp>
 //#include <Handlers/CreateSquareDoubleHandler.hpp>
 //#include <Handlers/CreateCircleDoubleHandler.hpp>
@@ -21,9 +21,9 @@
 using namespace defaultVals;
 using namespace messageLiterals;
 using namespace funs;
-
-CTable<CTable<int>>* CFlyweight::shapeCache_;
-std::map<int, bool> CFlyweight::shapeCacheIsInitialized_;
+//
+//CTable<CTable<int>>* CFlyweight::shapeCache_;
+//std::map<int, bool> CFlyweight::shapeCacheIsInitialized_;
 
 CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
@@ -44,8 +44,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 
     if (command == GO)
     {
-        //evaluate = new CGoHandler(inCommand);
-        //returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+        evaluate = new CGoHandler(inCommand);
+        //shapeCache_ = new CTable<CTable<int>>(3);
+        returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+        shapeCache_ = std::get<0>(pairedShapeCache);
     }
     //else if (command == CREATE_RECT_DOUBLE)
     //{
@@ -102,14 +104,14 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
         releaseResources();
         returnedCode = CODE::CLOSE;
     }
-    //delete evaluate;
+        //delete evaluate;
 
     return returnedCode;
 }
 
 void CFlyweight::releaseResources()
 {
-    //for (int i = 0; i < shapeCacheSize_; i++)
+    //for (int i = 0; i < shapeCache_->getSize(); i++)
     //{
     //    if ( shapeCacheIsInitialized_[i] && shapeCache_[i] != nullptr )
     //    {
@@ -117,8 +119,8 @@ void CFlyweight::releaseResources()
     //        shapeCache_[i] = nullptr;
     //    }
     //}
-    //delete[] shapeCache_;
-    //shapeCache_ = nullptr;
+    delete shapeCache_;
+    shapeCache_ = nullptr;
     //shapeCacheSize_ = ZERO;
     //shapeCacheIsInitialized_.clear();
 }

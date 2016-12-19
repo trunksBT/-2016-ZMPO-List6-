@@ -16,7 +16,7 @@ IHandler::IHandler(std::vector<std::string>& inCommand)
     }
 }
 
-CODE IHandler::checkArgsAndPerform(InitializedCTable& inCache)
+CODE IHandler::checkArgsAndPerform(InitializedCTable& pairedShapeCach)
 {
     if(!isProperNumberOfArgs(wholeCommand_, getProperAmountOfArgs()))
     {
@@ -28,7 +28,7 @@ CODE IHandler::checkArgsAndPerform(InitializedCTable& inCache)
     }
     else
     {
-        return performOn(inCache);
+        return performOn(pairedShapeCach);
     }
 }
 

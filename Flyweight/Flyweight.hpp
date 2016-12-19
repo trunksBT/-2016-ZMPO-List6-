@@ -14,10 +14,10 @@ public:
     ~CFlyweight();
     CODE interpretCommand(std::vector<std::string>& inCommand);
 private:
-    static void releaseResources();
-private:
-    static CTable<CTable<int>>* shapeCache_;
-    static std::map<int, bool> shapeCacheIsInitialized_;
+    void releaseResources();
+public:
+    TableOfTables* shapeCache_;
+    std::map<int, bool> shapeCacheIsInitialized_;
 private:
     //static void updateIsInitializedShapeCache(int idx, bool newVal);
     //static void initShapeCache(int inCacheSize);

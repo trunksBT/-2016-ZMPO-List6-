@@ -19,8 +19,8 @@ include_directories(.)
 set(HANDLERS
     Handlers/IHandler.cpp
     Handlers/IHandler.h
-    #Handlers/GoHandler.cpp
-    #Handlers/GoHandler.h
+    Handlers/GoHandler.cpp
+    Handlers/GoHandler.hpp
     #Handlers/PrintAllHandler.cpp
     #Handlers/PrintAllHandler.h
     #Handlers/RemoveAllHandler.cpp
