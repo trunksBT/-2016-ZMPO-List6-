@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+#include <tuple>
 #include <string>
 #include <sstream>
 #include <Utils/Utils.hpp>
@@ -133,5 +135,4 @@ private:
     ARRAII<T> memory_;
 };
 
-template<class T>
-using Vec_PtrCTable = std::vector<T*, CTable<T>*>;
+using InitializedCTable = std::tuple<CTable<CTable<int>>*, std::map<int, bool>& >;

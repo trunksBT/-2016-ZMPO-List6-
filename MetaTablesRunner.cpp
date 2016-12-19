@@ -17,7 +17,7 @@
 int main(int argc, char **argv)
 {
     {
-    //     CFlyweight application;
+         CFlyweight application;
          CODE commandResult = CODE::INITIAL_VAL;
 
          logger << "Pass command" << POST_PRINT;
@@ -28,11 +28,10 @@ int main(int argc, char **argv)
              {
                  logger << command[i] << POST_PRINT;
              }
-             //commandResult = application.interpretCommand(command);
+             commandResult = application.interpretCommand(command);
          } while(commandResult != CODE::CLOSE);
 
          logger << POST_PRINT << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
-         system("Pause");
     }
     //::testing::InitGoogleTest(&argc, argv);
     //return RUN_ALL_TESTS();

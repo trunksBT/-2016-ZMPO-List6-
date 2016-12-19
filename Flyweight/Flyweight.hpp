@@ -12,8 +12,7 @@ class CFlyweight
 public:
     CFlyweight();
     ~CFlyweight();
-    static CODE interpretCommand(
-        std::vector<std::string>& inCommand);
+    CODE interpretCommand(std::vector<std::string>& inCommand);
 private:
     static void releaseResources();
 private:

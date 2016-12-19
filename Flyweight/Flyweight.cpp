@@ -1,7 +1,5 @@
-#include <iostream>
 #include "Flyweight.hpp"
 
-#include <Utils/Utils.hpp>
 #include <Utils/Logger.hpp>
 #include <Handlers/IHandler.h>
 
@@ -24,90 +22,87 @@ using namespace defaultVals;
 using namespace messageLiterals;
 using namespace funs;
 
-CTable<CTable<int>>* shapeCache_;
+CTable<CTable<int>>* CFlyweight::shapeCache_;
 std::map<int, bool> CFlyweight::shapeCacheIsInitialized_;
 
 CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
     CODE returnedCode = CODE::WRONG_VALUE;
+
+    if (inCommand.size() == ZERO)
     {
-        if (inCommand.size() == ZERO)
-        {
-            return CODE::WRONG_VALUE;
-        }
-
-        std::string command(inCommand[idxOf::COMMAND]);
-
-        //CShapeWithSize pairedShapeCache = 
-        //std::forward_as_tuple(
-        //    shapeCache_,
-        //    shapeCacheSize_,
-        //    shapeCacheIsInitialized_);
-
-        IHandler* evaluate = nullptr;
-
-        if (command == GO)
-        {
-            //evaluate = new CGoHandler(inCommand);
-            //returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        }
-        //else if (command == CREATE_RECT_DOUBLE)
-        //{
-        //    evaluate = new CCreateRectDoubleHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CREATE_SQUARE_DOUBLE)
-        //{
-        //    evaluate = new CCreateSquareDoubleHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CREATE_CIRCLE_DOUBLE)
-        //{
-        //    evaluate = new CCreateCircleDoubleHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CREATE_TRIANGLE_DOUBLE)
-        //{
-        //    evaluate = new CCreateTriangleDoubleHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CREATE_TRAPEZOID_DOUBLE)
-        //{
-        //    evaluate = new CCreateTrapezoidDoubleHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CALCULATE_AREA)
-        //{
-        //    evaluate = new CAreaHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CALCULATE_AREAS)
-        //{
-        //    evaluate = new CAreasHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CALCULATE_PERIMETER)
-        //{
-        //    evaluate = new CPerimeterHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == CALCULATE_PERIMETERS)
-        //{
-        //    evaluate = new CPerimetersHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        //else if (command == PRINT_ALL)
-        //{
-        //    evaluate = new CPrintAllHandler(inCommand);
-        //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
-        //}
-        else if (command == CLOSE)
-        {
-            releaseResources();
-            returnedCode = CODE::CLOSE;
-        }
-        //delete evaluate;
+        return CODE::WRONG_VALUE;
     }
+
+    std::string command(inCommand[idxOf::COMMAND]);
+
+    InitializedCTable pairedShapeCache= std::forward_as_tuple(
+        shapeCache_,
+        shapeCacheIsInitialized_);
+
+    IHandler* evaluate = nullptr;
+
+    if (command == GO)
+    {
+        //evaluate = new CGoHandler(inCommand);
+        //returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    }
+    //else if (command == CREATE_RECT_DOUBLE)
+    //{
+    //    evaluate = new CCreateRectDoubleHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CREATE_SQUARE_DOUBLE)
+    //{
+    //    evaluate = new CCreateSquareDoubleHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CREATE_CIRCLE_DOUBLE)
+    //{
+    //    evaluate = new CCreateCircleDoubleHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CREATE_TRIANGLE_DOUBLE)
+    //{
+    //    evaluate = new CCreateTriangleDoubleHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CREATE_TRAPEZOID_DOUBLE)
+    //{
+    //    evaluate = new CCreateTrapezoidDoubleHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CALCULATE_AREA)
+    //{
+    //    evaluate = new CAreaHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CALCULATE_AREAS)
+    //{
+    //    evaluate = new CAreasHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CALCULATE_PERIMETER)
+    //{
+    //    evaluate = new CPerimeterHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == CALCULATE_PERIMETERS)
+    //{
+    //    evaluate = new CPerimetersHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    //else if (command == PRINT_ALL)
+    //{
+    //    evaluate = new CPrintAllHandler(inCommand);
+    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //}
+    else if (command == CLOSE)
+    {
+        releaseResources();
+        returnedCode = CODE::CLOSE;
+    }
+    //delete evaluate;
 
     return returnedCode;
 }
