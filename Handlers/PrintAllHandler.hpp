@@ -13,4 +13,6 @@ protected:
     CODE performOn(InitializedCTable& pairedShapeCach) override;
     const int getProperAmountOfArgs() const noexcept override;
     std::string getProperTypesOfArgs() const noexcept override;
+private:
+    bool isCacheInitialized(InitializedCTable & pairedShapeCach);
 };

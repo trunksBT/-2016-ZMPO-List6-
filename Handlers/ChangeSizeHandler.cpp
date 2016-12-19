@@ -4,7 +4,6 @@
 #include "ChangeSizeHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -14,46 +13,33 @@ CChangeSizeHandler::CChangeSizeHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-const int CChangeSizeHandler::getProperAmountOfArgs()
+const int CChangeSizeHandler::getProperAmountOfArgs() const noexcept
 {
     return 3;
 }
 
-std::string CChangeSizeHandler::getProperTypesOfArgs()
+std::string CChangeSizeHandler::getProperTypesOfArgs() const noexcept
 {
     return "sii";
 }
 
-ERROR_CODE CChangeSizeHandler::performOn(std::vector<CTable*>& inCache)
+CODE CChangeSizeHandler::performOn(InitializedCTable& pairedShapeCach)
 {
-    std::string receivedSourceId(wholeCommand_[idxOf::ID_OF_CTABLE]);
-    int sourceId = std::stoi(receivedSourceId);
+    std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
+    int idxOrAmount = std::stoi(receivedId);
     std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
 
-    if(isProperIdx(sourceId, inCache))
+    if (newSize < 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        if(newSize > MINUS_ONE)
-        {
-            if(inCache[sourceId] == nullptr)
-            {
-                return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-            }
-            else
-            {
-                inCache[sourceId]->setSize(newSize);
-            }
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::WRONG_VALUE);
-        }
-    }
-    else
-    {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if (newSize > 0)
+    {
+        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setSize(newSize);
+    }
+
+    return CODE::SEEMS_LEGIT;
 }
 

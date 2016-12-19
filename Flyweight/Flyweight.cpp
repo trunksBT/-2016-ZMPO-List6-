@@ -2,8 +2,12 @@
 
 #include <Utils/Logger.hpp>
 #include <Handlers/GoHandler.hpp>
+#include <Handlers/PrintHandler.h>
 #include <Handlers/CreateHandler.hpp>
 #include <Handlers/PrintAllHandler.hpp>
+#include <Handlers/RemoveHandler.h>
+#include <Handlers/CreateCopyHandler.h>
+#include <Handlers/ChangeSizeHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -33,7 +37,7 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 
     std::string command(inCommand[idxOf::COMMAND]);
 
-    InitializedCTable pairedShapeCache= std::forward_as_tuple(
+    InitializedCTable pairedShapeCache = std::forward_as_tuple(
         shapeCache_,
         shapeCacheIsInitialized_);
 
@@ -50,25 +54,32 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CPrintAllHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == CREATE_COPY)
-    //{
-    //    CCreateCopyHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == DELETE)
-    //{
-    //    CRemoveHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
+    else if (command == CREATE_COPY)
+    {
+        returnedCode = CCreateCopyHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == REMOVE_ALL)
+    {
+        releaseResources();
+        returnedCode = CODE::SEEMS_LEGIT;
+    }
+    else if (command == REMOVE)
+    {
+        returnedCode = CRemoveHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == PRINT)
+    {
+        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == SET_SIZE)
+    {
+        returnedCode = CChangeSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     //else if (command == CLEAR)
     //{
     //    CClearHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == REMOVE_ALL)
-    //{
-    //    CRemoveAllHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //else if (command == SET_NAME)
     //{
@@ -105,11 +116,6 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     //    CPrintAllHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == SET_SIZE)
-    //{
-    //    CChangeSizeHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
     //else if (command == HELP)
     //{
     //    CHelpHandler evaluate(inCommand);
@@ -128,6 +134,10 @@ void CFlyweight::releaseResources()
 {
     delete shapeCache_;
     shapeCache_ = nullptr;
+    for (int i = 0; i < shapeCacheIsInitialized_.size(); i++)
+    {
+        shapeCacheIsInitialized_[i] = false;
+    }
 }
 
 CFlyweight::~CFlyweight()

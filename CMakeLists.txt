@@ -25,20 +25,14 @@ set(HANDLERS
     Handlers/CreateHandler.hpp
     Handlers/PrintAllHandler.cpp
     Handlers/PrintAllHandler.hpp
-    #Handlers/RemoveAllHandler.cpp
-    #Handlers/RemoveAllHandler.h
-    #Handlers/PrintHandler.cpp
-    #Handlers/PrintHandler.h
-    #Handlers/RemoveHandler.cpp
-    #Handlers/RemoveHandler.h
-    #Handlers/ClearHandler.cpp
-    #Handlers/ClearHandler.h
-    #Handlers/CreateCopyHandler.cpp
-    #Handlers/CreateCopyHandler.h
-    #Handlers/CreateDefHandler.cpp
-    #Handlers/CreateDefHandler.h
-    #Handlers/ChangeSizeHandler.cpp
-    #Handlers/ChangeSizeHandler.h
+    Handlers/CreateCopyHandler.cpp
+    Handlers/CreateCopyHandler.h
+    Handlers/PrintHandler.cpp
+    Handlers/PrintHandler.h
+    Handlers/ChangeSizeHandler.cpp
+    Handlers/ChangeSizeHandler.h
+    Handlers/RemoveHandler.cpp
+    Handlers/RemoveHandler.h
     #Handlers/SetNameHandler.cpp
     #Handlers/SetNameHandler.h
     #Handlers/SetValueHandler.cpp
@@ -51,6 +45,8 @@ set(HANDLERS
     #Handlers/GetValueHandler.h
     #Handlers/HelpHandler.cpp
     #Handlers/HelpHandler.h
+    #Handlers/ClearHandler.cpp
+    #Handlers/ClearHandler.h
 )
 
 set(ELEMENTS_AND_TABLES

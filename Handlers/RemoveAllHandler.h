@@ -1,16 +1,16 @@
-#pragma once
-
-#include <vector>
-#include <string>
-
-#include "IHandler.h"
-
-class CRemoveAllHandler final : public IHandler
-{
-public:
-    CRemoveAllHandler(std::vector<std::string>& inCommand);
-protected:
-    ERROR_CODE performOn(std::vector<CTable*>& inCache) override;
-    const int getProperAmountOfArgs() override;
-    std::string getProperTypesOfArgs() override;
-};
+//#pragma once
+//
+//#include <vector>
+//#include <string>
+//
+//#include <Handlers/IHandler.h>
+//
+//class CRemoveAllHandler final : public IHandler
+//{
+//public:
+//    CRemoveAllHandler(std::vector<std::string>& inCommand);
+//protected:
+//    CODE performOn(InitializedCTable& pairedShapeCach) override;
+//    const int getProperAmountOfArgs() const noexcept override;
+//    std::string getProperTypesOfArgs() const noexcept override;
+//};

@@ -4,7 +4,6 @@
 #include "RemoveHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -15,34 +14,30 @@ CRemoveHandler::CRemoveHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CRemoveHandler::getProperAmountOfArgs()
+const int CRemoveHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CRemoveHandler::getProperTypesOfArgs()
+std::string CRemoveHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CRemoveHandler::performOn(std::vector<CTable*>& inCache)
+CODE CRemoveHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+
+    if(!isProperIdx(idxOrAmount, cache->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            std::cout << retTable->getName();
-        }
-        delete retTable;
-        inCache.at(idxOrAmount) = nullptr;
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
     else
     {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        std::get<1>(pairedShapeCach)[idxOrAmount] = false;
     }
     
-    return ERROR_CODE::SEEMS_LEGIT;
+    return CODE::SEEMS_LEGIT;
 }
