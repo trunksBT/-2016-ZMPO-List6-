@@ -33,19 +33,17 @@ CODE CGetNameHandler::performOn(InitializedCTable& pairedShapeCach)
     {
         return returnResultCode(CODE::UNDEFINED_OBJECT);
     }
+
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        logger << NOT_INITIALIZED_TABLE;
+    }
     else
     {
-        if (!std::get<1>(pairedShapeCach)[idxOrAmount])
-        {
-            logger << NOT_INITIALIZED_TABLE;
-        }
-        else
-        {
-            logger << cache->getVal(idxOrAmount).getName();
-        }
-
-        std::cout << POST_PRINT;
+        logger << cache->getVal(idxOrAmount).getName();
     }
+
+    std::cout << POST_PRINT;
 
     return CODE::SEEMS_LEGIT;
 }

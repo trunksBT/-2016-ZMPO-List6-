@@ -37,10 +37,10 @@ set(HANDLERS
     Handlers/SetNameHandler.h
     Handlers/GetNameHandler.cpp
     Handlers/GetNameHandler.h
+    Handlers/GetSizeHandler.cpp
+    Handlers/GetSizeHandler.h
     #Handlers/SetValueHandler.h
     #Handlers/SetValueHandler.cpp
-    #Handlers/GetSizeHandler.cpp
-    #Handlers/GetSizeHandler.h
     #Handlers/GetValueHandler.cpp
     #Handlers/GetValueHandler.h
     #Handlers/HelpHandler.cpp
