@@ -38,7 +38,7 @@ CODE CPrintHandler::performOn(InitializedCTable& pairedShapeCach)
     {
         if (!std::get<1>(pairedShapeCach)[idxOrAmount])
         {
-            logger << toString(CODE::UNDEFINED_OBJECT);
+            logger << NOT_INITIALIZED_TABLE;
         }
         else
         {

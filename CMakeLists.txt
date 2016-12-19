@@ -31,6 +31,8 @@ set(HANDLERS
     Handlers/PrintHandler.h
     Handlers/ChangeSizeHandler.cpp
     Handlers/ChangeSizeHandler.h
+    Handlers/RemoveHandler.cpp
+    Handlers/RemoveHandler.h
     #Handlers/SetNameHandler.cpp
     #Handlers/SetNameHandler.h
     #Handlers/SetValueHandler.cpp
@@ -43,8 +45,6 @@ set(HANDLERS
     #Handlers/GetValueHandler.h
     #Handlers/HelpHandler.cpp
     #Handlers/HelpHandler.h
-    #Handlers/RemoveHandler.cpp
-    #Handlers/RemoveHandler.h
     #Handlers/ClearHandler.cpp
     #Handlers/ClearHandler.h
 )

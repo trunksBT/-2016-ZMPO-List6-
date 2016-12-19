@@ -5,6 +5,7 @@
 #include <Handlers/PrintHandler.h>
 #include <Handlers/CreateHandler.hpp>
 #include <Handlers/PrintAllHandler.hpp>
+#include <Handlers/RemoveHandler.h>
 #include <Handlers/CreateCopyHandler.h>
 #include <Handlers/ChangeSizeHandler.h>
 
@@ -62,6 +63,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
         releaseResources();
         returnedCode = CODE::SEEMS_LEGIT;
     }
+    else if (command == REMOVE)
+    {
+        returnedCode = CRemoveHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     else if (command == PRINT)
     {
         returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
@@ -70,11 +75,6 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CChangeSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == DELETE)
-    //{
-    //    CRemoveHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
     //else if (command == CLEAR)
     //{
     //    CClearHandler evaluate(inCommand);

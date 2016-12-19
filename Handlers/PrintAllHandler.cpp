@@ -41,7 +41,7 @@ CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
         {
             if(!std::get<1>(pairedShapeCach)[i])
             {
-                std::cout << toString(CODE::UNDEFINED_OBJECT);
+                logger << NOT_INITIALIZED_TABLE;
             }
             else
             {

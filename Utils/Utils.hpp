@@ -62,6 +62,7 @@ constexpr const int DEFAULT_TABLE_VAL = -1;
 constexpr const int DEFAULT_IN_TABLE_SIZE = FIVE;
 constexpr const long MAX_INT_VAL = (std::numeric_limits<int>::max)();
 constexpr const char* ERRORED_COMMAND_IDX = "Errored command idx";
+constexpr const char* NOT_INITIALIZED_TABLE = "[] - empty";
 constexpr const char INT_TYPE = 'i';
 constexpr const char STRING_TYPE = 's';
 }
@@ -106,7 +107,7 @@ constexpr const char* CREATE_COPY = "createCopy";
 constexpr const char* GET_NAME = "getName";
 constexpr const char* GET_SIZE = "getSize";
 constexpr const char* GET_VALUE = "getValue";
-constexpr const char* DELETE = "remove";
+constexpr const char* REMOVE = "remove";
 constexpr const char* REMOVE_ALL = "removeAll";
 constexpr const char* SET_NAME = "setName";
 constexpr const char* SET_VALUE = "setValue";
