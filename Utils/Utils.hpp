@@ -10,7 +10,7 @@ constexpr bool PRINT_ON = false;
 constexpr bool DEBUG_TESTS_ON = false;
 }
 
-enum class ERROR_CODE : int
+enum class CODE : int
 {
     SEEMS_LEGIT = 0,
     UNDEFINED_OBJECT = 1,
@@ -69,35 +69,39 @@ constexpr const char STRING_TYPE = 's';
 namespace funs
 {
 //int toInt(char inChar);
-//std::string toString(ERROR_CODE inCode);
-//bool isNumber(std::string inChain);
+std::string toString(CODE inCode);
+bool isNumber(std::string inChain);
 bool isProperIdx(int inIdx, int inSize);
 //bool isVectorEmpty(std::vector<CTable*>& inCache);
 //bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 //bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
-//bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
-//bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
-//ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
+bool isProperNumberOfArgs(std::vector<std::string>& inCommand,
+    int inProperNumber);
+bool isProperTypeOfArgs(std::vector<std::string>& inCommand,
+    std::string inProperTypes);
+CODE returnResultCode(CODE inResultCode);
 }
 //
-//namespace idxOf
-//{
-//constexpr const int COMMAND = 0;
-//constexpr const int ID_OF_CTABLE = 1;
-//constexpr const int AMOUNT = 1;
-//constexpr const int NEW_NAME = 2;
-//constexpr const int NEW_SIZE = 2;
-//constexpr const int GOAL_ID = 2;
-//constexpr const int NEW_VAL = 3;
-//constexpr const int INITIAL_NAME = 3;
-//}
+namespace idxOf
+{
+constexpr const int COMMAND = 0;
+constexpr const int CACHE = 0;
+constexpr const int ID_OF_CTABLE = 1;
+constexpr const int IS_INITIALIZED = 1;
+constexpr const int AMOUNT = 1;
+constexpr const int NEW_NAME = 2;
+constexpr const int NEW_SIZE = 2;
+constexpr const int GOAL_ID = 2;
+constexpr const int NEW_VAL = 3;
+constexpr const int INITIAL_NAME = 3;
+}
 
 namespace messageLiterals
 {
 constexpr const char* CLEAR = "clear";
 constexpr const char* CREATE = "create";
 constexpr const char* CREATE_DEF = "createDef";
-constexpr const char* CREATE_DEFS = "createDefs";
+constexpr const char* GO = "go";
 constexpr const char* CREATE_COPY = "createCopy";
 constexpr const char* GET_NAME = "getName";
 constexpr const char* GET_SIZE = "getSize";
@@ -121,26 +125,26 @@ constexpr const char* NAME = "<name>";
 constexpr const char* VALUE = "<value>";
 }
 
-namespace fullCommands
-{
-extern std::string createArgs;
-extern std::string createDefArgs;
-extern std::string createDefsArgs;
-extern std::string createCopyArgs;
-extern std::string getNameArgs;
-extern std::string getSizeArgs;
-extern std::string getValueArgs;
-extern std::string setValueArgs;
-extern std::string setNameArgs;
-extern std::string printArgs;
-extern std::string printAllArgs;
-extern std::string deleteArgs;
-extern std::string deleteAllArgs;
-extern std::string setSizeArgs;
-extern std::string closeArgs;
-extern std::string helpArgs;
-extern std::vector<std::string> allCommands;
-}
+//namespace fullCommands
+//{
+//extern std::string goArgs;
+//extern std::string createArgs;
+//extern std::string createDefArgs;
+//extern std::string createCopyArgs;
+//extern std::string getNameArgs;
+//extern std::string getSizeArgs;
+//extern std::string getValueArgs;
+//extern std::string setValueArgs;
+//extern std::string setNameArgs;
+//extern std::string printArgs;
+//extern std::string printAllArgs;
+//extern std::string deleteArgs;
+//extern std::string deleteAllArgs;
+//extern std::string setSizeArgs;
+//extern std::string closeArgs;
+//extern std::string helpArgs;
+//extern std::vector<std::string> allCommands;
+//}
 
 
 

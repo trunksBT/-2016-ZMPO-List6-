@@ -1,3 +1,4 @@
 import os
 for file in os.listdir("Handlers"):
-    print("    Handlers/" + file)
+	with open("test.txt", "a") as myfile:
+    	myfile.write(file)

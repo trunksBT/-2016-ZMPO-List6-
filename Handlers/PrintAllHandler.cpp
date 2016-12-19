@@ -1,53 +1,51 @@
 // Copyrights TrunkBT_KorytkoBT
 #include <iostream>
 
-#include "PrintAllHandler.h"
+#include "PrintAllHandler.hpp"
+#include <Utils/Logger.hpp>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
-
 using namespace funs;
 
 CPrintAllHandler::CPrintAllHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-const int CPrintAllHandler::getProperAmountOfArgs()
+const int CPrintAllHandler::getProperAmountOfArgs() const noexcept
 {
     return 1;
 }
 
-std::string CPrintAllHandler::getProperTypesOfArgs()
+std::string CPrintAllHandler::getProperTypesOfArgs() const noexcept
 {
     return "s";
 }
 
-ERROR_CODE CPrintAllHandler::performOn(std::vector<CTable*>& inCache)
+CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
 {
-    if(inCache.size() == 0)
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+    if(cache->getSize() == 0)
     {
-        return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
     }
     else
     {
-        for(int i = 0; i < inCache.size(); i++)
+        for(int i = 0; i < cache->getSize(); i++)
         {
-            std::cout << i << SEPARATOR;
-
-            if(inCache[i] == nullptr)
+            if(!std::get<1>(pairedShapeCach)[i])
             {
-                std::cout << toString(ERROR_CODE::UNDEFINED_OBJECT);
+                std::cout << toString(CODE::UNDEFINED_OBJECT);
             }
             else
             {
-                std::cout << inCache[i]->toString();
+                logger << static_cast<std::string>(cache->getVal(i));
             }
-
-            std::cout << POST_PRINT;
         }
+
+        std::cout << POST_PRINT;
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    return CODE::SEEMS_LEGIT;
 }

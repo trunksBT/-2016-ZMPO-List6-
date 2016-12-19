@@ -2,6 +2,7 @@
 #include "IHandler.h"
 #include <iostream>
 #include <Utils/Utils.hpp>
+#include <Utils/Logger.hpp>
 
 using namespace defaultVals;
 using namespace funs;
@@ -9,32 +10,32 @@ using namespace funs;
 IHandler::IHandler(std::vector<std::string>& inCommand)
 {
     wholeCommand_ = inCommand;
-    if(flag::PRINT_ON && flag::DEBUG_TESTS_ON)
+    if(flags::PRINT_CTORS && flags::REPLY_COMMAND)
     {
-        std::cout << PRE_PRINT << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
+        logger << PRE_PRINT << wholeCommand_[idxOf::COMMAND] << POST_PRINT;
     }
 }
 
-ERROR_CODE IHandler::checkCorrectnessAndPerform(std::vector<CTable*>& inCache)
+CODE IHandler::checkArgsAndPerform(InitializedCTable& pairedShapeCach)
 {
-    if(!isProperAmmountOfArgs(wholeCommand_, getProperAmountOfArgs()))
+    if(!isProperNumberOfArgs(wholeCommand_, getProperAmountOfArgs()))
     {
-        return returnResultCode(ERROR_CODE::WRONG_AMOUNT_OF_ARGS);
+        return returnResultCode(CODE::WRONG_AMOUNT_OF_ARGS);
     }
     else if(!isProperTypeOfArgs(wholeCommand_, getProperTypesOfArgs()))
     {
-        return returnResultCode(ERROR_CODE::ERROR_ARGS_PARSING);
+        return returnResultCode(CODE::ERROR_ARGS_PARSING);
     }
     else
     {
-        return performOn(inCache);
+        return performOn(pairedShapeCach);
     }
 }
 
 IHandler::~IHandler()
 {
-    if(flag::PRINT_ON)
+    if(flags::PRINT_CTORS)
     {
-        std::cout << POST_PRINT;
+        logger << POST_PRINT;
     }
 }
