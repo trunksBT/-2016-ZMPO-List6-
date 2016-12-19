@@ -4,7 +4,6 @@
 #include "SetNameHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -15,37 +14,31 @@ CSetNameHandler::CSetNameHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CSetNameHandler::getProperAmountOfArgs()
+const int CSetNameHandler::getProperAmountOfArgs() const noexcept
 {
     return 3;
 }
 
-std::string CSetNameHandler::getProperTypesOfArgs()
+std::string CSetNameHandler::getProperTypesOfArgs() const noexcept
 {
     return "sis";
 }
 
-ERROR_CODE CSetNameHandler::performOn(std::vector<CTable*>& inCache)
+CODE CSetNameHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string newName(wholeCommand_[idxOf::NEW_NAME]);
     std::string receivedId(std::move(wholeCommand_[idxOf::AMOUNT]));
     int idxOrAmount = std::stoi(receivedId);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    if (!isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        if(inCache[idxOrAmount] == nullptr)
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        else
-        {
-            inCache[idxOrAmount]->setName(newName);
-        }
-    }
-    else
-    {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if (std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setName(newName);
+    }
+
+    return CODE::SEEMS_LEGIT;
 }

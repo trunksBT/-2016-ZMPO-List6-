@@ -33,12 +33,12 @@ set(HANDLERS
     Handlers/ChangeSizeHandler.h
     Handlers/RemoveHandler.cpp
     Handlers/RemoveHandler.h
-    #Handlers/SetNameHandler.cpp
-    #Handlers/SetNameHandler.h
-    #Handlers/SetValueHandler.cpp
+    Handlers/SetNameHandler.cpp
+    Handlers/SetNameHandler.h
+    Handlers/GetNameHandler.cpp
+    Handlers/GetNameHandler.h
     #Handlers/SetValueHandler.h
-    #Handlers/GetNameHandler.cpp
-    #Handlers/GetNameHandler.h
+    #Handlers/SetValueHandler.cpp
     #Handlers/GetSizeHandler.cpp
     #Handlers/GetSizeHandler.h
     #Handlers/GetValueHandler.cpp

@@ -8,6 +8,8 @@
 #include <Handlers/RemoveHandler.h>
 #include <Handlers/CreateCopyHandler.h>
 #include <Handlers/ChangeSizeHandler.h>
+#include <Handlers/GetNameHandler.h>
+#include <Handlers/SetNameHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -75,25 +77,23 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CChangeSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
+    else if (command == SET_NAME)
+    {
+        returnedCode = CSetNameHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == GET_NAME)
+    {
+        returnedCode = CGetNameHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     //else if (command == CLEAR)
     //{
     //    CClearHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //}
-    //else if (command == SET_NAME)
-    //{
-    //    CSetNameHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
     //else if (command == SET_VALUE)
     //{
     //    CSetValueHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == GET_NAME)
-    //{
-    //    CGetNameHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //else if (command == GET_SIZE)
