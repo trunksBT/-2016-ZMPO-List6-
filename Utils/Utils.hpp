@@ -85,7 +85,9 @@ CODE returnResultCode(CODE inResultCode);
 namespace idxOf
 {
 constexpr const int COMMAND = 0;
+constexpr const int CACHE = 0;
 constexpr const int ID_OF_CTABLE = 1;
+constexpr const int IS_INITIALIZED = 1;
 constexpr const int AMOUNT = 1;
 constexpr const int NEW_NAME = 2;
 constexpr const int NEW_SIZE = 2;

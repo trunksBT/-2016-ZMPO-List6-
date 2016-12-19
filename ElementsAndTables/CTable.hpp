@@ -25,6 +25,16 @@ public:
         }
     }
 
+    CTable(size_t size, std::string inName)
+        : memory_(ARRAII<T>(size))
+        , name_(inName)
+    {
+        if (PRINT_ERRORS)
+        {
+            logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+        }
+    }
+
     CTable(const CTable& inVal)
         : name_(inVal.name_)
         , memory_(inVal.memory_)
@@ -70,7 +80,7 @@ public:
         }
     }
 
-    T getVal(int idx) const noexcept
+    T& getVal(int idx) const noexcept
     {
         if (isProperIdx(idx, getSize()))
         {
@@ -113,11 +123,6 @@ public:
         retVal << POST_PRINT << memory_;
 
         return std::move(retVal.str());
-    }
-
-    T& operator[](int idx) const noexcept
-    {
-        return memory_[idx];
     }
 
     static CTable<T>* buildNewObj(size_t size) noexcept

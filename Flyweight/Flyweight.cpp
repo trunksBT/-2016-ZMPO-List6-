@@ -1,8 +1,9 @@
 #include "Flyweight.hpp"
 
 #include <Utils/Logger.hpp>
-//#include <Handlers/IHandler.hpp>
 #include <Handlers/GoHandler.hpp>
+#include <Handlers/CreateHandler.hpp>
+#include <Handlers/PrintAllHandler.hpp>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -16,14 +17,10 @@
 //#include <Handlers/AreasHandler.hpp>
 //#include <Handlers/PerimeterHandler.hpp>
 //#include <Handlers/PerimetersHandler.hpp>
-//#include <Handlers/PrintAllHandler.hpp>
 
 using namespace defaultVals;
 using namespace messageLiterals;
 using namespace funs;
-//
-//CTable<CTable<int>>* CFlyweight::shapeCache_;
-//std::map<int, bool> CFlyweight::shapeCacheIsInitialized_;
 
 CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 {
@@ -40,117 +37,100 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
         shapeCache_,
         shapeCacheIsInitialized_);
 
-    IHandler* evaluate = nullptr;
-
     if (command == GO)
     {
-        evaluate = new CGoHandler(inCommand);
-        //shapeCache_ = new CTable<CTable<int>>(3);
-        returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+        returnedCode = CGoHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
         shapeCache_ = std::get<0>(pairedShapeCache);
     }
-    //else if (command == CREATE_RECT_DOUBLE)
+    if (command == CREATE)
+    {
+        returnedCode = CCreateHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == PRINT_ALL)
+    {
+        returnedCode = CPrintAllHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    //else if (command == CREATE_COPY)
     //{
-    //    evaluate = new CCreateRectDoubleHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CCreateCopyHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CREATE_SQUARE_DOUBLE)
+    //else if (command == DELETE)
     //{
-    //    evaluate = new CCreateSquareDoubleHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CRemoveHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CREATE_CIRCLE_DOUBLE)
+    //else if (command == CLEAR)
     //{
-    //    evaluate = new CCreateCircleDoubleHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CClearHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CREATE_TRIANGLE_DOUBLE)
+    //else if (command == REMOVE_ALL)
     //{
-    //    evaluate = new CCreateTriangleDoubleHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CRemoveAllHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CREATE_TRAPEZOID_DOUBLE)
+    //else if (command == SET_NAME)
     //{
-    //    evaluate = new CCreateTrapezoidDoubleHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CSetNameHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CALCULATE_AREA)
+    //else if (command == SET_VALUE)
     //{
-    //    evaluate = new CAreaHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CSetValueHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CALCULATE_AREAS)
+    //else if (command == GET_NAME)
     //{
-    //    evaluate = new CAreasHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CGetNameHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CALCULATE_PERIMETER)
+    //else if (command == GET_SIZE)
     //{
-    //    evaluate = new CPerimeterHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CGetSizeHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == CALCULATE_PERIMETERS)
+    //else if (command == GET_VALUE)
     //{
-    //    evaluate = new CPerimetersHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CGetValueHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    //}
+    //else if (command == PRINT)
+    //{
+    //    CPrintHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //else if (command == PRINT_ALL)
     //{
-    //    evaluate = new CPrintAllHandler(inCommand);
-    //    returnedCode = evaluate->checkArgsAndPerform(pairedShapeCache);
+    //    CPrintAllHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    //}
+    //else if (command == SET_SIZE)
+    //{
+    //    CChangeSizeHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    //}
+    //else if (command == HELP)
+    //{
+    //    CHelpHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     else if (command == CLOSE)
     {
         releaseResources();
         returnedCode = CODE::CLOSE;
     }
-        //delete evaluate;
 
     return returnedCode;
 }
 
 void CFlyweight::releaseResources()
 {
-    //for (int i = 0; i < shapeCache_->getSize(); i++)
-    //{
-    //    if ( shapeCacheIsInitialized_[i] && shapeCache_[i] != nullptr )
-    //    {
-    //        delete shapeCache_[i];
-    //        shapeCache_[i] = nullptr;
-    //    }
-    //}
     delete shapeCache_;
     shapeCache_ = nullptr;
-    //shapeCacheSize_ = ZERO;
-    //shapeCacheIsInitialized_.clear();
-}
-
-CFlyweight::CFlyweight()
-{
-    //initShapeCache(ZERO);
 }
 
 CFlyweight::~CFlyweight()
 {
     CFlyweight::releaseResources();
 }
-//
-//void CFlyweight::updateIsInitializedShapeCache(int idx, bool newVal)
-//{
-//    shapeCacheIsInitialized_[idx] = newVal;
-//}
-
-//void CFlyweight::initShapeCache(int inCacheSize)
-//{
-//    if (inCacheSize >= ZERO)
-//    {
-//        shapeCacheSize_ = inCacheSize;
-//        shapeCache_ = nullptr;
-//        for (int i = 0; i < shapeCacheSize_; i++)
-//        {
-//            shapeCacheIsInitialized_[i] = false;
-//        }
-//
-//        shapeCache_ = new CShape*[shapeCacheSize_];
-//    }
-//}

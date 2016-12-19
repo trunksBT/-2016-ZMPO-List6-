@@ -10,16 +10,12 @@
 class CFlyweight
 {
 public:
-    CFlyweight();
     ~CFlyweight();
     CODE interpretCommand(std::vector<std::string>& inCommand);
 private:
     void releaseResources();
 public:
-    TableOfTables* shapeCache_;
+    TableOfTables* shapeCache_ = nullptr;
     std::map<int, bool> shapeCacheIsInitialized_;
-private:
-    //static void updateIsInitializedShapeCache(int idx, bool newVal);
-    //static void initShapeCache(int inCacheSize);
 };
 

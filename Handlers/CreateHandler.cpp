@@ -1,10 +1,9 @@
 // Copyrights TrunkBT_KorytkoBT
 #include <iostream>
 
-#include "CreateHandler.h"
+#include "CreateHandler.hpp"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -14,47 +13,35 @@ CCreateHandler::CCreateHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-const int CCreateHandler::getProperAmountOfArgs()
+const int CCreateHandler::getProperAmountOfArgs() const noexcept
 {
     return 4;
 }
 
-std::string CCreateHandler::getProperTypesOfArgs()
+std::string CCreateHandler::getProperTypesOfArgs() const noexcept
 {
     return "siis";
 }
 
-ERROR_CODE CCreateHandler::performOn(std::vector<CTable*>& inCache)
+CODE CCreateHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
     std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
     std::string initialName(wholeCommand_[idxOf::INITIAL_NAME]);
-
-    if(idxOrAmount < 0)
+    
+    if(newSize < 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
-    }
-    else
-    {
-        if(newSize > 0)
-        {
-            if(idxOrAmount > inCache.size())
-            {
-                inCache.resize(idxOrAmount + ONE);
-            }
-            if(inCache[idxOrAmount] != nullptr)
-            {
-                delete inCache[idxOrAmount];
-            }
-            inCache[idxOrAmount] = CTable::buildNewObj(newSize, initialName);
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::WRONG_VALUE);
-        }
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if(newSize > 0)
+    {
+        std::get<0>(pairedShapeCach)->setVal(
+            idxOrAmount,
+            CTable<int>(newSize, initialName));
+    }
+
+    return CODE::SEEMS_LEGIT;
 }

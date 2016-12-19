@@ -24,10 +24,6 @@ int main(int argc, char **argv)
          do
          {
              auto command = receiveAndLexCommandFromUser();
-             for (int i = 0; i < command.size(); i++)
-             {
-                 logger << command[i] << POST_PRINT;
-             }
              commandResult = application.interpretCommand(command);
          } while(commandResult != CODE::CLOSE);
 

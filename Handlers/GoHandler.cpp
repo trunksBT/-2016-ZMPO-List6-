@@ -6,7 +6,6 @@
 #include <ElementsAndTables/CTable.hpp>
 
 using namespace defaultVals;
-
 using namespace funs;
 
 CGoHandler::CGoHandler(std::vector<std::string>& inCommand)
@@ -32,22 +31,17 @@ CODE CGoHandler::performOn(InitializedCTable& pairedShapeCach)
     {
         return returnResultCode(CODE::WRONG_VALUE);
     }
-    std::get<0>(pairedShapeCach) = new CTable<CTable<int>>(idxOrAmount);
+
+    if (std::get<idxOf::CACHE>(pairedShapeCach) != nullptr)
+    {
+        delete std::get<idxOf::CACHE>(pairedShapeCach);
+    }
+    std::get<idxOf::CACHE>(pairedShapeCach) = CTable<CTable<int>>::buildNewObj(idxOrAmount);
+
     for (int i = 0; i < idxOrAmount; i++)
     {
-        std::get<1>(pairedShapeCach)[i] = true;
+        std::get<idxOf::IS_INITIALIZED>(pairedShapeCach)[i] = true;
     }
-    //std::get<1>(inCache)
-
-    //else
-    //{
-    //    if(idxOrAmount > inCache.size())
-    //    {
-    //        inCache.reserve(idxOrAmount);
-    //    }
-    //    int cacheSize = inCache.size();
-    //    int cursorIdx = ZERO;
-    //}
 
     return CODE::SEEMS_LEGIT;
 }
