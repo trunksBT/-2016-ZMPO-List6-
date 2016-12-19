@@ -34,7 +34,7 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
 
     std::string command(inCommand[idxOf::COMMAND]);
 
-    InitializedCTable pairedShapeCache= std::forward_as_tuple(
+    InitializedCTable pairedShapeCache = std::forward_as_tuple(
         shapeCache_,
         shapeCacheIsInitialized_);
 
@@ -55,6 +55,11 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CCreateCopyHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
+    else if (command == REMOVE_ALL)
+    {
+        releaseResources();
+        returnedCode = CODE::SEEMS_LEGIT;
+    }
     //else if (command == DELETE)
     //{
     //    CRemoveHandler evaluate(inCommand);
@@ -65,10 +70,6 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     //    CClearHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //else if (command == REMOVE_ALL)
-    //{
-    //    CRemoveAllHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //else if (command == SET_NAME)
     //{
@@ -128,6 +129,10 @@ void CFlyweight::releaseResources()
 {
     delete shapeCache_;
     shapeCache_ = nullptr;
+    for (int i = 0; i < shapeCacheIsInitialized_.size(); i++)
+    {
+        shapeCacheIsInitialized_[i] = false;
+    }
 }
 
 CFlyweight::~CFlyweight()

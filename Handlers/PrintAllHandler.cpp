@@ -25,6 +25,11 @@ std::string CPrintAllHandler::getProperTypesOfArgs() const noexcept
 
 CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
 {
+    if (!isCacheInitialized(pairedShapeCach))
+    {
+        return CODE::SEEMS_LEGIT;
+    }
+
     TableOfTables* cache = std::get<0>(pairedShapeCach);
     if(cache->getSize() == 0)
     {
@@ -48,4 +53,15 @@ CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
     }
 
     return CODE::SEEMS_LEGIT;
+}
+
+bool CPrintAllHandler::isCacheInitialized(InitializedCTable & pairedShapeCach)
+{
+    std::map<int, bool>& isInitialized = std::get<1>(pairedShapeCach);
+    bool isCacheInitialized = false;
+    for (int i = 0; i < isInitialized.size(); i++)
+    {
+        isCacheInitialized |= isInitialized[i];
+    }
+    return isCacheInitialized;
 }

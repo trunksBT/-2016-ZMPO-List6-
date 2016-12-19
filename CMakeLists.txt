@@ -27,8 +27,8 @@ set(HANDLERS
     Handlers/PrintAllHandler.hpp
     Handlers/CreateCopyHandler.cpp
     Handlers/CreateCopyHandler.h
-    #Handlers/RemoveAllHandler.cpp
-    #Handlers/RemoveAllHandler.h
+    Handlers/RemoveAllHandler.cpp
+    Handlers/RemoveAllHandler.h
     #Handlers/PrintHandler.cpp
     #Handlers/PrintHandler.h
     #Handlers/RemoveHandler.cpp
