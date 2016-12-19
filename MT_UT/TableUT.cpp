@@ -31,7 +31,7 @@ TYPED_TEST_P(CTableTests, tableOfTables_operatorOstream)
     CTable<CTable<TypeParam>> tempRAII3 = CTable<CTable<TypeParam>>(8);
     logger << static_cast<std::string>(tempRAII3) << POST_PRINT;
 
-    ASSERT_EQ(tempRAII3[0].getSize(), tempRAII3.getSize());
+    ASSERT_EQ(tempRAII3.getVal(0).getSize(), tempRAII3.getSize());
 }
 
 TYPED_TEST_P(CTableTests, copyCTOR_getSize)
@@ -91,4 +91,3 @@ typedef ::testing::Types<int, double, unsigned int, CPerson> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, CTableTests, MyTypes);
 
 }
-

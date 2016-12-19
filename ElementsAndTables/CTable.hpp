@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+#include <tuple>
 #include <string>
 #include <sstream>
 #include <Utils/Utils.hpp>
@@ -16,6 +18,16 @@ class CTable
 public:
     CTable(size_t size)
         : memory_(ARRAII<T>(size))
+    {
+        if (PRINT_ERRORS)
+        {
+            logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
+        }
+    }
+
+    CTable(size_t size, std::string inName)
+        : memory_(ARRAII<T>(size))
+        , name_(inName)
     {
         if (PRINT_ERRORS)
         {
@@ -68,7 +80,7 @@ public:
         }
     }
 
-    T getVal(int idx) const noexcept
+    T& getVal(int idx) const noexcept
     {
         if (isProperIdx(idx, getSize()))
         {
@@ -113,11 +125,6 @@ public:
         return std::move(retVal.str());
     }
 
-    T& operator[](int idx) const noexcept
-    {
-        return memory_[idx];
-    }
-
     static CTable<T>* buildNewObj(size_t size) noexcept
     {
         return new CTable<T>(size);
@@ -132,6 +139,6 @@ private:
     std::string name_ = DEFAULT_TABLE_NAME;
     ARRAII<T> memory_;
 };
-
-template<class T>
-using Vec_PtrCTable = std::vector<T*, CTable<T>*>;
+using TableOfTables = CTable<CTable<int>>;
+using InitializedCTable = 
+    std::tuple< TableOfTables*, std::map<int, bool>& >;

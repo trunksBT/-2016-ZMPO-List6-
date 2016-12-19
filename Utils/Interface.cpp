@@ -1,13 +1,11 @@
 // Copyrights TrunkBT_KorytkoBT
+
 #include <iostream>
 #include <boost/tokenizer.hpp>
 #include <Utils/Utils.hpp>
 
 using tokenizer = boost::tokenizer<boost::char_separator<char>>;
 using namespace defaultVals;
-
-namespace communication
-{
 
 std::vector<std::string> performLexer(std::string inCommand)
 {
@@ -28,5 +26,3 @@ std::vector<std::string> receiveAndLexCommandFromUser()
 
     return performLexer(std::move(inChain));
 }
-
-};
