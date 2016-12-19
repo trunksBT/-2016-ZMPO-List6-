@@ -4,6 +4,7 @@
 #include <Handlers/GoHandler.hpp>
 #include <Handlers/CreateHandler.hpp>
 #include <Handlers/PrintAllHandler.hpp>
+#include <Handlers/CreateCopyHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -50,11 +51,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CPrintAllHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == CREATE_COPY)
-    //{
-    //    CCreateCopyHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
+    else if (command == CREATE_COPY)
+    {
+        returnedCode = CCreateCopyHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     //else if (command == DELETE)
     //{
     //    CRemoveHandler evaluate(inCommand);
