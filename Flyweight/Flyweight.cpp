@@ -2,6 +2,7 @@
 
 #include <Utils/Logger.hpp>
 #include <Handlers/GoHandler.hpp>
+#include <Handlers/PrintHandler.h>
 #include <Handlers/CreateHandler.hpp>
 #include <Handlers/PrintAllHandler.hpp>
 #include <Handlers/CreateCopyHandler.h>
@@ -59,6 +60,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         releaseResources();
         returnedCode = CODE::SEEMS_LEGIT;
+    }
+    else if (command == PRINT)
+    {
+        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
     //else if (command == DELETE)
     //{

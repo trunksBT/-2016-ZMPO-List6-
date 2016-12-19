@@ -4,7 +4,6 @@
 #include "PrintHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -15,38 +14,39 @@ CPrintHandler::CPrintHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CPrintHandler::getProperAmountOfArgs()
+const int CPrintHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CPrintHandler::getProperTypesOfArgs()
+std::string CPrintHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CPrintHandler::performOn(std::vector<CTable*>& inCache)
+CODE CPrintHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+    if (cache->getSize() == 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            std::cout << retTable->toString();
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        retTable = nullptr;
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
     }
     else
     {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+        {
+            logger << toString(CODE::UNDEFINED_OBJECT);
+        }
+        else
+        {
+            logger << static_cast<std::string>(cache->getVal(idxOrAmount));
+        }
+
+        std::cout << POST_PRINT;
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    return CODE::SEEMS_LEGIT;
 }
