@@ -18,130 +18,131 @@ namespace funs
     {
         return inIdx > MINUS_ONE && inIdx < inSize;
     }
-//
-//    std::string toString(ERROR_CODE inCode)
-//    {
-//        static std::map<ERROR_CODE, std::string> codeToString;
-//
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::SEEMS_LEGIT),
-//            std::forward_as_tuple("SEEMS_LEGIT"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::UNDEFINED_OBJECT),
-//            std::forward_as_tuple("UNDEFINED_OBJECT"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::INDEX_OUT_OF_BOUNDS),
-//            std::forward_as_tuple("INDEX_OUT_OF_BOUND"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::ERROR_COMMAND_PARSING),
-//            std::forward_as_tuple("ERROR_COMMAND_PARSING"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::NOT_HANDLED_ERROR_REPORTING),
-//            std::forward_as_tuple("NOT_HANDLED_ERROR_REPORTING"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::INITIAL_VAL),
-//            std::forward_as_tuple("INITIAL_VAL"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::WRONG_AMOUNT_OF_ARGS),
-//            std::forward_as_tuple("WRONG_AMOUNT_OF_ARGS"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::ERROR_ARGS_PARSING),
-//            std::forward_as_tuple("ERROR_ARGS_PARSING"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::WRONG_VALUE),
-//            std::forward_as_tuple("WRONG_VALUE"));
-//        codeToString.emplace(std::piecewise_construct,
-//            std::forward_as_tuple(ERROR_CODE::CLOSE),
-//            std::forward_as_tuple("WRONG_VALUE"));
-//
-//        return codeToString[inCode];
-//    }
-//
-//    bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs)
-//    {
-//        return inCommand.size() >= inProperAmountOfArgs;
-//    }
-//
-//    bool isIntLimit(std::string inChain)
-//    {
-//        bool isLimit = true;
-//
-//        if(inChain.size() > 5)
-//        {
-//            return true;
-//        }
-//        else if(inChain.size() < 5)
-//        {
-//            return false;
-//        }
-//
-//        long inLong = std::stol(inChain);
-//
-//        if(inLong <= MAX_INT_VAL)
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//
-//    }
-//
-//    bool isNumber(std::string inChain)
-//    {
-//        bool isNumber = true;
-//
-//        if(isIntLimit(inChain))
-//        {
-//            return false;
-//        }
-//        else if(inChain.size() == ONE && inChain[ZERO] == '-')
-//        {
-//            return false;
-//        }
-//
-//        for(int i = 0; i < inChain.size() && isNumber; i++)
-//        {
-//            if(i == 0 && inChain[i] == '-')
-//            {
-//                isNumber &= true;
-//            }
-//            else if(isdigit(inChain[i]))
-//            {
-//                isNumber &= true;
-//            }
-//            else
-//            {
-//                isNumber &= false;
-//            }
-//        }
-//
-//        return isNumber;
-//    }
-//
-//    ERROR_CODE returnResultCode(ERROR_CODE inResultCode)
-//    {
-//        ERROR_CODE resultCode = inResultCode;
-//        if(PRINT_ERRORS)
-//        {
-//            logger << toString(resultCode);
-//        }
-//        return resultCode;
-//    }
-//
-//    bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs)
-//    {
-//        bool isProperType = true;
-//        for(int i = 0; i < inCommand.size() && isProperType && i< inProperTypeOfArgs.size(); i++)
-//        {
-//            if(inProperTypeOfArgs[i] == INT_TYPE && !isNumber(inCommand[i]))
-//            {
-//                isProperType &= false;
-//            }
-//        }
-//        return isProperType;
-//    }
+
+    std::string toString(CODE inCode)
+    {
+        static std::map<CODE, std::string> codeToString;
+
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::SEEMS_LEGIT),
+            std::forward_as_tuple("SEEMS_LEGIT"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::UNDEFINED_OBJECT),
+            std::forward_as_tuple("UNDEFINED_OBJECT"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::INDEX_OUT_OF_BOUNDS),
+            std::forward_as_tuple("INDEX_OUT_OF_BOUND"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::ERROR_COMMAND_PARSING),
+            std::forward_as_tuple("ERROR_COMMAND_PARSING"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::NOT_HANDLED_ERROR_REPORTING),
+            std::forward_as_tuple("NOT_HANDLED_ERROR_REPORTING"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::INITIAL_VAL),
+            std::forward_as_tuple("INITIAL_VAL"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::WRONG_AMOUNT_OF_ARGS),
+            std::forward_as_tuple("WRONG_AMOUNT_OF_ARGS"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::ERROR_ARGS_PARSING),
+            std::forward_as_tuple("ERROR_ARGS_PARSING"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::WRONG_VALUE),
+            std::forward_as_tuple("WRONG_VALUE"));
+        codeToString.emplace(std::piecewise_construct,
+            std::forward_as_tuple(CODE::CLOSE),
+            std::forward_as_tuple("WRONG_VALUE"));
+
+        return codeToString[inCode];
+    }
+
+    bool isProperNumberOfArgs(std::vector<std::string>& inCommand,
+        int inProperNumber)
+    {
+        return inCommand.size() >= inProperNumber;
+    }
+
+    bool isIntLimit(std::string inChain)
+    {
+        bool isLimit = true;
+
+        if(inChain.size() > 5)
+        {
+            return true;
+        }
+        else if(inChain.size() < 5)
+        {
+            return false;
+        }
+
+        long inLong = std::stol(inChain);
+
+        if(inLong <= MAX_INT_VAL)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    bool isNumber(std::string inChain)
+    {
+        bool isNumber = true;
+
+        if(isIntLimit(inChain))
+        {
+            return false;
+        }
+        else if(inChain.size() == ONE && inChain[ZERO] == '-')
+        {
+            return false;
+        }
+
+        for(int i = 0; i < inChain.size() && isNumber; i++)
+        {
+            if(i == 0 && inChain[i] == '-')
+            {
+                isNumber &= true;
+            }
+            else if(isdigit(inChain[i]))
+            {
+                isNumber &= true;
+            }
+            else
+            {
+                isNumber &= false;
+            }
+        }
+
+        return isNumber;
+    }
+
+    CODE returnResultCode(CODE inResultCode)
+    {
+        CODE resultCode = inResultCode;
+        if(PRINT_ERRORS)
+        {
+            logger << toString(resultCode);
+        }
+        return resultCode;
+    }
+
+    bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypes)
+    {
+        bool isProperType = true;
+        for(int i = 0; i < inCommand.size() && isProperType && i< inProperTypes.size(); i++)
+        {
+            if(inProperTypes[i] == INT_TYPE && !isNumber(inCommand[i]))
+            {
+                isProperType &= false;
+            }
+        }
+        return isProperType;
+    }
 //
 //    bool isVectorEmpty(std::vector<CTable*>& inCache)
 //    {

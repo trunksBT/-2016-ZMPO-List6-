@@ -17,8 +17,8 @@ endif()
 include_directories(.)
 
 set(HANDLERS
-    #Handlers/IHandler.cpp
-    #Handlers/IHandler.h
+    Handlers/IHandler.cpp
+    Handlers/IHandler.h
     #Handlers/GoHandler.cpp
     #Handlers/GoHandler.h
     #Handlers/PrintAllHandler.cpp

@@ -69,15 +69,17 @@ constexpr const char STRING_TYPE = 's';
 namespace funs
 {
 //int toInt(char inChar);
-//std::string toString(ERROR_CODE inCode);
-//bool isNumber(std::string inChain);
+std::string toString(CODE inCode);
+bool isNumber(std::string inChain);
 bool isProperIdx(int inIdx, int inSize);
 //bool isVectorEmpty(std::vector<CTable*>& inCache);
 //bool isProperIdx(int idxOrAmount, std::vector<CTable*>& inCache);
 //bool isProperIdx(int inIdxOrAmount, std::vector<CTable*>& inCache);
-//bool isProperAmmountOfArgs(std::vector<std::string>& inCommand, int inProperAmountOfArgs);
-//bool isProperTypeOfArgs(std::vector<std::string>& inCommand, std::string inProperTypeOfArgs);
-//ERROR_CODE returnResultCode(ERROR_CODE inResultCode);
+bool isProperNumberOfArgs(std::vector<std::string>& inCommand,
+    int inProperNumber);
+bool isProperTypeOfArgs(std::vector<std::string>& inCommand,
+    std::string inProperTypes);
+CODE returnResultCode(CODE inResultCode);
 }
 //
 namespace idxOf

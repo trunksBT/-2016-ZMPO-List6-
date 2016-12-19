@@ -135,4 +135,5 @@ private:
     ARRAII<T> memory_;
 };
 
-using InitializedCTable = std::tuple<CTable<CTable<int>>*, std::map<int, bool>& >;
+using InitializedCTable = 
+    std::tuple< CTable<CTable<int>>*, std::map<int, bool>& >;
