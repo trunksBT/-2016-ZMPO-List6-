@@ -86,7 +86,7 @@ set(MT_UT
 
 set(FLYWEIGHT
     Flyweight/Flyweight.cpp
-    Flyweight/Flyweight.h
+    Flyweight/Flyweight.hpp
 )
 
 source_group("MT_UT" FILES ${MT_UT})
@@ -100,7 +100,7 @@ add_executable(${PROJECT_NAME} MetaTablesRunner.cpp
     ${ELEMENTS_AND_TABLES}
     ${UTILS}
     ${MT_UT}
-    #${FLYWEIGHT}
+    ${FLYWEIGHT}
 )
 
 add_dependencies(${PROJECT_NAME} gtest_main)
