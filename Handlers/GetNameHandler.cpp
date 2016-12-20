@@ -4,10 +4,8 @@
 #include "GetNameHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
-
 using namespace funs;
 
 CGetNameHandler::CGetNameHandler(std::vector<std::string>& inCommand)
@@ -15,38 +13,37 @@ CGetNameHandler::CGetNameHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CGetNameHandler::getProperAmountOfArgs()
+const int CGetNameHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CGetNameHandler::getProperTypesOfArgs()
+std::string CGetNameHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CGetNameHandler::performOn(std::vector<CTable*>& inCache)
+CODE CGetNameHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+    if (cache->getSize() == 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            std::cout << retTable->getName();
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        retTable = nullptr;
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
+    }
+
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        logger << NOT_INITIALIZED_TABLE;
     }
     else
     {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        logger << cache->getVal(idxOrAmount).getName();
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    std::cout << POST_PRINT;
+
+    return CODE::SEEMS_LEGIT;
 }

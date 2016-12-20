@@ -99,6 +99,11 @@ public:
         return std::string(name_);
     }
 
+    void setName(std::string inNewName) noexcept
+    {
+        name_ = inNewName;
+    }
+
     bool operator==(const CTable& inObj) const noexcept
     {
         return memory_ == inObj.memory_ && name_ == inObj.name_;

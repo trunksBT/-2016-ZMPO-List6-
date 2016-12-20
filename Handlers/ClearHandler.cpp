@@ -4,7 +4,6 @@
 #include "ClearHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -14,31 +13,36 @@ CClearHandler::CClearHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-const int CClearHandler::getProperAmountOfArgs()
+const int CClearHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CClearHandler::getProperTypesOfArgs()
+std::string CClearHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CClearHandler::performOn(std::vector<CTable*>& inCache)
+CODE CClearHandler::performOn(InitializedCTable& pairedShapeCach)
 {
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+
     std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
-    if(isProperIdx(idxOrAmount, inCache))
+    if(!isProperIdx(idxOrAmount, cache->getSize()))
     {
-        if(inCache.at(idxOrAmount) != nullptr)
-        {
-            inCache.at(idxOrAmount)->initTable();
-        }
-    }
-    else
-    {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+    }
+
+    for (int i = 0; i < std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getSize(); i++)
+    {
+        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getVal(i) = ZERO;
+    }
+
+    return CODE::SEEMS_LEGIT;
 }

@@ -10,7 +10,7 @@ class CGetValueHandler final : public IHandler
 public:
     CGetValueHandler(std::vector<std::string>& inCommand);
 protected:
-    ERROR_CODE performOn(std::vector<CTable*>& inCache) override;
-    const int getProperAmountOfArgs() override;
-    std::string getProperTypesOfArgs() override;
+    CODE performOn(InitializedCTable& pairedShapeCach) override;
+    const int getProperAmountOfArgs() const noexcept override;
+    std::string getProperTypesOfArgs() const noexcept override;
 };

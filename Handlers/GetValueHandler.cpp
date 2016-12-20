@@ -4,7 +4,6 @@
 #include "GetValueHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -14,47 +13,41 @@ CGetValueHandler::CGetValueHandler(std::vector<std::string>& inCommand)
     : IHandler(inCommand)
 {}
 
-const int CGetValueHandler::getProperAmountOfArgs()
+const int CGetValueHandler::getProperAmountOfArgs() const noexcept
 {
     return 3;
 }
 
-std::string CGetValueHandler::getProperTypesOfArgs()
+std::string CGetValueHandler::getProperTypesOfArgs() const noexcept
 {
     return "sii";
 }
 
-ERROR_CODE CGetValueHandler::performOn(std::vector<CTable*>& inCache)
+CODE CGetValueHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
     std::string receivedIdOfNewVal(wholeCommand_[idxOf::GOAL_ID]);
     int idOfNewVal = std::stoi(receivedIdOfNewVal);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+
+    if (!isProperIdx(idxOrAmount, cache->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            if(isProperIdx(idOfNewVal, retTable->getSize()))
-            {
-                std::cout << retTable->getVal(idOfNewVal);
-            }
-            else
-            {
-                return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
-            }
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        retTable = nullptr;
-    }
-    else
-    {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
+    }
+
+    if (!isProperIdx(idOfNewVal, cache->getVal(idxOrAmount).getSize()))
+    {
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+    }
+
+    logger << std::to_string(cache->getVal(idxOrAmount).getVal(idOfNewVal)) << POST_PRINT;
+
+    return CODE::SEEMS_LEGIT;
 }

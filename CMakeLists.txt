@@ -33,28 +33,28 @@ set(HANDLERS
     Handlers/ChangeSizeHandler.h
     Handlers/RemoveHandler.cpp
     Handlers/RemoveHandler.h
-    #Handlers/SetNameHandler.cpp
-    #Handlers/SetNameHandler.h
-    #Handlers/SetValueHandler.cpp
-    #Handlers/SetValueHandler.h
-    #Handlers/GetNameHandler.cpp
-    #Handlers/GetNameHandler.h
-    #Handlers/GetSizeHandler.cpp
-    #Handlers/GetSizeHandler.h
-    #Handlers/GetValueHandler.cpp
-    #Handlers/GetValueHandler.h
+    Handlers/SetNameHandler.cpp
+    Handlers/SetNameHandler.h
+    Handlers/GetNameHandler.cpp
+    Handlers/GetNameHandler.h
+    Handlers/GetSizeHandler.cpp
+    Handlers/GetSizeHandler.h
+    Handlers/SetValueHandler.h
+    Handlers/SetValueHandler.cpp
+    Handlers/GetValueHandler.cpp
+    Handlers/GetValueHandler.h
+    Handlers/ClearHandler.cpp
+    Handlers/ClearHandler.h
     #Handlers/HelpHandler.cpp
     #Handlers/HelpHandler.h
-    #Handlers/ClearHandler.cpp
-    #Handlers/ClearHandler.h
 )
 
 set(ELEMENTS_AND_TABLES
     ElementsAndTables/CTable.hpp
     ElementsAndTables/RAII.hpp
     ElementsAndTables/ARRAII.hpp
-	ElementsAndTables/Person.hpp
-	ElementsAndTables/Person.cpp
+    ElementsAndTables/Person.hpp
+    ElementsAndTables/Person.cpp
 )
 
 set(UTILS

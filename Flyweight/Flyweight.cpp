@@ -8,6 +8,12 @@
 #include <Handlers/RemoveHandler.h>
 #include <Handlers/CreateCopyHandler.h>
 #include <Handlers/ChangeSizeHandler.h>
+#include <Handlers/GetNameHandler.h>
+#include <Handlers/SetNameHandler.h>
+#include <Handlers/GetSizeHandler.h>
+#include <Handlers/SetValueHandler.h>
+#include <Handlers/GetValueHandler.h>
+#include <Handlers/ClearHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -50,6 +56,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CCreateHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
+    else if (command == PRINT)
+    {
+        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     else if (command == PRINT_ALL)
     {
         returnedCode = CPrintAllHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
@@ -67,65 +77,44 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CRemoveHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    else if (command == PRINT)
-    {
-        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
-    }
     else if (command == SET_SIZE)
     {
         returnedCode = CChangeSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == CLEAR)
-    //{
-    //    CClearHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //}
-    //else if (command == SET_NAME)
-    //{
-    //    CSetNameHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == SET_VALUE)
-    //{
-    //    CSetValueHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == GET_NAME)
-    //{
-    //    CGetNameHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == GET_SIZE)
-    //{
-    //    CGetSizeHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == GET_VALUE)
-    //{
-    //    CGetValueHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == PRINT)
-    //{
-    //    CPrintHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == PRINT_ALL)
-    //{
-    //    CPrintAllHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == HELP)
-    //{
-    //    CHelpHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
+    else if (command == SET_NAME)
+    {
+        returnedCode = CSetNameHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == GET_NAME)
+    {
+        returnedCode = CGetNameHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == GET_SIZE)
+    {
+        returnedCode = CGetSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == SET_VALUE)
+    {
+        returnedCode = CSetValueHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == GET_VALUE)
+    {
+        returnedCode = CGetValueHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
+    else if (command == CLEAR)
+    {
+        returnedCode = CClearHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     else if (command == CLOSE)
     {
         releaseResources();
         returnedCode = CODE::CLOSE;
     }
+    //else if (command == HELP)
+    //{
+    //    CHelpHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    //}
 
     return returnedCode;
 }

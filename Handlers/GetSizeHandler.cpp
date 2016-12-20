@@ -4,10 +4,8 @@
 #include "GetSizeHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
-
 using namespace funs;
 
 CGetSizeHandler::CGetSizeHandler(std::vector<std::string>& inCommand)
@@ -15,38 +13,38 @@ CGetSizeHandler::CGetSizeHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CGetSizeHandler::getProperAmountOfArgs()
+const int CGetSizeHandler::getProperAmountOfArgs() const noexcept
 {
     return 2;
 }
 
-std::string CGetSizeHandler::getProperTypesOfArgs()
+std::string CGetSizeHandler::getProperTypesOfArgs() const noexcept
 {
     return "si";
 }
 
-ERROR_CODE CGetSizeHandler::performOn(std::vector<CTable*>& inCache)
+CODE CGetSizeHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+    if (cache->getSize() == 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            std::cout << retTable->getSize();
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        retTable = nullptr;
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
+    }
+
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        logger << NOT_INITIALIZED_TABLE;
     }
     else
     {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        logger << 
+            std::to_string(static_cast<int>(cache->getVal(idxOrAmount).getSize()));
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    std::cout << POST_PRINT;
+
+    return CODE::SEEMS_LEGIT;
 }
