@@ -41,8 +41,8 @@ set(HANDLERS
     Handlers/GetSizeHandler.h
     Handlers/SetValueHandler.h
     Handlers/SetValueHandler.cpp
-    #Handlers/GetValueHandler.cpp
-    #Handlers/GetValueHandler.h
+    Handlers/GetValueHandler.cpp
+    Handlers/GetValueHandler.h
     #Handlers/HelpHandler.cpp
     #Handlers/HelpHandler.h
     #Handlers/ClearHandler.cpp
