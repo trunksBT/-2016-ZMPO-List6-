@@ -30,11 +30,16 @@ CODE CSetNameHandler::performOn(InitializedCTable& pairedShapeCach)
     int idxOrAmount = std::stoi(receivedId);
     std::string newName(wholeCommand_[idxOf::NEW_NAME]);
 
-    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    if (std::get<1>(pairedShapeCach)[idxOrAmount])
     {
-        return CODE::WRONG_VALUE;
+        std::get<0>(pairedShapeCach)->
+            getVal(idxOrAmount).setName(newName);
     }
-    std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setName(newName);
+    else
+    {
+        logger << toString(CODE::INDEX_OUT_OF_BOUNDS) << POST_PRINT;
+        return CODE::INDEX_OUT_OF_BOUNDS;
+    }
 
     return CODE::SEEMS_LEGIT;
 }

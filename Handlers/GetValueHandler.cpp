@@ -30,8 +30,6 @@ CODE CGetValueHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedIdOfNewVal(wholeCommand_[idxOf::GOAL_ID]);
     int idOfNewVal = std::stoi(receivedIdOfNewVal);
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
-
     try
     {
         if (!std::get<1>(pairedShapeCach)[idxOrAmount])
@@ -39,7 +37,8 @@ CODE CGetValueHandler::performOn(InitializedCTable& pairedShapeCach)
             return returnResultCode(CODE::UNDEFINED_OBJECT);
         }
 
-        logger << std::to_string(cache->getVal(idxOrAmount).getVal(idOfNewVal)) << POST_PRINT;
+        logger << std::to_string(std::get<0>(pairedShapeCach)->
+            getVal(idxOrAmount).getVal(idOfNewVal)) << POST_PRINT;
     }
     catch (...)
     {

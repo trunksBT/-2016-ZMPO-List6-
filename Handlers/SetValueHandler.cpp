@@ -35,12 +35,12 @@ CODE CSetValueHandler::performOn(InitializedCTable& pairedShapeCach)
 
     try
     {
-        TableOfTables* cache = std::get<0>(pairedShapeCach);
         if (!std::get<1>(pairedShapeCach)[idxOrAmount])
         {
             return returnResultCode(CODE::UNDEFINED_OBJECT);
         }
-        cache->getVal(idxOrAmount).setVal(idOfNewVal, newVal);
+        std::get<0>(pairedShapeCach)->
+            getVal(idxOrAmount).setVal(idOfNewVal, newVal);
     }
     catch (...)
     {

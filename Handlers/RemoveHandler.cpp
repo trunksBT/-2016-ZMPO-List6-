@@ -28,9 +28,8 @@ CODE CRemoveHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
 
-    if(!isProperIdx(idxOrAmount, cache->getSize()))
+    if(!isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
     {
         return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }

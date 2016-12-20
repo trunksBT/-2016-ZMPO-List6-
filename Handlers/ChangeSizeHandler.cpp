@@ -36,6 +36,10 @@ CODE CChangeSizeHandler::performOn(InitializedCTable& pairedShapeCach)
         {
             std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setSize(newSize);
         }
+        else
+        {
+            logger << toString(CODE::INDEX_OUT_OF_BOUNDS) << POST_PRINT;
+        }
     }
     catch (...)
     {

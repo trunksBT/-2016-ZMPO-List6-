@@ -34,7 +34,8 @@ CODE CGetNameHandler::performOn(InitializedCTable& pairedShapeCach)
     }
     else
     {
-        logger << std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getName();
+        logger << std::get<0>(pairedShapeCach)->
+            getVal(idxOrAmount).getName();
     }
 
     std::cout << POST_PRINT;

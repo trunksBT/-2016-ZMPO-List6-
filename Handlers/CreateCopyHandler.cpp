@@ -31,7 +31,6 @@ CODE CCreateCopyHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedSourceId(wholeCommand_[idxOf::GOAL_ID]);
     int sourceId = std::stoi(receivedSourceId);
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
     std::map<int, bool>& isInitialized = std::get<1>(pairedShapeCach);
 
     try
@@ -46,10 +45,10 @@ CODE CCreateCopyHandler::performOn(InitializedCTable& pairedShapeCach)
             return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
         }
 
-        CTable<int>& sourceTable = cache->getVal(sourceId);
+        CTable<int>& sourceTable = std::get<0>(pairedShapeCach)->getVal(sourceId);
         std::get<0>(pairedShapeCach)->setVal(
             destinyId,
-            CTable<int>(sourceTable));
+            CTable<int>::buildNewObjRef(std::get<0>(pairedShapeCach)->getVal(sourceId)));
     }
     catch (...)
     {

@@ -33,12 +33,9 @@ CODE CCreateHandler::performOn(InitializedCTable& pairedShapeCach)
 
     try
     {
-        if (newSize > 0)
-        {
-            std::get<0>(pairedShapeCach)->setVal(
-                idxOrAmount,
-                CTable<int>(newSize, initialName));
-        }
+        std::get<0>(pairedShapeCach)->setVal(
+            idxOrAmount,
+            CTable<int>::buildNewObjRef(newSize, initialName));
     }
     catch (...)
     {

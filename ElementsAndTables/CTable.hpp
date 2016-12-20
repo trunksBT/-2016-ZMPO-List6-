@@ -4,23 +4,14 @@
 #include <tuple>
 #include <string>
 #include <sstream>
-#include <exception>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
 #include <Utils/Logger.hpp>
+#include <Utils/Exceptions.hpp>
 
 using namespace defaultVals;
 using namespace funs;
 using namespace flags;
-
-class OwnException : public std::exception
-{
-public:
-    virtual const char* what() const throw()
-    {
-        return "WrongIdxException";
-    }
-};
 
 template<typename T>
 class CTable
@@ -28,11 +19,6 @@ class CTable
 public:
     CTable(int size)
     {
-        if (size <= ZERO)
-        {
-            throw OwnException();
-        }
-
         memory_ = ARRAII<T>(size);
 
         if (PRINT_ERRORS)
@@ -83,7 +69,7 @@ public:
         }
         else
         {
-            throw OwnException();
+            throw InitialSizeLowerOrEqZero();
         }
     }
 
@@ -103,7 +89,7 @@ public:
         }
         else
         {
-            throw OwnException();
+            throw IndexOutOfBoundsException();
         }
     }
 
@@ -115,7 +101,7 @@ public:
         }
         else
         {
-            throw OwnException();
+            throw IndexOutOfBoundsException();
         }
     }
 
@@ -160,14 +146,41 @@ public:
         return std::move(retVal.str());
     }
 
-    static CTable<T>* buildNewObj(int size) noexcept
+    static CTable<T>* buildNewObj(int size)
     {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
         return new CTable<T>(size);
+    }
+
+    static CTable<T>* buildNewObj(int size, std::string name)
+    {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
+        return new CTable<T>(size, name);
+    }
+
+    static CTable<T> buildNewObjRef(int size, std::string name)
+    {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
+        return CTable<T>(size, name);
     }
 
     static CTable<T>* buildNewObj(CTable* inVal) noexcept
     {
         return new CTable<T>(*inVal);
+    }
+
+    static CTable<T> buildNewObjRef(CTable& inVal) noexcept
+    {
+        return CTable<T>(inVal);
     }
 
 private:

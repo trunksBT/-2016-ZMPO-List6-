@@ -25,8 +25,6 @@ std::string CClearHandler::getProperTypesOfArgs() const noexcept
 
 CODE CClearHandler::performOn(InitializedCTable& pairedShapeCach)
 {
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
-
     std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
 

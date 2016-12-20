@@ -42,9 +42,9 @@ CODE CGoHandler::performOn(InitializedCTable& pairedShapeCach)
             std::get<idxOf::IS_INITIALIZED>(pairedShapeCach)[i] = true;
         }
     }
-    catch (...)
+    catch (OwnException& e)
     {
-        logger << EXCEPTION << POST_PRINT;
+        logger << e.what() << POST_PRINT;
         return CODE::WRONG_VALUE;
     }
 
