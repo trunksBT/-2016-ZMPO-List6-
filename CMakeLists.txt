@@ -43,10 +43,10 @@ set(HANDLERS
     Handlers/SetValueHandler.cpp
     Handlers/GetValueHandler.cpp
     Handlers/GetValueHandler.h
+    Handlers/ClearHandler.cpp
+    Handlers/ClearHandler.h
     #Handlers/HelpHandler.cpp
     #Handlers/HelpHandler.h
-    #Handlers/ClearHandler.cpp
-    #Handlers/ClearHandler.h
 )
 
 set(ELEMENTS_AND_TABLES

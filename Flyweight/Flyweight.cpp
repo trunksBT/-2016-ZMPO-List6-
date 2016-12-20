@@ -13,6 +13,7 @@
 #include <Handlers/GetSizeHandler.h>
 #include <Handlers/SetValueHandler.h>
 #include <Handlers/GetValueHandler.h>
+#include <Handlers/ClearHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -100,11 +101,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CGetValueHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == CLEAR)
-    //{
-    //    CClearHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
+    else if (command == CLEAR)
+    {
+        returnedCode = CClearHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     //else if (command == HELP)
     //{
     //    CHelpHandler evaluate(inCommand);
