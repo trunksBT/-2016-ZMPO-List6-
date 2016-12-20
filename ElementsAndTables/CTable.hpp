@@ -7,6 +7,7 @@
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
 #include <Utils/Logger.hpp>
+#include <Utils/Exceptions.hpp>
 
 using namespace defaultVals;
 using namespace funs;
@@ -16,16 +17,17 @@ template<typename T>
 class CTable
 {
 public:
-    CTable(size_t size)
-        : memory_(ARRAII<T>(size))
+    CTable(int size)
     {
+        memory_ = ARRAII<T>(size);
+
         if (PRINT_ERRORS)
         {
             logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
-    CTable(size_t size, std::string inName)
+    CTable(int size, std::string inName)
         : memory_(ARRAII<T>(size))
         , name_(inName)
     {
@@ -56,11 +58,18 @@ public:
         return *this;
     }
 
-    void setSize(int inNewSize) noexcept
+    void setSize(int inNewSize)
     {
-        if (memory_.size() != inNewSize)
+        if (inNewSize >= 0)
         {
-            memory_ = ARRAII<T>(inNewSize);
+            if (memory_.size() != inNewSize)
+            {
+                memory_ = ARRAII<T>(inNewSize);
+            }
+        }
+        else
+        {
+            throw InitialSizeLowerOrEqZero();
         }
     }
 
@@ -72,24 +81,31 @@ public:
         }
     }
 
-    void setVal(int idx, T newVal) noexcept
+    void setVal(int idx, T newVal)
     {
         if (isProperIdx(idx, getSize()))
         {
             memory_[idx] = newVal;
         }
+        else
+        {
+            throw IndexOutOfBoundsException();
+        }
     }
 
-    T& getVal(int idx) const noexcept
+    T& getVal(int idx)
     {
         if (isProperIdx(idx, getSize()))
         {
             return memory_[idx];
         }
-        // throw here OutOfBoundsException
+        else
+        {
+            throw IndexOutOfBoundsException();
+        }
     }
 
-    std::size_t getSize() const noexcept
+    int getSize() const noexcept
     {
         return memory_.size();
     }
@@ -130,14 +146,41 @@ public:
         return std::move(retVal.str());
     }
 
-    static CTable<T>* buildNewObj(size_t size) noexcept
+    static CTable<T>* buildNewObj(int size)
     {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
         return new CTable<T>(size);
+    }
+
+    static CTable<T>* buildNewObj(int size, std::string name)
+    {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
+        return new CTable<T>(size, name);
+    }
+
+    static CTable<T> buildNewObjRef(int size, std::string name)
+    {
+        if (size <= ZERO)
+        {
+            throw InitialSizeLowerOrEqZero();
+        }
+        return CTable<T>(size, name);
     }
 
     static CTable<T>* buildNewObj(CTable* inVal) noexcept
     {
         return new CTable<T>(*inVal);
+    }
+
+    static CTable<T> buildNewObjRef(CTable& inVal) noexcept
+    {
+        return CTable<T>(inVal);
     }
 
 private:

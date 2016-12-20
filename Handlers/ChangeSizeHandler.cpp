@@ -30,14 +30,21 @@ CODE CChangeSizeHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
 
-    if (newSize < 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
+    try
     {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+        if (std::get<1>(pairedShapeCach)[idxOrAmount])
+        {
+            std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setSize(newSize);
+        }
+        else
+        {
+            logger << toString(CODE::INDEX_OUT_OF_BOUNDS) << POST_PRINT;
+        }
     }
-
-    if (newSize > 0 && std::get<1>(pairedShapeCach)[idxOrAmount])
+    catch (...)
     {
-        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setSize(newSize);
+        logger << EXCEPTION << POST_PRINT;
+        return CODE::WRONG_VALUE;
     }
 
     return CODE::SEEMS_LEGIT;

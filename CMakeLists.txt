@@ -58,6 +58,7 @@ set(ELEMENTS_AND_TABLES
 )
 
 set(UTILS
+	Utils/Exceptions.hpp
     Utils/Interface.cpp
     Utils/Interface.hpp
     Utils/Logger.cpp

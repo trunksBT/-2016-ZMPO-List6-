@@ -29,24 +29,16 @@ CODE CPrintHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
-    if (cache->getSize() == 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
     {
-        return returnResultCode(CODE::UNDEFINED_OBJECT);
+        logger << NOT_INITIALIZED_TABLE;
     }
     else
     {
-        if (!std::get<1>(pairedShapeCach)[idxOrAmount])
-        {
-            logger << NOT_INITIALIZED_TABLE;
-        }
-        else
-        {
-            logger << static_cast<std::string>(cache->getVal(idxOrAmount));
-        }
-
-        std::cout << POST_PRINT;
+        logger << static_cast<std::string>(std::get<0>(pairedShapeCach)->
+            getVal(idxOrAmount));
     }
 
+    std::cout << POST_PRINT;
     return CODE::SEEMS_LEGIT;
 }

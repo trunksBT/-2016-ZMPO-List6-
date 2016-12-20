@@ -16,22 +16,21 @@
 
 int main(int argc, char **argv)
 {
-    {
-         CFlyweight application;
-         CODE commandResult = CODE::INITIAL_VAL;
+    //{
+    //     CFlyweight application;
+    //     CODE commandResult = CODE::INITIAL_VAL;
 
-         logger << "Pass command" << POST_PRINT;
-         do
-         {
-             auto command = receiveAndLexCommandFromUser();
-             commandResult = application.interpretCommand(command);
-         } while(commandResult != CODE::CLOSE);
+    //     logger << "Pass command" << POST_PRINT;
+    //     do
+    //     {
+    //         auto command = receiveAndLexCommandFromUser();
+    //         commandResult = application.interpretCommand(command);
+    //     } while(commandResult != CODE::CLOSE);
 
-         logger << POST_PRINT << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
-    }
+    //     logger << POST_PRINT << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
+    //}
 
-    std::cout << "Siema" << std::endl;
-    //::testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
 

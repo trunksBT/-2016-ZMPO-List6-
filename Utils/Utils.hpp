@@ -29,6 +29,7 @@ namespace defaultVals
 constexpr const char* BASH_DOLAR = "$ ";
 constexpr const char* PRE_PRINT = "   ";
 constexpr const char* POST_PRINT = "\n";
+constexpr const char* EXCEPTION = "EXCEPTION";
 constexpr const char* SEPARATOR = ": ";
 constexpr const char* BRACKET_OPEN = "( ";
 constexpr const char* BRACKET_CLOSE = " )";

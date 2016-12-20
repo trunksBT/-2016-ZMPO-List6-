@@ -25,19 +25,24 @@ std::string CPrintAllHandler::getProperTypesOfArgs() const noexcept
 
 CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
 {
-    if (!isCacheInitialized(pairedShapeCach))
+    bool isCacheInitialized = false;
+    for (int i = 0; i < std::get<1>(pairedShapeCach).size(); i++)
     {
-        return CODE::SEEMS_LEGIT;
+        isCacheInitialized =
+            (isCacheInitialized || std::get<1>(pairedShapeCach).at(i));
+    }
+    if (!isCacheInitialized)
+    {
+        return CODE::UNDEFINED_OBJECT;
     }
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
-    if(cache->getSize() == 0)
+    if(std::get<0>(pairedShapeCach)->getSize() == 0)
     {
         return returnResultCode(CODE::UNDEFINED_OBJECT);
     }
     else
     {
-        for(int i = 0; i < cache->getSize(); i++)
+        for(int i = 0; i < std::get<0>(pairedShapeCach)->getSize(); i++)
         {
             if(!std::get<1>(pairedShapeCach)[i])
             {
@@ -45,7 +50,7 @@ CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
             }
             else
             {
-                logger << static_cast<std::string>(cache->getVal(i));
+                logger << static_cast<std::string>(std::get<0>(pairedShapeCach)->getVal(i));
             }
         }
 
@@ -53,15 +58,4 @@ CODE CPrintAllHandler::performOn(InitializedCTable& pairedShapeCach)
     }
 
     return CODE::SEEMS_LEGIT;
-}
-
-bool CPrintAllHandler::isCacheInitialized(InitializedCTable & pairedShapeCach)
-{
-    std::map<int, bool>& isInitialized = std::get<1>(pairedShapeCach);
-    bool isCacheInitialized = false;
-    for (int i = 0; i < isInitialized.size(); i++)
-    {
-        isCacheInitialized |= isInitialized[i];
-    }
-    return isCacheInitialized;
 }

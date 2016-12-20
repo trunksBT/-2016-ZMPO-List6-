@@ -123,10 +123,7 @@ void CFlyweight::releaseResources()
 {
     delete shapeCache_;
     shapeCache_ = nullptr;
-    for (int i = 0; i < shapeCacheIsInitialized_.size(); i++)
-    {
-        shapeCacheIsInitialized_[i] = false;
-    }
+    shapeCacheIsInitialized_.clear();
 }
 
 CFlyweight::~CFlyweight()

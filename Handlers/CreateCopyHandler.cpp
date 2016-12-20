@@ -31,28 +31,30 @@ CODE CCreateCopyHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedSourceId(wholeCommand_[idxOf::GOAL_ID]);
     int sourceId = std::stoi(receivedSourceId);
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
     std::map<int, bool>& isInitialized = std::get<1>(pairedShapeCach);
 
-    if (!isProperIdx(sourceId, cache->getSize()))
+    try
     {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
+        if (!isInitialized[sourceId])
+        {
+            return returnResultCode(CODE::UNDEFINED_OBJECT);
+        }
 
-    if(!isInitialized[sourceId])
-    {
-        return returnResultCode(CODE::UNDEFINED_OBJECT);
-    }
-    
-    if (destinyId == sourceId || !isProperIdx(destinyId, cache->getSize()))
-    {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
+        if (destinyId == sourceId)
+        {
+            return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+        }
 
-    CTable<int>& sourceTable = cache->getVal(sourceId);
-    std::get<0>(pairedShapeCach)->setVal(
-        destinyId,
-        CTable<int>(sourceTable));
+        CTable<int>& sourceTable = std::get<0>(pairedShapeCach)->getVal(sourceId);
+        std::get<0>(pairedShapeCach)->setVal(
+            destinyId,
+            CTable<int>::buildNewObjRef(std::get<0>(pairedShapeCach)->getVal(sourceId)));
+    }
+    catch (...)
+    {
+        logger << EXCEPTION << POST_PRINT;
+        return CODE::WRONG_VALUE;
+    }
 
     return CODE::SEEMS_LEGIT;
 }
