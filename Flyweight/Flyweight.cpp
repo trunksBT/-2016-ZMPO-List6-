@@ -11,6 +11,7 @@
 #include <Handlers/GetNameHandler.h>
 #include <Handlers/SetNameHandler.h>
 #include <Handlers/GetSizeHandler.h>
+#include <Handlers/SetValueHandler.h>
 
 //#include <Utils/UtilsForMT.hpp>
 //
@@ -53,6 +54,10 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CCreateHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
+    else if (command == PRINT)
+    {
+        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     else if (command == PRINT_ALL)
     {
         returnedCode = CPrintAllHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
@@ -70,10 +75,6 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CRemoveHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    else if (command == PRINT)
-    {
-        returnedCode = CPrintHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
-    }
     else if (command == SET_SIZE)
     {
         returnedCode = CChangeSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
@@ -90,30 +91,18 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CGetSizeHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
+    else if (command == SET_VALUE)
+    {
+        returnedCode = CSetValueHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
+    }
     //else if (command == CLEAR)
     //{
     //    CClearHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
-    //}
-    //else if (command == SET_VALUE)
-    //{
-    //    CSetValueHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
     //else if (command == GET_VALUE)
     //{
     //    CGetValueHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == PRINT)
-    //{
-    //    CPrintHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
-    //else if (command == PRINT_ALL)
-    //{
-    //    CPrintAllHandler evaluate(inCommand);
     //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
     //}
     //else if (command == HELP)

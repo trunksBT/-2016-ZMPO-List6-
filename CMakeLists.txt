@@ -39,8 +39,8 @@ set(HANDLERS
     Handlers/GetNameHandler.h
     Handlers/GetSizeHandler.cpp
     Handlers/GetSizeHandler.h
-    #Handlers/SetValueHandler.h
-    #Handlers/SetValueHandler.cpp
+    Handlers/SetValueHandler.h
+    Handlers/SetValueHandler.cpp
     #Handlers/GetValueHandler.cpp
     #Handlers/GetValueHandler.h
     #Handlers/HelpHandler.cpp

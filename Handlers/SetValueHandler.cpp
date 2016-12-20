@@ -4,7 +4,6 @@
 #include "SetValueHandler.h"
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/CTable.hpp>
-#include <Flyweight/Flyweight.h>
 
 using namespace defaultVals;
 
@@ -15,17 +14,17 @@ CSetValueHandler::CSetValueHandler(std::vector<std::string>& inCommand)
 {
 }
 
-const int CSetValueHandler::getProperAmountOfArgs()
+const int CSetValueHandler::getProperAmountOfArgs() const noexcept
 {
     return 4;
 }
 
-std::string CSetValueHandler::getProperTypesOfArgs()
+std::string CSetValueHandler::getProperTypesOfArgs() const noexcept
 {
     return "siii";
 }
 
-ERROR_CODE CSetValueHandler::performOn(std::vector<CTable*>& inCache)
+CODE CSetValueHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
@@ -34,30 +33,24 @@ ERROR_CODE CSetValueHandler::performOn(std::vector<CTable*>& inCache)
     std::string receivedNewVal(wholeCommand_[idxOf::NEW_VAL]);
     int newVal = std::stoi(receivedNewVal);
 
-    if(isProperIdx(idxOrAmount, inCache))
+    TableOfTables* cache = std::get<0>(pairedShapeCach);
+
+    if (!isProperIdx(idxOrAmount, cache->getSize()))
     {
-        CTable* retTable = inCache.at(idxOrAmount);
-        if(retTable != nullptr)
-        {
-            if(isProperIdx(idOfNewVal, retTable->getSize()))
-            {
-                retTable->setVal(idOfNewVal, newVal);
-            }
-            else
-            {
-                return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
-            }
-        }
-        else
-        {
-            return returnResultCode(ERROR_CODE::UNDEFINED_OBJECT);
-        }
-        retTable = nullptr;
-    }
-    else
-    {
-        return returnResultCode(ERROR_CODE::INDEX_OUT_OF_BOUNDS);
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
     }
 
-    return ERROR_CODE::SEEMS_LEGIT;
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    {
+        return returnResultCode(CODE::UNDEFINED_OBJECT);
+    }
+
+    if(!isProperIdx(idOfNewVal, cache->getVal(idxOrAmount).getSize()))
+    {
+        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+    }
+
+    cache->getVal(idxOrAmount).setVal(idOfNewVal, newVal);
+
+    return CODE::SEEMS_LEGIT;
 }
