@@ -53,8 +53,8 @@ set(ELEMENTS_AND_TABLES
     ElementsAndTables/CTable.hpp
     ElementsAndTables/RAII.hpp
     ElementsAndTables/ARRAII.hpp
-	ElementsAndTables/Person.hpp
-	ElementsAndTables/Person.cpp
+    ElementsAndTables/Person.hpp
+    ElementsAndTables/Person.cpp
 )
 
 set(UTILS

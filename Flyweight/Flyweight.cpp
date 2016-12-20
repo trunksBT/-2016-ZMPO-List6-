@@ -105,16 +105,16 @@ CODE CFlyweight::interpretCommand(std::vector<std::string>& inCommand)
     {
         returnedCode = CClearHandler(inCommand).checkArgsAndPerform(pairedShapeCache);
     }
-    //else if (command == HELP)
-    //{
-    //    CHelpHandler evaluate(inCommand);
-    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
-    //}
     else if (command == CLOSE)
     {
         releaseResources();
         returnedCode = CODE::CLOSE;
     }
+    //else if (command == HELP)
+    //{
+    //    CHelpHandler evaluate(inCommand);
+    //    returnedCode = evaluate.checkCorrectnessAndPerform(cache_);
+    //}
 
     return returnedCode;
 }
