@@ -44,7 +44,7 @@ CODE CGoHandler::performOn(InitializedCTable& pairedShapeCach)
     }
     catch (...)
     {
-        logger << "EXCEPTION" << POST_PRINT;
+        logger << EXCEPTION << POST_PRINT;
         return CODE::WRONG_VALUE;
     }
 

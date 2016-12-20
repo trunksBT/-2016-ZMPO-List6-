@@ -72,11 +72,18 @@ public:
         return *this;
     }
 
-    void setSize(int inNewSize) noexcept
+    void setSize(int inNewSize)
     {
-        if (memory_.size() != inNewSize)
+        if (inNewSize >= 0)
         {
-            memory_ = ARRAII<T>(inNewSize);
+            if (memory_.size() != inNewSize)
+            {
+                memory_ = ARRAII<T>(inNewSize);
+            }
+        }
+        else
+        {
+            throw OwnException();
         }
     }
 
@@ -88,15 +95,19 @@ public:
         }
     }
 
-    void setVal(int idx, T newVal) noexcept
+    void setVal(int idx, T newVal)
     {
         if (isProperIdx(idx, getSize()))
         {
             memory_[idx] = newVal;
         }
+        else
+        {
+            throw OwnException();
+        }
     }
 
-    T& getVal(int idx) const
+    T& getVal(int idx)
     {
         if (isProperIdx(idx, getSize()))
         {

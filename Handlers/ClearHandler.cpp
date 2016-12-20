@@ -29,19 +29,23 @@ CODE CClearHandler::performOn(InitializedCTable& pairedShapeCach)
 
     std::string receivedId(wholeCommand_[idxOf::ID_OF_CTABLE]);
     int idxOrAmount = std::stoi(receivedId);
-    if(!isProperIdx(idxOrAmount, cache->getSize()))
-    {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
 
-    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+    try
     {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
+        if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+        {
+            return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+        }
 
-    for (int i = 0; i < std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getSize(); i++)
+        for (int i = 0; i < std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getSize(); i++)
+        {
+            std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getVal(i) = ZERO;
+        }
+    }
+    catch (...)
     {
-        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getVal(i) = ZERO;
+        logger << EXCEPTION << POST_PRINT;
+        return CODE::WRONG_VALUE;
     }
 
     return CODE::SEEMS_LEGIT;

@@ -28,20 +28,14 @@ CODE CGetSizeHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
 
-    TableOfTables* cache = std::get<0>(pairedShapeCach);
-    if (cache->getSize() == 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
-    {
-        return returnResultCode(CODE::UNDEFINED_OBJECT);
-    }
-
     if (!std::get<1>(pairedShapeCach)[idxOrAmount])
     {
         logger << NOT_INITIALIZED_TABLE;
     }
     else
     {
-        logger << 
-            std::to_string(static_cast<int>(cache->getVal(idxOrAmount).getSize()));
+        logger << std::to_string(static_cast<int>(
+            std::get<0>(pairedShapeCach)->getVal(idxOrAmount).getSize()));
     }
 
     std::cout << POST_PRINT;

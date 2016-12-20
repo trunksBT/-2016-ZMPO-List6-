@@ -30,17 +30,20 @@ CODE CCreateHandler::performOn(InitializedCTable& pairedShapeCach)
     std::string receivedNewSize(wholeCommand_[idxOf::NEW_SIZE]);
     int newSize = std::stoi(receivedNewSize);
     std::string initialName(wholeCommand_[idxOf::INITIAL_NAME]);
-    
-    if(newSize < 0 || !isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
-    {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
 
-    if(newSize > 0)
+    try
     {
-        std::get<0>(pairedShapeCach)->setVal(
-            idxOrAmount,
-            CTable<int>(newSize, initialName));
+        if (newSize > 0)
+        {
+            std::get<0>(pairedShapeCach)->setVal(
+                idxOrAmount,
+                CTable<int>(newSize, initialName));
+        }
+    }
+    catch (...)
+    {
+        logger << EXCEPTION << POST_PRINT;
+        return CODE::WRONG_VALUE;
     }
 
     return CODE::SEEMS_LEGIT;

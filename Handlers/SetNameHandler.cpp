@@ -26,19 +26,15 @@ std::string CSetNameHandler::getProperTypesOfArgs() const noexcept
 
 CODE CSetNameHandler::performOn(InitializedCTable& pairedShapeCach)
 {
-    std::string newName(wholeCommand_[idxOf::NEW_NAME]);
     std::string receivedId(std::move(wholeCommand_[idxOf::AMOUNT]));
     int idxOrAmount = std::stoi(receivedId);
+    std::string newName(wholeCommand_[idxOf::NEW_NAME]);
 
-    if (!isProperIdx(idxOrAmount, std::get<0>(pairedShapeCach)->getSize()))
+    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
     {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
+        return CODE::WRONG_VALUE;
     }
-
-    if (std::get<1>(pairedShapeCach)[idxOrAmount])
-    {
-        std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setName(newName);
-    }
+    std::get<0>(pairedShapeCach)->getVal(idxOrAmount).setName(newName);
 
     return CODE::SEEMS_LEGIT;
 }
