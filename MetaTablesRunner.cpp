@@ -30,7 +30,6 @@ int main(int argc, char **argv)
          logger << POST_PRINT << "Dzieki za uzycie programu, Korytko_MS" << POST_PRINT << POST_PRINT;
     }
 
-    std::cout << "Siema" << std::endl;
     //::testing::InitGoogleTest(&argc, argv);
     //return RUN_ALL_TESTS();
 }

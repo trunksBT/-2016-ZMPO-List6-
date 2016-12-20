@@ -4,6 +4,7 @@
 #include <tuple>
 #include <string>
 #include <sstream>
+#include <exception>
 #include <Utils/Utils.hpp>
 #include <ElementsAndTables/ARRAII.hpp>
 #include <Utils/Logger.hpp>
@@ -12,20 +13,35 @@ using namespace defaultVals;
 using namespace funs;
 using namespace flags;
 
+class OwnException : public std::exception
+{
+public:
+    virtual const char* what() const throw()
+    {
+        return "WrongIdxException";
+    }
+};
+
 template<typename T>
 class CTable
 {
 public:
-    CTable(size_t size)
-        : memory_(ARRAII<T>(size))
+    CTable(int size)
     {
+        if (size <= ZERO)
+        {
+            throw OwnException();
+        }
+
+        memory_ = ARRAII<T>(size);
+
         if (PRINT_ERRORS)
         {
             logger << CTOR_DEFAULT_PRE_PRINT << name_ << POST_PRINT;
         }
     }
 
-    CTable(size_t size, std::string inName)
+    CTable(int size, std::string inName)
         : memory_(ARRAII<T>(size))
         , name_(inName)
     {
@@ -80,16 +96,19 @@ public:
         }
     }
 
-    T& getVal(int idx) const noexcept
+    T& getVal(int idx) const
     {
         if (isProperIdx(idx, getSize()))
         {
             return memory_[idx];
         }
-        // throw here OutOfBoundsException
+        else
+        {
+            throw OwnException();
+        }
     }
 
-    std::size_t getSize() const noexcept
+    int getSize() const noexcept
     {
         return memory_.size();
     }
@@ -130,7 +149,7 @@ public:
         return std::move(retVal.str());
     }
 
-    static CTable<T>* buildNewObj(size_t size) noexcept
+    static CTable<T>* buildNewObj(int size) noexcept
     {
         return new CTable<T>(size);
     }

@@ -16,9 +16,9 @@ template <typename T>
 class ARRAII
 {
 public:
-    explicit ARRAII(size_t inSize) noexcept
-        : size_(inSize)
+    explicit ARRAII(int inSize = ONE) noexcept
     {
+        size_ = inSize;
         allocateMemoryAndCallCtors();
 
         if (PRINT_ERRORS)
@@ -102,7 +102,7 @@ public:
         return memory_[idx];
     }
 
-    std::size_t size() const noexcept
+    int size() const noexcept
     {
         return size_;
     }
@@ -156,5 +156,5 @@ public:
 
 private:
     T* memory_ = nullptr;
-    std::size_t size_ = std::size_t();
+    int size_ = int();
 };

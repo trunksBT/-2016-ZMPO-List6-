@@ -27,20 +27,25 @@ CODE CGoHandler::performOn(InitializedCTable& pairedShapeCach)
 {
     std::string receivedId(wholeCommand_[idxOf::AMOUNT]);
     int idxOrAmount = std::stoi(receivedId);
-    if(idxOrAmount <= ZERO)
-    {
-        return returnResultCode(CODE::WRONG_VALUE);
-    }
 
-    if (std::get<idxOf::CACHE>(pairedShapeCach) != nullptr)
+    try
     {
-        delete std::get<idxOf::CACHE>(pairedShapeCach);
-    }
-    std::get<idxOf::CACHE>(pairedShapeCach) = CTable<CTable<int>>::buildNewObj(idxOrAmount);
+        if (std::get<idxOf::CACHE>(pairedShapeCach) != nullptr)
+        {
+            delete std::get<idxOf::CACHE>(pairedShapeCach);
+        }
 
-    for (int i = 0; i < idxOrAmount; i++)
+        std::get<idxOf::CACHE>(pairedShapeCach) = CTable<CTable<int>>::buildNewObj(idxOrAmount);
+
+        for (int i = 0; i < idxOrAmount; i++)
+        {
+            std::get<idxOf::IS_INITIALIZED>(pairedShapeCach)[i] = true;
+        }
+    }
+    catch (...)
     {
-        std::get<idxOf::IS_INITIALIZED>(pairedShapeCach)[i] = true;
+        logger << "EXCEPTION" << POST_PRINT;
+        return CODE::WRONG_VALUE;
     }
 
     return CODE::SEEMS_LEGIT;

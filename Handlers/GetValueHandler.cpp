@@ -32,22 +32,20 @@ CODE CGetValueHandler::performOn(InitializedCTable& pairedShapeCach)
 
     TableOfTables* cache = std::get<0>(pairedShapeCach);
 
-    if (!isProperIdx(idxOrAmount, cache->getSize()))
+    try
     {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
+        if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+        {
+            return returnResultCode(CODE::UNDEFINED_OBJECT);
+        }
 
-    if (!std::get<1>(pairedShapeCach)[idxOrAmount])
+        logger << std::to_string(cache->getVal(idxOrAmount).getVal(idOfNewVal)) << POST_PRINT;
+    }
+    catch (...)
     {
-        return returnResultCode(CODE::UNDEFINED_OBJECT);
+        logger << "EXCEPTION" << POST_PRINT;
+        return CODE::WRONG_VALUE;
     }
-
-    if (!isProperIdx(idOfNewVal, cache->getVal(idxOrAmount).getSize()))
-    {
-        return returnResultCode(CODE::INDEX_OUT_OF_BOUNDS);
-    }
-
-    logger << std::to_string(cache->getVal(idxOrAmount).getVal(idOfNewVal)) << POST_PRINT;
 
     return CODE::SEEMS_LEGIT;
 }
